@@ -53,3 +53,5 @@ gregorio.perego@gmail.com
 pezzettistefania@gmail.com
 
 aldo.pintus@gmail.com
+
+alessiorossotti@gmail.com
