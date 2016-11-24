@@ -1,0 +1,84 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see http://www.gnu.org/licenses/
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE publicProtocols FOR ViewController-»
+«IF 	spinners.size==0 && map==null && listViews.size==0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController
+«ELSEIF spinners.size==0 && map==null && listViews.size==0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map==null && listViews.size==0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size==0 && map==null && listViews.size==0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map==null && listViews.size!=0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UITableViewDelegate, UITableViewDataSource
+«ELSEIF spinners.size==0 && map==null && listViews.size!=0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map==null && listViews.size!=0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size==0 && map==null && listViews.size!=0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map!=null && listViews.size==0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate
+«ELSEIF spinners.size==0 && map!=null && listViews.size==0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map!=null && listViews.size==0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size==0 && map!=null && listViews.size==0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map!=null && listViews.size!=0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource
+«ELSEIF spinners.size==0 && map!=null && listViews.size!=0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size==0 && map!=null && listViews.size!=0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size==0 && map!=null && listViews.size!=0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map==null && listViews.size==0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+«ELSEIF spinners.size!=0 && map==null && listViews.size==0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map==null && listViews.size==0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size!=0 && map==null && listViews.size==0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map==null && listViews.size!=0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource
+«ELSEIF spinners.size!=0 && map==null && listViews.size!=0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map==null && listViews.size!=0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size!=0 && map==null && listViews.size!=0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map!=null && listViews.size==0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate
+«ELSEIF spinners.size!=0 && map!=null && listViews.size==0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map!=null && listViews.size==0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size!=0 && map!=null && listViews.size==0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map!=null && listViews.size!=0 && gridViews.size==0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource
+«ELSEIF spinners.size!=0 && map!=null && listViews.size!=0 && gridViews.size==0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ELSEIF spinners.size!=0 && map!=null && listViews.size!=0 && gridViews.size!=0 && (photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+«ELSEIF spinners.size!=0 && map!=null && listViews.size!=0 && gridViews.size!=0 && !(photocameraController==null && videocameraController==null)-»
+UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+«ENDIF-»
+«ENDDEFINE-»

@@ -1,0 +1,40 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+	«FOREACH datepickers AS d-»
+	@IBOutlet weak var «d.id»Picker: UIDatePicker!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE datepickers FOR ViewController-»
+«FOREACH datepickers AS d-»
+    @IBAction func «d.id»PickerValueChangedAction(sender: UIDatePicker) {
+        let dateString = String(sender.date)
+        let day = dateString.substringWithRange(
+            Range<String.Index>(dateString.startIndex.advancedBy(8)...dateString.startIndex.advancedBy(9))
+        )
+        let month = dateString.substringWithRange(
+            Range<String.Index>(dateString.startIndex.advancedBy(5)...dateString.startIndex.advancedBy(6))
+        )
+        let year = dateString.substringWithRange(
+            Range<String.Index>(dateString.startIndex.advancedBy(0)...dateString.startIndex.advancedBy(3))
+        )
+        NSLog("Date : \(day)-\(month)-\(year)")
+    }
+«ENDFOREACH-»
+«ENDDEFINE-»

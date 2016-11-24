@@ -1,0 +1,67 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH imageViews AS iv-»
+private ImageView «iv.id»;
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH imageViews AS iv-»
+this.«iv.id» = (ImageView) this.findViewById(R.id.«iv.id»);
+«IF iv.sourceType.toString().matches("remoteFile")-»
+«IF !iv.fileUri.matches("")-»
+this.«iv.id».setTag("«iv.fileUri»");
+//download the bitmap and set the ImageView
+new ImageDownloadingTask().execute(this.«iv.id»);
+«ELSE-»
+/*
+//TODO insert the remote file uri
+this.«iv.id».setTag("http://...");
+//download the bitmap and set the ImageView
+new ImageDownloadingTask().execute(this.«iv.id»);
+*/
+«ENDIF-»
+«ENDIF-»
+
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH imageViews AS iv-»
+
+this.«iv.id» = (ImageView) rootView.findViewById(R.id.«iv.id»);
+
+«IF iv.sourceType.toString().matches("remoteFile")-»
+«IF !iv.fileUri.matches("")-»
+this.«iv.id».setTag("«iv.fileUri»");
+//download the bitmap and set the ImageView
+new ImageDownloadingTask().execute(«iv.id»);
+«ELSE-»
+/*
+//TODO insert the remote file uri
+this.«iv.id».setTag("http://...");
+//download the bitmap and set the ImageView
+new ImageDownloadingTask().execute(«iv.id»);
+*/
+«ENDIF-»
+«ENDIF-»
+
+«ENDFOREACH-»
+«ENDDEFINE-»
+

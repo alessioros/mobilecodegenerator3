@@ -1,0 +1,31 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR WatchController-»
+	«FOREACH watchSwitches AS s-»
+	@IBOutlet weak var «s.id»Button: WKInterfaceSwitch!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE watchSwitches FOR WatchController-»
+«FOREACH watchSwitches AS s-»
+	@IBAction func «s.id»ButtonValueChangedAction(value: Bool) {
+        // You can check the value of the switch
+        let isChecked: Bool = value
+    }
+«ENDFOREACH-»
+«ENDDEFINE-»

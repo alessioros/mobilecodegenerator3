@@ -1,0 +1,88 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«DEFINE main FOR Application-»
+«EXPAND viewController FOREACH viewControllers-»
+«ENDDEFINE-»
+
+«DEFINE viewController FOR ViewController-»
+
+«FILE application.name +"/"+application.name +"/"+ name+"ViewController.swift"-»
+
+«EXPAND ios_viewcontrollers_templates::Imports::publicImports-»
+
+class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
+
+	«EXPAND ios_viewcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
+
+	override func viewDidLoad() {
+	    super.viewDidLoad()
+		«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+	    super.viewDidAppear(animated)
+	    «EXPAND ios_viewcontrollers_templates::ViewDidAppear::viewDidAppear-»
+	}
+	
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		«EXPAND ios_viewcontrollers_templates::ViewDidDisappear::viewDidDisappear-»
+	}
+	
+	«EXPAND ios_viewcontrollers_templates::Audio::audio-»
+	
+	«EXPAND ios_viewcontrollers_templates::Buttons::buttons-»
+	
+	«EXPAND ios_viewcontrollers_templates::Camera::camera-»
+	
+	«EXPAND ios_viewcontrollers_templates::Cards::cards-»
+	
+	«EXPAND ios_viewcontrollers_templates::Datepickers::datepickers-»
+	
+	«EXPAND ios_viewcontrollers_templates::GridViews::gridViews-»
+	
+	«EXPAND ios_viewcontrollers_templates::ListViews::listViews-»
+	
+	«EXPAND ios_viewcontrollers_templates::Sliders::sliders-»
+	
+	«EXPAND ios_viewcontrollers_templates::Spinners::spinners-»
+	
+	«EXPAND ios_viewcontrollers_templates::Switches::switches-»
+	
+	«EXPAND ios_viewcontrollers_templates::Timepickers::timepickers-»
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+	}
+	
+	override func didReceiveMemoryWarning() {
+	    super.didReceiveMemoryWarning()
+	    // Dispose of any resources that can be recreated.
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	    «EXPAND ios_viewcontrollers_templates::PrepareForSegue::prepareForSegue-»
+	}
+	
+}
+«ENDFILE-»
+
+«ENDDEFINE-»

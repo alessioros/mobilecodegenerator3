@@ -1,0 +1,494 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«EXTENSION app_extensions::Java»
+«EXTENSION android_extensions::Java»
+
+«DEFINE main FOR Application-»
+
+«setApplicationName(name)»
+«deleteApplicationFolder()»
+«copyDefaultAndroidFiles()»
+«copyUserFiles()»
+
+
+«REM»--------------------------- build.gradle ---------------------------«ENDREM»
+«FILE name+"/mobile/"+"build.gradle"-»
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "«companyIdentifier».«name.toLowerCase()»"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	wearApp project(':wear')
+	compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+    «IF existsAtLeastOne(viewControllers.map) || existsAtLeastOne(watchControllers.watchVoiceMessage)-»
+    compile 'com.google.android.gms:play-services:8.4.0'
+    «ENDIF-»
+    «IF existsAtLeastOne(viewControllers.cards)-»
+    compile 'com.android.support:cardview-v7:23.3.0'
+    «ENDIF-»
+    «IF menu.menuItems.size > 0 -»
+    compile 'com.android.support:support-v4:23.4.0'
+    «ENDIF-»
+    «IF existsAtLeastOne(viewControllers.datepickers) -»
+    compile 'com.github.prolificinteractive:material-calendarview:v1.4.0'
+    «ENDIF-»
+    «IF existsAtLeastOne(viewControllers.timepickers) -»
+    compile 'com.github.ugurtekbas:dialTimePicker:9f4af78e90'
+    «ENDIF-»
+}
+«ENDFILE-»
+
+
+«REM»--------------------------- MyWearableListenerService ---------------------------«ENDREM»
+«IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyWearableListenerService.java"-»
+package «companyIdentifier».«name.toLowerCase()»;
+
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.WearableListenerService;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyWearableListenerService extends WearableListenerService {
+
+    public static Map<String, String> messages = new HashMap<>();
+
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent) {
+
+        String messagePath = messageEvent.getPath();
+        byte[] messageData = messageEvent.getData();
+        String messageContent = new String(messageData);
+
+        //Change messagePath if exists
+        String tmpPath = messagePath;
+        int i = 0;
+        while(messages.containsKey(tmpPath)) {
+            tmpPath = messagePath + "_" + i;
+            i++;
+        }
+
+        //Collect messages
+        messages.put(tmpPath, messageContent);
+
+        //You can reference to the messages from any activity like this
+        //Map<String, String> messages = MyWearableListenerService.messages;
+        //int numMessages = messages.size();
+		//String lastMessage = (String) messages.values().toArray()[0];
+
+    }
+
+}
+«ENDFILE-»
+«ENDIF-»
+
+«REM»----------------------------------- Utils -----------------------------------«ENDREM»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "Utils.java"-»
+package «companyIdentifier».«name.toLowerCase()»;
+	
+import java.io.*;
+	
+public final class Utils {
+
+	/**
+	 * Returns the text (string) contained in the Input Stream passed as parameter
+	 * @param inputStream
+	 * @return string
+	 */
+	public static String fromInputStreamToString(InputStream inputStream) {
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+	    String readLine = "";
+	    StringBuilder stringBuilder = new StringBuilder();
+	    try {
+	        while ((readLine = bufferedReader.readLine()) != null) {
+	        	stringBuilder.append(readLine);
+		    }
+	        inputStream.close(); 
+		    bufferedReader.close();
+	    }
+	    catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    return stringBuilder.toString();
+	}
+}
+«ENDFILE-»
+
+
+«REM»--------------------------- ImageDownloadingTask ---------------------------«ENDREM»
+«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+«FILE this.name+"/mobile/src/main/java/"+this.companyIdentifier.replaceAll("\\.","/") +"/"+this.name.toLowerCase() +"/"+"ImageDownloadingTask.java"-»
+package «this.companyIdentifier».«this.name.toLowerCase()»;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.widget.ImageView;
+
+public class ImageDownloadingTask extends AsyncTask<ImageView, Void, Bitmap>{
+	private ImageView imageView;
+    private String imageUri;
+
+    /**
+     * This task attempts to download an image from the Network:
+	 * in case of success, it sets the proper ImageView,
+	 * in case of failure, it does nothing (ImageView remains without image).
+     */
+    public ImageDownloadingTask(){};
+    
+    /***
+     * Attempts to download the image from the Network.
+	 * @params params[0] = ImageView where to put the image to be downloaded. The url must be attached in a tag on the ImageView.
+     */
+    @Override
+    protected Bitmap doInBackground(ImageView... params) {
+        imageView = (ImageView) params[0];
+        Bitmap bitmap = null;
+        if(imageView!=null){
+        	imageUri = imageView.getTag().toString();
+			try {  
+				bitmap = downloadImage(imageUri);
+			}
+			catch (MalformedURLException e) {
+				e.printStackTrace();
+			} 
+			catch (IOException e) { //failure in downloading the image
+				e.printStackTrace();
+			} 
+        }
+        return bitmap;
+    }
+    
+    /**
+     * Attempts to download the image at the url passed as parameter: it returns the bitmap in case of success, null otherwise.
+     * @param imageUrl
+     */
+    protected Bitmap downloadImage(String imageUrl) throws MalformedURLException, IOException{
+    	HttpURLConnection connection = (HttpURLConnection) new URL(imageUrl).openConnection();
+		connection.connect();
+		Bitmap downloadedBitmap = BitmapFactory.decodeStream(connection.getInputStream()); //Convert to bitmap
+		connection.disconnect();
+		return downloadedBitmap;
+    }
+    
+    /***
+     * If the image has been downloaded properly it sets the ImageView.
+     */
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+    	super.onPostExecute(bitmap);
+        if(bitmap!=null){
+        	String imageUri = imageView.getTag().toString();
+        	if(this.imageUri.equals(imageUri)){ //needed for synchronization reasons
+        		this.imageView.setImageBitmap(bitmap);
+        	}
+        }
+    } 
+}
+«ENDFILE-»
+«ENDIF-»
+
+«REM»-------------------------------- MyListAdapter --------------------------------«ENDREM»
+«IF viewControllers.listViews.size != 0-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
+package «companyIdentifier».«name.toLowerCase()»;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public final class MyListAdapter extends ArrayAdapter<String> {
+
+	private final Activity context;
+	private final int layoutId;
+	private final String[] itemNames;
+	private final String[] subitemNames;
+	private final Integer[] imgIds;
+	private final Integer[] iconsIds;
+
+	public MyListAdapter(Activity context, int layoutId, String[] itemNames) {
+		super(context, layoutId, itemNames);
+		this.context = context;
+		this.layoutId = layoutId;
+		this.itemNames = itemNames;
+		this.subitemNames = null;
+		this.imgIds = null;
+		this.iconsIds = null;
+	}
+
+	public MyListAdapter(Activity context, int layoutId, String[] itemNames,
+			Integer[] imgIds) {
+		super(context, layoutId, itemNames);
+		this.context = context;
+		this.layoutId = layoutId;
+		this.itemNames = itemNames;
+		this.imgIds = imgIds;
+		this.subitemNames = null;
+		this.iconsIds = null;
+	}
+
+	public MyListAdapter(Activity context, int layoutId, String[] itemNames,
+			String[] subitemNames, Integer[] imgIds, Integer[] iconsIds) {
+		super(context, layoutId, itemNames);
+		this.context = context;
+		this.layoutId = layoutId;
+		this.itemNames = itemNames;
+		this.imgIds = imgIds;
+		this.subitemNames = subitemNames;
+		this.iconsIds = iconsIds;
+	}
+
+	public View getView(int position, View view, ViewGroup parent) {
+		LayoutInflater inflater = context.getLayoutInflater();
+		View rowView = inflater.inflate(this.layoutId, null, true);
+
+		try {
+			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv);
+			tv.setText(itemNames[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv_1);
+			tv.setText(itemNames[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv_2);
+			tv.setText(subitemNames[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			ImageView iv = (ImageView) rowView.findViewById(R.id.listview_img);
+			iv.setImageResource(imgIds[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			ImageView ic = (ImageView) rowView.findViewById(R.id.listview_ico);
+			ic.setImageResource(iconsIds[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return rowView;
+	}
+
+}
+«ENDFILE-»
+«ENDIF-»
+
+
+«REM»-------------------------------- MyGridAdapter --------------------------------«ENDREM»
+«IF viewControllers.gridViews.size != 0-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
+package «companyIdentifier».«name.toLowerCase()»;
+
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public final class MyGridAdapter extends BaseAdapter {
+
+	private final Activity context;
+	private final int layoutId;
+	private final String[] itemNames;
+	private final Integer[] imgIds;
+	private final Drawable[] drawables;
+	private final boolean isDinamyc;
+
+	public MyGridAdapter(Activity context, String[] itemNames) {
+		this.context = context;
+		this.layoutId = R.layout.my_grid_cell_simple;
+		this.itemNames = itemNames;
+		this.imgIds = null;
+		this.isDinamyc = false;
+		this.drawables = null;
+	}
+
+	public MyGridAdapter(Activity context, Integer[] imgIds) {
+		this.context = context;
+		this.layoutId = R.layout.my_grid_cell_image;
+		this.itemNames = null;
+		this.imgIds = imgIds;
+		this.isDinamyc = false;
+		this.drawables = null;
+	}
+
+	public MyGridAdapter(Activity context, Drawable[] drawables) {
+		this.context = context;
+		this.layoutId = R.layout.my_grid_cell_image;
+		this.itemNames = null;
+		this.imgIds = null;
+		this.isDinamyc = true;
+		this.drawables = drawables;
+	}
+
+	public MyGridAdapter(Activity context, String[] itemNames, Integer[] imgIds) {
+		this.context = context;
+		this.layoutId = R.layout.my_grid_cell_detailed;
+		this.itemNames = itemNames;
+		this.imgIds = imgIds;
+		this.isDinamyc = false;
+		this.drawables = null;
+	}
+
+	public MyGridAdapter(Activity context, String[] itemNames, Drawable[] drawables) {
+		this.context = context;
+		this.layoutId = R.layout.my_grid_cell_detailed;
+		this.itemNames = itemNames;
+		this.imgIds = null;
+		this.isDinamyc = true;
+		this.drawables = drawables;
+	}
+
+	@Override
+	public int getCount() {
+		if (this.layoutId == R.layout.my_grid_cell_image) {
+			if(!isDinamyc) {
+				return this.imgIds.length;
+			} else {
+				return this.drawables.length;
+			}
+		}
+		return this.itemNames.length;
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return null;
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return 0;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		LayoutInflater inflater = context.getLayoutInflater();
+		View gridView = inflater.inflate(this.layoutId, null, true);
+
+		if (this.layoutId == R.layout.my_grid_cell_simple) {
+			TextView tv = (TextView) gridView
+					.findViewById(R.id.gridview_simple_tv);
+			tv.setText(itemNames[position]);
+		} else if (this.layoutId == R.layout.my_grid_cell_image) {
+			if(!isDinamyc) {
+				ImageView iv = (ImageView) gridView
+						.findViewById(R.id.gridview_image_img);
+				iv.setImageResource(imgIds[position]);
+			}
+			else {
+				ImageView iv = (ImageView) gridView
+						.findViewById(R.id.gridview_image_img);
+				iv.setImageDrawable(drawables[position]);
+			}
+		} else if (this.layoutId == R.layout.my_grid_cell_detailed) {
+			if(!isDinamyc) {
+				ImageView iv = (ImageView) gridView
+						.findViewById(R.id.gridview_detailed_img);
+				iv.setImageResource(imgIds[position]);
+			}
+			else {
+				ImageView iv = (ImageView) gridView
+						.findViewById(R.id.gridview_detailed_img);
+				iv.setImageDrawable(drawables[position]);
+			}
+			TextView tv = (TextView) gridView
+					.findViewById(R.id.gridview_detailed_tv);
+			tv.setText(itemNames[position]);
+		}
+
+		return gridView;
+	}
+}
+«ENDFILE-»
+
+
+«REM»-------------------------------- GridImageView --------------------------------«ENDREM»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "GridImageView.java"-»
+package «companyIdentifier».«name.toLowerCase()»;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ImageView;
+
+public class GridImageView extends ImageView {
+    public GridImageView(Context context) {
+        super(context);
+    }
+
+    public GridImageView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public GridImageView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+    }
+
+}
+«ENDFILE-»
+«ENDIF-»
+
+«ENDDEFINE-»

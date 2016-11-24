@@ -1,0 +1,129 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«EXTENSION ios_extensions::Java»
+
+«DEFINE main FOR Application-»
+
+«FILE name+"/"+name+" WatchKit App/Base.lproj/Interface.storyboard"-»
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+«IF watchControllers.size <= 0-»
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES"> 
+«ENDIF-»
+«FOREACH watchControllers AS wc-»
+«IF wc.launcher-» 
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="«wc.name»InterfaceControllerID">
+«ENDIF-»
+«ENDFOREACH-»
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+    </dependencies>
+    <scenes>
+    	«FOREACH watchControllers AS wc-»
+		<!--«wc.name»WatchController-->
+		<scene sceneID="«wc.name»InterfaceControllerSceneID">
+            <objects>
+        		«IF wc.launcher-»    	
+                <controller id="«wc.name»InterfaceControllerID" customClass="«wc.name»InterfaceController" customModule="«name»_WatchKit_App" customModuleProvider="target">
+                «ELSE-»
+                <controller id="«wc.name»InterfaceControllerID" customClass="«wc.name»InterfaceController" customModule="«name»_WatchKit_Extension">
+                «ENDIF-»    
+                    <items>
+                    «FOREACH 1.upTo(numUiWatchControls(wc.toString().toString())) AS i-»
+                    	
+                    	«FOREACH wc.watchButtons AS b-»
+                    	«IF b.order == i -»
+                    	<button width="1" height="«b.height»" alignment="center" title="«b.title»" id="«b.id»">
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		<connections>
+                    			«IF b.watchClickListener!=null && b.watchClickListener.watchNavigation!=null»
+	                    		<segue destination="«b.watchClickListener.watchNavigation.destination»InterfaceControllerID" kind="push" id="SegueIDFrom«b.id»To«b.watchClickListener.watchNavigation.destination»InterfaceControllerID"/>
+	                        	«ENDIF-»
+	                        	<action selector="«b.id»Action:" destination="«wc.name»InterfaceControllerID" id="«b.id»ActionID"/>
+	                        </connections>
+                    	</button>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
+                    	«FOREACH wc.watchTextViews AS tv-»
+                    	«IF tv.order == i -»
+                    	<label width="1" height="«tv.height»" alignment="center" textAlignment="center" text="«tv.content»" id="«tv.id»">
+                    		«IF tv.textDecoration.matches("bold") -»
+                    		<fontDescription key="font" type="boldSystem" pointSize="16"/>
+                    		«ELSEIF tv.textDecoration.matches("italic") -»
+                    		<fontDescription key="font" type="italicSystem" pointSize="16"/>
+                    		«ELSE-»
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		«ENDIF-»
+                    	</label>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
+                    	«FOREACH wc.watchSliders AS s-»
+                    	«IF s.order == i -»
+                    	<slider width="1" height="«s.height»" alignment="center" value="2" maximum="4" steps="4" id="«s.id»">
+                    		<connections>
+                                <action selector="«s.id»Action:" destination="«wc.name»InterfaceControllerID" id="«s.id»ActionID"/>
+                            </connections>
+                        </slider>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
+                    	«FOREACH wc.watchSwitches AS s-»
+                    	«IF s.order == i -»
+                    	<switch width="1" height="«s.height»" alignment="center" value="YES" title="«s.title»" id="«s.id»Button">
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		<connections>
+                				<action selector="«s.id»Action:" destination="«wc.name»InterfaceControllerID" id="«s.id»ActionID"/>
+		                    </connections>
+                    	</switch>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
+                    	«IF wc.watchVoiceMessage != null-»
+                    	«IF wc.watchVoiceMessage.order == i -»
+                    	<button width="1" height="«wc.watchVoiceMessage.height»" alignment="center" title="«wc.watchVoiceMessage.title»" id="«wc.watchVoiceMessage.id»">
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		<connections>
+                                <action selector="sendVoiceMessage" destination="«wc.name»InterfaceControllerID" id="«wc.watchVoiceMessage.id»nActionID"/>
+                            </connections>
+                    	</button>
+                    	«ENDIF-»
+                    	«ENDIF-»
+                    	
+                    «ENDFOREACH-»
+                    </items>
+                    <connections>
+                        «FOREACH wc.watchButtons AS b-»
+                        <outlet property="«b.id»" destination="«b.id»" id="«b.id»OutletID"/>
+                        «ENDFOREACH»
+                        «FOREACH wc.watchSliders AS s-»
+                        <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+                        «ENDFOREACH»
+                        «FOREACH wc.watchSwitches AS s-»
+                        <outlet property="«s.id»Button" destination="«s.id»Button" id="«s.id»OutletID"/>
+                        «ENDFOREACH»
+                    </connections>
+                </controller>
+            </objects>
+        </scene>
+		«ENDFOREACH-»
+    </scenes>
+</document>
+«ENDFILE-»
+«ENDDEFINE-»

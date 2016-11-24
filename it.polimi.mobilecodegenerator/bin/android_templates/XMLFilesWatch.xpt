@@ -1,0 +1,327 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»-------------------------------- Activities Layout XML Files --------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+
+
+«DEFINE main FOR Application-»
+«EXPAND watchController FOREACH watchControllers-»
+«ENDDEFINE-»
+
+«DEFINE watchController FOR WatchController-»
+
+«FILE application.name+"/wear/src/main/res/layout/activity_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.WatchViewStub
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/watch_view_stub"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:rectLayout="@layout/rect_activity_«name.toLowerCase()»"
+    app:roundLayout="@layout/round_activity_«name.toLowerCase()»"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
+    tools:deviceIds="wear"></android.support.wearable.view.WatchViewStub>
+«ENDFILE-»
+
+«FILE application.name+"/wear/src/main/res/layout/rect_activity_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
+    tools:deviceIds="wear_square">
+
+	«EXPAND widgets FOR this»
+	
+	«IF watchVoiceMessage != null -»
+	<Button
+        «EXPAND uiWatchControl FOR watchVoiceMessage»
+        android:textAllCaps="false"
+        android:text="«watchVoiceMessage.title»"/>
+
+    <RelativeLayout
+        android:id="@+id/delayed_confirm_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:animateLayoutChanges="true"
+        android:alpha="0"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/delayed_confirm_title" 
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginBottom="4dp"
+			android:layout_marginLeft="16dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:text="Message"
+            android:textSize="12dp"
+            android:textColor="#999"/>
+
+        <TextView
+            android:id="@+id/delayed_confirm_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_below="@+id/delayed_confirm_title"
+            android:layout_above="@+id/delayed_confirm"
+            android:text="I made a reservation at 7:30 pm"
+			android:textSize="16dp"
+            android:textColor="#333"/>
+
+        <android.support.wearable.view.DelayedConfirmationView
+            android:id="@+id/delayed_confirm"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_cancel_blue_48dp"
+            app:circle_border_color="#93bbff"
+            app:circle_border_width="4dp"
+            app:circle_radius="26dp">
+        </android.support.wearable.view.DelayedConfirmationView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignTop="@+id/delayed_confirm"
+            android:layout_toEndOf="@+id/delayed_confirm"
+            android:gravity="center_vertical"
+            android:text="Sending..."
+            android:textColor="#999"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>        
+	«ENDIF-»
+	
+</RelativeLayout>
+«ENDFILE-»
+
+«FILE application.name+"/wear/src/main/res/layout/round_activity_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
+    tools:deviceIds="wear_round">
+    
+	«EXPAND widgets FOR this»
+	
+	«IF watchVoiceMessage != null -»
+	<Button
+        «EXPAND uiWatchControl FOR watchVoiceMessage»
+        android:textAllCaps="false"
+        android:text="«watchVoiceMessage.title»"/>
+
+    <RelativeLayout
+        android:id="@+id/delayed_confirm_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:animateLayoutChanges="true"
+        android:alpha="0"
+        android:elevation="4dp">
+
+		<TextView
+			android:id="@+id/delayed_confirm_title"
+			android:layout_width="match_parent"
+			android:layout_height="20dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginBottom="4dp"
+			android:layout_marginLeft="16dp"
+			android:layout_alignParentTop="true"
+			android:gravity="center_vertical"
+			android:text="Message"
+			android:textSize="12dp"
+			android:textColor="#999"
+			android:textAlignment="center"/>
+
+		<TextView
+			android:id="@+id/delayed_confirm_text_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_below="@+id/delayed_confirm_title"
+			android:layout_above="@+id/delayed_confirm"
+			android:text="I made a reservation at 7:30 pm"
+			android:textSize="16dp"
+			android:textColor="#333"
+			android:textAlignment="center"/>
+
+		<android.support.wearable.view.DelayedConfirmationView
+			android:id="@+id/delayed_confirm"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_above="@+id/textView"
+			android:layout_centerHorizontal="true"
+			android:src="@drawable/ic_cancel_blue_48dp"
+			app:circle_border_color="#93bbff"
+			app:circle_border_width="4dp"
+			app:circle_radius="26dp">
+		</android.support.wearable.view.DelayedConfirmationView>
+
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginLeft="16dp"
+			android:text="Sending ..."
+			android:textColor="#999"
+			android:textSize="16dp"
+			android:textAlignment="center"
+			android:gravity="center_vertical"
+			android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>        
+	«ENDIF-»
+
+</RelativeLayout>
+«ENDFILE-»
+
+«ENDDEFINE-»
+
+
+
+
+«DEFINE widgets FOR WatchController-»
+	«FOREACH watchButtons AS b-»
+	<Button
+        «EXPAND uiWatchControl FOR b»
+        android:textAllCaps="false"
+        android:text="«b.title»"/>        
+	«ENDFOREACH-»
+	
+	«FOREACH watchTextViews AS tv-»
+	<TextView
+        «EXPAND uiWatchControl FOR tv»
+        «IF tv.textDecoration.matches("none")==false»
+        android:textStyle="«tv.textDecoration»"
+        «ENDIF-»
+        android:text="«tv.content»"
+        android:gravity="«tv.textAlign.toString()»|center_vertical"/>        
+	«ENDFOREACH-»
+	
+	«FOREACH watchSwitches AS s-»
+	<RelativeLayout
+        «EXPAND uiWatchControl FOR s»
+	>
+    
+        <Switch
+            android:id="@+id/«s.id»Button"
+            android:text="«s.title»"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout> 
+	«ENDFOREACH-»
+	
+	«FOREACH watchSliders AS s-»
+	<SeekBar
+        «EXPAND uiWatchControl FOR s»
+        android:progress="50"/>        
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+
+«REM»--------------------------- UiWatchControl Positioning XML Files ---------------------------«ENDREM»
+«DEFINE uiWatchControl FOR UiWatchControl-»
+		android:id="@+id/«id»"
+		android:layout_width="«width»dp"
+		android:layout_height="«height»dp"
+		android:layout_alignParentBottom="«alignParentBottom»"
+		android:layout_alignParentRight="«alignParentEnd»"
+		android:layout_alignParentLeft="«alignParentStart»"
+		android:layout_alignParentTop="«alignParentTop»"
+		«IF alignStart == null &&
+			alignEnd == null &&
+			toStartOf == null &&
+			toEndOf == null &&
+			!alignParentStart &&
+			!alignParentEnd
+			-»
+		android:layout_marginLeft="«posX + marginStart»dp"	
+		«ELSE»
+		android:layout_marginLeft="«marginStart»dp"
+		«ENDIF-»
+		«IF alignTop == null &&
+			alignBottom == null &&
+			below == null &&
+			above == null &&
+			!alignParentTop &&
+			!alignParentBottom
+			-»
+		android:layout_marginTop="«posY + marginTop»dp"	
+		«ELSE»
+		android:layout_marginTop="«marginTop»dp"
+		«ENDIF-»
+		android:layout_marginRight="«marginEnd»dp"
+		android:layout_marginBottom="«marginBottom»dp"
+		android:paddingBottom="«paddingBottom»dp"
+		android:paddingRight="«paddingEnd»dp"
+		android:paddingLeft="«paddingStart»dp"
+		android:paddingTop="«paddingTop»dp"
+		«IF alignTop != null-»
+	    android:layout_alignTop="@+id/«alignTop.id»"
+	    «ENDIF-»
+	    «IF alignBottom != null-»
+	    android:layout_alignBottom="@+id/«alignBottom.id»"
+	    «ENDIF-»
+	    «IF alignStart != null-»
+	    android:layout_alignLeft="@+id/«alignStart.id»"
+	    «ENDIF-»
+	    «IF alignEnd != null-»
+	    android:layout_alignRight="@+id/«alignEnd.id»"
+	    «ENDIF-»
+	    «IF below != null-»
+	    android:layout_below="@+id/«below.id»"
+	    «ENDIF-»
+	    «IF above != null-»
+	    android:layout_above="@+id/«above.id»"
+	    «ENDIF-»
+	    «IF toStartOf != null-»
+	    android:layout_toLeftOf="@+id/«toStartOf.id»"
+	    «ENDIF-»
+	    «IF toEndOf != null-»
+	    android:layout_toRightOf="@+id/«toEndOf.id»"
+	    «ENDIF-»
+«ENDDEFINE-»

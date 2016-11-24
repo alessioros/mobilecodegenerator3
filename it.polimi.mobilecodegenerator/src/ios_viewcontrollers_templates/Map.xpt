@@ -1,0 +1,41 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+«IF map!=null-»
+	@IBOutlet weak var «map.id»: MKMapView!
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+	«IF map!=null-»
+		self.«map.id».delegate = self
+	        
+	    let lat = «map.lat»
+	    let lon = «map.lon»
+	    let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+	    
+	    let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon), MKCoordinateSpanMake(0.005, 0.005))
+	    
+	    let annotation = MKPointAnnotation()
+	    annotation.coordinate = coordinates
+	    annotation.title = "MARKER TITLE HERE"
+	    
+	    self.«map.id».setRegion(region, animated: true)
+	    self.«map.id».addAnnotation(annotation)
+	«ENDIF-»
+«ENDDEFINE-»

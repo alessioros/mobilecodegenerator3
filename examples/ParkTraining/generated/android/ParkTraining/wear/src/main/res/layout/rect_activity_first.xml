@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.polimi.parktraining.FirstActivity"
+    tools:deviceIds="wear_square">
+
+	<Button
+		android:id="@+id/firstNextButton"
+		android:layout_width="125.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/repsSlider"
+
+        android:textAllCaps="false"
+        android:text="NEXT"/>        
+	
+	<TextView
+		android:id="@+id/firstTitleLabel"
+		android:layout_width="125.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textStyle="bold"
+        android:text="New Exercise"
+        android:gravity="center|center_vertical"/>        
+	<TextView
+		android:id="@+id/repsLabel"
+		android:layout_width="125.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/firstTitleLabel"
+
+        
+        android:textStyle="italic"
+        android:text="Num of reps"
+        android:gravity="left|center_vertical"/>        
+	
+	
+	<SeekBar
+		android:id="@+id/repsSlider"
+		android:layout_width="125.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/repsLabel"
+
+        android:progress="50"/>        
+
+	
+	
+</RelativeLayout>

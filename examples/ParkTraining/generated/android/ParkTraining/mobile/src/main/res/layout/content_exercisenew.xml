@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="it.polimi.parktraining.ExerciseNewActivity"
+    tools:showIn="@layout/activity_exercisenew">
+    
+	<Button
+		android:id="@+id/newSaveButton"
+		android:layout_width="72.0dp"
+		android:layout_height="72.0dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="16dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textColor="#ffffff"
+        
+        android:background="@drawable/newsavebutton_background"
+		style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="false"
+        android:text="SAVE"/>        
+	<android.support.v7.widget.AppCompatSpinner
+		android:id="@+id/newSetsSpinner"
+		android:layout_width="180.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/newNameEditText"
+	    android:layout_toRightOf="@+id/newSetsLabel"
+
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:spinnerMode="dropdown"/> 
+	<android.support.v7.widget.AppCompatSpinner
+		android:id="@+id/newRepsSpinner"
+		android:layout_width="180.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/newSetsSpinner"
+	    android:layout_toRightOf="@+id/newRepsLabel"
+
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:spinnerMode="dropdown"/> 
+	<TextView
+		android:id="@+id/newSetsLabel"
+		android:layout_width="110.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="16dp"
+		
+		android:layout_marginTop="4dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="12dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/newNameEditText"
+
+        
+        android:textStyle="italic"
+        android:text="Num of sets"
+        android:gravity="left|center_vertical"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+	<TextView
+		android:id="@+id/newRepsLabel"
+		android:layout_width="110.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="16dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/newSetsLabel"
+
+        
+        android:textStyle="italic"
+        android:text="Num of reps"
+        android:gravity="left|center_vertical"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+	<android.support.v7.widget.AppCompatEditText
+		android:id="@+id/newNameEditText"
+		android:layout_width="88.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		
+		android:layout_marginLeft="16dp"
+		
+		android:layout_marginTop="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="16dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        android:text=""
+        android:hint="Name of exercise" 
+        android:textColor="#000000"
+        android:textSize="16dp" />
+</RelativeLayout>

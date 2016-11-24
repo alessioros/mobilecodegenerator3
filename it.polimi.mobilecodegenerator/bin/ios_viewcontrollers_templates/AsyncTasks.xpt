@@ -1,0 +1,31 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE viewDidLoad FOR ViewController-»
+		«FOREACH asyncTasks AS at-»
+		// «at.name» : do this operation on another thread
+	    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+	    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+	        // Do some task in background
+	        
+	        dispatch_async(dispatch_get_main_queue()) {
+	            // Update some UI at the end of the task
+	            
+	        }
+	    }	
+		«ENDFOREACH-»
+«ENDDEFINE-»

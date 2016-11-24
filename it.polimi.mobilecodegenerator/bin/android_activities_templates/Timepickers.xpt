@@ -1,0 +1,84 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH timepickers AS t-»
+private Picker «t.id»Picker;
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«IF timepickers.size > 0-»
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+this.«t.id»Picker = (Picker) this.findViewById(R.id.«t.id»Picker);
+this.«t.id»Picker.setTime(hours, minutes);
+this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+	@Override
+	public void timeChanged(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int hours = calendar.get(Calendar.HOUR);
+		int minutes = calendar.get(Calendar.MINUTE);
+		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
+		Log.i("«t.id» time", hours + ":" + minutes + " " + ampm);
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«IF timepickers.size > 0-»
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+this.«t.id»Picker = (Picker) rootView.findViewById(R.id.«t.id»Picker);
+this.«t.id»Picker.setTime(hours, minutes);
+this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+	@Override
+	public void timeChanged(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int hours = calendar.get(Calendar.HOUR);
+		int minutes = calendar.get(Calendar.MINUTE);
+		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
+		Log.i("«t.id» time", hours + ":" + minutes + " " + ampm);
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE setUserVisibleHint FOR ViewController-»
+«IF timepickers.size > 0-»
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+//Restore current hour eventually
+try {
+	this.«t.id»Picker.setTime(hours, minutes);
+} catch(Exception e) {
+	e.printStackTrace();
+}
+«ENDFOREACH-»
+«ENDDEFINE-»

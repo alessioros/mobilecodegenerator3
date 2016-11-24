@@ -1,0 +1,142 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+«FOREACH listViews AS lv-»
+	@IBOutlet weak var «lv.id»: UITableView!
+	
+	var «lv.id»Contents: [String] = [
+		«IF lv.listViewCells.size!=0-»
+		«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.title»",
+		«ENDFOREACH-»
+		«ENDIF-»
+	]
+
+«IF lv.listType.matches("detailed") ||lv.listType.matches("image") -»
+	var «lv.id»Images: [UIImage] = [
+		«IF lv.listViewCells.size!=0-»
+		// Change the images for each row here
+		«FOREACH lv.listViewCells AS lvc-»
+		UIImage(named: "list_image")!,
+		«ENDFOREACH-»
+		«ENDIF-»
+	]
+«ENDIF-»
+
+«IF lv.listType.matches("detailed") -»
+	var «lv.id»Subcontents: [String] = [
+		«IF lv.listViewCells.size!=0-»
+		«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+		«ENDFOREACH-»
+		«ENDIF-»
+	]
+	
+	var «lv.id»Icons: [UIImage] = [
+		«IF lv.listViewCells.size!=0-»
+		// Change the images for each row here
+		«FOREACH lv.listViewCells AS lvc-»
+		UIImage(named: "list_icon")!,
+		«ENDFOREACH-»
+		«ENDIF-»
+	]
+«ENDIF-»
+
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+«FOREACH listViews AS lv-»
+		self.«lv.id».delegate = self
+		self.«lv.id».dataSource = self
+«ENDFOREACH»
+«ENDDEFINE-»
+
+«DEFINE listViews FOR ViewController-»
+«IF listViews.size!=0-»
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	    return 1
+	}
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	    // Return the number of rows
+	    «FOREACH listViews AS lv-»
+	    if tableView == self.«lv.id» {
+	        return self.«lv.id»Contents.count;
+	    }
+	    «ENDFOREACH-»
+	    return 0 
+	}
+
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	    // Configure the cell...
+	    «FOREACH listViews AS lv-»
+	    if tableView == self.«lv.id» {
+	    
+	    	«IF lv.listType.matches("detailed") -»
+	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
+	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
+	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
+	        «lv.id»Cell.content.text = self.«lv.id»Subcontents[indexPath.row]
+	        «lv.id»Cell.icon.image = self.«lv.id»Icons[indexPath.row]
+	        return «lv.id»Cell
+	    	«ELSEIF lv.listType.matches("image") -»
+	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
+	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
+	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
+	        return «lv.id»Cell
+	    	«ELSEIF lv.listType.matches("simple")-»
+	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! SimpleTableViewCell
+	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
+	        return «lv.id»Cell
+	    	«ENDIF-»
+	        
+	    }
+	    «ENDFOREACH-»
+	
+	    return UITableViewCell()
+	}
+	
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	    «FOREACH listViews AS lv-»
+		«IF lv.clickListener != null-»
+	    if tableView == self.«lv.id» {
+	    	«IF lv.clickListener.navigation == null-»
+			//TODO implement the action
+			«ENDIF-»
+	    }
+	    «ENDIF-»
+	    «ENDFOREACH-»
+	    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE prepareForSegue FOR ViewController-»
+	«FOREACH listViews AS lv-»
+		«IF lv.clickListener != null && lv.clickListener.navigation != null-»
+		//You can reference to the next ViewController and the selected UITableViewRow     
+		if segue.identifier == "SegueIdentifierFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID" {
+ 	        let index = self.«lv.id».indexPathForSelectedRow!
+			let destination = segue.destinationViewController as! «lv.clickListener.navigation.destination»ViewController
+            // Pass the selected cell content to destination ...
+		}
+		«ENDIF-»
+	«ENDFOREACH-»
+«ENDDEFINE-»

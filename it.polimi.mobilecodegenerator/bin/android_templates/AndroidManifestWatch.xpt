@@ -1,0 +1,59 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«EXTENSION app_extensions::Java»
+
+«DEFINE main FOR Application-»
+
+«FILE name+"/wear/src/main/AndroidManifest.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="«companyIdentifier».«name.toLowerCase()»" >
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="«name»"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault">
+        «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:name="android.support.wearable.activity.ConfirmationActivity">
+        </activity>
+		«ENDIF-»
+		«FOREACH watchControllers AS wc-»
+		<activity
+            android:name="«wc.application.companyIdentifier».«name.toLowerCase()».«wc.name.toFirstUpper()»Activity"
+            android:label="«name»">
+            «IF wc.launcher-»
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+			«ENDIF-»
+        </activity>
+		«ENDFOREACH-»          
+    </application>
+</manifest>
+«ENDFILE-»
+
+«ENDDEFINE-»

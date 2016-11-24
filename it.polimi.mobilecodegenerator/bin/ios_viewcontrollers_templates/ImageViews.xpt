@@ -1,0 +1,47 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+«FOREACH imageViews AS iv-»
+«IF !iv.sourceType.toString().matches("hardwareFile") -»
+	@IBOutlet weak var «iv.id»: UIImageView!
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+	«FOREACH imageViews AS iv-»
+		«IF iv.sourceType.toString().matches("remoteFile")-»
+		// Download the image and set the ImageView
+		«IF !iv.fileUri.matches("")-»
+		if let url = NSURL(string: "«iv.fileUri»") {
+	        self.«iv.id».contentMode = .ScaleAspectFit
+	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+	    }
+		«ELSE-»
+		// Insert the remote file url
+		// Modify Info.plist file to whitelist the url (App Transport Security)
+		/*
+		if let url = NSURL(string: "http://") {
+	        self.«iv.id».contentMode = .ScaleAspectFit
+	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+	    }
+	    */
+		«ENDIF-»
+	«ENDIF-»
+	«ENDFOREACH-»
+«ENDDEFINE-»

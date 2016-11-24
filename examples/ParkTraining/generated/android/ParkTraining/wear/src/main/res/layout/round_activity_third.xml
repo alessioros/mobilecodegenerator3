@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="it.polimi.parktraining.ThirdActivity"
+    tools:deviceIds="wear_round">
+    
+	
+	<TextView
+		android:id="@+id/titleLabel"
+		android:layout_width="125.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textStyle="bold"
+        android:text="New Exercise"
+        android:gravity="center|center_vertical"/>        
+	<TextView
+		android:id="@+id/recLabel"
+		android:layout_width="125.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/titleLabel"
+
+        
+        android:textStyle="italic"
+        android:text="Record Name"
+        android:gravity="left|center_vertical"/>        
+	
+	
+
+	
+	<Button
+		android:id="@+id/voiceMessageRecorder"
+		android:layout_width="125.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_below="@+id/recLabel"
+
+        android:textAllCaps="false"
+        android:text="REC"/>
+
+    <RelativeLayout
+        android:id="@+id/delayed_confirm_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:animateLayoutChanges="true"
+        android:alpha="0"
+        android:elevation="4dp">
+
+		<TextView
+			android:id="@+id/delayed_confirm_title"
+			android:layout_width="match_parent"
+			android:layout_height="20dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginBottom="4dp"
+			android:layout_marginLeft="16dp"
+			android:layout_alignParentTop="true"
+			android:gravity="center_vertical"
+			android:text="Message"
+			android:textSize="12dp"
+			android:textColor="#999"
+			android:textAlignment="center"/>
+
+		<TextView
+			android:id="@+id/delayed_confirm_text_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp"
+			android:layout_below="@+id/delayed_confirm_title"
+			android:layout_above="@+id/delayed_confirm"
+			android:text="I made a reservation at 7:30 pm"
+			android:textSize="16dp"
+			android:textColor="#333"
+			android:textAlignment="center"/>
+
+		<android.support.wearable.view.DelayedConfirmationView
+			android:id="@+id/delayed_confirm"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_above="@+id/textView"
+			android:layout_centerHorizontal="true"
+			android:src="@drawable/ic_cancel_blue_48dp"
+			app:circle_border_color="#93bbff"
+			app:circle_border_width="4dp"
+			app:circle_radius="26dp">
+		</android.support.wearable.view.DelayedConfirmationView>
+
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginLeft="16dp"
+			android:text="Sending ..."
+			android:textColor="#999"
+			android:textSize="16dp"
+			android:textAlignment="center"
+			android:gravity="center_vertical"
+			android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>        
+
+</RelativeLayout>

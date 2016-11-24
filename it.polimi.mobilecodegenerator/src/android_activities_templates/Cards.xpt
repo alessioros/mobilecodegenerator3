@@ -1,0 +1,179 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH cards AS c-»
+private CardView «c.id»;
+private ImageView «c.id»ImageView;
+«FOREACH 1.upTo(c.numActions) AS n-»
+private Button «c.id»Button«n»;
+«ENDFOREACH-»
+
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH cards AS c-»
+this.«c.id» = (CardView) this.findViewById(R.id.«c.id»);
+this.«c.id»ImageView = (ImageView) this.findViewById(R.id.«c.id»ImageView);
+this.setUpCardView(R.id.«c.id», R.id.«c.id»ImageView, R.id.«c.id»Title, R.id.«c.id»Subtitle, R.id.«c.id»Buttons);
+«FOREACH 1.upTo(c.numActions) AS n-»
+
+this.«c.id»Button«n» = (Button) this.findViewById(R.id.«c.id»Button«n»);
+this.«c.id»Button«n».setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Log.i("Button "+v.getId(), "Clicked");
+    }
+});
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH cards AS c-»
+this.«c.id» = (CardView) rootView.findViewById(R.id.«c.id»);
+this.«c.id»ImageView = (ImageView) rootView.findViewById(R.id.«c.id»ImageView);
+this.setUpCardView(R.id.«c.id», R.id.«c.id»ImageView, R.id.«c.id»Title, R.id.«c.id»Subtitle, R.id.«c.id»Buttons);
+«FOREACH 1.upTo(c.numActions) AS n-»
+
+this.«c.id»Button«n» = (Button) rootView.findViewById(R.id.«c.id»Button«n»);
+this.«c.id»Button«n».setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Log.i("Button "+v.getId(), "Clicked");
+    }
+});
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE cards FOR ViewController-»
+«IF cards.size > 0 -»
+private void setUpCardView(int cardId, int cardImageId, int cardTitleId, int cardSubtitleId, int cardButtonsId) {
+
+    CardView c = (CardView) this.findViewById(cardId);
+    ImageView iv = (ImageView) this.findViewById(cardImageId);
+
+    ViewGroup.LayoutParams cardLp = c.getLayoutParams();
+    ViewGroup.LayoutParams cardImageViewLp = iv.getLayoutParams();
+
+    //Card side margin
+    float screenWidthPx = getResources().getDisplayMetrics().widthPixels;
+    float cardViewLMarginPx = ((RelativeLayout.LayoutParams) cardLp).leftMargin;
+    float cardViewRMarginPx = ((RelativeLayout.LayoutParams) cardLp).rightMargin;
+    float cardWidthPx = screenWidthPx - cardViewLMarginPx - cardViewRMarginPx;
+
+    //Card image height (dynamic)
+    float aspectRatio = (float) 16/9;
+    float cardImageHeightPx = cardWidthPx / aspectRatio;
+
+    //Card extra height (fixed)
+    float titleHeightPx = this.cardTextHeight(cardTitleId);
+    float subtitleHeightPx = this.cardTextHeight(cardSubtitleId);
+    float cardButtonsHeightPx = this.cardButtonsHeight(cardButtonsId);
+    float extraHeightPx = titleHeightPx + subtitleHeightPx + cardButtonsHeightPx;
+
+    //Card height (dynamic)
+    float cardHeightPx = cardImageHeightPx + extraHeightPx;
+
+    cardLp.height = (int) cardHeightPx;
+    cardImageViewLp.height = (int) cardImageHeightPx;
+
+    c.setLayoutParams(cardLp);
+    iv.setLayoutParams(cardImageViewLp);
+
+}
+
+private float cardTextHeight(int id) {
+    TextView title = (TextView) this.findViewById(id);
+    ViewGroup.LayoutParams titleLp = title.getLayoutParams();
+    float titleTopMarginPx = ((LinearLayout.LayoutParams) titleLp).topMargin;
+    float titleBottomMarginPx = ((LinearLayout.LayoutParams) titleLp).bottomMargin;
+    float titleSizePx = title.getTextSize();
+    return titleTopMarginPx + titleBottomMarginPx + titleSizePx;
+}
+
+private float cardButtonsHeight(int id) {
+    LinearLayout cardButtons = (LinearLayout) this.findViewById(id);
+    ViewGroup.LayoutParams cardButtonsLp = cardButtons.getLayoutParams();
+    float cardButtonsTopMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).topMargin;
+    float cardButtonsBottomMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).bottomMargin;
+    float cardButtonsSizePx = ((LinearLayout.LayoutParams) cardButtonsLp).height;
+    return cardButtonsTopMarginPx + 2*cardButtonsBottomMarginPx + cardButtonsSizePx;
+}
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE cardsFrag FOR ViewController-»
+«IF cards.size > 0 -»
+private void setUpCardView(int cardId, int cardImageId, int cardTitleId, int cardSubtitleId, int cardButtonsId) {
+
+    CardView c = (CardView) rootView.findViewById(cardId);
+    ImageView iv = (ImageView) rootView.findViewById(cardImageId);
+
+    ViewGroup.LayoutParams cardLp = c.getLayoutParams();
+    ViewGroup.LayoutParams cardImageViewLp = iv.getLayoutParams();
+
+    //Card side margin
+    float screenWidthPx = getResources().getDisplayMetrics().widthPixels;
+    float cardViewLMarginPx = ((RelativeLayout.LayoutParams) cardLp).leftMargin;
+    float cardViewRMarginPx = ((RelativeLayout.LayoutParams) cardLp).rightMargin;
+    float cardWidthPx = screenWidthPx - cardViewLMarginPx - cardViewRMarginPx;
+
+    //Card image height (dynamic)
+    float aspectRatio = (float) 16/9;
+    float cardImageHeightPx = cardWidthPx / aspectRatio;
+
+    //Card extra height (fixed)
+    float titleHeightPx = cardTextHeight(cardTitleId);
+    float subtitleHeightPx = cardTextHeight(cardSubtitleId);
+    float cardButtonsHeightPx = cardButtonsHeight(cardButtonsId);
+    float extraHeightPx = titleHeightPx + subtitleHeightPx + cardButtonsHeightPx;
+
+    //Card height (dynamic)
+    float cardHeightPx = cardImageHeightPx + extraHeightPx;
+
+    cardLp.height = (int) cardHeightPx;
+    cardImageViewLp.height = (int) cardImageHeightPx;
+
+    c.setLayoutParams(cardLp);
+    iv.setLayoutParams(cardImageViewLp);
+
+}
+
+private float cardTextHeight(int id) {
+	
+	TextView title = (TextView) rootView.findViewById(id);
+    ViewGroup.LayoutParams titleLp = title.getLayoutParams();
+    float titleTopMarginPx = ((LinearLayout.LayoutParams) titleLp).topMargin;
+    float titleBottomMarginPx = ((LinearLayout.LayoutParams) titleLp).bottomMargin;
+    float titleSizePx = title.getTextSize();
+    return titleTopMarginPx + titleBottomMarginPx + titleSizePx;
+}
+
+private float cardButtonsHeight(int id) {
+
+	LinearLayout cardButtons = (LinearLayout) rootView.findViewById(id);
+    ViewGroup.LayoutParams cardButtonsLp = cardButtons.getLayoutParams();
+    float cardButtonsTopMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).topMargin;
+    float cardButtonsBottomMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).bottomMargin;
+    float cardButtonsSizePx = ((LinearLayout.LayoutParams) cardButtonsLp).height;
+    return cardButtonsTopMarginPx + 2*cardButtonsBottomMarginPx + cardButtonsSizePx;
+}
+«ENDIF-»
+«ENDDEFINE-»

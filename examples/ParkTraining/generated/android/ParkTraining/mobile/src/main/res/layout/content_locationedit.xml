@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="it.polimi.parktraining.LocationEditActivity"
+    tools:showIn="@layout/activity_locationedit">
+    
+	<Button
+		android:id="@+id/deleteLocationButton"
+		android:layout_width="72.0dp"
+		android:layout_height="72.0dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="16dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textColor="#ffffff"
+        
+        android:background="@drawable/deletelocationbutton_background"
+		style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="false"
+        android:text="DELETE"/>        
+	<fragment
+		android:id="@+id/mMap"
+		android:layout_width="200.0dp"
+		android:layout_height="330.0dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+		android:name="com.google.android.gms.maps.SupportMapFragment"/>
+</RelativeLayout>

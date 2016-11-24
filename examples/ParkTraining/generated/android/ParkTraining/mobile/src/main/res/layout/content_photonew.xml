@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="it.polimi.parktraining.PhotoNewActivity"
+    tools:showIn="@layout/activity_photonew">
+    
+	<ImageView
+		android:id="@+id/takenPhoto"
+		android:layout_width="240.0dp"
+		android:layout_height="240.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_above="@+id/photocameraController"
+
+	    android:background="#000000"/>
+	<Button
+		android:id="@+id/savePhotoButton"
+		android:layout_width="120.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="0dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        android:textAllCaps="false"
+        android:text="SAVE"/>        
+	<ImageButton
+		android:id="@+id/photocameraController"
+		android:layout_width="120.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="false"
+		
+		android:layout_marginLeft="0dp"
+		
+		android:layout_marginTop="8dp"
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+	    android:layout_above="@+id/savePhotoButton"
+
+		android:src="@drawable/photocamera_icon"/>
+</RelativeLayout>

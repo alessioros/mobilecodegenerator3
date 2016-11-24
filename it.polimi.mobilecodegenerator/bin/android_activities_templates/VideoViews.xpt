@@ -1,0 +1,122 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH videoViews AS vv-»
+private VideoView «vv.id»;
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
+this.«vv.id» = (VideoView) this.findViewById(R.id.«vv.id»);
+«IF vv.sourceType.toString().matches("localFile")-»
+«IF !vv.fileUri.matches("")-»
+Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.«vv.fileUri.split("\\.").get(0)»);
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(this));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+«ELSE-»
+/*
+//TODO insert local file name
+Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.filename);
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(this));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+*/
+«ENDIF-»
+«ELSEIF vv.sourceType.toString().matches("remoteFile")-»
+«IF !vv.fileUri.matches("")-»
+Uri «vv.id»VideoFileUri = Uri.parse("«vv.fileUri»");
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(this));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+«ELSE-»
+/*
+//TODO insert the remote file uri
+Uri «vv.id»VideoFileUri = Uri.parse("http://...");
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(this));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+*/
+«ENDIF-»
+«ENDIF-»
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE setUserVisibleHint FOR ViewController-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
+//Eventually stop the video
+try {
+	this.«vv.id».pause();
+	this.«vv.id».seekTo(0);
+} catch(Exception e) {
+	e.printStackTrace();
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
+this.«vv.id» = (VideoView) rootView.findViewById(R.id.«vv.id»);
+«IF vv.sourceType.toString().matches("localFile")-»
+«IF !vv.fileUri.matches("")-»
+Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.«vv.fileUri.split("\\.").get(0)»);
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(getActivity()));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+«ELSE-»
+/*
+//TODO insert local file name
+Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.filename);
+this.«vv.id».setMediaController(new MediaController(getActivity()));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+*/
+«ENDIF-»
+«ELSEIF vv.sourceType.toString().matches("remoteFile")-»
+«IF !vv.fileUri.matches("")-»
+Uri «vv.id»VideoFileUri = Uri.parse("«vv.fileUri»");
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(getActivity()));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+«ELSE-»
+/*
+//TODO insert the remote file uri
+Uri «vv.id»VideoFileUri = Uri.parse("http://...");
+this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
+this.«vv.id».setMediaController(new MediaController(getActivity()));
+this.«vv.id».requestFocus();
+//this.«vv.id».start();
+*/
+«ENDIF-»
+«ENDIF-»
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+

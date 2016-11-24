@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="ParkTraining" companyIdentifier="it.polimi">
+    <viewControllers name="Exercises" backgroundColor="" backgroundImage="" launcher="true">
+        <listViews id="exercisesList" posX="1.25" posY="0" width="270" height="270" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Exercises']" backgroundColor="" listType="detailed">
+            <clickListener>
+                <navigation destination="ExerciseEdit"/>
+            </clickListener>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+        </listViews>
+        <buttons id="newExerciseButton" posX="332.3333740234375" posY="591.9999593098959" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='Exercises']" title="NEW" textColor="#ffffff" backgroundColor="#3f51b5" borderRadius="40" clickColor="#344399">
+            <clickListener>
+                <navigation destination="ExerciseNew"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="Photos" backgroundColor="" backgroundImage="" launcher="false">
+        <gridViews id="photosGrid" posX="0" posY="96" width="204" height="408" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Photos']" gridType="image">
+            <clickListener>
+                <navigation destination="PhotoEdit"/>
+            </clickListener>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+        </gridViews>
+        <buttons id="photoButton" posX="331" posY="503" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='Photos']" title="CAMERA" textColor="#ffffff" backgroundColor="#3f51b5" borderRadius="34" clickColor="#344399">
+            <clickListener>
+                <navigation destination="PhotoNew"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="Videos" backgroundColor="" backgroundImage="" launcher="false">
+        <gridViews id="videosGrid" posX="0" posY="46.74998474121094" width="204" height="408" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Videos']" gridType="detailed">
+            <clickListener>
+                <navigation destination="VideoEdit"/>
+            </clickListener>
+            <gridViewCells title="00:00"/>
+            <gridViewCells title="00:00"/>
+            <gridViewCells title="00:00"/>
+            <gridViewCells title="00:00"/>
+            <gridViewCells title="00:00"/>
+            <gridViewCells title="00:00"/>
+        </gridViews>
+        <buttons id="videoButton" posX="330.99998474121094" posY="503.25" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='Videos']" title="CAMERA" textColor="#ffffff" backgroundColor="#3f51b5" borderRadius="40" clickColor="#344399">
+            <clickListener>
+                <navigation destination="VideoNew"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="Locations" backgroundColor="" backgroundImage="" launcher="false">
+        <listViews id="locationsList" posX="1.6666666666666667" posY="48.00001017252606" width="270" height="270" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Locations']" backgroundColor="" listType="image">
+            <clickListener>
+                <navigation destination="LocationEdit"/>
+            </clickListener>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+        </listViews>
+        <buttons id="locationButton" posX="324.6666971842448" posY="542" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='Locations']" title="ADD" textColor="#ffffff" backgroundColor="#3f51b5" borderRadius="40" clickColor="#344399"/>
+    </viewControllers>
+    <viewControllers name="ExerciseNew" backgroundColor="" backgroundImage="" launcher="false">
+        <editTexts id="newNameEditText" posX="58" posY="34" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="16" marginBottom="16" marginStart="16" marginEnd="16" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='ExerciseNew']" initialContent="" placeholder="Name of exercise" textColor="#000000" textSize="16"/>
+        <spinners id="newSetsSpinner" posX="127.66667683919273" posY="68.00001017252606" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" below="//@viewControllers[name='ExerciseNew']/@editTexts[id='newNameEditText']" toEndOf="//@viewControllers[name='ExerciseNew']/@textViews[id='newSetsLabel']" viewController="//@viewControllers[name='ExerciseNew']"/>
+        <spinners id="newRepsSpinner" posX="146.25" posY="143.0000457763672" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" below="//@viewControllers[name='ExerciseNew']/@spinners[id='newSetsSpinner']" toEndOf="//@viewControllers[name='ExerciseNew']/@textViews[id='newRepsLabel']" viewController="//@viewControllers[name='ExerciseNew']"/>
+        <buttons id="newSaveButton" posX="280" posY="435.2500305175781" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='ExerciseNew']" title="SAVE" textColor="#ffffff" backgroundColor="#09f03c" borderRadius="40" clickColor="#0dbd34"/>
+        <textViews id="newSetsLabel" posX="26.25" posY="74.00003051757812" width="110" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="4" marginBottom="12" marginStart="16" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='ExerciseNew']/@editTexts[id='newNameEditText']" viewController="//@viewControllers[name='ExerciseNew']" content="Num of sets" textAlign="left" textColor="#000000" textSize="16" textDecoration="italic"/>
+        <textViews id="newRepsLabel" posX="17.249984741210938" posY="120.00001525878906" width="110" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="16" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='ExerciseNew']/@textViews[id='newSetsLabel']" viewController="//@viewControllers[name='ExerciseNew']" content="Num of reps" textAlign="left" textColor="#000000" textSize="16" textDecoration="italic"/>
+    </viewControllers>
+    <viewControllers name="ExerciseEdit" backgroundColor="" backgroundImage="" launcher="false">
+        <alertDialogs id="deleteExerciseDialog" title="Delete Exercise" message="Are you sure?"/>
+        <editTexts id="editNameEditText" posX="0" posY="0.0000152587890625" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="16" marginBottom="16" marginStart="16" marginEnd="16" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='ExerciseEdit']" initialContent="" placeholder="Name of exercise" textColor="#000000" textSize="16"/>
+        <textViews id="editSetsLabel" posX="38.75" posY="72.25" width="110" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="4" marginBottom="12" marginStart="16" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='ExerciseEdit']/@editTexts[id='editNameEditText']" viewController="//@viewControllers[name='ExerciseEdit']" content="Num of sets" textAlign="left" textColor="#000000" textSize="16" textDecoration="italic"/>
+        <textViews id="editRepsLabel" posX="33.75" posY="139.75" width="110" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="16" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='ExerciseEdit']/@textViews[id='editSetsLabel']" viewController="//@viewControllers[name='ExerciseEdit']" content="Num of reps" textAlign="left" textColor="#000000" textSize="16" textDecoration="italic"/>
+        <spinners id="editRepsSpinner" posX="135.99998474121094" posY="117.25" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" below="//@viewControllers[name='ExerciseEdit']/@spinners[id='editSetsSpinner']" toEndOf="//@viewControllers[name='ExerciseEdit']/@textViews[id='editRepsLabel']" viewController="//@viewControllers[name='ExerciseEdit']"/>
+        <spinners id="editSetsSpinner" posX="141.25" posY="72.25" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" below="//@viewControllers[name='ExerciseEdit']/@editTexts[id='editNameEditText']" toEndOf="//@viewControllers[name='ExerciseEdit']/@textViews[id='editSetsLabel']" viewController="//@viewControllers[name='ExerciseEdit']"/>
+        <buttons id="editSaveButton" posX="294.74998474121094" posY="450.00001525878906" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='ExerciseEdit']" title="SAVE" textColor="#ffffff" backgroundColor="#09f03c" borderRadius="40" clickColor="#0dbd34"/>
+        <buttons id="editDeleteButton" posX="145" posY="449.75" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="false" toStartOf="//@viewControllers[name='ExerciseEdit']/@buttons[id='editSaveButton']" viewController="//@viewControllers[name='ExerciseEdit']" title="DELETE" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="40" clickColor="#b30505"/>
+    </viewControllers>
+    <viewControllers name="PhotoNew" backgroundColor="" backgroundImage="" launcher="false">
+        <imageViews id="takenPhoto" posX="1.6666666666666667" posY="0" width="240" height="240" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" above="//@viewControllers[name='PhotoNew']/@photocameraController" viewController="//@viewControllers[name='PhotoNew']" sourceType="hardwareFile" fileUri=""/>
+        <buttons id="savePhotoButton" posX="144.9791971842448" posY="539.3280843098959" width="120" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='PhotoNew']" title="SAVE" textColor="" backgroundColor="" borderRadius="2" clickColor=""/>
+        <photocameraController id="photocameraController" posX="144.9895731608073" posY="499.3125203450521" width="120" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" above="//@viewControllers[name='PhotoNew']/@buttons[id='savePhotoButton']" viewController="//@viewControllers[name='PhotoNew']" backgroundType="icon" imageViewId="takenPhoto"/>
+    </viewControllers>
+    <viewControllers name="PhotoEdit" backgroundColor="" backgroundImage="" launcher="false">
+        <alertDialogs id="deletePhotoDialog" title="Delete Photo" message="Are you sure?"/>
+        <imageViews id="mImageView" posX="1.6666666666666667" posY="96" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='PhotoEdit']" sourceType="localFile" fileUri=""/>
+        <buttons id="deletePhotoButton" posX="0" posY="96" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='PhotoEdit']" title="DELETE" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="40" clickColor="#b30505"/>
+    </viewControllers>
+    <viewControllers name="VideoNew" backgroundColor="" backgroundImage="" launcher="false">
+        <videoViews id="takenVideo" posX="0" posY="96" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" above="//@viewControllers[name='VideoNew']/@videocameraController" viewController="//@viewControllers[name='VideoNew']" sourceType="hardwareFile" fileUri=""/>
+        <buttons id="saveVideoButton" posX="0" posY="475.66669718424487" width="88" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='VideoNew']" title="SAVE" textColor="" backgroundColor="" borderRadius="2" clickColor=""/>
+        <videocameraController id="videocameraController" posX="68.33333333333334" posY="277.6666666666667" width="120" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" above="//@viewControllers[name='VideoNew']/@buttons[id='saveVideoButton']" viewController="//@viewControllers[name='VideoNew']" backgroundType="icon" videoViewId="takenVideo"/>
+    </viewControllers>
+    <viewControllers name="VideoEdit" backgroundColor="" backgroundImage="" launcher="false">
+        <alertDialogs id="deleteVideoDialog" title="Delete Video" message="Are you sure?"/>
+        <videoViews id="mVideoView" posX="0" posY="96" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='VideoEdit']" sourceType="localFile" fileUri=""/>
+        <buttons id="deleteVideoButton" posX="243.33333333333334" posY="426" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='VideoEdit']" title="DELETE" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="40" clickColor="#b30505"/>
+    </viewControllers>
+    <viewControllers name="LocationEdit" backgroundColor="" backgroundImage="" launcher="false">
+        <alertDialogs id="deleteLocationDialog" title="Delete Location" message="Are you sure?"/>
+        <map id="mMap" posX="1.6666666666666667" posY="0" width="200" height="330" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='LocationEdit']" lat="45.478" lon="9.227"/>
+        <buttons id="deleteLocationButton" posX="18.333333333333336" posY="169.33333333333334" width="72" height="72" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="16" marginStart="0" marginEnd="16" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='LocationEdit']" title="DELETE" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="40" clickColor="#b30505"/>
+    </viewControllers>
+    <watchControllers name="First" launcher="true">
+        <watchTextViews id="firstTitleLabel" order="1" posX="0" posY="0" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='First']" content="New Exercise" textAlign="center" textDecoration="bold"/>
+        <watchTextViews id="repsLabel" order="2" posX="0" posY="0" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='First']/@watchTextViews[id='firstTitleLabel']" watchController="//@watchControllers[name='First']" content="Num of reps" textAlign="left" textDecoration="italic"/>
+        <watchSliders id="repsSlider" order="3" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='First']/@watchTextViews[id='repsLabel']" watchController="//@watchControllers[name='First']"/>
+        <watchButtons id="firstNextButton" order="4" posX="1" posY="121" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='First']/@watchSliders[id='repsSlider']" watchController="//@watchControllers[name='First']" title="NEXT">
+            <watchClickListener>
+                <watchNavigation destination="Second"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="Second" launcher="false">
+        <watchTextViews id="secondTitleLabel" order="1" posX="0" posY="0" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='Second']" content="New Exercise" textAlign="center" textDecoration="bold"/>
+        <watchTextViews id="setsLabel" order="2" posX="1" posY="36" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Second']/@watchTextViews[id='secondTitleLabel']" watchController="//@watchControllers[name='Second']" content="Num of sets" textAlign="left" textDecoration="italic"/>
+        <watchSliders id="setsSlider" order="3" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Second']/@watchTextViews[id='setsLabel']" watchController="//@watchControllers[name='Second']"/>
+        <watchButtons id="secondNextButton" order="4" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Second']/@watchSliders[id='setsSlider']" watchController="//@watchControllers[name='Second']" title="NEXT">
+            <watchClickListener>
+                <watchNavigation destination="Third"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="Third" launcher="false">
+        <watchTextViews id="titleLabel" order="1" posX="0" posY="0" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='Third']" content="New Exercise" textAlign="center" textDecoration="bold"/>
+        <watchTextViews id="recLabel" order="2" posX="0" posY="0" width="125" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Third']/@watchTextViews[id='titleLabel']" watchController="//@watchControllers[name='Third']" content="Record Name" textAlign="left" textDecoration="italic"/>
+        <watchVoiceMessage id="voiceMessageRecorder" order="3" posX="0" posY="73" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Third']/@watchTextViews[id='recLabel']" watchController="//@watchControllers[name='Third']" title="REC"/>
+    </watchControllers>
+    <menu>
+        <menuItems title="Exercises" id="Exercises">
+            <navigation destination="Exercises"/>
+        </menuItems>
+        <menuItems title="Photos" id="Photos">
+            <navigation destination="Photos"/>
+        </menuItems>
+        <menuItems title="Videos" id="Videos">
+            <navigation destination="Videos"/>
+        </menuItems>
+        <menuItems title="Locations" id="Locations">
+            <navigation destination="Locations"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

@@ -1,0 +1,798 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
+«EXTENSION app_extensions::Java»
+«DEFINE main FOR Application-»
+
+
+«REM»initialViewController exists only in case viewController.size>0 and is the TabBarController if menu exists and menu.menuItems>0 (HP: one of the items references the launcher VC), otherwise is the NavigatorController of the launcher VC.«ENDREM»
+«FILE name+"/"+name+"/Base.lproj/Main.storyboard"-»
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+«IF viewControllers.size == 0-»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+«ELSEIF viewControllers.size > 0 && (menu != null && menu.menuItems.size > 0) -»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TabBarControllerID">
+«ELSEIF viewControllers.size > 0 && (menu == null || menu.menuItems.size <= 0) -»
+«FOREACH viewControllers AS vc-»
+«IF vc.launcher-»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NavigationControllerIDWithRoot«vc.name»ViewControllerID">
+«ENDIF-»
+«ENDFOREACH-»
+«ENDIF-»
+	<dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+	<scenes>
+	«FOREACH viewControllers AS vc-»
+	<!--«vc.name»ViewController-->
+	<scene sceneID="«vc.name»ViewControllerSceneID">
+		<objects>
+			«IF isAMenuDestination(vc.name, vc.application.menu.menuItems.navigation.destination)-»
+			<viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+			«ELSE-»
+			<viewController id="«vc.name»ViewControllerID" hidesBottomBarWhenPushed="YES" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+			«ENDIF-»
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="«vc.name»-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="«vc.name»-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="«vc.name»ViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                	«IF !vc.backgroundImage.matches("")-»
+	                	<imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="«vc.backgroundImage»" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.name»BackgroundImageId">
+                        	<rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        </imageView>
+	                	«ENDIF-»
+	                    «FOREACH vc.imageViews AS iv-»
+	                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
+	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+	                        «EXPAND uiPhoneControl FOR iv»
+	                    </imageView>
+	                    «ENDFOREACH-»
+	                	«FOREACH vc.buttons AS b-»
+	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«b.id»">
+	                    	«EXPAND uiPhoneControl FOR b»
+	                    	«IF !b.backgroundColor.matches("")-»
+	                    	<color key="backgroundColor" red="«redFromHex(b.backgroundColor)»" green="«greenFromHex(b.backgroundColor)»" blue="«blueFromHex(b.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+                            «ENDIF-»
+	                    	<state key="normal" title="«b.title»">
+	                    		«IF !b.textColor.matches("")-»
+	                        	<color key="titleColor" red="«redFromHex(b.textColor)»" green="«greenFromHex(b.textColor)»" blue="«blueFromHex(b.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        	«ENDIF-»
+	                        </state>
+	                        <state key="highlighted">
+	                        	«IF !b.textColor.matches("")-»
+	                        	<color key="titleColor" red="«redFromHex(b.textColor)»" green="«greenFromHex(b.textColor)»" blue="«blueFromHex(b.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        	«ELSE-»
+	                        	<color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                        	«ENDIF-»
+	                    	</state>
+	                    	<connections>
+	                    		«IF b.clickListener!=null && b.clickListener.navigation!=null»
+	                    		<segue destination="«b.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«b.id»To«b.clickListener.navigation.destination»ViewControllerID"/>
+	                    		«ENDIF»
+	                    		<action selector="«b.id»TouchUpInside:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«b.id»TouchUpInsideActionID"/>
+	                    		<action selector="«b.id»TouchDown:" destination="«vc.name»ViewControllerID" eventType="touchDown" id="«b.id»TouchDownActionID"/>
+	                        </connections>
+	                    </button>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.cards AS c-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»">
+                            <rect key="frame" x="«c.posX.toInteger()»" y="«c.posY.toInteger()+64»" width="«c.width.toInteger()»" height="«c.height.toInteger()»"/>
+                            «REM»Never use inner constraints«ENDREM»
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_image" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»ImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="224"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»ImageView" secondAttribute="height" multiplier="16:9" id="«c.id»ImageViewARID"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="«c.title»" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Title">
+                                    <rect key="frame" x="16" y="248" width="366" height="37"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»Title" secondAttribute="height" multiplier="10:1" id="«c.id»TitleARID"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="«c.subtitle»" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Subtitle">
+                                    <rect key="frame" x="16" y="301" width="366" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»Subtitle" secondAttribute="height" multiplier="16:1" id="«c.id»SubtitleARID"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                «FOREACH 1.upTo(c.numActions) AS n-»
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Button«n»">
+                                    <rect key="frame" x="16" y="352" width="88" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="88" id="«c.id»Button«n»Const"/>
+                                    </constraints>
+                                    <state key="normal" title="Action «n»"/>
+                                    <connections>
+                                        <action selector="«c.id»Action«n»TouchUpInside:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«c.id»«n»TouchUpInsideID"/>
+                                    </connections>
+                                </button>
+                                «ENDFOREACH-»
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                            	<constraint firstAttribute="trailing" secondItem="«c.id»Title" secondAttribute="trailing" constant="16" id="5e5-9a-L5O"/>
+                                <constraint firstAttribute="trailing" secondItem="«c.id»Subtitle" secondAttribute="trailing" constant="16" id="7ig-Tp-Zyq"/>
+                                <constraint firstItem="«c.id»Subtitle" firstAttribute="top" secondItem="«c.id»Title" secondAttribute="bottom" constant="16" id="CJq-64-Kjt"/>
+                            	«IF c.numActions == 1-»
+                            	<constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                «ELSEIF c.numActions == 2-»
+								<constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button2" secondAttribute="bottom" constant="16" id="eyP-o9-AYS"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                <constraint firstItem="«c.id»Button2" firstAttribute="leading" secondItem="«c.id»Button1" secondAttribute="trailing" constant="8" id="pOL-PY-yHJ"/>
+                                «ELSEIF c.numActions == 3-»
+								<constraint firstItem="«c.id»Button3" firstAttribute="leading" secondItem="«c.id»Button2" secondAttribute="trailing" constant="8" id="Gub-ti-mtz"/>
+                                <constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button3" secondAttribute="bottom" constant="16" id="b4a-bZ-kSe"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button2" secondAttribute="bottom" constant="16" id="eyP-o9-AYS"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                <constraint firstItem="«c.id»Button2" firstAttribute="leading" secondItem="«c.id»Button1" secondAttribute="trailing" constant="8" id="pOL-PY-yHJ"/>
+								«ENDIF -»
+								<constraint firstAttribute="trailing" secondItem="«c.id»ImageView" secondAttribute="trailing" id="qee-Mm-jma"/>
+                                <constraint firstItem="«c.id»Subtitle" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="sJc-hn-Bfn"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="tqE-o1-Al3"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.sliders AS s-»
+	                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+                            «EXPAND uiPhoneControl FOR s»
+                            <connections>
+                                <action selector="«s.id»ValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«s.id»ValueChangedActionID"/>
+                            </connections>
+                        </slider>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.spinners AS s-»
+	                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+                            «EXPAND uiPhoneControl FOR s»
+                        </pickerView>
+	                    «ENDFOREACH-»
+	                    «IF vc.photocameraController!=null-»
+	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
+	                        «EXPAND uiPhoneControl FOR vc.photocameraController»
+	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+	                        «IF vc.photocameraController.backgroundType.matches("normal")-»
+	                        <state key="normal" title="Photocamera"/>
+	                        «ELSEIF vc.photocameraController.backgroundType.matches("icon")-»
+	                        <state key="normal" image="photocamera_icon"/>
+	                        «ENDIF-»
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+	                        <connections>
+	                            <action selector="openPhotoCamera:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.photocameraController.id»TouchUpInsideActionID"/>
+	                        </connections>
+	                    </button>
+	                    «ENDIF-»
+	                    «IF vc.videocameraController!=null-»
+	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.videocameraController.id»" >
+	                        «EXPAND uiPhoneControl FOR vc.videocameraController»
+	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+	                        «IF vc.videocameraController.backgroundType.matches("normal")-»
+	                        <state key="normal" title="Videocamera"/>
+	                        «ELSEIF vc.videocameraController.backgroundType.matches("icon")-»
+	                        <state key="normal" image="videocamera_icon"/>
+	                        «ENDIF-»
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+	                        <connections>
+	                            <action selector="openVideoCamera:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.videocameraController.id»TouchUpInsideActionID"/>
+	                        </connections>
+	                    </button>
+	                    «ENDIF-»
+	                    «IF vc.map != null-»
+	                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.map.id»">
+                            «EXPAND uiPhoneControl FOR vc.map»
+                        </mapView>
+	                    «ENDIF-»
+	                    «IF vc.audioRecorder!=null-»
+	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.audioRecorder.id»" >
+	                        «EXPAND uiPhoneControl FOR vc.audioRecorder»
+	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+	                        <state key="normal" title="Rec"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+	                        <connections>
+	                            <action selector="record:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.audioRecorder.id»TouchUpInsideActionID"/>
+	                        </connections>
+	                    </button>
+						«ENDIF-»
+						«FOREACH vc.switches AS s-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+	                    	<rect key="frame" x="«s.posX.toInteger()»" y="«s.posY.toInteger() + 64»" width="«s.width.toInteger()»" height="«s.height.toInteger()»"/>
+	                    	<subviews>
+			                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»Button">    
+		                            <rect key="frame" x="0" y="0" width="51" height="31"/>
+		                            <connections>
+		                                <action selector="«s.id»ButtonValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«s.id»ButtonValueChangedActionID"/>
+		                            </connections>
+		                        </switch>
+                        	</subviews>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR s-»
+                                <constraint firstItem="«s.id»Button" firstAttribute="centerX" secondItem="«s.id»" secondAttribute="centerX" id="«s.id»ButtonConstCenterX"/>
+                                <constraint firstItem="«s.id»Button" firstAttribute="centerY" secondItem="«s.id»" secondAttribute="centerY" id="«s.id»ButtonConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.datepickers AS d-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«d.id»">
+	                    	<rect key="frame" x="«d.posX.toInteger()»" y="«d.posY.toInteger() + 64»" width="«d.width.toInteger()»" height="«d.height.toInteger()»"/>
+	                    	<subviews>
+	                    		<datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="«d.id»Picker">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="450"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="484569814.93492299">
+                                        <!--2016-05-10 10:43:34 +0000-->
+                                    </date>
+		                            <connections>
+		                                <action selector="«d.id»PickerValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«d.id»PickerValueChangedActionID"/>
+		                            </connections>
+		                        </datePicker>
+                        	</subviews>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR d-»
+                                <constraint firstItem="«d.id»Picker" firstAttribute="centerX" secondItem="«d.id»" secondAttribute="centerX" id="«d.id»PickerConstCenterX"/>
+                                <constraint firstItem="«d.id»Picker" firstAttribute="centerY" secondItem="«d.id»" secondAttribute="centerY" id="«d.id»PickerConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.timepickers AS t-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«t.id»">
+	                    	<rect key="frame" x="«t.posX.toInteger()»" y="«t.posY.toInteger() + 64»" width="«t.width.toInteger()»" height="«t.height.toInteger()»"/>
+	                    	<subviews>
+	                    		<datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="«t.id»Picker">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="450"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="484569814.93492299">
+                                        <!--2016-05-10 10:43:34 +0000-->
+                                    </date>
+		                            <connections>
+		                                <action selector="«t.id»PickerValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«t.id»PickerValueChangedActionID"/>
+		                            </connections>
+		                        </datePicker>
+                        	</subviews>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR t-»
+                                <constraint firstItem="«t.id»Picker" firstAttribute="centerX" secondItem="«t.id»" secondAttribute="centerX" id="«t.id»PickerConstCenterX"/>
+                                <constraint firstItem="«t.id»Picker" firstAttribute="centerY" secondItem="«t.id»" secondAttribute="centerY" id="«t.id»PickerConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.audioPlayers AS ap-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»">
+	                    	<rect key="frame" x="«ap.posX.toInteger()»" y="«ap.posY.toInteger() + 64»" width="«ap.width.toInteger()»" height="«ap.height.toInteger()»"/>
+							<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+	                        <subviews>
+	                        	<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerPlayButton">
+	                                <rect key="frame" x="0" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»PlayWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»PlayHeightID"/>
+                                    </constraints>
+									<state key="normal" title="Play" image="play_icon">
+	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+	                                </state>
+	                                <connections>
+	                                    <action selector="«ap.id»Play:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPlayButtonTouchUpInsideActionID"/>
+	                                </connections>
+	                            </button>
+	                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerPauseButton">
+	                                <rect key="frame" x="64" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»PauseWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»PauseHeightID"/>
+                                    </constraints>
+                                    <state key="normal" title="Pause" image="pause_icon">
+	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+	                                </state>
+	                                <connections>
+	                                    <action selector="«ap.id»Pause:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPauseButtonTouchUpInsideActionID"/>
+	                                </connections>
+	                            </button>
+	                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerStopButton">
+	                                <rect key="frame" x="128" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»StopWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»StopHeightID"/>
+                                    </constraints>
+	                                <state key="normal" title="Stop" image="stop_icon">
+	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+	                                </state>
+	                                <connections>
+	                                    <action selector="«ap.id»Stop:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerStopButtonTouchUpInsideActionID"/>
+	                                </connections>
+	                            </button>
+	                        </subviews>
+	                        <constraints>
+	                        	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR ap-»
+	                        	<constraint firstItem="«ap.id»AudioPlayerStopButton" firstAttribute="leading" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="trailing" constant="8" id="«ap.id»StopConst"/>
+                                <constraint firstItem="«ap.id»AudioPlayerPauseButton" firstAttribute="leading" secondItem="«ap.id»AudioPlayerPlayButton" secondAttribute="trailing" constant="8" id="«ap.id»PlayConst"/>
+	                        	<constraint firstAttribute="centerX" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="centerX" id="«ap.id»CentXPauseConst"/>
+	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="centerY" id="«ap.id»CentYPauseConst"/>
+	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerStopButton" secondAttribute="centerY" id="«ap.id»CentYStopConst"/>
+	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerPlayButton" secondAttribute="centerY" id="«ap.id»CentYPlayConst"/>	
+	                        </constraints>
+	                    </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.textViews AS tv-»
+	                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="«tv.textAlign.toString()»" text="«tv.content»" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«tv.id»">
+	                        «EXPAND uiPhoneControl FOR tv»
+	                        «IF tv.textDecoration.matches("bold")-»
+	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="«tv.textSize»"/>
+	                        «ELSEIF tv.textDecoration.matches("italic")-»
+	                        <fontDescription key="fontDescription" type="italicSystem" pointSize="«tv.textSize»"/>
+	                        «ELSE-»
+	                        <fontDescription key="fontDescription" type="system" pointSize="«tv.textSize»"/>
+	                        «ENDIF-»
+	                        <color key="textColor" red="«redFromHex(tv.textColor)»" green="«greenFromHex(tv.textColor)»" blue="«blueFromHex(tv.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        <nil key="highlightedColor"/>
+	                    </label>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.editTexts AS et-»
+	                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="«et.placeholder»" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" text="«et.initialContent»" id="«et.id»">
+	                        «EXPAND uiPhoneControl FOR et»
+	                        <color key="textColor" red="«redFromHex(et.textColor)»" green="«greenFromHex(et.textColor)»" blue="«blueFromHex(et.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        <fontDescription key="fontDescription" type="system" pointSize="«et.textSize»"/>
+	                        <textInputTraits key="textInputTraits"/>
+	                    </textField>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.videoViews AS vv-»
+	                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«vv.id»">
+	                        «IF vv.sourceType.toString().matches("hardwareFile")»
+	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+	                        «ENDIF»
+	                        «EXPAND uiPhoneControl FOR vv»
+	                    </webView>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.webViews AS wv-»
+	                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«wv.id»">
+	                    	«EXPAND uiPhoneControl FOR wv»
+	                    	<color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+	                    </webView>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.listViews AS lv-»
+	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»">
+	                        «EXPAND uiPhoneControl FOR lv»
+	                        «IF !vc.backgroundColor.matches("")-»
+			                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+			                «ELSE-»
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+			                «ENDIF-»
+	                        <prototypes>
+	                        	«IF lv.listType.matches("detailed")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="DetailedTableViewCell" customModule="«name»" customModuleProvider="target">
+	                        	«ELSEIF lv.listType.matches("image")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="ImageTableViewCell" customModule="«name»" customModuleProvider="target">
+	                        	«ELSEIF lv.listType.matches("simple")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="SimpleTableViewCell" customModule="«name»" customModuleProvider="target">	                          
+	                        	«ENDIF-»
+	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
+	                                «IF !lv.backgroundColor.matches("")-»
+	                        		<color key="backgroundColor" red="«redFromHex(lv.backgroundColor)»" green="«greenFromHex(lv.backgroundColor)»" blue="«blueFromHex(lv.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        		«ENDIF-»
+                                    <autoresizingMask key="autoresizingMask"/>
+	                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="«lv.id»CellID" id="«lv.id»ContentViewID">
+	                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+	                                    <subviews>
+	                                    	«IF lv.listType.matches("image") || lv.listType.matches("detailed")-»
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellImageID">
+                                                <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="«lv.id»CellImageWidth"/>
+                                                </constraints>
+                                            </imageView>
+                                            «ENDIF-»
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellLabelID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+	                    					«IF lv.listType.matches("detailed")-»
+	                    					<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellContentID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellIconID">
+                                                <rect key="frame" x="376" y="17" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="«lv.id»CellIconWidth"/>
+                                                </constraints>
+                                            </imageView>
+                                            «ENDIF-»
+                                        </subviews>
+                                        <constraints>
+                                        	«IF lv.listType.matches("detailed")-»
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellContentID" secondAttribute="bottom" constant="8" id="«lv.id»ConstA"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellContentID" secondAttribute="trailing" constant="16" id="«lv.id»ConstB"/>
+										    <constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstC"/>
+										    <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstD"/>
+										    <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstE"/>
+										    <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstF"/>
+										    <constraint firstAttribute="bottom" secondItem="«lv.id»CellIconID" secondAttribute="bottom" constant="17" id="«lv.id»ConstG"/>
+										    <constraint firstAttribute="trailing" secondItem="«lv.id»CellIconID" secondAttribute="trailing" constant="16" id="«lv.id»ConstH"/>
+										    <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstI"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="17" id="«lv.id»ConstJ"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstK"/>
+										    <constraint firstItem="«lv.id»CellContentID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstL"/>
+                                        	«ELSEIF lv.listType.matches("image")-»
+                                        	<constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstA"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstB"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstC"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstD"/>
+                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="54" id="«lv.id»ConstE"/>
+                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstF"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstG"/>
+                                            «ELSEIF lv.listType.matches("simple")-»
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstA"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstB"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstC"/>
+                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstD"/>
+                                            «ENDIF-»
+                                        </constraints>
+                                   	</tableViewCellContentView>
+                                   	«IF !vc.backgroundColor.matches("")-»
+					                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+					                «ELSE-»
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+					                «ENDIF-»
+                                	<connections>
+                                		«IF lv.listType.matches("detailed")-»
+                                        <outlet property="content" destination="«lv.id»CellContentID" id="«lv.id»ContentOutlet"/>
+                                        <outlet property="icon" destination="«lv.id»CellIconID" id="«lv.id»IconOutlet"/>
+                                        «ENDIF-»
+                                        «IF lv.listType.matches("image") || lv.listType.matches("detailed")-»
+                                        <outlet property="img" destination="«lv.id»CellImageID" id="«lv.id»ImageOutlet"/>
+                                        «ENDIF-»
+                                        <outlet property="label" destination="«lv.id»CellLabelID" id="«lv.id»LabelOutlet"/>
+                                        «IF lv.clickListener!=null && lv.clickListener.navigation!=null»
+			                    		<segue destination="«lv.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID" identifier="SegueIdentifierFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID"/>
+			                    		«ENDIF»
+                                    </connections>
+	                            </tableViewCell>
+	                        </prototypes>
+	                        <connections>
+	                            <outlet property="dataSource" destination="«vc.name»ViewControllerID" id="«lv.id»DataSourceOutletID"/>
+	                            <outlet property="delegate" destination="«vc.name»ViewControllerID" id="«lv.id»DelegateOutletID"/>
+	                        </connections>
+	                    </tableView>
+	                    «ENDFOREACH-»
+	                    
+	                    «FOREACH vc.gridViews AS gv-»
+	                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»">
+	                        «EXPAND uiPhoneControl FOR gv»
+			                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="«gv.id»FlowLayoutID">
+	                            <size key="itemSize" width="202" height="202"/>
+	                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+	                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+	                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+	                        </collectionViewFlowLayout>
+	                        <cells>
+	                        	«IF gv.gridType.matches("detailed")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="DetailedCollectionViewCell" customModule="«name»">
+	                            «ELSEIF gv.gridType.matches("image")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="ImageCollectionViewCell" customModule="«name»">
+	                            «ELSEIF gv.gridType.matches("simple")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="SimpleCollectionViewCell" customModule="«name»">
+	                            «ENDIF-»
+	                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+	                                <autoresizingMask key="autoresizingMask"/>
+	                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+	                                    <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+	                                    <autoresizingMask key="autoresizingMask"/>
+	                                    «IF gv.gridType.matches("detailed")-»
+	                                    <subviews>
+	                                    	<imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellImageID">
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            </imageView>
+	                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellViewID">
+                                                <rect key="frame" x="0.0" y="158" width="202" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellLabelID">
+                                                        <rect key="frame" x="10" y="14" width="182" height="16"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39803340517241381" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="top" secondItem="«gv.id»CellViewID" secondAttribute="top" constant="14" id="«gv.id»CellConstA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="«gv.id»CellLabelID" secondAttribute="trailing" constant="10" id="«gv.id»CellConstB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="«gv.id»CellLabelID" secondAttribute="bottom" constant="14" id="«gv.id»CellConstC"/>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="leading" secondItem="«gv.id»CellViewID" secondAttribute="leading" constant="10" id="«gv.id»CellConstD"/>
+                                                    <constraint firstAttribute="height" constant="44" id="«gv.id»CellConstE"/>
+                                                </constraints>
+                                            </view>
+	                                    </subviews>
+	                                    «ELSEIF gv.gridType.matches("image")-»
+	                                    <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellImageID">
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            </imageView>
+                                        </subviews>
+                                        «ELSEIF gv.gridType.matches("simple")-»
+	                                    <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellViewID">
+                                                <rect key="frame" x="0.0" y="158" width="202" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellLabelID">
+                                                        <rect key="frame" x="10" y="14" width="182" height="16"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39803340517241381" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="top" secondItem="«gv.id»CellViewID" secondAttribute="top" constant="14" id="«gv.id»CellConstA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="«gv.id»CellLabelID" secondAttribute="trailing" constant="10" id="«gv.id»CellConstB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="«gv.id»CellLabelID" secondAttribute="bottom" constant="14" id="«gv.id»CellConstC"/>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="leading" secondItem="«gv.id»CellViewID" secondAttribute="leading" constant="10" id="«gv.id»CellConstD"/>
+                                                    <constraint firstAttribute="height" constant="44" id="«gv.id»CellConstE"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+	                                    «ENDIF-»
+	                                    «IF !vc.backgroundColor.matches("")-»
+						                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+						                «ELSE-»
+						                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+						                «ENDIF-»
+	                                </view>
+	                                <constraints>
+	                                	«IF gv.gridType.matches("detailed")-»
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellViewID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellImageID" secondAttribute="trailing" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstC"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="top" secondItem="«gv.id»CellID" secondAttribute="top" id="«gv.id»ConstD"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellImageID" secondAttribute="bottom" id="«gv.id»ConstE"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellViewID" secondAttribute="bottom" id="«gv.id»ConstF"/>
+                                        <constraint firstItem="«gv.id»CellViewID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstG"/>
+                                    	«ELSEIF gv.gridType.matches("image")-»
+                                    	<constraint firstAttribute="trailing" secondItem="«gv.id»CellImageID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="top" secondItem="«gv.id»CellID" secondAttribute="top" id="«gv.id»ConstC"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellImageID" secondAttribute="bottom" id="«gv.id»ConstD"/>
+                                        «ELSEIF gv.gridType.matches("simple")-»
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellViewID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellViewID" secondAttribute="bottom" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellViewID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstC"/>
+                                        «ENDIF-»    
+                                    </constraints>
+	                                <connections>
+		                                «IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")-»
+		                                <outlet property="label" destination="«gv.id»CellLabelID" id="«gv.id»LabelOutlet"/>
+		                                «ENDIF-»
+		                                «IF gv.gridType.matches("image") || gv.gridType.matches("detailed")-»
+		                                <outlet property="img" destination="«gv.id»CellImageID" id="«gv.id»ImageOutlet"/>
+		                                «ENDIF-»
+		                                «IF gv.clickListener!=null && gv.clickListener.navigation!=null»
+			                    		<segue destination="«gv.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«gv.id»To«gv.clickListener.navigation.destination»ViewControllerID" identifier="SegueIdentifierFrom«gv.id»To«gv.clickListener.navigation.destination»ViewControllerID"/>
+			                    		«ENDIF»
+	                                </connections>
+	                            </collectionViewCell>
+	                        </cells>
+	                        <connections>
+	                        	<outlet property="dataSource" destination="«vc.name»ViewControllerID" id="«gv.id»DataSourceOutletID"/>
+	                            <outlet property="delegate" destination="«vc.name»ViewControllerID" id="«gv.id»DelegateOutletID"/>
+	                        </connections>
+	                    </collectionView>
+	                    «ENDFOREACH-»
+	                </subviews>
+	                «IF !vc.backgroundColor.matches("")-»
+	                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                «ELSE-»
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                «ENDIF-»
+	                <constraints>
+	                «IF !vc.backgroundImage.matches("")-»
+	                <constraint firstAttribute="trailing" secondItem="«vc.name»BackgroundImageId" secondAttribute="trailing" id="«vc.name»BackImageConstA"/>
+                    <constraint firstAttribute="bottom" secondItem="«vc.name»BackgroundImageId" secondAttribute="bottom" id="«vc.name»BackImageConstB"/>
+                    <constraint firstItem="«vc.name»BackgroundImageId" firstAttribute="leading" secondItem="«vc.name»ViewID" secondAttribute="leading" id="«vc.name»BackImageConstC"/>
+                    <constraint firstItem="«vc.name»BackgroundImageId" firstAttribute="top" secondItem="«vc.name»-guide-top" secondAttribute="bottom" id="«vc.name»BackImageConstD"/>
+	                «ENDIF-»
+	                «EXPAND ios_templates::ViewConstraints::constraints FOR vc»
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="«vc.name»ViewControllerNavigationItemID"/>
+	      		<connections>
+	      			«FOREACH vc.buttons AS b-»
+	                <outlet property="«b.id»" destination="«b.id»" id="«b.id»OutletID"/>
+	                «ENDFOREACH-»
+	      			«FOREACH vc.editTexts AS et-»
+	                <outlet property="«et.id»" destination="«et.id»" id="«et.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.sliders AS s-»
+	                <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.spinners AS s-»
+	                <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.switches AS s-»
+	                <outlet property="«s.id»Button" destination="«s.id»Button" id="«s.id»ButtonOutletID"/>
+	                «ENDFOREACH-»
+	      			«FOREACH vc.webViews AS wv-»
+	                <outlet property="«wv.id»" destination="«wv.id»" id="«wv.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.imageViews AS iv-»
+	                «IF !iv.sourceType.toString().matches("localFile")-»
+	                <outlet property="«iv.id»" destination="«iv.id»" id="«iv.id»OutletID"/>
+	                «ENDIF-»
+	                «ENDFOREACH-»
+	                «FOREACH vc.videoViews AS vv-»
+	                <outlet property="«vv.id»" destination="«vv.id»" id="«vv.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «IF vc.audioRecorder!=null-»
+	                <outlet property="recordButton" destination="«vc.audioRecorder.id»" id="«vc.audioRecorder.id»OutletID"/>
+	                «ENDIF-»
+	                «IF vc.map!=null-»
+	                <outlet property="«vc.map.id»" destination="«vc.map.id»" id="«vc.map.id»OutletID"/>
+	                «ENDIF-»
+	                «FOREACH vc.listViews AS lv-»
+	                <outlet property="«lv.id»" destination="«lv.id»" id="«lv.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.gridViews AS gv-»
+	                <outlet property="«gv.id»" destination="«gv.id»" id="«gv.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.cards AS c-»
+	                <outlet property="«c.id»" destination="«c.id»" id="«c.id»OutletID"/>
+	                «ENDFOREACH-»
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="«vc.name»PlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	«ENDFOREACH-»
+	«REM»If Menu exists we generate the TabBarController«ENDREM»
+	«IF menu != null && menu.menuItems.size > 0 -» 
+	<!--Tab Bar Controller-->
+    <scene sceneID="TabBarControllerSceneID">
+        <objects>
+            <tabBarController  automaticallyAdjustsScrollViewInsets="NO" id="TabBarControllerID" sceneMemberID="viewController">
+                <tabBar key="tabBar" contentMode="scaleToFill" id="TabBarControllerTabBarID">
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tabBar>
+                <connections>
+                	«REM»For each menuItem we create a segue to the NavigationController of the corresponding referenced ViewController (If menu.menuItems.size==0 the Menu remains isolated on the StoryBoard (no segues))«ENDREM»
+                	«FOREACH menu.menuItems AS i-»
+                	<segue destination="«i.navigation.destination»ViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="«i.id»SegueID"/>
+                	«ENDFOREACH-»
+                </connections>
+            </tabBarController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="TabBarPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    «REM»For each menuItem we create a NavigationController (which is the destination of the segue) for the referenced ViewController«ENDREM»
+    «REM»This is done only to display the navigation bar as top bar«ENDREM»
+    «FOREACH menu.menuItems AS i-»
+    <!-- «i.navigation.destination» ViewControllerNav -->
+	<scene sceneID="«i.navigation.destination»ViewControllerNavSceneID">
+        <objects>
+            <navigationController id="«i.navigation.destination»ViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="«i.navigation.destination»" id="«i.navigation.destination»TabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="«i.navigation.destination»ViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="«i.navigation.destination»ViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRoot«i.navigation.destination»ViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="«i.navigation.destination»ViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    «ENDFOREACH-»
+	«ELSE-»
+	«REM»In case of absence of the Menu or presence with menuItems.size==0 (Empty Menu) we create a NavigationController for the launcher ViewController«ENDREM»
+	«FOREACH viewControllers AS vc-»
+	«IF vc.launcher-»
+	<!--«vc.name» Navigation Controller-->
+	<scene sceneID="NavigationControllerSceneIDWithRoot«vc.name»ViewControllerID">
+        <objects>
+            <navigationController id="NavigationControllerIDWithRoot«vc.name»ViewControllerID" sceneMemberID="viewController">
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="NavigationControllerBarIDWithRoot«vc.name»ViewControllerID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="«vc.name»ViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRoot«vc.name»ViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="NavigationPlaceholderIDWithRoot«vc.name»ViewControllerID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+	«ENDIF-»
+	«ENDFOREACH-»
+	«ENDIF-»
+	</scenes>
+	<resources>
+		«FOREACH viewControllers AS vc-»
+		
+		«FOREACH vc.imageViews AS iv-»
+        «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
+        «addStoryboardImage(iv.fileUri)»
+        «ENDIF-»
+        «ENDFOREACH-»
+        
+        «IF !vc.backgroundImage.matches("")-»
+        «addStoryboardImage(vc.backgroundImage)»
+        «ENDIF-»
+        
+        «ENDFOREACH-»
+        
+        «FOREACH 0.upTo(numStoryboardImages()) AS i-»
+        <image name="«getStoryboardImage(i)»" width="100" height="100"/>
+        «ENDFOREACH-»
+        <image name="grid_image" width="202" height="202"/>
+        <image name="card_image" width="426" height="240"/>
+        <image name="list_img" width="100" height="100"/>
+        <image name="list_icon" width="40" height="40"/>
+        <image name="pause_icon" width="56" height="56"/>
+        <image name="play_icon" width="56" height="56"/>
+        <image name="stop_icon" width="56" height="56"/>
+        <image name="photocamera_icon" width="36" height="36"/>
+        <image name="videocamera_icon" width="36" height="36"/>
+	</resources>
+</document>
+«ENDFILE-»
+
+«ENDDEFINE-»
+
+«DEFINE uiPhoneControl FOR UiPhoneControl-»
+<rect key="frame" x="«posX.toInteger()»" y="«posY.toInteger()+64»" width="«width.toInteger()»" height="«height.toInteger()»"/>
+<constraints>
+	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR this-»	
+</constraints>
+«ENDDEFINE-»

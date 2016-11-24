@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="main" backgroundColor="" backgroundImage="" launcher="true">
+        <webViews id="sinWebView" posX="0" posY="202" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='main']" HTMLFileName=""/>
+        <webViews id="smjmWebView" posX="0" posY="96" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='main']" HTMLFileName="utils_folder_page.html"/>
+    </viewControllers>
+    <viewControllers name="otHerTasK" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="Trallala" backgroundColor="" backgroundImage="" launcher="false">
+        <buttons id="qbButton" posX="0" posY="96" width="88" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Trallala']" title="Button" textColor="" backgroundColor="" borderRadius="2" clickColor="">
+            <clickListener>
+                <navigation destination="gioPPino"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="gioPPino" backgroundColor="" backgroundImage="" launcher="false">
+        <webViews id="orWebView" posX="0" posY="162" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='gioPPino']" HTMLFileName=""/>
+        <webViews id="rhcqWebView" posX="0" posY="0" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='gioPPino']" HTMLFileName="utils_folder_page.html"/>
+    </viewControllers>
+    <menu>
+        <menuItems title="vai qui" id="vaiqui">
+            <navigation destination="main"/>
+        </menuItems>
+        <menuItems title="vai la" id="vaila">
+            <navigation destination="otHerTasK"/>
+        </menuItems>
+        <menuItems title="qui" id="qui">
+            <navigation destination="Trallala"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

@@ -1,0 +1,35 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«EXPAND android_activities_templates::Audio::attributesDeclarations-»
+«EXPAND android_activities_templates::Buttons::attributesDeclarations-»
+«EXPAND android_activities_templates::Camera::attributesDeclarations-»
+«EXPAND android_activities_templates::Cards::attributesDeclarations-»
+«EXPAND android_activities_templates::Datepickers::attributesDeclarations-»
+«EXPAND android_activities_templates::EditTexts::attributesDeclarations-»
+«EXPAND android_activities_templates::GridViews::attributesDeclarations-»
+«EXPAND android_activities_templates::ImageViews::attributesDeclarations-»
+«EXPAND android_activities_templates::ListViews::attributesDeclarations-»
+«EXPAND android_activities_templates::Map::attributesDeclarations-»
+«EXPAND android_activities_templates::Sliders::attributesDeclarations-»
+«EXPAND android_activities_templates::Spinners::attributesDeclarations-»
+«EXPAND android_activities_templates::Switches::attributesDeclarations-»
+«EXPAND android_activities_templates::Timepickers::attributesDeclarations-»
+«EXPAND android_activities_templates::VideoViews::attributesDeclarations-»
+«EXPAND android_activities_templates::WebViews::attributesDeclarations-»
+«ENDDEFINE-»

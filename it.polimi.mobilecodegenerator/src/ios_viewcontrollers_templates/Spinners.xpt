@@ -1,0 +1,64 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+	«FOREACH spinners AS s-»
+	@IBOutlet weak var «s.id»: UIPickerView!
+    var «s.id»DataSource = ["Option A", "Option B", "Option C"]
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+«FOREACH spinners AS s-»
+		self.«s.id».dataSource = self
+    	self.«s.id».delegate = self
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE spinners FOR ViewController-»
+«IF spinners.size != 0-»
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    	«FOREACH spinners AS s-»
+        if pickerView == self.«s.id» {
+            return «s.id»DataSource.count
+        }
+        «ENDFOREACH-»
+        return 0
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        «FOREACH spinners AS s-»
+        if pickerView == self.«s.id» {
+            return «s.id»DataSource[row]
+        }
+        «ENDFOREACH-»
+        return nil
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        «FOREACH spinners AS s-»
+        if pickerView == self.«s.id» {
+        	print("\(«s.id»DataSource[row])")
+        }
+        «ENDFOREACH-»
+    }
+«ENDIF-»
+«ENDDEFINE-»

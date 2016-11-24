@@ -1,0 +1,45 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«EXPAND watchController FOREACH watchControllers-»
+«ENDDEFINE-»
+
+«DEFINE watchController FOR WatchController-»
+«FILE application.name+"/wear/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
+	
+«EXPAND androidwear_activities_templates::Imports::imports-»
+
+public class «name.toFirstUpper()»Activity extends Activity «EXPAND androidwear_activities_templates::Implements::implements-» {
+	
+	«EXPAND androidwear_activities_templates::AttributesDeclarations::attributesDeclarations-»
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_«name.toLowerCase()»);  
+                
+		«EXPAND androidwear_activities_templates::OnCreate::onCreate-»
+		
+	}
+	
+	«EXPAND androidwear_activities_templates::WatchVoiceMessage::watchVoiceMessage-»
+
+}
+«ENDFILE-»
+«ENDDEFINE-»

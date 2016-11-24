@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="main" backgroundColor="" backgroundImage="" launcher="true">
+        <map id="mnvqMap" posX="0" posY="96" width="200" height="330" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='main']" lat="45.478" lon="9.227"/>
+    </viewControllers>
+    <viewControllers name="otHerTasK" backgroundColor="" backgroundImage="" launcher="false">
+        <audioPlayers id="cduAudioPlayer" posX="0" posY="96" width="250" height="75" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='otHerTasK']" sourceType="hardwareFile" fileUri=""/>
+    </viewControllers>
+    <viewControllers name="Trallala" backgroundColor="" backgroundImage="" launcher="false">
+        <timepickers id="ukssTimepicker" posX="0" posY="96" width="346" height="346" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Trallala']"/>
+    </viewControllers>
+    <viewControllers name="gioPPino" backgroundColor="" backgroundImage="" launcher="false"/>
+    <menu>
+        <menuItems title="vai qui" id="vaiqui">
+            <navigation destination="main"/>
+        </menuItems>
+        <menuItems title="vai la" id="vaila">
+            <navigation destination="otHerTasK"/>
+        </menuItems>
+        <menuItems title="qui" id="qui">
+            <navigation destination="Trallala"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

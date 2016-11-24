@@ -1,0 +1,65 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
+	@IBOutlet weak var «vv.id»: UIWebView!
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE viewDidAppear FOR ViewController-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
+	«IF vv.sourceType.toString().matches("localFile")-»
+		«IF !vv.fileUri.matches("")-»
+		if let «vv.id»String = NSBundle.mainBundle().pathForResource("«removeExtension(vv.fileUri)»", ofType:"mp4") {
+            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+            let h = self.«vv.id».frame.height
+            let w = self.«vv.id».frame.width
+            let «vv.id»Iframe = "<body style=\"margin:0;\"><iframe width=\"\(w)\" height=\"\(h)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe></body>"
+            self.«vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
+            self.«vv.id».scrollView.bounces = false
+            self.«vv.id».scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+		«ELSE-»
+		/*
+		if let «vv.id»String = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
+            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+            let h = self.«vv.id».frame.height
+            let w = self.«vv.id».frame.width
+            let «vv.id»Iframe = "<body style=\"margin:0;\"><iframe width=\"\(w)\" height=\"\(h)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe></body>"
+            self.«vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
+            self.«vv.id».scrollView.bounces = false
+            self.«vv.id».scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+		*/
+		«ENDIF-»
+	«ELSEIF vv.sourceType.toString().matches("remoteFile")-»
+		let «vv.id»Url = "«vv.fileUri»"
+		let «vv.id»_H = self.«vv.id».frame.height
+        let «vv.id»_W = self.«vv.id».frame.width
+        let «vv.id»Iframe = "<body style=\"margin:0;\"><iframe width=\"\(«vv.id»_W)\" height=\"\(«vv.id»_H)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe></body>"
+        self.«vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
+	    self.«vv.id».scrollView.bounces = false
+	    self.«vv.id».scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+	«ENDIF-»
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»

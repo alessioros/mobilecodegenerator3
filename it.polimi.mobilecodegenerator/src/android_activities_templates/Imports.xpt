@@ -1,0 +1,341 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE imports FOR ViewController-»
+«IF photocameraController != null || videocameraController != null || audioRecorder != null-»
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+«ENDIF-»
+«IF videocameraController != null || audioRecorder != null-»
+import android.os.Build;
+«ENDIF-»
+import android.os.Bundle;
+«IF photocameraController != null || videocameraController != null-»
+import android.app.Activity;
+«ENDIF-»
+«IF progressDialogs.size > 0-»
+import android.app.ProgressDialog;
+«ENDIF-»
+«IF alertDialogs.size > 0-»
+import android.content.DialogInterface;
+«ENDIF-»
+
+import android.content.Intent;
+
+«IF videocameraController != null || audioRecorder != null-»
+import android.content.pm.PackageManager;
+«ENDIF-»
+«IF videocameraController != null-»
+import android.content.res.AssetFileDescriptor;
+«ENDIF-»
+«IF photocameraController != null-»
+import android.graphics.Bitmap;
+«ENDIF-»
+«IF videocameraController != null || audioRecorder != null-»
+import android.Manifest;
+«ENDIF-»
+«IF audioPlayers.size > 0-»
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+«ENDIF-»
+«IF audioRecorder != null-»
+import android.media.MediaRecorder;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.net.Uri;
+«ENDIF-»
+«IF asyncTasks.size > 0-»
+import android.os.AsyncTask;
+«ENDIF-»
+«IF photocameraController != null || videocameraController != null-»
+import android.provider.MediaStore;
+«ENDIF-»
+«IF alertDialogs.size > 0-»
+import android.support.v7.app.AlertDialog;
+«ENDIF-»
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+«IF switches.size > 0-»
+import android.support.v7.widget.SwitchCompat;
+«ENDIF-»
+«IF sliders.size > 0-»
+import android.support.v7.widget.AppCompatSeekBar;
+«ENDIF-»
+«IF editTexts.size > 0-»
+import android.support.v7.widget.AppCompatEditText;
+«ENDIF-»
+«IF cards.size > 0-»
+import android.support.v7.widget.CardView;
+«ENDIF-»
+«IF audioPlayers.size > 0-»
+import android.support.design.widget.FloatingActionButton;
+«ENDIF-»
+«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0 || spinners.size > 0-»
+import android.util.Log;
+«ENDIF-»
+
+import android.view.View;
+
+«IF cards.size > 0-»
+import android.view.ViewGroup;
+«ENDIF-»
+«IF webViews.size > 0-»
+import android.webkit.WebView;
+import android.webkit.WebSettings;
+«ENDIF-»
+«IF listViews.size > 0 || gridViews.size > 0-»
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+«ENDIF-»
+«IF buttons.size > 0 || cards.size > 0 || audioRecorder != null ||
+	(photocameraController != null && photocameraController.backgroundType.matches("normal")) ||
+	(videocameraController != null && videocameraController.backgroundType.matches("normal"))-»
+import android.widget.Button;
+«ENDIF-»
+«IF datepickers.size > 0-»
+import android.support.annotation.NonNull;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import java.util.Calendar;
+«ENDIF-»
+«IF switches.size > 0-»
+import android.widget.CompoundButton;
+«ENDIF-»
+«IF gridViews.size > 0-»
+import android.widget.GridView;
+«ENDIF-»
+«IF (photocameraController != null && photocameraController.backgroundType.matches("icon")) ||
+	(videocameraController != null && videocameraController.backgroundType.matches("icon")) -»
+import android.widget.ImageButton;
+«ENDIF-»
+«IF imageViews.size > 0 || cards.size > 0-»
+import android.widget.ImageView;
+«ENDIF-»
+«IF listViews.size > 0-»
+import android.widget.ListView;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.widget.MediaController;
+«ENDIF-»
+«IF cards.size > 0-»
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+«ENDIF-»
+«IF sliders.size > 0-»
+import android.widget.SeekBar;
+«ENDIF-»
+«IF textViews.size > 0 || cards.size > 0-»
+import android.widget.TextView;
+«ENDIF-»
+«IF timepickers.size > 0-»
+import java.util.Calendar;
+import java.util.Date;
+import picker.ugurtekbas.com.Picker.Picker;
+import picker.ugurtekbas.com.Picker.TimeChangedListener;
+«ENDIF-»
+«IF photocameraController != null || videocameraController != null || audioRecorder != null-»
+import android.widget.Toast;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.widget.VideoView;
+«ENDIF-»
+«IF spinners.size > 0-»
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+«ENDIF-»
+«IF map != null-»
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE importsFrag FOR ViewController-»
+«IF photocameraController != null || videocameraController != null || audioRecorder != null-»
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+«ENDIF-»
+«IF videocameraController != null || audioRecorder != null-»
+import android.os.Build;
+«ENDIF-»
+import android.os.Bundle;
+«IF photocameraController != null || videocameraController != null-»
+import android.app.Activity;
+«ENDIF-»
+import android.content.Intent;
+«IF progressDialogs.size > 0-»
+import android.app.ProgressDialog;
+«ENDIF-»
+«IF alertDialogs.size > 0-»
+import android.content.DialogInterface;
+«ENDIF-»
+«IF videocameraController != null-»
+import android.graphics.Color;
+«ENDIF-»
+import android.support.v4.app.Fragment;
+«IF videocameraController != null || audioRecorder != null-»
+import android.content.pm.PackageManager;
+«ENDIF-»
+«IF videocameraController != null-»
+import android.content.res.AssetFileDescriptor;
+«ENDIF-»
+«IF photocameraController != null-»
+import android.graphics.Bitmap;
+«ENDIF-»
+«IF videocameraController != null || audioRecorder != null-»
+import android.Manifest;
+«ENDIF-»
+«IF audioPlayers.size > 0-»
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+«ENDIF-»
+«IF audioRecorder != null-»
+import android.media.MediaRecorder;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.net.Uri;
+«ENDIF-»
+«IF asyncTasks.size > 0-»
+import android.os.AsyncTask;
+«ENDIF-»
+«IF photocameraController != null || videocameraController != null-»
+import android.provider.MediaStore;
+«ENDIF-»
+«IF map != null-»
+import android.support.v4.app.FragmentManager;
+«ENDIF-»
+«IF alertDialogs.size > 0-»
+import android.support.v7.app.AlertDialog;
+«ENDIF-»
+«IF switches.size > 0-»
+import android.support.v7.widget.SwitchCompat;
+«ENDIF-»
+«IF sliders.size > 0-»
+import android.support.v7.widget.AppCompatSeekBar;
+«ENDIF-»
+«IF editTexts.size > 0-»
+import android.support.v7.widget.AppCompatEditText;
+«ENDIF-»
+«IF cards.size > 0-»
+import android.support.v7.widget.CardView;
+«ENDIF-»
+«IF audioPlayers.size > 0-»
+import android.support.design.widget.FloatingActionButton;
+«ENDIF-»
+«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0 || spinners.size > 0-»
+import android.util.Log;
+«ENDIF-»
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+«IF cards.size > 0-»
+import android.view.ViewGroup;
+«ENDIF-»
+«IF webViews.size > 0-»
+import android.webkit.WebView;
+import android.webkit.WebSettings;
+«ENDIF-»
+«IF listViews.size > 0 || gridViews.size > 0-»
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+«ENDIF-»
+«IF buttons.size > 0 || cards.size > 0 || audioRecorder != null ||
+	(photocameraController != null && photocameraController.backgroundType.matches("normal")) ||
+	(videocameraController != null && videocameraController.backgroundType.matches("normal"))-»
+import android.widget.Button;
+«ENDIF-»
+«IF datepickers.size > 0-»
+import android.support.annotation.NonNull;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import java.util.Calendar;
+«ENDIF-»
+«IF switches.size > 0-»
+import android.widget.CompoundButton;
+«ENDIF-»
+«IF gridViews.size > 0-»
+import android.widget.GridView;
+«ENDIF-»
+«IF (photocameraController != null && photocameraController.backgroundType.matches("icon")) ||
+	(videocameraController != null && videocameraController.backgroundType.matches("icon")) -»
+import android.widget.ImageButton;
+«ENDIF-»
+«IF imageViews.size > 0 || cards.size > 0-»
+import android.widget.ImageView;
+«ENDIF-»
+«IF listViews.size > 0-»
+import android.widget.ListView;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.widget.MediaController;
+«ENDIF-»
+«IF cards.size > 0-»
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+«ENDIF-»
+«IF sliders.size > 0-»
+import android.widget.SeekBar;
+«ENDIF-»
+«IF textViews.size > 0 || cards.size > 0-»
+import android.widget.TextView;
+«ENDIF-»
+«IF timepickers.size > 0-»
+import java.util.Calendar;
+import java.util.Date;
+import picker.ugurtekbas.com.Picker.Picker;
+import picker.ugurtekbas.com.Picker.TimeChangedListener;
+«ENDIF-»
+«IF photocameraController != null || videocameraController != null || audioRecorder != null-»
+import android.widget.Toast;
+«ENDIF-»
+«IF videoViews.size > 0-»
+import android.widget.VideoView;
+«ENDIF-»
+«IF spinners.size > 0-»
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+«ENDIF-»
+«IF map != null-»
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+«ENDIF-»
+«ENDDEFINE-»

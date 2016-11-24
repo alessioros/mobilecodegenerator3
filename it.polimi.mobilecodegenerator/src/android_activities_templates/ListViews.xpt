@@ -1,0 +1,155 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH listViews AS lv-»
+private ListView «lv.id»;
+private MyListAdapter «lv.id»Adapter;
+«IF lv.listType.matches("detailed") || lv.listType.matches("image")»
+private Integer[] «lv.id»Images;
+«ENDIF-»
+«IF lv.listType.matches("detailed")»
+private String[] «lv.id»Subcontents;
+private Integer[] «lv.id»Icons;
+«ENDIF-»
+private String[] «lv.id»Contents;
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.listType.matches("detailed") || lv.listType.matches("image")»
+//Change this to set a specific image id for each row
+this.«lv.id»Images = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_stars_white,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF lv.listType.matches("detailed")»
+//Change this to set a specific icon id for each row
+this.«lv.id»Icons = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_chevron_right_black_36dp,
+	«ENDFOREACH-»
+};
+this.«lv.id»Subcontents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+this.«lv.id»Contents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.title»",
+	«ENDFOREACH-»
+};
+«IF lv.listType.matches("detailed")»
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, this.«lv.id»Contents, this.«lv.id»Subcontents, this.«lv.id»Images, this.«lv.id»Icons);
+«ENDIF-»
+«IF lv.listType.matches("image")»
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_image_layout, this.«lv.id»Contents, this.«lv.id»Images);
+«ENDIF-»
+«IF lv.listType.matches("simple")»
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_simple_layout, this.«lv.id»Contents);
+«ENDIF-»
+this.«lv.id» = (ListView) this.findViewById(R.id.«lv.id»);
+this.«lv.id».setAdapter(this.«lv.id»Adapter);
+«IF lv.clickListener!=null-»
+this.«lv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.listType.matches("detailed") || lv.listType.matches("image")»
+//Change this to set a specific image id for each row
+this.«lv.id»Images = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_stars_white,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF lv.listType.matches("detailed")»
+//Change this to set a specific icon id for each row
+this.«lv.id»Icons = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_chevron_right_black_36dp,
+	«ENDFOREACH-»
+};
+this.«lv.id»Subcontents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+this.«lv.id»Contents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.title»",
+	«ENDFOREACH-»
+};
+«IF lv.listType.matches("detailed")»
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_detailed_layout, this.«lv.id»Contents, this.«lv.id»Subcontents, this.«lv.id»Images, this.«lv.id»Icons);
+«ENDIF-»
+«IF lv.listType.matches("image")»
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_image_layout, this.«lv.id»Contents, this.«lv.id»Images);
+«ENDIF-»
+«IF lv.listType.matches("simple")»
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_simple_layout, this.«lv.id»Contents);
+«ENDIF-»
+this.«lv.id» = (ListView) rootView.findViewById(R.id.«lv.id»);
+this.«lv.id».setAdapter(this.«lv.id»Adapter);
+«IF lv.clickListener!=null-»
+this.«lv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onItemClick FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.clickListener != null-»
+if(l.getId() == R.id.«lv.id»){
+	String clickedItem = this.«lv.id»Contents[position];
+	«IF lv.clickListener.navigation != null-»
+	Intent intent = new Intent(«name.toFirstUpper()»Activity.this, «lv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination.toFirstUpper()»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onItemClickFrag FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.clickListener!=null-»
+if(l.getId() == R.id.«lv.id»){
+	String clickedItem = this.«lv.id»Contents[position];
+	«IF lv.clickListener.navigation!=null-»
+	Intent intent = new Intent(getActivity(), «lv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination.toFirstUpper()»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»

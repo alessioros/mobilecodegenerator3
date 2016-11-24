@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TabBarControllerID">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Exercises View Controller-->
+        <scene sceneID="ExercisesViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ExercisesViewControllerID" customClass="ExercisesViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Exercises-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="Exercises-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ExercisesViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="exercisesList">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="exercisesListTableViewCell" rowHeight="57" id="exercisesListCellID" customClass="DetailedTableViewCell" customModule="ParkTraining" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="exercisesListCellID" id="exercisesListContentViewID">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exercisesListCellImageID">
+                                                    <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="exercisesListCellImageWidth"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exercisesListCellLabelID">
+                                                    <rect key="frame" x="72" y="8" width="474" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exercisesListCellContentID">
+                                                    <rect key="frame" x="72" y="31" width="474" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exercisesListCellIconID">
+                                                    <rect key="frame" x="562" y="17" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="exercisesListCellIconWidth"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="exercisesListCellContentID" secondAttribute="bottom" constant="8" id="exercisesListConstA"/>
+                                                <constraint firstItem="exercisesListCellIconID" firstAttribute="leading" secondItem="exercisesListCellContentID" secondAttribute="trailing" constant="16" id="exercisesListConstB"/>
+                                                <constraint firstItem="exercisesListCellImageID" firstAttribute="leading" secondItem="exercisesListContentViewID" secondAttribute="leading" constant="16" id="exercisesListConstC"/>
+                                                <constraint firstAttribute="bottom" secondItem="exercisesListCellImageID" secondAttribute="bottom" constant="8" id="exercisesListConstD"/>
+                                                <constraint firstItem="exercisesListCellImageID" firstAttribute="top" secondItem="exercisesListContentViewID" secondAttribute="top" constant="8" id="exercisesListConstE"/>
+                                                <constraint firstItem="exercisesListCellLabelID" firstAttribute="top" secondItem="exercisesListContentViewID" secondAttribute="top" constant="8" id="exercisesListConstF"/>
+                                                <constraint firstAttribute="bottom" secondItem="exercisesListCellIconID" secondAttribute="bottom" constant="17" id="exercisesListConstG"/>
+                                                <constraint firstAttribute="trailing" secondItem="exercisesListCellIconID" secondAttribute="trailing" constant="16" id="exercisesListConstH"/>
+                                                <constraint firstItem="exercisesListCellLabelID" firstAttribute="leading" secondItem="exercisesListCellImageID" secondAttribute="trailing" constant="16" id="exercisesListConstI"/>
+                                                <constraint firstItem="exercisesListCellIconID" firstAttribute="top" secondItem="exercisesListContentViewID" secondAttribute="top" constant="17" id="exercisesListConstJ"/>
+                                                <constraint firstItem="exercisesListCellIconID" firstAttribute="leading" secondItem="exercisesListCellLabelID" secondAttribute="trailing" constant="16" id="exercisesListConstK"/>
+                                                <constraint firstItem="exercisesListCellContentID" firstAttribute="leading" secondItem="exercisesListCellImageID" secondAttribute="trailing" constant="16" id="exercisesListConstL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="content" destination="exercisesListCellContentID" id="exercisesListContentOutlet"/>
+                                            <outlet property="icon" destination="exercisesListCellIconID" id="exercisesListIconOutlet"/>
+                                            <outlet property="img" destination="exercisesListCellImageID" id="exercisesListImageOutlet"/>
+                                            <outlet property="label" destination="exercisesListCellLabelID" id="exercisesListLabelOutlet"/>
+                                            <segue destination="ExerciseEditViewControllerID" kind="show" identifier="SegueIdentifierFromexercisesListToExerciseEditViewControllerID" id="SegueIDFromexercisesListToExerciseEditViewControllerID"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ExercisesViewControllerID" id="exercisesListDataSourceOutletID"/>
+                                    <outlet property="delegate" destination="ExercisesViewControllerID" id="exercisesListDelegateOutletID"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="newExerciseButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.24705882000000001" green="0.31764706999999998" blue="0.70980394000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="newExerciseButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="newExerciseButton-width"/>
+                                </constraints>
+                                <state key="normal" image="ic_add_white_36pt.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newExerciseButtonTouchDown:" destination="ExercisesViewControllerID" eventType="touchDown" id="newExerciseButtonTouchDownActionID"/>
+                                    <action selector="newExerciseButtonTouchUpInside:" destination="ExercisesViewControllerID" eventType="touchUpInside" id="newExerciseButtonTouchUpInsideActionID"/>
+                                    <segue destination="ExerciseNewViewControllerID" kind="show" id="SegueIDFromnewExerciseButtonToExerciseNewViewControllerID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Exercises-guide-bottom" firstAttribute="top" secondItem="exercisesList" secondAttribute="bottom" id="exercisesList-alignParentBottom"/>
+                            <constraint firstItem="exercisesList" firstAttribute="trailing" secondItem="ExercisesViewID" secondAttribute="trailing" id="exercisesList-alignParentEnd"/>
+                            <constraint firstItem="exercisesList" firstAttribute="leading" secondItem="ExercisesViewID" secondAttribute="leading" id="exercisesList-alignParentStart"/>
+                            <constraint firstItem="exercisesList" firstAttribute="top" secondItem="Exercises-guide-top" secondAttribute="bottom" id="exercisesList-alignParentTop"/>
+                            <constraint firstItem="Exercises-guide-bottom" firstAttribute="top" secondItem="newExerciseButton" secondAttribute="bottom" constant="16" id="newExerciseButton-alignParentBottom"/>
+                            <constraint firstItem="newExerciseButton" firstAttribute="trailing" secondItem="ExercisesViewID" secondAttribute="trailing" constant="-16" id="newExerciseButton-alignParentEnd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ExercisesViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="exercisesList" destination="exercisesList" id="exercisesListOutletID"/>
+                        <outlet property="newExerciseButton" destination="newExerciseButton" id="newExerciseButtonOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExercisesPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Photos View Controller-->
+        <scene sceneID="PhotosViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="PhotosViewControllerID" customClass="PhotosViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Photos-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="Photos-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PhotosViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="photosGrid">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="photosGridFlowLayoutID">
+                                    <size key="itemSize" width="202" height="202"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photosGridCollectionViewCell" id="photosGridCellID" customClass="ImageCollectionViewCell" customModule="ParkTraining">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="photosGridCellImageID">
+                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="photosGridCellImageID" secondAttribute="trailing" id="photosGridConstA"/>
+                                            <constraint firstItem="photosGridCellImageID" firstAttribute="leading" secondItem="photosGridCellID" secondAttribute="leading" id="photosGridConstB"/>
+                                            <constraint firstItem="photosGridCellImageID" firstAttribute="top" secondItem="photosGridCellID" secondAttribute="top" id="photosGridConstC"/>
+                                            <constraint firstAttribute="bottom" secondItem="photosGridCellImageID" secondAttribute="bottom" id="photosGridConstD"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="img" destination="photosGridCellImageID" id="photosGridImageOutlet"/>
+                                            <segue destination="PhotoEditViewControllerID" kind="show" identifier="SegueIdentifierFromphotosGridToPhotoEditViewControllerID" id="SegueIDFromphotosGridToPhotoEditViewControllerID"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="PhotosViewControllerID" id="photosGridDataSourceOutletID"/>
+                                    <outlet property="delegate" destination="PhotosViewControllerID" id="photosGridDelegateOutletID"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="photoButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.24705882000000001" green="0.31764706999999998" blue="0.70980394000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="photoButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="photoButton-width"/>
+                                </constraints>
+                                <state key="normal" title="CAMERA">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonTouchDown:" destination="PhotosViewControllerID" eventType="touchDown" id="photoButtonTouchDownActionID"/>
+                                    <action selector="photoButtonTouchUpInside:" destination="PhotosViewControllerID" eventType="touchUpInside" id="photoButtonTouchUpInsideActionID"/>
+                                    <segue destination="PhotoNewViewControllerID" kind="show" id="SegueIDFromphotoButtonToPhotoNewViewControllerID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Photos-guide-bottom" firstAttribute="top" secondItem="photoButton" secondAttribute="bottom" constant="16" id="photoButton-alignParentBottom"/>
+                            <constraint firstItem="photoButton" firstAttribute="trailing" secondItem="PhotosViewID" secondAttribute="trailing" constant="-16" id="photoButton-alignParentEnd"/>
+                            <constraint firstItem="Photos-guide-bottom" firstAttribute="top" secondItem="photosGrid" secondAttribute="bottom" id="photosGrid-alignParentBottom"/>
+                            <constraint firstItem="photosGrid" firstAttribute="trailing" secondItem="PhotosViewID" secondAttribute="trailing" id="photosGrid-alignParentEnd"/>
+                            <constraint firstItem="photosGrid" firstAttribute="leading" secondItem="PhotosViewID" secondAttribute="leading" id="photosGrid-alignParentStart"/>
+                            <constraint firstItem="photosGrid" firstAttribute="top" secondItem="Photos-guide-top" secondAttribute="bottom" id="photosGrid-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PhotosViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="photoButton" destination="photoButton" id="photoButtonOutletID"/>
+                        <outlet property="photosGrid" destination="photosGrid" id="photosGridOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PhotosPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Videos View Controller-->
+        <scene sceneID="VideosViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="VideosViewControllerID" customClass="VideosViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Videos-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="Videos-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VideosViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="videosGrid">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="videosGridFlowLayoutID">
+                                    <size key="itemSize" width="202" height="202"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="videosGridCollectionViewCell" id="videosGridCellID" customClass="DetailedCollectionViewCell" customModule="ParkTraining">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="videosGridCellImageID">
+                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="videosGridCellViewID">
+                                                    <rect key="frame" x="0.0" y="158" width="202" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="videosGridCellLabelID">
+                                                            <rect key="frame" x="10" y="14" width="182" height="16"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39803340517241381" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="videosGridCellLabelID" firstAttribute="top" secondItem="videosGridCellViewID" secondAttribute="top" constant="14" id="videosGridCellConstA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="videosGridCellLabelID" secondAttribute="trailing" constant="10" id="videosGridCellConstB"/>
+                                                        <constraint firstAttribute="bottom" secondItem="videosGridCellLabelID" secondAttribute="bottom" constant="14" id="videosGridCellConstC"/>
+                                                        <constraint firstItem="videosGridCellLabelID" firstAttribute="leading" secondItem="videosGridCellViewID" secondAttribute="leading" constant="10" id="videosGridCellConstD"/>
+                                                        <constraint firstAttribute="height" constant="44" id="videosGridCellConstE"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="videosGridCellViewID" secondAttribute="trailing" id="videosGridConstA"/>
+                                            <constraint firstAttribute="trailing" secondItem="videosGridCellImageID" secondAttribute="trailing" id="videosGridConstB"/>
+                                            <constraint firstItem="videosGridCellImageID" firstAttribute="leading" secondItem="videosGridCellID" secondAttribute="leading" id="videosGridConstC"/>
+                                            <constraint firstItem="videosGridCellImageID" firstAttribute="top" secondItem="videosGridCellID" secondAttribute="top" id="videosGridConstD"/>
+                                            <constraint firstAttribute="bottom" secondItem="videosGridCellImageID" secondAttribute="bottom" id="videosGridConstE"/>
+                                            <constraint firstAttribute="bottom" secondItem="videosGridCellViewID" secondAttribute="bottom" id="videosGridConstF"/>
+                                            <constraint firstItem="videosGridCellViewID" firstAttribute="leading" secondItem="videosGridCellID" secondAttribute="leading" id="videosGridConstG"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="img" destination="videosGridCellImageID" id="videosGridImageOutlet"/>
+                                            <outlet property="label" destination="videosGridCellLabelID" id="videosGridLabelOutlet"/>
+                                            <segue destination="VideoEditViewControllerID" kind="show" identifier="SegueIdentifierFromvideosGridToVideoEditViewControllerID" id="SegueIDFromvideosGridToVideoEditViewControllerID"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="VideosViewControllerID" id="videosGridDataSourceOutletID"/>
+                                    <outlet property="delegate" destination="VideosViewControllerID" id="videosGridDelegateOutletID"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="videoButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.24705882000000001" green="0.31764706999999998" blue="0.70980394000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="videoButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="videoButton-width"/>
+                                </constraints>
+                                <state key="normal" title="CAMERA">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="videoButtonTouchDown:" destination="VideosViewControllerID" eventType="touchDown" id="videoButtonTouchDownActionID"/>
+                                    <action selector="videoButtonTouchUpInside:" destination="VideosViewControllerID" eventType="touchUpInside" id="videoButtonTouchUpInsideActionID"/>
+                                    <segue destination="VideoNewViewControllerID" kind="show" id="SegueIDFromvideoButtonToVideoNewViewControllerID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Videos-guide-bottom" firstAttribute="top" secondItem="videoButton" secondAttribute="bottom" constant="16" id="videoButton-alignParentBottom"/>
+                            <constraint firstItem="videoButton" firstAttribute="trailing" secondItem="VideosViewID" secondAttribute="trailing" constant="-16" id="videoButton-alignParentEnd"/>
+                            <constraint firstItem="Videos-guide-bottom" firstAttribute="top" secondItem="videosGrid" secondAttribute="bottom" id="videosGrid-alignParentBottom"/>
+                            <constraint firstItem="videosGrid" firstAttribute="trailing" secondItem="VideosViewID" secondAttribute="trailing" id="videosGrid-alignParentEnd"/>
+                            <constraint firstItem="videosGrid" firstAttribute="leading" secondItem="VideosViewID" secondAttribute="leading" id="videosGrid-alignParentStart"/>
+                            <constraint firstItem="videosGrid" firstAttribute="top" secondItem="Videos-guide-top" secondAttribute="bottom" id="videosGrid-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VideosViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="videoButton" destination="videoButton" id="videoButtonOutletID"/>
+                        <outlet property="videosGrid" destination="videosGrid" id="videosGridOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VideosPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Locations View Controller-->
+        <scene sceneID="LocationsViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="LocationsViewControllerID" customClass="LocationsViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Locations-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="Locations-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LocationsViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="locationsList">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="locationsListTableViewCell" rowHeight="57" id="locationsListCellID" customClass="ImageTableViewCell" customModule="ParkTraining" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="locationsListCellID" id="locationsListContentViewID">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="locationsListCellImageID">
+                                                    <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="locationsListCellImageWidth"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="locationsListCellLabelID">
+                                                    <rect key="frame" x="72" y="8" width="474" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="locationsListCellImageID" firstAttribute="leading" secondItem="locationsListContentViewID" secondAttribute="leading" constant="16" id="locationsListConstA"/>
+                                                <constraint firstItem="locationsListCellLabelID" firstAttribute="leading" secondItem="locationsListCellImageID" secondAttribute="trailing" constant="16" id="locationsListConstB"/>
+                                                <constraint firstAttribute="bottom" secondItem="locationsListCellLabelID" secondAttribute="bottom" constant="8" id="locationsListConstC"/>
+                                                <constraint firstItem="locationsListCellLabelID" firstAttribute="top" secondItem="locationsListContentViewID" secondAttribute="top" constant="8" id="locationsListConstD"/>
+                                                <constraint firstAttribute="trailing" secondItem="locationsListCellLabelID" secondAttribute="trailing" constant="54" id="locationsListConstE"/>
+                                                <constraint firstItem="locationsListCellImageID" firstAttribute="top" secondItem="locationsListContentViewID" secondAttribute="top" constant="8" id="locationsListConstF"/>
+                                                <constraint firstAttribute="bottom" secondItem="locationsListCellImageID" secondAttribute="bottom" constant="8" id="locationsListConstG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="img" destination="locationsListCellImageID" id="locationsListImageOutlet"/>
+                                            <outlet property="label" destination="locationsListCellLabelID" id="locationsListLabelOutlet"/>
+                                            <segue destination="LocationEditViewControllerID" kind="show" identifier="SegueIdentifierFromlocationsListToLocationEditViewControllerID" id="SegueIDFromlocationsListToLocationEditViewControllerID"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="LocationsViewControllerID" id="locationsListDataSourceOutletID"/>
+                                    <outlet property="delegate" destination="LocationsViewControllerID" id="locationsListDelegateOutletID"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="locationButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.24705882000000001" green="0.31764706999999998" blue="0.70980394000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="locationButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="locationButton-width"/>
+                                </constraints>
+                                <state key="normal" title="ADD">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButtonTouchDown:" destination="LocationsViewControllerID" eventType="touchDown" id="locationButtonTouchDownActionID"/>
+                                    <action selector="locationButtonTouchUpInside:" destination="LocationsViewControllerID" eventType="touchUpInside" id="locationButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Locations-guide-bottom" firstAttribute="top" secondItem="locationButton" secondAttribute="bottom" constant="16" id="locationButton-alignParentBottom"/>
+                            <constraint firstItem="locationButton" firstAttribute="trailing" secondItem="LocationsViewID" secondAttribute="trailing" constant="-16" id="locationButton-alignParentEnd"/>
+                            <constraint firstItem="Locations-guide-bottom" firstAttribute="top" secondItem="locationsList" secondAttribute="bottom" id="locationsList-alignParentBottom"/>
+                            <constraint firstItem="locationsList" firstAttribute="trailing" secondItem="LocationsViewID" secondAttribute="trailing" id="locationsList-alignParentEnd"/>
+                            <constraint firstItem="locationsList" firstAttribute="leading" secondItem="LocationsViewID" secondAttribute="leading" id="locationsList-alignParentStart"/>
+                            <constraint firstItem="locationsList" firstAttribute="top" secondItem="Locations-guide-top" secondAttribute="bottom" id="locationsList-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LocationsViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="locationButton" destination="locationButton" id="locationButtonOutletID"/>
+                        <outlet property="locationsList" destination="locationsList" id="locationsListOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LocationsPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Exercise New View Controller-->
+        <scene sceneID="ExerciseNewViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ExerciseNewViewControllerID" customClass="ExerciseNewViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ExerciseNew-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="ExerciseNew-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ExerciseNewViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="newSaveButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.035294119999999998" green="0.94117649999999997" blue="0.23529412" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="newSaveButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="newSaveButton-width"/>
+                                </constraints>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newSaveButtonTouchDown:" destination="ExerciseNewViewControllerID" eventType="touchDown" id="newSaveButtonTouchDownActionID"/>
+                                    <action selector="newSaveButtonTouchUpInside:" destination="ExerciseNewViewControllerID" eventType="touchUpInside" id="newSaveButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="newSetsSpinner">
+                                <rect key="frame" x="126" y="132" width="458" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="newSetsSpinner-height"/>
+                                </constraints>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="newRepsSpinner">
+                                <rect key="frame" x="126" y="180" width="458" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="newRepsSpinner-height"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of sets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="newSetsLabel">
+                                <rect key="frame" x="16" y="136" width="110" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="newSetsLabel-height"/>
+                                    <constraint firstAttribute="width" constant="110" id="newSetsLabel-width"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of reps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="newRepsLabel">
+                                <rect key="frame" x="16" y="184" width="110" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="newRepsLabel-height"/>
+                                    <constraint firstAttribute="width" constant="110" id="newRepsLabel-width"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of exercise" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="newNameEditText">
+                                <rect key="frame" x="16" y="80" width="568" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="newNameEditText-height"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="newNameEditText" firstAttribute="trailing" secondItem="ExerciseNewViewID" secondAttribute="trailing" constant="-16" id="newNameEditText-alignParentEnd"/>
+                            <constraint firstItem="newNameEditText" firstAttribute="leading" secondItem="ExerciseNewViewID" secondAttribute="leading" constant="16" id="newNameEditText-alignParentStart"/>
+                            <constraint firstItem="newNameEditText" firstAttribute="top" secondItem="ExerciseNew-guide-top" secondAttribute="bottom" constant="16" id="newNameEditText-alignParentTop"/>
+                            <constraint firstItem="newRepsLabel" firstAttribute="leading" secondItem="ExerciseNewViewID" secondAttribute="leading" constant="16" id="newRepsLabel-alignParentStart"/>
+                            <constraint firstItem="newRepsLabel" firstAttribute="top" secondItem="newSetsLabel" secondAttribute="bottom" priority="750" constant="12" id="newRepsLabel-bottom"/>
+                            <constraint firstItem="newRepsSpinner" firstAttribute="trailing" secondItem="ExerciseNewViewID" secondAttribute="trailing" constant="-16" id="newRepsSpinner-alignParentEnd"/>
+                            <constraint firstItem="newRepsSpinner" firstAttribute="top" secondItem="newSetsSpinner" secondAttribute="bottom" priority="750" id="newRepsSpinner-bottom"/>
+                            <constraint firstItem="newRepsSpinner" firstAttribute="leading" secondItem="newRepsLabel" secondAttribute="trailing" priority="750" id="newRepsSpinner-to-end-of"/>
+                            <constraint firstItem="ExerciseNew-guide-bottom" firstAttribute="top" secondItem="newSaveButton" secondAttribute="bottom" constant="16" id="newSaveButton-alignParentBottom"/>
+                            <constraint firstItem="newSaveButton" firstAttribute="trailing" secondItem="ExerciseNewViewID" secondAttribute="trailing" constant="-16" id="newSaveButton-alignParentEnd"/>
+                            <constraint firstItem="newSetsLabel" firstAttribute="leading" secondItem="ExerciseNewViewID" secondAttribute="leading" constant="16" id="newSetsLabel-alignParentStart"/>
+                            <constraint firstItem="newSetsLabel" firstAttribute="top" secondItem="newNameEditText" secondAttribute="bottom" priority="750" constant="20" id="newSetsLabel-bottom"/>
+                            <constraint firstItem="newSetsSpinner" firstAttribute="trailing" secondItem="ExerciseNewViewID" secondAttribute="trailing" constant="-16" id="newSetsSpinner-alignParentEnd"/>
+                            <constraint firstItem="newSetsSpinner" firstAttribute="top" secondItem="newNameEditText" secondAttribute="bottom" priority="750" constant="16" id="newSetsSpinner-bottom"/>
+                            <constraint firstItem="newSetsSpinner" firstAttribute="leading" secondItem="newSetsLabel" secondAttribute="trailing" priority="750" id="newSetsSpinner-to-end-of"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ExerciseNewViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="newNameEditText" destination="newNameEditText" id="newNameEditTextOutletID"/>
+                        <outlet property="newRepsSpinner" destination="newRepsSpinner" id="newRepsSpinnerOutletID"/>
+                        <outlet property="newSaveButton" destination="newSaveButton" id="newSaveButtonOutletID"/>
+                        <outlet property="newSetsSpinner" destination="newSetsSpinner" id="newSetsSpinnerOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExerciseNewPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Exercise Edit View Controller-->
+        <scene sceneID="ExerciseEditViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="ExerciseEditViewControllerID" customClass="ExerciseEditViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ExerciseEdit-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="ExerciseEdit-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ExerciseEditViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="editSaveButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.035294119999999998" green="0.94117649999999997" blue="0.23529412" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="editSaveButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="editSaveButton-width"/>
+                                </constraints>
+                                <state key="normal" title="SAVE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editSaveButtonTouchDown:" destination="ExerciseEditViewControllerID" eventType="touchDown" id="editSaveButtonTouchDownActionID"/>
+                                    <action selector="editSaveButtonTouchUpInside:" destination="ExerciseEditViewControllerID" eventType="touchUpInside" id="editSaveButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="editDeleteButton">
+                                <rect key="frame" x="424" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="editDeleteButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="editDeleteButton-width"/>
+                                </constraints>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editDeleteButtonTouchDown:" destination="ExerciseEditViewControllerID" eventType="touchDown" id="editDeleteButtonTouchDownActionID"/>
+                                    <action selector="editDeleteButtonTouchUpInside:" destination="ExerciseEditViewControllerID" eventType="touchUpInside" id="editDeleteButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="editRepsSpinner">
+                                <rect key="frame" x="126" y="180" width="458" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="editRepsSpinner-height"/>
+                                </constraints>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="editSetsSpinner">
+                                <rect key="frame" x="126" y="132" width="458" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="editSetsSpinner-height"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of sets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="editSetsLabel">
+                                <rect key="frame" x="16" y="136" width="110" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="editSetsLabel-height"/>
+                                    <constraint firstAttribute="width" constant="110" id="editSetsLabel-width"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of reps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="editRepsLabel">
+                                <rect key="frame" x="16" y="184" width="110" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="editRepsLabel-height"/>
+                                    <constraint firstAttribute="width" constant="110" id="editRepsLabel-width"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of exercise" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="editNameEditText">
+                                <rect key="frame" x="16" y="80" width="568" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="editNameEditText-height"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ExerciseEdit-guide-bottom" firstAttribute="top" secondItem="editDeleteButton" secondAttribute="bottom" constant="16" id="editDeleteButton-alignParentBottom"/>
+                            <constraint firstItem="editDeleteButton" firstAttribute="trailing" secondItem="editSaveButton" secondAttribute="leading" priority="750" constant="-16" id="editDeleteButton-to-start-of"/>
+                            <constraint firstItem="editNameEditText" firstAttribute="trailing" secondItem="ExerciseEditViewID" secondAttribute="trailing" constant="-16" id="editNameEditText-alignParentEnd"/>
+                            <constraint firstItem="editNameEditText" firstAttribute="leading" secondItem="ExerciseEditViewID" secondAttribute="leading" constant="16" id="editNameEditText-alignParentStart"/>
+                            <constraint firstItem="editNameEditText" firstAttribute="top" secondItem="ExerciseEdit-guide-top" secondAttribute="bottom" constant="16" id="editNameEditText-alignParentTop"/>
+                            <constraint firstItem="editRepsLabel" firstAttribute="leading" secondItem="ExerciseEditViewID" secondAttribute="leading" constant="16" id="editRepsLabel-alignParentStart"/>
+                            <constraint firstItem="editRepsLabel" firstAttribute="top" secondItem="editSetsLabel" secondAttribute="bottom" priority="750" constant="12" id="editRepsLabel-bottom"/>
+                            <constraint firstItem="editRepsSpinner" firstAttribute="trailing" secondItem="ExerciseEditViewID" secondAttribute="trailing" constant="-16" id="editRepsSpinner-alignParentEnd"/>
+                            <constraint firstItem="editRepsSpinner" firstAttribute="top" secondItem="editSetsSpinner" secondAttribute="bottom" priority="750" id="editRepsSpinner-bottom"/>
+                            <constraint firstItem="editRepsSpinner" firstAttribute="leading" secondItem="editRepsLabel" secondAttribute="trailing" priority="750" id="editRepsSpinner-to-end-of"/>
+                            <constraint firstItem="ExerciseEdit-guide-bottom" firstAttribute="top" secondItem="editSaveButton" secondAttribute="bottom" constant="16" id="editSaveButton-alignParentBottom"/>
+                            <constraint firstItem="editSaveButton" firstAttribute="trailing" secondItem="ExerciseEditViewID" secondAttribute="trailing" constant="-16" id="editSaveButton-alignParentEnd"/>
+                            <constraint firstItem="editSetsLabel" firstAttribute="leading" secondItem="ExerciseEditViewID" secondAttribute="leading" constant="16" id="editSetsLabel-alignParentStart"/>
+                            <constraint firstItem="editSetsLabel" firstAttribute="top" secondItem="editNameEditText" secondAttribute="bottom" priority="750" constant="20" id="editSetsLabel-bottom"/>
+                            <constraint firstItem="editSetsSpinner" firstAttribute="trailing" secondItem="ExerciseEditViewID" secondAttribute="trailing" constant="-16" id="editSetsSpinner-alignParentEnd"/>
+                            <constraint firstItem="editSetsSpinner" firstAttribute="top" secondItem="editNameEditText" secondAttribute="bottom" priority="750" constant="16" id="editSetsSpinner-bottom"/>
+                            <constraint firstItem="editSetsSpinner" firstAttribute="leading" secondItem="editSetsLabel" secondAttribute="trailing" priority="750" id="editSetsSpinner-to-end-of"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ExerciseEditViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="editDeleteButton" destination="editDeleteButton" id="editDeleteButtonOutletID"/>
+                        <outlet property="editNameEditText" destination="editNameEditText" id="editNameEditTextOutletID"/>
+                        <outlet property="editRepsSpinner" destination="editRepsSpinner" id="editRepsSpinnerOutletID"/>
+                        <outlet property="editSaveButton" destination="editSaveButton" id="editSaveButtonOutletID"/>
+                        <outlet property="editSetsSpinner" destination="editSetsSpinner" id="editSetsSpinnerOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExerciseEditPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Photo New View Controller-->
+        <scene sceneID="PhotoNewViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="PhotoNewViewControllerID" customClass="PhotoNewViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PhotoNew-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="PhotoNew-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PhotoNewViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="takenPhoto">
+                                <rect key="frame" x="0.0" y="64" width="600" height="383"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="savePhotoButton">
+                                <rect key="frame" x="0.0" y="503" width="600" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="savePhotoButton-height"/>
+                                </constraints>
+                                <state key="normal" title="SAVE"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePhotoButtonTouchDown:" destination="PhotoNewViewControllerID" eventType="touchDown" id="savePhotoButtonTouchDownActionID"/>
+                                    <action selector="savePhotoButtonTouchUpInside:" destination="PhotoNewViewControllerID" eventType="touchUpInside" id="savePhotoButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="photocameraController">
+                                <rect key="frame" x="0.0" y="455" width="600" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="photocameraController-height"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="photocamera_icon"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openPhotoCamera:" destination="PhotoNewViewControllerID" eventType="touchUpInside" id="photocameraControllerTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="photocameraController" firstAttribute="bottom" secondItem="savePhotoButton" secondAttribute="top" priority="750" id="photocameraController-above"/>
+                            <constraint firstItem="photocameraController" firstAttribute="trailing" secondItem="PhotoNewViewID" secondAttribute="trailing" id="photocameraController-alignParentEnd"/>
+                            <constraint firstItem="photocameraController" firstAttribute="leading" secondItem="PhotoNewViewID" secondAttribute="leading" id="photocameraController-alignParentStart"/>
+                            <constraint firstItem="PhotoNew-guide-bottom" firstAttribute="top" secondItem="savePhotoButton" secondAttribute="bottom" id="savePhotoButton-alignParentBottom"/>
+                            <constraint firstItem="savePhotoButton" firstAttribute="trailing" secondItem="PhotoNewViewID" secondAttribute="trailing" id="savePhotoButton-alignParentEnd"/>
+                            <constraint firstItem="savePhotoButton" firstAttribute="leading" secondItem="PhotoNewViewID" secondAttribute="leading" id="savePhotoButton-alignParentStart"/>
+                            <constraint firstItem="takenPhoto" firstAttribute="bottom" secondItem="photocameraController" secondAttribute="top" priority="750" constant="-8" id="takenPhoto-above"/>
+                            <constraint firstItem="takenPhoto" firstAttribute="trailing" secondItem="PhotoNewViewID" secondAttribute="trailing" id="takenPhoto-alignParentEnd"/>
+                            <constraint firstItem="takenPhoto" firstAttribute="leading" secondItem="PhotoNewViewID" secondAttribute="leading" id="takenPhoto-alignParentStart"/>
+                            <constraint firstItem="takenPhoto" firstAttribute="top" secondItem="PhotoNew-guide-top" secondAttribute="bottom" id="takenPhoto-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PhotoNewViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="savePhotoButton" destination="savePhotoButton" id="savePhotoButtonOutletID"/>
+                        <outlet property="takenPhoto" destination="takenPhoto" id="takenPhotoOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PhotoNewPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Photo Edit View Controller-->
+        <scene sceneID="PhotoEditViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="PhotoEditViewControllerID" customClass="PhotoEditViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PhotoEdit-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="PhotoEdit-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PhotoEditViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deletePhotoButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="deletePhotoButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="deletePhotoButton-width"/>
+                                </constraints>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deletePhotoButtonTouchDown:" destination="PhotoEditViewControllerID" eventType="touchDown" id="deletePhotoButtonTouchDownActionID"/>
+                                    <action selector="deletePhotoButtonTouchUpInside:" destination="PhotoEditViewControllerID" eventType="touchUpInside" id="deletePhotoButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PhotoEdit-guide-bottom" firstAttribute="top" secondItem="deletePhotoButton" secondAttribute="bottom" constant="16" id="deletePhotoButton-alignParentBottom"/>
+                            <constraint firstItem="deletePhotoButton" firstAttribute="trailing" secondItem="PhotoEditViewID" secondAttribute="trailing" constant="-16" id="deletePhotoButton-alignParentEnd"/>
+                            <constraint firstItem="PhotoEdit-guide-bottom" firstAttribute="top" secondItem="mImageView" secondAttribute="bottom" id="mImageView-alignParentBottom"/>
+                            <constraint firstItem="mImageView" firstAttribute="trailing" secondItem="PhotoEditViewID" secondAttribute="trailing" id="mImageView-alignParentEnd"/>
+                            <constraint firstItem="mImageView" firstAttribute="leading" secondItem="PhotoEditViewID" secondAttribute="leading" id="mImageView-alignParentStart"/>
+                            <constraint firstItem="mImageView" firstAttribute="top" secondItem="PhotoEdit-guide-top" secondAttribute="bottom" id="mImageView-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PhotoEditViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="deletePhotoButton" destination="deletePhotoButton" id="deletePhotoButtonOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PhotoEditPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Video New View Controller-->
+        <scene sceneID="VideoNewViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="VideoNewViewControllerID" customClass="VideoNewViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VideoNew-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="VideoNew-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VideoNewViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saveVideoButton">
+                                <rect key="frame" x="0.0" y="503" width="600" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="saveVideoButton-height"/>
+                                </constraints>
+                                <state key="normal" title="SAVE"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveVideoButtonTouchDown:" destination="VideoNewViewControllerID" eventType="touchDown" id="saveVideoButtonTouchDownActionID"/>
+                                    <action selector="saveVideoButtonTouchUpInside:" destination="VideoNewViewControllerID" eventType="touchUpInside" id="saveVideoButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="videocameraController">
+                                <rect key="frame" x="0.0" y="455" width="600" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="videocameraController-height"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="videocamera_icon"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openVideoCamera:" destination="VideoNewViewControllerID" eventType="touchUpInside" id="videocameraControllerTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="takenVideo">
+                                <rect key="frame" x="0.0" y="64" width="600" height="383"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VideoNew-guide-bottom" firstAttribute="top" secondItem="saveVideoButton" secondAttribute="bottom" id="saveVideoButton-alignParentBottom"/>
+                            <constraint firstItem="saveVideoButton" firstAttribute="trailing" secondItem="VideoNewViewID" secondAttribute="trailing" id="saveVideoButton-alignParentEnd"/>
+                            <constraint firstItem="saveVideoButton" firstAttribute="leading" secondItem="VideoNewViewID" secondAttribute="leading" id="saveVideoButton-alignParentStart"/>
+                            <constraint firstItem="takenVideo" firstAttribute="bottom" secondItem="videocameraController" secondAttribute="top" priority="750" constant="-8" id="takenVideo-above"/>
+                            <constraint firstItem="takenVideo" firstAttribute="trailing" secondItem="VideoNewViewID" secondAttribute="trailing" id="takenVideo-alignParentEnd"/>
+                            <constraint firstItem="takenVideo" firstAttribute="leading" secondItem="VideoNewViewID" secondAttribute="leading" id="takenVideo-alignParentStart"/>
+                            <constraint firstItem="takenVideo" firstAttribute="top" secondItem="VideoNew-guide-top" secondAttribute="bottom" id="takenVideo-alignParentTop"/>
+                            <constraint firstItem="videocameraController" firstAttribute="bottom" secondItem="saveVideoButton" secondAttribute="top" priority="750" id="videocameraController-above"/>
+                            <constraint firstItem="videocameraController" firstAttribute="trailing" secondItem="VideoNewViewID" secondAttribute="trailing" id="videocameraController-alignParentEnd"/>
+                            <constraint firstItem="videocameraController" firstAttribute="leading" secondItem="VideoNewViewID" secondAttribute="leading" id="videocameraController-alignParentStart"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VideoNewViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="saveVideoButton" destination="saveVideoButton" id="saveVideoButtonOutletID"/>
+                        <outlet property="takenVideo" destination="takenVideo" id="takenVideoOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VideoNewPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Video Edit View Controller-->
+        <scene sceneID="VideoEditViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="VideoEditViewControllerID" customClass="VideoEditViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VideoEdit-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="VideoEdit-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VideoEditViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVideoView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deleteVideoButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="deleteVideoButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="deleteVideoButton-width"/>
+                                </constraints>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteVideoButtonTouchDown:" destination="VideoEditViewControllerID" eventType="touchDown" id="deleteVideoButtonTouchDownActionID"/>
+                                    <action selector="deleteVideoButtonTouchUpInside:" destination="VideoEditViewControllerID" eventType="touchUpInside" id="deleteVideoButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VideoEdit-guide-bottom" firstAttribute="top" secondItem="deleteVideoButton" secondAttribute="bottom" constant="16" id="deleteVideoButton-alignParentBottom"/>
+                            <constraint firstItem="deleteVideoButton" firstAttribute="trailing" secondItem="VideoEditViewID" secondAttribute="trailing" constant="-16" id="deleteVideoButton-alignParentEnd"/>
+                            <constraint firstItem="VideoEdit-guide-bottom" firstAttribute="top" secondItem="mVideoView" secondAttribute="bottom" id="mVideoView-alignParentBottom"/>
+                            <constraint firstItem="mVideoView" firstAttribute="trailing" secondItem="VideoEditViewID" secondAttribute="trailing" id="mVideoView-alignParentEnd"/>
+                            <constraint firstItem="mVideoView" firstAttribute="leading" secondItem="VideoEditViewID" secondAttribute="leading" id="mVideoView-alignParentStart"/>
+                            <constraint firstItem="mVideoView" firstAttribute="top" secondItem="VideoEdit-guide-top" secondAttribute="bottom" id="mVideoView-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VideoEditViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="deleteVideoButton" destination="deleteVideoButton" id="deleteVideoButtonOutletID"/>
+                        <outlet property="mVideoView" destination="mVideoView" id="mVideoViewOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VideoEditPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Location Edit View Controller-->
+        <scene sceneID="LocationEditViewControllerSceneID">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="LocationEditViewControllerID" customClass="LocationEditViewController" customModule="ParkTraining" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LocationEdit-guide-top"/>
+                        <viewControllerLayoutGuide type="bottom" id="LocationEdit-guide-bottom"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LocationEditViewID">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mMap">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deleteLocationButton">
+                                <rect key="frame" x="512" y="463" width="72" height="72"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="deleteLocationButton-height"/>
+                                    <constraint firstAttribute="width" constant="72" id="deleteLocationButton-width"/>
+                                </constraints>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteLocationButtonTouchDown:" destination="LocationEditViewControllerID" eventType="touchDown" id="deleteLocationButtonTouchDownActionID"/>
+                                    <action selector="deleteLocationButtonTouchUpInside:" destination="LocationEditViewControllerID" eventType="touchUpInside" id="deleteLocationButtonTouchUpInsideActionID"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LocationEdit-guide-bottom" firstAttribute="top" secondItem="deleteLocationButton" secondAttribute="bottom" constant="16" id="deleteLocationButton-alignParentBottom"/>
+                            <constraint firstItem="deleteLocationButton" firstAttribute="trailing" secondItem="LocationEditViewID" secondAttribute="trailing" constant="-16" id="deleteLocationButton-alignParentEnd"/>
+                            <constraint firstItem="LocationEdit-guide-bottom" firstAttribute="top" secondItem="mMap" secondAttribute="bottom" id="mMap-alignParentBottom"/>
+                            <constraint firstItem="mMap" firstAttribute="trailing" secondItem="LocationEditViewID" secondAttribute="trailing" id="mMap-alignParentEnd"/>
+                            <constraint firstItem="mMap" firstAttribute="leading" secondItem="LocationEditViewID" secondAttribute="leading" id="mMap-alignParentStart"/>
+                            <constraint firstItem="mMap" firstAttribute="top" secondItem="LocationEdit-guide-top" secondAttribute="bottom" id="mMap-alignParentTop"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LocationEditViewControllerNavigationItemID"/>
+                    <connections>
+                        <outlet property="deleteLocationButton" destination="deleteLocationButton" id="deleteLocationButtonOutletID"/>
+                        <outlet property="mMap" destination="mMap" id="mMapOutletID"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LocationEditPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="TabBarControllerSceneID">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TabBarControllerID" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="TabBarControllerTabBarID">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ExercisesViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="ExercisesSegueID"/>
+                        <segue destination="PhotosViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="PhotosSegueID"/>
+                        <segue destination="VideosViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="VideosSegueID"/>
+                        <segue destination="LocationsViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="LocationsSegueID"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TabBarPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Exercises-->
+        <scene sceneID="ExercisesViewControllerNavSceneID">
+            <objects>
+                <navigationController id="ExercisesViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Exercises" id="ExercisesTabBarItemID"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ExercisesViewControllerNavNavigationBarID">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ExercisesViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootExercisesViewControllerID"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ExercisesViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="PhotosViewControllerNavSceneID">
+            <objects>
+                <navigationController id="PhotosViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Photos" id="PhotosTabBarItemID"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PhotosViewControllerNavNavigationBarID">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PhotosViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootPhotosViewControllerID"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PhotosViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Videos-->
+        <scene sceneID="VideosViewControllerNavSceneID">
+            <objects>
+                <navigationController id="VideosViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Videos" id="VideosTabBarItemID"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VideosViewControllerNavNavigationBarID">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VideosViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootVideosViewControllerID"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VideosViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Locations-->
+        <scene sceneID="LocationsViewControllerNavSceneID">
+            <objects>
+                <navigationController id="LocationsViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Locations" id="LocationsTabBarItemID"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LocationsViewControllerNavNavigationBarID">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LocationsViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootLocationsViewControllerID"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LocationsViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_add_white_36pt.png" width="36" height="36"/>
+        <image name="photocamera_icon" width="36" height="36"/>
+        <image name="videocamera_icon" width="36" height="36"/>
+    </resources>
+</document>

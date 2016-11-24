@@ -1,0 +1,57 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«DEFINE main FOR Application-»
+«EXPAND watchController FOREACH watchControllers-»
+«ENDDEFINE-»
+
+«DEFINE watchController FOR WatchController-»
+
+«FILE application.name +"/"+application.name +" WatchKit Extension/"+ name+"InterfaceController.swift"-»
+
+«EXPAND ios_watchcontrollers_templates::Imports::publicImports-»
+
+class «name»InterfaceController: «EXPAND ios_watchcontrollers_templates::Protocols::publicProtocols» {
+
+	«EXPAND ios_watchcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
+    
+    override func awakeWithContext(context: AnyObject?) {
+        super.awakeWithContext(context)
+        «EXPAND ios_watchcontrollers_templates::AwakeWithContext::awakeWithContext-»
+    }
+
+    override func willActivate() {
+        super.willActivate()
+        «EXPAND ios_watchcontrollers_templates::WillActivate::willActivate-»   
+    }
+
+    override func didDeactivate() {
+        super.didDeactivate()
+        «EXPAND ios_watchcontrollers_templates::DidDeactivate::didDeactivate-»
+    }
+    
+    «EXPAND ios_watchcontrollers_templates::WatchButtons::watchButtons-»
+    
+    «EXPAND ios_watchcontrollers_templates::WatchSliders::watchSliders-»
+    
+    «EXPAND ios_watchcontrollers_templates::WatchSwitches::watchSwitches-»
+    
+    «EXPAND ios_watchcontrollers_templates::WatchVoiceMessage::watchVoiceMessage-»
+
+}
+«ENDFILE-»
+
+«ENDDEFINE-»

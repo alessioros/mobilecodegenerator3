@@ -1,0 +1,689 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
+«EXTENSION app_extensions::Java»
+«DEFINE main FOR Application-»
+
+«FILE name+"/"+name+".xcodeproj/project.pbxproj"-»
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */; };
+		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
+		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
+		«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */; };
+		«FOREACH viewControllers AS vc-»
+		«getFirstHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */; };
+		«ENDFOREACH-»
+		«FOREACH watchControllers AS wc-»
+		«getFirstHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */; };
+		«ENDFOREACH-»
+		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+		«getFirstHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
+		«getFirstHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
+		«getFirstHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+		«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
+		«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
+		«getFirstHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
+		«getFirstHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */; };
+		«ENDIF-»
+		«FOREACH getUserFilesNames() AS filename-»
+		«getFirstHexadecimalId(filename)» /* «filename» in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(filename)» /* «filename» */; };
+		«ENDFOREACH-»
+		«getFirstHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */; };
+		«getFirstHexadecimalId("Interface.storyboard")» /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */; };
+		«getFirstHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */; };
+		«getFirstHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		«getFirstHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */; };		
+		«getFirstHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */; };	
+			
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		«getFirstHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = «getFirstHexadecimalId("Project object")» /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = «getFirstHexadecimalId("remoteGlobalIDString")»;
+			remoteInfo = "«name» WatchKit App";
+		};
+		«getSecondHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = «getFirstHexadecimalId("Project object")» /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = «getSecondHexadecimalId("remoteGlobalIDString")»;
+			remoteInfo = "«name» WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		«getFirstHexadecimalId("Embed App Extensions")» /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				«getFirstHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		«getFirstHexadecimalId("Embed Watch Content")» /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				«getFirstHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		«getFirstHexadecimalId(name+".app")» /* «name».app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = «name».app; sourceTree = BUILT_PRODUCTS_DIR; };
+		«getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		«getFirstHexadecimalId("Main Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		«getFirstHexadecimalId("LaunchScreen Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		«getFirstHexadecimalId("App Info.plist")» /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		«FOREACH viewControllers AS vc-»
+		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
+		«ENDFOREACH-»
+		«FOREACH watchControllers AS wc-»
+		«getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «wc.name»InterfaceController.swift; sourceTree = "<group>"; };
+		«ENDFOREACH-»
+		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+		«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadingTask.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
+		«getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
+		«getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+		«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
+		«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCollectionViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
+		«getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
+		«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«FOREACH getUserFilesNames() AS filename-»
+		«getSecondHexadecimalId(filename)» /* «filename» */ = {isa = PBXFileReference; lastKnownFileType = «filename»; name = «filename»; path = «filename»; sourceTree = "<group>"; };
+		«ENDFOREACH-»
+		«getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "«name» WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		«getFirstHexadecimalId("Interface Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		«getFirstHexadecimalId("WatchKit App Info.plist")» /* WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		«getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "«name» WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		«getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		«getFirstHexadecimalId("WatchKit Extension Info.plist")» /* WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		«getFirstHexadecimalId("Frameworks")» /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		«getSecondHexadecimalId("Frameworks")» /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		«getFirstHexadecimalId("mainGroup")» = {
+			isa = PBXGroup;
+			children = (
+				«getFirstHexadecimalId(name)» /* «name» */,
+				«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */,
+				«getFirstHexadecimalId(name+" WatchKit Extension")» /* «name» WatchKit Extension */,
+				«getFirstHexadecimalId("Products")» /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		«getFirstHexadecimalId("Products")» /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				«getFirstHexadecimalId(name+".app")» /* «name».app */,
+				«getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */,
+				«getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		«getFirstHexadecimalId(name)» /* «name» */ = {
+			isa = PBXGroup;
+			children = (
+				«getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */,
+				«getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */,
+				«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */,
+				«getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */,
+				«getFirstHexadecimalId("App Info.plist")» /* Info.plist */,
+				«FOREACH viewControllers AS vc-»
+				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
+				«ENDFOREACH-»
+				«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+				«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
+				«getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
+				«getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+				«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
+				«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
+				«getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
+				«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */,
+				«ENDIF-»
+				«FOREACH getUserFilesNames() AS filename-»
+				«getSecondHexadecimalId(filename)» /* «filename» */,
+				«ENDFOREACH-»
+			);
+			path = «name»;
+			sourceTree = "<group>";
+		};
+		«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				«getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */,
+				«getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* Assets.xcassets */,
+				«getFirstHexadecimalId("WatchKit App Info.plist")» /* Info.plist */,
+			);
+			path = "«name» WatchKit App";
+			sourceTree = "<group>";
+		};
+		«getFirstHexadecimalId(name+" WatchKit Extension")» /* «name» WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				«FOREACH watchControllers AS wc-»
+				«getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */,
+				«ENDFOREACH-»
+				«getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */,
+				«getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* Assets.xcassets */,
+				«getFirstHexadecimalId("WatchKit Extension Info.plist")» /* Info.plist */,
+			);
+			path = "«name» WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		«getSecondHexadecimalId(name)» /* «name» */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = «getFirstHexadecimalId("PBXNativeTarget "+name)» /* Build configuration list for PBXNativeTarget "«name»" */;
+			buildPhases = (
+				«getFirstHexadecimalId("Sources "+name)» /* Sources */,
+				«getFirstHexadecimalId("Frameworks")» /* Frameworks */,
+				«getFirstHexadecimalId("Resources "+name)» /* Resources */,
+				«getFirstHexadecimalId("Embed Watch Content")» /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				«getFirstHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */,
+			);
+			name = «name»;
+			productName = «name»;
+			productReference = «getFirstHexadecimalId(name+".app")» /* «name».app */;
+			productType = "com.apple.product-type.application";
+		};
+		«getFirstHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = «getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit App")» /* Build configuration list for PBXNativeTarget "«name» WatchKit App" */;
+			buildPhases = (
+				«getFirstHexadecimalId("Resources "+name+" WatchKit App")» /* Resources */,
+				«getFirstHexadecimalId("Embed App Extensions")» /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				«getSecondHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */,
+			);
+			name = "«name» WatchKit App";
+			productName = "«name» WatchKit App";
+			productReference = «getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		«getSecondHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = «getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit Extension")» /* Build configuration list for PBXNativeTarget "«name» WatchKit Extension" */;
+			buildPhases = (
+				«getFirstHexadecimalId("Sources "+name+" WatchKit Extension")» /* Sources */,
+				«getSecondHexadecimalId("Frameworks")» /* Frameworks */,
+				«getFirstHexadecimalId("Resources "+name+" WatchKit Extension")» /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "«name» WatchKit Extension";
+			productName = "«name» WatchKit Extension";
+			productReference = «getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		«getFirstHexadecimalId("Project object")» /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = polimi;
+				TargetAttributes = {
+					«getSecondHexadecimalId(name)» = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					«getFirstHexadecimalId("remoteGlobalIDString")» = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					«getSecondHexadecimalId("remoteGlobalIDString")» = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = «getFirstHexadecimalId("PBXProject "+name)» /* Build configuration list for PBXProject "«name»" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = «getFirstHexadecimalId("mainGroup")»;
+			productRefGroup = «getFirstHexadecimalId("Products")» /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				«getSecondHexadecimalId(name)» /* «name» */,
+				«getFirstHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit App */,
+				«getSecondHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		«getFirstHexadecimalId("Resources "+name)» /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */,
+				«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */,
+				«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */,
+				«FOREACH getUserFilesNames() AS filename-»
+				«getFirstHexadecimalId(filename)» /* «filename» in Resources */,
+				«ENDFOREACH-»
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		«getFirstHexadecimalId("Resources "+name+" WatchKit App")» /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				«getFirstHexadecimalId("WatchKit App Assets.xcassets")» /* Assets.xcassets in Resources */,
+				«getFirstHexadecimalId("Interface.storyboard")» /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		«getFirstHexadecimalId("Resources "+name+" WatchKit Extension")» /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				«getFirstHexadecimalId("WatchKit Extension Assets.xcassets")» /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		«getFirstHexadecimalId("Sources "+name)» /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
+				«FOREACH viewControllers AS vc-»
+				«getFirstHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift in Sources*/,
+				«ENDFOREACH-»
+				«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+				«getFirstHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
+				«getFirstHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
+				«getFirstHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+				«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
+				«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
+				«getFirstHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
+				«getFirstHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift in Sources*/,
+				«ENDIF-»
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		«getFirstHexadecimalId("Sources "+name+" WatchKit Extension")» /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				«getFirstHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift in Sources */,
+				«FOREACH watchControllers AS wc-»
+				«getFirstHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift in Sources*/,
+				«ENDFOREACH-»
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		«getFirstHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = «getFirstHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit App */;
+			targetProxy = «getFirstHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */;
+		};
+		«getSecondHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = «getSecondHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit Extension */;
+			targetProxy = «getSecondHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		«getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				«getFirstHexadecimalId("Main Base")» /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		«getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				«getFirstHexadecimalId("LaunchScreen Base")» /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		«getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				«getFirstHexadecimalId("Interface Base")» /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		«getFirstHexadecimalId("Debug PBXProject "+name)» /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		«getFirstHexadecimalId("Release PBXProject "+name)» /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		«getFirstHexadecimalId("Debug "+name+" WatchKit Extension")» /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "«name» WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		«getFirstHexadecimalId("Release "+name+" WatchKit Extension")» /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "«name» WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		«getFirstHexadecimalId("Debug "+name+" WatchKit App")» /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = «name»_WatchKit_Extension;
+				INFOPLIST_FILE = "«name» WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		«getFirstHexadecimalId("Release "+name+" WatchKit App")» /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = «name»_WatchKit_Extension;
+				INFOPLIST_FILE = "«name» WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		«getFirstHexadecimalId("Debug "+name)» /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = «name»/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name»;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		«getFirstHexadecimalId("Release "+name)» /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = «name»/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name»;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		«getFirstHexadecimalId("PBXProject "+name)» /* Build configuration list for PBXProject "«name»" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				«getFirstHexadecimalId("Debug PBXProject "+name)» /* Debug */,
+				«getFirstHexadecimalId("Release PBXProject "+name)» /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		«getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit Extension")» /* Build configuration list for PBXNativeTarget "«name» WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				«getFirstHexadecimalId("Debug "+name+" WatchKit Extension")» /* Debug */,
+				«getFirstHexadecimalId("Release "+name+" WatchKit Extension")» /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		«getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit App")» /* Build configuration list for PBXNativeTarget "«name» WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				«getFirstHexadecimalId("Debug "+name+" WatchKit App")» /* Debug */,
+				«getFirstHexadecimalId("Release "+name+" WatchKit App")» /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		«getFirstHexadecimalId("PBXNativeTarget "+name)» /* Build configuration list for PBXNativeTarget "«name»" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				«getFirstHexadecimalId("Debug "+name)» /* Debug */,
+				«getFirstHexadecimalId("Release "+name)» /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = «getFirstHexadecimalId("Project object")» /* Project object */;
+}
+«ENDFILE-»
+
+«ENDDEFINE-»

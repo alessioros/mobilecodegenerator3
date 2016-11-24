@@ -1,0 +1,106 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«EXTENSION app_extensions::Java»
+
+«DEFINE main FOR Application-»
+
+«FILE name+"/mobile/src/main/AndroidManifest.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="«companyIdentifier».«name.toLowerCase()»" >
+    
+    «IF existsAtLeastOne(viewControllers.map)-»
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    «ENDIF-»
+	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") ||
+		viewControllers.imageViews.sourceType.toString().contains("remoteFile") || 
+    	viewControllers.audioPlayers.sourceType.toString().contains("remoteFile")-»
+    <uses-permission android:name="android.permission.INTERNET"/>
+    «ENDIF-»
+    «IF viewControllers.videoViews.sourceType.toString().contains("hardwareFile")-»
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    «ENDIF-»
+    «IF viewControllers.audioPlayers.sourceType.toString().contains("hardwareFile")-»
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    «ENDIF-»
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="«name»"
+        android:supportsRtl="true"
+        android:windowSoftInputMode="stateVisible"
+        android:theme="@style/AppTheme">
+        «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
+        <service android:name=".MyWearableListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear" android:host="*" android:path="/wear-app-message" />
+            </intent-filter>
+        </service>
+        «ENDIF-»
+        «IF existsAtLeastOne(viewControllers.map)-»
+        <!--
+        TODO: Get a Google Maps API key here.
+        https://developers.google.com/maps/documentation/android/start#get-key
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY_HERE" />
+        «ENDIF-»
+        
+        «IF menu.menuItems.size > 0 -»
+        «FOREACH viewControllers AS vc-»
+        «IF vc.launcher-»
+        <activity
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
+            android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        «ELSEIF !vc.launcher && !isAMenuDestination(vc.name, vc.application.menu.menuItems.navigation.destination)-»
+        <activity
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
+            android:theme="@style/AppTheme.NoActionBar"/>
+        «ENDIF-»
+		«ENDFOREACH-»
+        «ELSE-»
+        «FOREACH viewControllers AS vc-»
+		<activity
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
+            android:theme="@style/AppTheme.NoActionBar">
+            «IF vc.launcher-»
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+			«ENDIF-»
+        </activity>
+		«ENDFOREACH-»
+        «ENDIF-»
+        
+    </application>
+</manifest>
+«ENDFILE-»
+
+«ENDDEFINE-»

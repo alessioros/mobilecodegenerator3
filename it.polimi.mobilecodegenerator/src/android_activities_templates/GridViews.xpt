@@ -1,0 +1,140 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH gridViews AS gv-»
+private GridView «gv.id»;
+private MyGridAdapter «gv.id»Adapter;
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+private Integer[] «gv.id»Images;
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+private String[] «gv.id»Contents;
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+//Change this to set a specific image id for each row
+this.«gv.id»Images = new Integer[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		R.drawable.grid_image,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+this.«gv.id»Contents = new String[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		"«gvc.title»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed")»
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Contents, this.«gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("image")»
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("simple")»
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Contents);
+«ENDIF-»
+this.«gv.id» = (GridView) this.findViewById(R.id.«gv.id»);
+this.«gv.id».setAdapter(this.«gv.id»Adapter);
+«IF gv.clickListener != null-»
+this.«gv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+//Change this to set a specific image id for each row
+this.«gv.id»Images = new Integer[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		R.drawable.grid_image,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+this.«gv.id»Contents = new String[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		"«gvc.title»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed")»
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Contents, this.«gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("image")»
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("simple")»
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Contents);
+«ENDIF-»
+this.«gv.id» = (GridView) rootView.findViewById(R.id.«gv.id»);
+this.«gv.id».setAdapter(this.«gv.id»Adapter);
+«IF gv.clickListener != null-»
+this.«gv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+
+«DEFINE onItemClick FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.clickListener != null-»
+if(l.getId() == R.id.«gv.id»){
+	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+	String clickedImageId = this.«gv.id»Images[position].toString();
+	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+	String clickedItem = this.«gv.id»Contents[position];
+	«ENDIF-»
+	«IF gv.clickListener.navigation != null-»
+	Intent intent = new Intent(«name.toFirstUpper()»Activity.this, «gv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination.toFirstUpper()»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onItemClickFrag FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.clickListener != null-»
+if(l.getId() == R.id.«gv.id»){
+	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+	String clickedImageId = this.«gv.id»Images[position].toString();
+	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+	String clickedItem = this.«gv.id»Contents[position];
+	«ENDIF-»
+	«IF gv.clickListener.navigation != null-»
+	Intent intent = new Intent(getActivity(), «gv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination.toFirstUpper()»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»

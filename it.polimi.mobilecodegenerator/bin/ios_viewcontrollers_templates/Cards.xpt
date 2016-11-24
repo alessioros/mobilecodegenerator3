@@ -1,0 +1,32 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+	«FOREACH cards AS c-»
+	@IBOutlet weak var «c.id»: UIView!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE cards FOR ViewController-»
+«FOREACH cards AS c-»
+«FOREACH 1.upTo(c.numActions) AS n-»
+	@IBAction func «c.id»Action«n»TouchUpInside(sender: UIButton) {
+    	//TODO implement the action
+    }
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDDEFINE-»

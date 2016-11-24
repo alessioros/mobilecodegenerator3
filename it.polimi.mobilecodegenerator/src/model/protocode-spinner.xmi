@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newAppSpinner" companyIdentifier="it.polimi">
+    <viewControllers name="Main" backgroundColor="" backgroundImage="" launcher="true">
+        <spinners id="arieSpinner" posX="0" posY="96" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="10" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" viewController="//@viewControllers[name='Main']"/>
+    </viewControllers>
+    <viewControllers name="Other" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="Last" backgroundColor="" backgroundImage="" launcher="false"/>
+    <watchControllers name="Main" launcher="true"/>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+        <menuItems title="Other" id="Other">
+            <navigation destination="Other"/>
+        </menuItems>
+        <menuItems title="Last" id="Last">
+            <navigation destination="Last"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

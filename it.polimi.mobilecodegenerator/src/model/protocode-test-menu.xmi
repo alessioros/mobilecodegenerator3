@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="A" backgroundColor="" backgroundImage="snapchat.jpg" launcher="true">
+        <alertDialogs id="qrduAlertDialog" title="title" message="message"/>
+        <textViews id="klsmLabel" posX="0" posY="96" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="left" textColor="#ff0000" textSize="16" textDecoration="none"/>
+        <textViews id="ontvLabel" posX="114" posY="96" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="center" textColor="#000000" textSize="16" textDecoration="bold"/>
+        <textViews id="jhennLabel" posX="233" posY="95" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="right" textColor="#000000" textSize="16" textDecoration="italic"/>
+        <editTexts id="qvnpfEditText" posX="3" posY="144" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" initialContent="" placeholder="EditText" textColor="#000000" textSize="16"/>
+        <editTexts id="usaEditText" posX="120" posY="143" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" initialContent="AAa" placeholder="EditText" textColor="#ff0000" textSize="16"/>
+        <switches id="mkombSwitch" posX="1" posY="203" width="51" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']"/>
+        <sliders id="dutSlider" posX="120" posY="201" width="150" height="50" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']"/>
+        <webViews id="ghvWebView" posX="0" posY="544.0000305175781" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" HTMLFileName="utils_folder_page.html"/>
+    </viewControllers>
+    <viewControllers name="B" backgroundColor="" backgroundImage="" launcher="false">
+        <progressDialogs id="peciProgressDialog" title="title" message="message" spinner="false"/>
+        <listViews id="cfsrListView" posX="0" posY="0" width="270" height="125" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='B']" backgroundColor="" listType="simple">
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+        </listViews>
+        <listViews id="mkdListView" posX="0" posY="139" width="270" height="113" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@viewControllers[name='B']/@listViews[id='cfsrListView']" viewController="//@viewControllers[name='B']" backgroundColor="#ffbfbf" listType="image">
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+        </listViews>
+        <listViews id="gListView" posX="29" posY="266" width="270" height="270" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" below="//@viewControllers[name='B']/@listViews[id='mkdListView']" viewController="//@viewControllers[name='B']" backgroundColor="" listType="detailed">
+            <listViewCells title="newListItem" subtitle="Content"/>
+            <listViewCells title="newListItem" subtitle="Content"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="C" backgroundColor="" backgroundImage="" launcher="false">
+        <asyncTasks name="skvsfAsyncTask"/>
+        <gridViews id="jcmGridView" posX="0" posY="0.0000152587890625" width="204" height="205" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='C']" gridType="simple">
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+        </gridViews>
+        <gridViews id="naoqGridView" posX="0" posY="205.00001525878906" width="204" height="230" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@viewControllers[name='C']/@gridViews[id='jcmGridView']" viewController="//@viewControllers[name='C']" gridType="detailed">
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+            <gridViewCells title="newGridCell"/>
+        </gridViews>
+    </viewControllers>
+    <viewControllers name="D" backgroundColor="" backgroundImage="" launcher="false">
+        <imageViews id="gfaImageView" posX="0" posY="0" width="240" height="100" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" viewController="//@viewControllers[name='D']" sourceType="localFile" fileUri="utils_folder_image.jpg"/>
+        <imageViews id="uvvfImageView" posX="0" posY="108" width="240" height="100" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='D']/@imageViews[id='gfaImageView']" viewController="//@viewControllers[name='D']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/html5.gif"/>
+        <imageViews id="qkuImageView" posX="0" posY="216" width="240" height="100" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='D']/@imageViews[id='uvvfImageView']" viewController="//@viewControllers[name='D']" sourceType="hardwareFile" fileUri=""/>
+        <photocameraController id="dmnPhotocameraController" posX="84" posY="406" width="120" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='D']/@imageViews[id='qkuImageView']" viewController="//@viewControllers[name='D']" backgroundType="icon" imageViewId="qkuImageView"/>
+    </viewControllers>
+    <viewControllers name="E" backgroundColor="" backgroundImage="" launcher="false">
+        <videoViews id="pkvVideoView" posX="0" posY="0" width="240" height="100" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" viewController="//@viewControllers[name='E']" sourceType="localFile" fileUri="utils_folder_video.mp4"/>
+        <videoViews id="enVideoView" posX="0" posY="100" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='E']/@videoViews[id='pkvVideoView']" viewController="//@viewControllers[name='E']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/movie.mp4"/>
+        <videoViews id="kupeVideoView" posX="0" posY="216" width="240" height="100" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='E']/@videoViews[id='enVideoView']" viewController="//@viewControllers[name='E']" sourceType="hardwareFile" fileUri=""/>
+        <videocameraController id="vprVideocameraController" posX="60" posY="395" width="120" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='E']/@videoViews[id='kupeVideoView']" viewController="//@viewControllers[name='E']" backgroundType="icon" videoViewId="kupeVideoView"/>
+    </viewControllers>
+    <viewControllers name="F" backgroundColor="" backgroundImage="" launcher="false">
+        <audioPlayers id="akoAudioPlayer" posX="0" posY="0" width="250" height="75" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" viewController="//@viewControllers[name='F']" sourceType="localFile" fileUri="utils_folder_audio.mp3"/>
+        <audioPlayers id="uhiAudioPlayer" posX="0" posY="91" width="250" height="75" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="16" marginBottom="16" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='F']/@audioPlayers[id='akoAudioPlayer']" viewController="//@viewControllers[name='F']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
+        <audioPlayers id="smcnAudioPlayer" posX="0" posY="182" width="250" height="75" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='F']/@audioPlayers[id='uhiAudioPlayer']" viewController="//@viewControllers[name='F']" sourceType="hardwareFile" fileUri=""/>
+        <audioRecorder id="opqAudioRecorder" posX="0" posY="277" width="88" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" below="//@viewControllers[name='F']/@audioPlayers[id='smcnAudioPlayer']" viewController="//@viewControllers[name='F']" audioPlayerId="smcnAudioPlayer"/>
+    </viewControllers>
+    <viewControllers name="G" backgroundColor="" backgroundImage="" launcher="false">
+        <map id="nvhMap" posX="0" posY="96" width="200" height="330" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='G']" lat="45.478" lon="9.227"/>
+    	<spinners id="arieSpinner" posX="0" posY="96" width="180" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="10" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='G']"/>
+    </viewControllers>
+    <viewControllers name="H" backgroundColor="#f4f73e" backgroundImage="" launcher="false">
+        <datepickers id="irnqDatepicker" posX="0" posY="96" width="348" height="365" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='H']"/>
+    </viewControllers>
+    <viewControllers name="I" backgroundColor="#f4f73e" backgroundImage="" launcher="false">
+        <timepickers id="ghTimepicker" posX="0" posY="96" width="346" height="346" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='I']"/>
+    </viewControllers>
+    <viewControllers name="L" backgroundColor="" backgroundImage="" launcher="false">
+        <cards id="adhlCard" posX="3" posY="169" width="398" height="396.1875" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="8" marginEnd="8" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='L']" title="Title goes here" subtitle="Subtitle here" numActions="3"/>
+    </viewControllers>
+    <watchControllers name="A" launcher="true">
+        <watchTextViews id="rogWatchLabel" order="1" posX="0" posY="1" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='A']" content="Label" textAlign="left" textDecoration="none"/>
+        <watchTextViews id="elWatchLabel" order="2" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='A']/@watchTextViews[id='rogWatchLabel']" watchController="//@watchControllers[name='A']" content="Label" textAlign="center" textDecoration="bold"/>
+        <watchButtons id="smWatchButton" order="3" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='A']/@watchTextViews[id='elWatchLabel']" watchController="//@watchControllers[name='A']" title="B">
+            <watchClickListener>
+                <watchNavigation destination="B"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="B" launcher="false">
+        <watchTextViews id="jhvWatchLabel" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='B']" content="Label" textAlign="right" textDecoration="italic"/>
+        <watchSliders id="jrimaWatchSlider" order="2" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='B']/@watchTextViews[id='jhvWatchLabel']" watchController="//@watchControllers[name='B']"/>
+        <watchButtons id="spkhWatchButton" order="3" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='B']/@watchSliders[id='jrimaWatchSlider']" watchController="//@watchControllers[name='B']" title="C">
+            <watchClickListener>
+                <watchNavigation destination="C"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="C" launcher="false">
+        <watchSwitches id="hhWatchSwitch" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='C']" title="Switch Label"/>
+        <watchButtons id="bbvWatchButton" order="2" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='C']/@watchSwitches[id='hhWatchSwitch']" watchController="//@watchControllers[name='C']" title="D">
+            <watchClickListener>
+                <watchNavigation destination="D"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="D" launcher="false">
+        <watchVoiceMessage id="fgtWatchVoiceMessage" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='D']" title="REC"/>
+    </watchControllers>
+    <menu>
+        <menuItems title="A" id="A">
+            <navigation destination="A"/>
+        </menuItems>
+        <menuItems title="B" id="B">
+            <navigation destination="B"/>
+        </menuItems>
+        <menuItems title="C" id="C">
+            <navigation destination="C"/>
+        </menuItems>
+        <menuItems title="D" id="D">
+            <navigation destination="D"/>
+        </menuItems>
+        <menuItems title="E" id="E">
+            <navigation destination="E"/>
+        </menuItems>
+        <menuItems title="F" id="F">
+            <navigation destination="F"/>
+        </menuItems>
+        <menuItems title="G" id="G">
+            <navigation destination="G"/>
+        </menuItems>
+        <menuItems title="H" id="H">
+            <navigation destination="H"/>
+        </menuItems>
+        <menuItems title="I" id="I">
+            <navigation destination="I"/>
+        </menuItems>
+        <menuItems title="L" id="L">
+            <navigation destination="L"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

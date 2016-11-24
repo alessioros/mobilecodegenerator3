@@ -1,0 +1,122 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+«IF photocameraController != null && !photocameraController.imageViewId.matches("")-»
+	@IBOutlet weak var «photocameraController.imageViewId»: UIImageView!
+«ENDIF-»
+«IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
+	@IBOutlet weak var «videocameraController.videoViewId»: UIWebView!
+	var iframeSrc = NSURL()
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+«IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
+	let iframe = "<body style=\"margin:0;background-color:#000\"></body>"
+    self.«videocameraController.videoViewId».loadHTMLString(iframe, baseURL: nil)
+«ENDIF-»
+«ENDDEFINE-»
+
+
+«DEFINE camera FOR ViewController-»
+«IF photocameraController!=null || videocameraController!=null-»
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	        
+	    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+	    
+	    «IF photocameraController!=null && !photocameraController.imageViewId.matches("")-»
+	    if mediaType.isEqualToString(kUTTypeImage as String) {
+	        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+	        self.«photocameraController.imageViewId».image = image
+	        UIImageWriteToSavedPhotosAlbum(image, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
+	    }
+	    «ELSE-»
+	    // Check your model
+        // You are missing the videocameraController or it does not match the imageview id
+	    «ENDIF-»
+	    
+	    «IF videocameraController!=null-»
+	    if mediaType.isEqualToString(kUTTypeMovie as String) {
+	        if let videoURL:NSURL = info[UIImagePickerControllerMediaURL] as? NSURL {
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath!)) {
+                    self.iframeSrc = videoURL
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
+                }
+            }
+	    }
+	    «ENDIF-»
+	    
+	    dismissViewControllerAnimated(true, completion: nil)
+	    
+	}
+	    
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+	    dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func completionSelector(wasSavedSuccessfully saved: Bool, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+        if error != nil {
+            let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } 
+        «IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
+        else {
+            // Setup iFrame
+            let iframe = "<body style=\"margin:0\"><iframe width=\"\(self.«videocameraController.videoViewId».frame.width)\" height=\"\(self.«videocameraController.videoViewId».frame.height)\" src=\"\(self.iframeSrc)\" frameborder=\"0\"></iframe></body>"
+            self.«videocameraController.videoViewId».loadHTMLString(iframe, baseURL: nil)
+        }
+        «ELSE-»
+        // Check your model
+        // You are missing the videocameraController or it does not match the videoview id
+        «ENDIF-»
+    }
+
+«ENDIF-»
+«IF photocameraController!=null-»
+
+	@IBAction func openPhotoCamera(sender: UIButton) {
+	    
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	        let picker = UIImagePickerController()
+	        picker.delegate = self
+	        picker.sourceType = .Camera
+	        picker.mediaTypes = [kUTTypeImage as String]
+	        presentViewController(picker, animated: true, completion: nil)
+	    }
+	    
+	}
+	
+«ENDIF-»
+«IF videocameraController!=null-»
+
+	@IBAction func openVideoCamera(sender: UIButton) {
+	        
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	        let picker = UIImagePickerController()
+	        picker.delegate = self
+	        picker.sourceType = .Camera
+	        picker.mediaTypes = [kUTTypeMovie as String]
+	        presentViewController(picker, animated: true, completion: nil)
+	    }
+	    
+	}
+	
+«ENDIF-»
+«ENDDEFINE-»

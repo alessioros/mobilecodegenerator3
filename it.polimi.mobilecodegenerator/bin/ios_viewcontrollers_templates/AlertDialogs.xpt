@@ -1,0 +1,39 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE viewDidAppear FOR ViewController-»
+«FOREACH alertDialogs AS ad-»
+		//Create the AlertController
+		let «ad.id»: UIAlertController = UIAlertController(title: "«ad.title»", message: "«ad.message»", preferredStyle: .Alert)
+		
+		//Create and add the Cancel action
+		let «ad.id»CancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+		    //Just dismiss the alert
+		}
+		
+		//Create and add the Ok action
+		let «ad.id»OkAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+		    //Do some stuff here
+		}
+		
+		«ad.id».addAction(«ad.id»CancelAction)
+		«ad.id».addAction(«ad.id»OkAction)
+		
+		//Present the AlertController
+		self.presentViewController(«ad.id», animated: true, completion: nil)
+«ENDFOREACH-»
+«ENDDEFINE-»

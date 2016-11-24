@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <it.polimi.parktraining.GridImageView
+        android:id="@+id/gridview_simple_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/gridview_simple_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_gravity="bottom"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/my_grid_background"/>
+
+</FrameLayout>

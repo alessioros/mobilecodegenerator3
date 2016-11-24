@@ -1,0 +1,54 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE imports FOR WatchController-»
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.wearable.view.WatchViewStub;
+«IF watchSliders.size > 0-»
+import android.widget.SeekBar;
+«ENDIF-»
+«IF watchSwitches.size > 0-»
+import android.widget.CompoundButton;
+import android.widget.Switch;
+«ENDIF-»
+«IF watchVoiceMessage != null-»
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.speech.RecognizerIntent;
+import android.support.wearable.activity.ConfirmationActivity;
+import android.support.wearable.view.DelayedConfirmationView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.Wearable;
+import java.util.List;
+«ENDIF-»
+«IF watchButtons.size > 0 || watchVoiceMessage != null-»
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+«ENDIF-»
+«IF watchSliders.size > 0 || watchSwitches.size > 0-»
+import android.util.Log;
+«ENDIF-»
+«ENDDEFINE-»

@@ -1,0 +1,54 @@
+«REM»
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE viewDidAppear FOR ViewController-»
+«FOREACH progressDialogs AS pd-»
+		//Create the AlertController
+	    let «pd.id»: UIAlertController = UIAlertController(title: "«pd.title»", message: "«pd.message»", preferredStyle: .Alert)
+	    let height: NSLayoutConstraint = NSLayoutConstraint(item: «pd.id».view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 120)
+        «pd.id».view.addConstraint(height)
+		«IF pd.spinner-»
+		//Present the AlertController
+	    self.presentViewController(«pd.id», animated: true, completion: {
+	        let margin:CGFloat = 12.0
+	        let rect = CGRectMake(margin, 72.0, «pd.id».view.frame.width - margin * 2.0 , 30)
+	        let spinner = UIActivityIndicatorView(frame: rect)
+	        spinner.color = UIColor.blackColor()
+	        «pd.id».view.addSubview(spinner)
+	        
+	        //Do something before dismissing it: use "progress" property of the Progress Dialog for updating the progress bar status.
+	        spinner.startAnimating()
+	        
+	        «pd.id».dismissViewControllerAnimated(true, completion: nil)
+	    })
+		«ELSE-»
+		//Present the AlertController
+	    self.presentViewController(«pd.id», animated: true, completion: {
+	        let margin:CGFloat = 12.0
+	        let rect = CGRectMake(margin, 72.0, «pd.id».view.frame.width - margin * 2.0 , 2.0)
+	        let progressView = UIProgressView(frame: rect)
+	        progressView.tintColor = UIColor.blueColor()
+	        «pd.id».view.addSubview(progressView)
+	        
+	        //Do something before dismissing it: use "progress" property of the Progress Dialog for updating the progress bar status.
+	        progressView.progress = 0.5
+	        
+	        «pd.id».dismissViewControllerAnimated(true, completion: nil)
+	    })
+		«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»

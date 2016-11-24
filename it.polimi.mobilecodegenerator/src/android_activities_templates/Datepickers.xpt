@@ -1,0 +1,59 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH datepickers AS d-»
+private MaterialCalendarView «d.id»Picker;
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH datepickers AS d-»
+this.«d.id»Picker = (MaterialCalendarView) this.findViewById(R.id.«d.id»Picker);
+this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
+this.«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
+	@Override
+	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+		Log.i("«d.id» date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH datepickers AS d-»
+this.«d.id»Picker = (MaterialCalendarView) rootView.findViewById(R.id.«d.id»Picker);
+this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
+this.«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
+	@Override
+	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+		Log.i("«d.id» date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE setUserVisibleHint FOR ViewController-»
+«FOREACH datepickers AS d-»
+//Restore current date eventually
+try {
+	this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
+} catch(Exception e) {
+	e.printStackTrace();
+}
+«ENDFOREACH-»
+«ENDDEFINE-»
