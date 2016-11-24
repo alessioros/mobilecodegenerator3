@@ -18,7 +18,7 @@
 <workflow>
 
 	<!--xmi model-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode_new.xmi" />
 	<property name="src-gen" value="src-gen/ios" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >

@@ -39,10 +39,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IF !ap.sourceType.toString().matches("hardwareFile")-»
 	«IF ap.sourceType.toString().matches("localFile")-»
 		«IF !ap.fileUri.matches("")-»
-		if let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("«removeExtension(ap.fileUri)»", ofType: "mp3") {
-			let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
+		if let «ap.id»FilePathString = Bundle.main.path(forResource : "«removeExtension(ap.fileUri)»", ofType: "mp3") {
+			let «ap.id»FilePathUrl = URL(fileURLWithPath: «ap.id»FilePathString)
 			do {
-				try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
+				try «ap.id» = AVAudioPlayer(contentsOf: «ap.id»FilePathUrl)
 			} catch let error as NSError {
 				NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
 			}
@@ -51,14 +51,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ELSE-»
 		//TODO decomment the next lines and insert file NAME and EXTENSION
 		/*
-		if let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("NAME", ofType: "EXTENSION") {
-			let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
+		if let «ap.id»FilePathString = Bundle.main.path(forResource : "«removeExtension(ap.fileUri)»", ofType: "mp3") {
+			let «ap.id»FilePathUrl = URL(fileURLWithPath: «ap.id»FilePathString)
 			do {
-				try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
+				try «ap.id» = AVAudioPlayer(contentsOf: «ap.id»FilePathUrl)
 			} catch let error as NSError {
 				NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
 			}
-		}
+		}  
 	    */
 		«ENDIF-»
 	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
@@ -225,7 +225,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		}
 	«ENDIF-»
 	«FOREACH audioPlayers AS ap-»
-		if self.«ap.id» != nil && self.«ap.id».playing {
+		if self.«ap.id» != nil && self.«ap.id».isPlaying {
 		    self.«ap.id».pause()
 		    self.«ap.id».currentTime = 0
 		}

@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -29,8 +29,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IF !vv.sourceType.toString().matches("hardwareFile")-»
 	«IF vv.sourceType.toString().matches("localFile")-»
 		«IF !vv.fileUri.matches("")-»
-		if let «vv.id»String = NSBundle.mainBundle().pathForResource("«removeExtension(vv.fileUri)»", ofType:"mp4") {
-            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+		if let «vv.id»String = Bundle.main.path(forResource: "«removeExtension(vv.fileUri)»", ofType:"mp4") {
+            let «vv.id»Url = URL(fileURLWithPath: «vv.id»String)
             let h = self.«vv.id».frame.height
             let w = self.«vv.id».frame.width
             let «vv.id»Iframe = "<body style=\"margin:0;\"><iframe width=\"\(w)\" height=\"\(h)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe></body>"
@@ -40,8 +40,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         }
 		«ELSE-»
 		/*
-		if let «vv.id»String = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
-            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+		if let «vv.id»String = Bundle.main.path(forResource: "«removeExtension(vv.fileUri)»", ofType:"mp4") {
+            let «vv.id»Url = URL(fileURLWithPath: «vv.id»String)
             let h = self.«vv.id».frame.height
             let w = self.«vv.id».frame.width
             let «vv.id»Iframe = "<body style=\"margin:0;\"><iframe width=\"\(w)\" height=\"\(h)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe></body>"

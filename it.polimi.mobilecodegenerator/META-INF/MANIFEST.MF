@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: it.polimi.mobilecodegenerator
 Bundle-SymbolicName: it.polimi.mobilecodegenerator;singleton:=true
 Bundle-Version: 1.0.0
-Require-Bundle:  org.eclipse.jdt.core;bundle-version="3.5.0",
+Require-Bundle: org.eclipse.jdt.core;bundle-version="3.5.0",
  org.eclipse.xtend.profiler;resolution:=optional,
  org.apache.commons.logging,
  org.apache.log4j;resolution:=optional,
@@ -19,6 +19,7 @@ Require-Bundle:  org.eclipse.jdt.core;bundle-version="3.5.0",
  org.eclipse.xtend.backend;bundle-version="1.0.0";resolution:=optional,
  org.eclipse.xtend.middleend.xpand;bundle-version="1.0.0";resolution:=optional,
  org.eclipse.xtend.middleend.xtend;bundle-version="1.0.0";resolution:=optional,
- org.eclipse.emf.mwe2.launch;resolution:=optional
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.core.resources;bundle-version="3.11.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.apache.commons.io

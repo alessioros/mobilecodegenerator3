@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -31,11 +31,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE spinners FOR ViewController-»
 «IF spinners.size != 0-»
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     	«FOREACH spinners AS s-»
         if pickerView == self.«s.id» {
             return «s.id»DataSource.count
@@ -44,7 +44,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         return 0
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         «FOREACH spinners AS s-»
         if pickerView == self.«s.id» {
             return «s.id»DataSource[row]
@@ -53,7 +53,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         return nil
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         «FOREACH spinners AS s-»
         if pickerView == self.«s.id» {
         	print("\(«s.id»DataSource[row])")

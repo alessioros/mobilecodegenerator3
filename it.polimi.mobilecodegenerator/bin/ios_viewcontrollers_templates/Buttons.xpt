@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -32,7 +32,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE buttons FOR ViewController-»
 «FOREACH buttons AS b-»
-	@IBAction func «b.id»TouchDown(sender: UIButton) {
+	@IBAction func «b.id»TouchDown(_ sender: UIButton) {
         «IF !b.clickColor.matches("")-»
         // Changes background color of button when clicked
 		sender.backgroundColor = UIColor(red: «redFromHex(b.clickColor)», green: «greenFromHex(b.clickColor)», blue: «blueFromHex(b.clickColor)», alpha: 1)
@@ -40,7 +40,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         //TODO Implement the action
     }
     
-	@IBAction func «b.id»TouchUpInside(sender: UIButton) {
+	@IBAction func «b.id»TouchUpInside(_ sender: UIButton) {
         «IF !b.clickColor.matches("") && !b.backgroundColor.matches("")-»
         // Restore original background color of button after click
 		sender.backgroundColor = UIColor(red: «redFromHex(b.backgroundColor)», green: «greenFromHex(b.backgroundColor)», blue: «blueFromHex(b.backgroundColor)», alpha: 1)

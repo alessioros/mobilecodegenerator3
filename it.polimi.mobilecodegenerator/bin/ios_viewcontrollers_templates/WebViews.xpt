@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -25,15 +25,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«FOREACH webViews AS wv-»
 	«IF !wv.HTMLFileName.matches("")-»
 		let «wv.id»FileName = "«wv.HTMLFileName.split("\\.").get(0)»"
-		if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
-	        let request = NSURLRequest(URL: «wv.id»Url)
+		if let «wv.id»Url = Bundle.main.url(forResource: «wv.id»FileName, withExtension:"html") {
+	        let request = URLRequest(url: «wv.id»Url)
 	        self.«wv.id».loadRequest(request)
 	    }
 	«ELSE-»
 		/*
 		let «wv.id»FileName = "HTMLFileName"
-		if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
-	        let request = NSURLRequest(URL: «wv.id»Url)
+		if let «wv.id»Url = Bundle.main.url(forResource: «wv.id»FileName, withExtension:"html") {
+	        let request = URLRequest(url: «wv.id»Url)
 	        self.«wv.id».loadRequest(request)
 	    }
 		*/

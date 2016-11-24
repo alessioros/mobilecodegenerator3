@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="it.polimi.swifttranslation.FirstViewActivity"
+    tools:showIn="@layout/activity_firstview">
+    
+	<ImageView
+		android:id="@+id/cquImageView"
+		android:layout_width="240.0dp"
+		android:layout_height="128.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="78.0dp"	
+		android:layout_marginTop="457.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+	    android:background="#000000"/>
+	<Button
+		android:id="@+id/bqbgtButton"
+		android:layout_width="88.0dp"
+		android:layout_height="40.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="14.0dp"	
+		android:layout_marginTop="19.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textColor="#2ecfcf"
+        
+        android:background="@drawable/bqbgtbutton_background"
+		style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="false"
+        android:text="Button"/>        
+	<RelativeLayout
+		android:id="@+id/eltsSlider"
+		android:layout_width="150.0dp"
+		android:layout_height="50.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="103.0dp"	
+		android:layout_marginTop="231.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+		android:gravity="center">
+	
+		<android.support.v7.widget.AppCompatSeekBar
+			android:progress="50"
+			android:id="@+id/eltsSliderBar"
+        	android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	<RelativeLayout
+		android:id="@+id/ukjpSwitch"
+		android:layout_width="51.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="151.0dp"	
+		android:layout_marginTop="165.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+		android:gravity="center">
+	
+		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/ukjpSwitchButton"
+			android:checked="true"
+        	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	<android.support.v7.widget.AppCompatSpinner
+		android:id="@+id/jlhtqSpinner"
+		android:layout_width="180.0dp"
+		android:layout_height="48.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="84.0dp"	
+		android:layout_marginTop="92.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:spinnerMode="dropdown"/> 
+	<TextView
+		android:id="@+id/dqhdLabel"
+		android:layout_width="88.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="141.0dp"	
+		android:layout_marginTop="21.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        
+        android:textStyle="bold"
+        android:text="Label"
+        android:gravity="center|center_vertical"
+        android:textColor="#000000"
+        android:textSize="16dp"/>
+	<android.support.v7.widget.AppCompatEditText
+		android:id="@+id/pdirEditText"
+		android:layout_width="88.0dp"
+		android:layout_height="36.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="259.0dp"	
+		android:layout_marginTop="23.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+        android:text="gygyg"
+        android:hint="EditText" 
+        android:textColor="#000000"
+        android:textSize="16dp" />
+	<WebView
+		android:id="@+id/audbWebView"
+		android:layout_width="240.0dp"
+		android:layout_height="128.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="77.0dp"	
+		android:layout_marginTop="315.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+ />
+</RelativeLayout>

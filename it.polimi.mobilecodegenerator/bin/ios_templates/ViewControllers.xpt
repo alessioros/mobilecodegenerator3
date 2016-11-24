@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -33,12 +33,12 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 		«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 	    super.viewDidAppear(animated)
 	    «EXPAND ios_viewcontrollers_templates::ViewDidAppear::viewDidAppear-»
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		«EXPAND ios_viewcontrollers_templates::ViewDidDisappear::viewDidDisappear-»
 	}
@@ -65,11 +65,11 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 	
 	«EXPAND ios_viewcontrollers_templates::Timepickers::timepickers-»
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	
@@ -78,7 +78,7 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 	    «EXPAND ios_viewcontrollers_templates::PrepareForSegue::prepareForSegue-»
 	}
 	

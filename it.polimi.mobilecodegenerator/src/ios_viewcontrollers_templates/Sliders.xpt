@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -23,7 +23,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE sliders FOR ViewController-»
 «FOREACH sliders AS s-»
-	@IBAction func «s.id»ValueChangedAction(sender: UISlider) {
+	@IBAction func «s.id»ValueChangedAction(_ sender: UISlider) {
         // You can reference to the progress value of the slider
         let progressValue: Float = sender.value
     }

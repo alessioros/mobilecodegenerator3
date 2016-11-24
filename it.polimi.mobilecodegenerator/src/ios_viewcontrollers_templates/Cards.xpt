@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -24,7 +24,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE cards FOR ViewController-»
 «FOREACH cards AS c-»
 «FOREACH 1.upTo(c.numActions) AS n-»
-	@IBAction func «c.id»Action«n»TouchUpInside(sender: UIButton) {
+	@IBAction func «c.id»Action«n»TouchUpInside(_ sender: UIButton) {
     	//TODO implement the action
     }
 «ENDFOREACH-»

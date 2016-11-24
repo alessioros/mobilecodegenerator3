@@ -1,6 +1,6 @@
 <!--
 /************************************************************************************************************************
- * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+ * Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -19,7 +19,7 @@
 	
 	<!--Android-->
 	<!--xmi model-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode_new.xmi" />
 	<property name="src-gen" value="src-gen/android" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
@@ -150,7 +150,7 @@
 	
 	<!--iOS-->
 	<!--xmi model-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode.xmi"/>
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode_new.xmi"/>
 	<property name="src-gen" value="src-gen/ios" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >

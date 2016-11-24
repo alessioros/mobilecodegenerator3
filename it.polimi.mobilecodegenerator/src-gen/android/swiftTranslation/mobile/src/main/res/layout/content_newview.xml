@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="it.polimi.swifttranslation.NewViewActivity"
+    tools:showIn="@layout/activity_newview">
+    
+	<RelativeLayout
+		android:id="@+id/usrsTimepicker"
+		android:layout_width="346.0dp"
+		android:layout_height="346.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="31.0dp"	
+		android:layout_marginTop="0.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+		android:gravity="center">
+				
+		<picker.ugurtekbas.com.Picker.Picker
+			android:id="@+id/usrsTimepickerPicker"
+			android:layout_width="346dp"
+			android:layout_height="346dp"
+			app:hourFormat="false"
+			app:canvasColor="@android:color/transparent"
+			app:textColor="#000000"
+			app:trackSize="8dp"
+			app:dialRadius="16dp"/>
+	
+	</RelativeLayout>        
+	<fragment
+		android:id="@+id/jaboaMap"
+		android:layout_width="200.0dp"
+		android:layout_height="330.0dp"
+		android:layout_alignParentBottom="false"
+		android:layout_alignParentRight="false"
+		android:layout_alignParentLeft="false"
+		android:layout_alignParentTop="false"
+		android:layout_marginLeft="120.0dp"	
+		android:layout_marginTop="354.0dp"	
+		android:layout_marginRight="0dp"
+		android:layout_marginBottom="0dp"
+		android:paddingBottom="0dp"
+		android:paddingRight="0dp"
+		android:paddingLeft="0dp"
+		android:paddingTop="0dp"
+
+		android:name="com.google.android.gms.maps.SupportMapFragment"/>
+</RelativeLayout>

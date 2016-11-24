@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="it.polimi.swifttranslation" >
+    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="swiftTranslation"
+        android:supportsRtl="true"
+        android:windowSoftInputMode="stateVisible"
+        android:theme="@style/AppTheme">
+        <service android:name=".MyWearableListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear" android:host="*" android:path="/wear-app-message" />
+            </intent-filter>
+        </service>
+        <!--
+        TODO: Get a Google Maps API key here.
+        https://developers.google.com/maps/documentation/android/start#get-key
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY_HERE" />
+        
+		<activity
+            android:name="it.polimi.swifttranslation.FirstViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		<activity
+            android:name="it.polimi.swifttranslation.SecondViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+		<activity
+            android:name="it.polimi.swifttranslation.ThridViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+		<activity
+            android:name="it.polimi.swifttranslation.FourthViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+		<activity
+            android:name="it.polimi.swifttranslation.FifthViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+		<activity
+            android:name="it.polimi.swifttranslation.NewViewActivity"
+            android:label="swiftTranslation" 
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        
+    </application>
+</manifest>
