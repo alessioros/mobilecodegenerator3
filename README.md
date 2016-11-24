@@ -25,7 +25,7 @@ You have to import the it.polimi.mobilecodegenerator project in Eclipse:
 
 ## How it works ##
 
-If you already have a model of the application generated with [Protocode](https://github.com/aldopolimi/protocode), ignore 1-4.
+If you already have a model of the application generated with [Protocode](https://github.com/alessioros/protocode3), ignore 1-4.
 
 To produce source code of your application you need to:
 
