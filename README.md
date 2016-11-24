@@ -1,3 +1,7 @@
+# What's new in version 3.0 #
+
+* translation from Swift 2.0 to Swift 3.0
+
 # Mobilecodegenerator #
 
 Mobilecodegenerator is an application that generates Android (Java) applications and iOS (Swift) applications, translating a generic xml model into native source code.
