@@ -69,7 +69,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE listViews FOR ViewController-»
 «IF listViews.size!=0-»
-	func numberOfSections(in: tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 	    return 1
 	}
 
@@ -89,19 +89,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    if tableView == self.«lv.id» {
 	    
 	    	«IF lv.listType.matches("detailed") -»
-	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", for: indexPath) as! DetailedTableViewCell
 	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        «lv.id»Cell.content.text = self.«lv.id»Subcontents[indexPath.row]
 	        «lv.id»Cell.icon.image = self.«lv.id»Icons[indexPath.row]
 	        return «lv.id»Cell
 	    	«ELSEIF lv.listType.matches("image") -»
-	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", for: indexPath) as! ImageTableViewCell
 	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        return «lv.id»Cell
 	    	«ELSEIF lv.listType.matches("simple")-»
-	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! SimpleTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", for: indexPath) as! SimpleTableViewCell
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        return «lv.id»Cell
 	    	«ENDIF-»
