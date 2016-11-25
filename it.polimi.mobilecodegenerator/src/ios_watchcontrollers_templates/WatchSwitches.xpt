@@ -23,7 +23,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE watchSwitches FOR WatchController-»
 «FOREACH watchSwitches AS s-»
-	@IBAction func «s.id»ButtonValueChangedAction(value: Bool) {
+	@IBAction func «s.id»ButtonValueChangedAction(_ value: Bool) {
         // You can check the value of the switch
         let isChecked: Bool = value
     }

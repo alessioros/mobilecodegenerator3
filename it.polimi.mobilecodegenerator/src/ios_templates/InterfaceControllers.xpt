@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -28,8 +28,8 @@ class «name»InterfaceController: «EXPAND ios_watchcontrollers_templates::Protoco
 
 	«EXPAND ios_watchcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         «EXPAND ios_watchcontrollers_templates::AwakeWithContext::awakeWithContext-»
     }
 

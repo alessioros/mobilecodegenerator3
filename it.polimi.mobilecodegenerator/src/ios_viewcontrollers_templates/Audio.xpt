@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -20,14 +20,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IF audioRecorder!=null-»
 	@IBOutlet weak var recordButton: UIButton!
 	var audioRecorder: AVAudioRecorder!
-	var recordedAudioUrl = NSURL()
+	var recordedAudioUrl = URL()
 	let recordSettings = [
         AVFormatIDKey : Int(kAudioFormatAppleLossless),
-		AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
+		AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
 		AVEncoderBitRateKey : 320000,
 		AVNumberOfChannelsKey : 2,
 		AVSampleRateKey : 44100.0
-    ]
+    ] as [String : Any]
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
 	var «ap.id»: AVAudioPlayer!
@@ -63,10 +63,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ENDIF-»
 	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 		«IF !ap.fileUri.matches("")-»
-		if let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
+		if let «ap.id»FileRemoteUrl = URL(string: "«ap.fileUri»") {
 			getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
-				dispatch_async(dispatch_get_main_queue()) { () -> Void in
-					guard let data = data where error == nil else {
+				DispatchQueue.main.async { () -> Void in
+					guard let data = data, error == nil else {
 						NSLog("Data error")
 						return
 					}
@@ -81,9 +81,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ELSE-»
 		//TODO decomment the next lines and insert the URI
 		/*
-		if let let «ap.id»FileRemoteUrl = NSURL(string: "URI") {
+		if let «ap.id»FileRemoteUrl = URL(string: "«ap.fileUri»") {
 			getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
-				dispatch_async(dispatch_get_main_queue()) { () -> Void in
+				DispatchQueue.main.async { () -> Void in
 					guard let data = data where error == nil else {
 						NSLog("Data error")
 						return
@@ -107,22 +107,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «REM»Function needed for audioplayers which url is remote or local (not hardware)«ENDREM»
 «IF audioPlayers.sourceType.toString().contains("localFile") || audioPlayers.sourceType.toString().contains("remoteFile")-»
 	//Function to get the data from a url
-	func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-	    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-	        completion(data: data, response: response, error: error)
-	        }.resume()
+	func getDataFromUrl(_ url:URL, completion: @escaping ((_ data: Data?, _ response: URLResponse?, _ error: NSError? ) -> Void)) {
+	    URLSession.shared.dataTask(with: url, 
+	    completionHandler{ (data, response, error) in 
+	    completion(data, response, error)
+	    }).resume()
 	}
 «ENDIF-»
 
 «FOREACH audioPlayers AS ap-»
-	@IBAction func «ap.id»Play(sender: UIButton) {
+	@IBAction func «ap.id»Play(_ sender: UIButton) {
 	
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».play()
 	«ELSE-»    
 	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
 		if self.audioRecorder != nil && self.«ap.id» != nil {
-            if !self.audioRecorder.recording {
+            if !self.audioRecorder.isRecording {
                 self.«ap.id».play()
             }
         }
@@ -134,14 +135,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	}
 	
-	@IBAction func «ap.id»Pause(sender: UIButton) {
+	@IBAction func «ap.id»Pause(_ sender: UIButton) {
 	
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».pause()
 	«ELSE-»    
 	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
 		if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
-            if !self.audioRecorder.recording {
+            if !self.audioRecorder.isRecording {
                 self.«audioRecorder.audioPlayerId».pause()
             }
         }
@@ -152,7 +153,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«ENDIF-»
 	}
 	
-	@IBAction func «ap.id»Stop(sender: UIButton) {
+	@IBAction func «ap.id»Stop(_ sender: UIButton) {
 	
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».pause()
@@ -160,7 +161,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«ELSE-»    
 	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
 	    if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
-            if !self.audioRecorder.recording {
+            if !self.audioRecorder.isRecording {
                 self.«audioRecorder.audioPlayerId».pause()
                 self.«audioRecorder.audioPlayerId».currentTime = 0
             }
@@ -174,18 +175,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFOREACH-»
 
 «IF audioRecorder != null-»
-	@IBAction func record(sender: UIButton) {
+	@IBAction func record(_ sender: UIButton) {
 		if self.recordButton.titleLabel?.text == "Rec" {
-            self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
+            self.recordButton.setTitle("Stop", for: UIControlState())
             do {
-                try self.audioRecorder = AVAudioRecorder(URL: createFileUrl(), settings: self.recordSettings as! [String : AnyObject])
+                try self.audioRecorder = AVAudioRecorder(url: createFileUrl(), settings: self.recordSettings as [String : AnyObject])
             } catch {
                 NSLog("Unable to initialize AVAudioRecorder")
             }
             self.audioRecorder.prepareToRecord()
             self.audioRecorder.record()
 		} else {
-            self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+            self.recordButton.setTitle("Rec", for: UIControlState())
             self.audioRecorder.stop()
             «IF !audioRecorder.audioPlayerId.matches("")-»
 			do {
@@ -200,18 +201,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	}
 	
 	func getCacheDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         return paths[0]
     }
     
-    func createFileUrl() -> NSURL {
-        let dateFormatter = NSDateFormatter()
+    func createFileUrl() -> URL {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         
-        let fileName: String = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".m4a")
-        let filePath: String = getCacheDirectory().stringByAppendingString("/\(fileName)")
+        let fileName: String = dateFormatter.string(from: Date()) + (".m4a")
+        let filePath: String = getCacheDirectory() + ("/\(fileName)")
         
-        self.recordedAudioUrl = NSURL(fileURLWithPath: filePath)
+        self.recordedAudioUrl = URL(fileURLWithPath: filePath)
         return self.recordedAudioUrl
     }
 «ENDIF-»
@@ -219,8 +220,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewDidDisappear FOR ViewController-»
 	«IF audioRecorder!=null-»
-		if self.audioRecorder != nil && self.audioRecorder.recording {
-		    self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+		if self.audioRecorder != nil && self.audioRecorder.isRecording {
+		    self.recordButton.setTitle("Rec", for: UIControlState())
 			self.audioRecorder.stop()
 		}
 	«ENDIF-»

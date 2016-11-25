@@ -9,14 +9,14 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 
 	@IBOutlet weak var recordButton: UIButton!
 	var audioRecorder: AVAudioRecorder!
-	var recordedAudioUrl = NSURL()
+	var recordedAudioUrl = URL()
 	let recordSettings = [
         AVFormatIDKey : Int(kAudioFormatAppleLossless),
-		AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
+		AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
 		AVEncoderBitRateKey : 320000,
 		AVNumberOfChannelsKey : 2,
 		AVSampleRateKey : 44100.0
-    ]
+    ] as [String : Any]
 	var vaiadAudioPlayer: AVAudioPlayer!
 	@IBOutlet weak var tjuekListView: UITableView!
 	
@@ -57,12 +57,12 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 	    super.viewDidAppear(animated)
-		if let vaiadAudioPlayerFileRemoteUrl = NSURL(string: "http://www.provam.mp3") {
+		if let vaiadAudioPlayerFileRemoteUrl = URL(string: "http://www.provam.mp3") {
 			getDataFromUrl(vaiadAudioPlayerFileRemoteUrl) { (data, response, error)  in
-				dispatch_async(dispatch_get_main_queue()) { () -> Void in
-					guard let data = data where error == nil else {
+				DispatchQueue.main.async { () -> Void in
+					guard let data = data, error == nil else {
 						NSLog("Data error")
 						return
 					}
@@ -74,8 +74,8 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 				}
 			}
 		}
-		if let emlVideoViewString = NSBundle.mainBundle().pathForResource("prov", ofType:"mp4") {
-            let emlVideoViewUrl = NSURL(fileURLWithPath: emlVideoViewString)
+		if let emlVideoViewString = Bundle.main.path(forResource: "prov", ofType:"mp4") {
+            let emlVideoViewUrl = URL(fileURLWithPath: emlVideoViewString)
             let h = self.emlVideoView.frame.height
             let w = self.emlVideoView.frame.width
             let emlVideoViewIframe = "<body style=\"margin:0;\"><iframe width=\"\(w)\" height=\"\(h)\" src=\"\(emlVideoViewUrl)\" frameborder=\"0\"></iframe></body>"
@@ -85,13 +85,13 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
         }
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
-		if self.audioRecorder != nil && self.audioRecorder.recording {
-		    self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+		if self.audioRecorder != nil && self.audioRecorder.isRecording {
+		    self.recordButton.setTitle("Rec", for: UIControlState())
 			self.audioRecorder.stop()
 		}
-		if self.vaiadAudioPlayer != nil && self.vaiadAudioPlayer.playing {
+		if self.vaiadAudioPlayer != nil && self.vaiadAudioPlayer.isPlaying {
 		    self.vaiadAudioPlayer.pause()
 		    self.vaiadAudioPlayer.currentTime = 0
 		}
@@ -99,120 +99,121 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 
 	//Function to get the data from a url
-	func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-	    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-	        completion(data: data, response: response, error: error)
-	        }.resume()
+	func getDataFromUrl(_ url:URL, completion: @escaping ((_ data: Data?, _ response: URLResponse?, _ error: NSError? ) -> Void)) {
+	    URLSession.shared.dataTask(with: url, 
+	    completionHandler{ (data, response, error) in 
+	    completion(data, response, error)
+	    }).resume()
 	}
 
-	@IBAction func vaiadAudioPlayerPlay(sender: UIButton) {
+	@IBAction func vaiadAudioPlayerPlay(_ sender: UIButton) {
 	
 	    self.vaiadAudioPlayer.play()
 	
 	}
 	
-	@IBAction func vaiadAudioPlayerPause(sender: UIButton) {
+	@IBAction func vaiadAudioPlayerPause(_ sender: UIButton) {
 	
 	    self.vaiadAudioPlayer.pause()
 	}
 	
-	@IBAction func vaiadAudioPlayerStop(sender: UIButton) {
+	@IBAction func vaiadAudioPlayerStop(_ sender: UIButton) {
 	
 	    self.vaiadAudioPlayer.pause()
 	    self.vaiadAudioPlayer.currentTime = 0
 	}
 
-	@IBAction func record(sender: UIButton) {
+	@IBAction func record(_ sender: UIButton) {
 		if self.recordButton.titleLabel?.text == "Rec" {
-            self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
+            self.recordButton.setTitle("Stop", for: UIControlState())
             do {
-                try self.audioRecorder = AVAudioRecorder(URL: createFileUrl(), settings: self.recordSettings as! [String : AnyObject])
+                try self.audioRecorder = AVAudioRecorder(url: createFileUrl(), settings: self.recordSettings as [String : AnyObject])
             } catch {
                 NSLog("Unable to initialize AVAudioRecorder")
             }
             self.audioRecorder.prepareToRecord()
             self.audioRecorder.record()
 		} else {
-            self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+            self.recordButton.setTitle("Rec", for: UIControlState())
             self.audioRecorder.stop()
             
 		}
 	}
 	
 	func getCacheDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         return paths[0]
     }
     
-    func createFileUrl() -> NSURL {
-        let dateFormatter = NSDateFormatter()
+    func createFileUrl() -> URL {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         
-        let fileName: String = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".m4a")
-        let filePath: String = getCacheDirectory().stringByAppendingString("/\(fileName)")
+        let fileName: String = dateFormatter.string(from: Date()) + (".m4a")
+        let filePath: String = getCacheDirectory() + ("/\(fileName)")
         
-        self.recordedAudioUrl = NSURL(fileURLWithPath: filePath)
+        self.recordedAudioUrl = URL(fileURLWithPath: filePath)
         return self.recordedAudioUrl
     }
 	
 	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 	        
 	    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
 	    
 	    // Check your model
         // You are missing the videocameraController or it does not match the imageview id
 	    
-	    if mediaType.isEqualToString(kUTTypeMovie as String) {
-	        if let videoURL:NSURL = info[UIImagePickerControllerMediaURL] as? NSURL {
-                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath!)) {
+	    if mediaType.isEqual(to: kUTTypeMovie as String) {
+	        if let videoURL:URL = info[UIImagePickerControllerMediaURL] as? URL {
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath)) {
                     self.iframeSrc = videoURL
-                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, #selector(thridViewViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath, self, #selector(thridViewViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
                 }
             }
 	    }
 	    
-	    dismissViewControllerAnimated(true, completion: nil)
+	    dismiss(animated: true, completion: nil)
 	    
 	}
 	    
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-	    dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+	    dismiss(animated: true, completion: nil)
 	}
 	
-	func completionSelector(wasSavedSuccessfully saved: Bool, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+	func completionSelector(wasSavedSuccessfully saved: Bool, didFinishSavingWithError error: NSErrorPointer?, contextInfo:UnsafeRawPointer) {
         if error != nil {
-            let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.Alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } 
         // Check your model
         // You are missing the videocameraController or it does not match the videoview id
     }
 
 
-	@IBAction func openPhotoCamera(sender: UIButton) {
+	@IBAction func openPhotoCamera(_ sender: UIButton) {
 	    
-	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
 	        let picker = UIImagePickerController()
 	        picker.delegate = self
-	        picker.sourceType = .Camera
+	        picker.sourceType = .camera
 	        picker.mediaTypes = [kUTTypeImage as String]
-	        presentViewController(picker, animated: true, completion: nil)
+	        present(picker, animated: true, completion: nil)
 	    }
 	    
 	}
 	
 
-	@IBAction func openVideoCamera(sender: UIButton) {
+	@IBAction func openVideoCamera(_ sender: UIButton) {
 	        
-	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
 	        let picker = UIImagePickerController()
 	        picker.delegate = self
-	        picker.sourceType = .Camera
+	        picker.sourceType = .camera
 	        picker.mediaTypes = [kUTTypeMovie as String]
-	        presentViewController(picker, animated: true, completion: nil)
+	        present(picker, animated: true, completion: nil)
 	    }
 	    
 	}
@@ -221,11 +222,11 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	
 	
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in: tableView: UITableView) -> Int {
 	    return 1
 	}
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 	    // Return the number of rows
 	    if tableView == self.tjuekListView {
 	        return self.tjuekListViewContents.count;
@@ -233,11 +234,11 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	    return 0 
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 	    // Configure the cell...
 	    if tableView == self.tjuekListView {
 	    
-	    	let tjuekListViewCell = tableView.dequeueReusableCellWithIdentifier("tjuekListViewTableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
+	    	let tjuekListViewCell = tableView.dequeueReusableCell(withIdentifier: "tjuekListViewTableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
 	        tjuekListViewCell.img.image = self.tjuekListViewImages[indexPath.row]
 	        tjuekListViewCell.label.text = self.tjuekListViewContents[indexPath.row]
 	        tjuekListViewCell.content.text = self.tjuekListViewSubcontents[indexPath.row]
@@ -250,19 +251,19 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	}
 	
 	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-	    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	    tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 	
 	
 	
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	
@@ -271,7 +272,7 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 	}
 	
 }

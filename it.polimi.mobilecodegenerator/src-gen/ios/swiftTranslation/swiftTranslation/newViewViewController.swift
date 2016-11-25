@@ -29,11 +29,11 @@ class newViewViewController: UIViewController, MKMapViewDelegate
 	    self.jaboaMap.addAnnotation(annotation)
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 	    super.viewDidAppear(animated)
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 	}
 	
@@ -50,22 +50,22 @@ class newViewViewController: UIViewController, MKMapViewDelegate
 	
 	
 	
-    @IBAction func usrsTimepickerPickerValueChangedAction(sender: UIDatePicker) {
-        let timeString = String(sender.date)
-        let hh = timeString.substringWithRange(
-            Range<String.Index>(timeString.startIndex.advancedBy(11)...timeString.startIndex.advancedBy(12))
+    @IBAction func usrsTimepickerPickerValueChangedAction(_ sender: UIDatePicker) {
+        let timeString = String(describing: sender.date)
+        let hh = timeString.substring(with: 
+            Range<String.Index>(timeString.characters.index(timeString.startIndex, offsetBy: 11)...timeString.characters.index(timeString.startIndex, offsetBy: 12))
         )
-        let mm = timeString.substringWithRange(
-            Range<String.Index>(timeString.startIndex.advancedBy(14)...timeString.startIndex.advancedBy(15))
+        let mm = timeString.substring(with:
+            Range<String.Index>(timeString.characters.index(timeString.startIndex, offsetBy: 14)...timeString.characters.index(timeString.startIndex, offsetBy: 15))
         )
         NSLog("Time : \(hh):\(mm)")
     }
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	
@@ -74,7 +74,7 @@ class newViewViewController: UIViewController, MKMapViewDelegate
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 	}
 	
 }

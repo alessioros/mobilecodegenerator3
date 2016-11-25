@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -28,16 +28,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF iv.sourceType.toString().matches("remoteFile")-»
 		// Download the image and set the ImageView
 		«IF !iv.fileUri.matches("")-»
-		if let url = NSURL(string: "«iv.fileUri»") {
-	        self.«iv.id».contentMode = .ScaleAspectFit
+		if let url = URL(string: "«iv.fileUri»") {
+	        self.«iv.id».contentMode = .scaleAspectFit
 	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
 	    }
 		«ELSE-»
 		// Insert the remote file url
 		// Modify Info.plist file to whitelist the url (App Transport Security)
 		/*
-		if let url = NSURL(string: "http://") {
-	        self.«iv.id».contentMode = .ScaleAspectFit
+		if let url = URL(string: "http://") {
+	        self.«iv.id».contentMode = .scaleAspectFit
 	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
 	    }
 	    */

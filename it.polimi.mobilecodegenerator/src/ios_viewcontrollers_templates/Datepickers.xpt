@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -23,16 +23,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE datepickers FOR ViewController-»
 «FOREACH datepickers AS d-»
-    @IBAction func «d.id»PickerValueChangedAction(sender: UIDatePicker) {
-        let dateString = String(sender.date)
-        let day = dateString.substringWithRange(
-            Range<String.Index>(dateString.startIndex.advancedBy(8)...dateString.startIndex.advancedBy(9))
+    @IBAction func «d.id»PickerValueChangedAction(_ sender: UIDatePicker) {
+        let dateString = String(describing: sender.date)
+        let day = dateString.substring( with:
+            Range<String.Index>(dateString.characters.index(dateString.startIndex, offsetBy: 8)...dateString.characters.index(dateString.startIndex, offsetBy: 9))
         )
-        let month = dateString.substringWithRange(
-            Range<String.Index>(dateString.startIndex.advancedBy(5)...dateString.startIndex.advancedBy(6))
+        let month = dateString.substring( with:
+            Range<String.Index>(dateString.characters.index(dateString.startIndex, offsetBy: 5)...dateString.characters.index(dateString.startIndex, offsetBy: 6))
         )
-        let year = dateString.substringWithRange(
-            Range<String.Index>(dateString.startIndex.advancedBy(0)...dateString.startIndex.advancedBy(3))
+        let year = dateString.substring( with:
+            Range<String.Index>(dateString.characters.index(dateString.startIndex, offsetBy: 0)...dateString.characters.index(dateString.startIndex, offsetBy: 3))
         )
         NSLog("Date : \(day)-\(month)-\(year)")
     }

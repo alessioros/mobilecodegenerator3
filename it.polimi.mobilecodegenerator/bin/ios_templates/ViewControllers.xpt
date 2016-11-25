@@ -78,7 +78,7 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 	    «EXPAND ios_viewcontrollers_templates::PrepareForSegue::prepareForSegue-»
 	}
 	

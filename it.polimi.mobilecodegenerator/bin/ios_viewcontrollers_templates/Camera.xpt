@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -35,12 +35,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE camera FOR ViewController-»
 «IF photocameraController!=null || videocameraController!=null-»
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 	        
 	    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
 	    
 	    «IF photocameraController!=null && !photocameraController.imageViewId.matches("")-»
-	    if mediaType.isEqualToString(kUTTypeImage as String) {
+	    if mediaType.isEqual(to: kUTTypeImage as String) {
 	        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
 	        self.«photocameraController.imageViewId».image = image
 	        UIImageWriteToSavedPhotosAlbum(image, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
@@ -51,30 +51,30 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    «ENDIF-»
 	    
 	    «IF videocameraController!=null-»
-	    if mediaType.isEqualToString(kUTTypeMovie as String) {
-	        if let videoURL:NSURL = info[UIImagePickerControllerMediaURL] as? NSURL {
-                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath!)) {
+	    if mediaType.isEqual(to: kUTTypeMovie as String) {
+	        if let videoURL:URL = info[UIImagePickerControllerMediaURL] as? URL {
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath)) {
                     self.iframeSrc = videoURL
-                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
                 }
             }
 	    }
 	    «ENDIF-»
 	    
-	    dismissViewControllerAnimated(true, completion: nil)
+	    dismiss(animated: true, completion: nil)
 	    
 	}
 	    
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-	    dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+	    dismiss(animated: true, completion: nil)
 	}
 	
-	func completionSelector(wasSavedSuccessfully saved: Bool, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+	func completionSelector(wasSavedSuccessfully saved: Bool, didFinishSavingWithError error: NSErrorPointer?, contextInfo:UnsafeRawPointer) {
         if error != nil {
-            let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.Alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } 
         «IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
         else {
@@ -91,14 +91,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 «IF photocameraController!=null-»
 
-	@IBAction func openPhotoCamera(sender: UIButton) {
+	@IBAction func openPhotoCamera(_ sender: UIButton) {
 	    
-	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
 	        let picker = UIImagePickerController()
 	        picker.delegate = self
-	        picker.sourceType = .Camera
+	        picker.sourceType = .camera
 	        picker.mediaTypes = [kUTTypeImage as String]
-	        presentViewController(picker, animated: true, completion: nil)
+	        present(picker, animated: true, completion: nil)
 	    }
 	    
 	}
@@ -106,14 +106,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 «IF videocameraController!=null-»
 
-	@IBAction func openVideoCamera(sender: UIButton) {
+	@IBAction func openVideoCamera(_ sender: UIButton) {
 	        
-	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
 	        let picker = UIImagePickerController()
 	        picker.delegate = self
-	        picker.sourceType = .Camera
+	        picker.sourceType = .camera
 	        picker.mediaTypes = [kUTTypeMovie as String]
-	        presentViewController(picker, animated: true, completion: nil)
+	        present(picker, animated: true, completion: nil)
 	    }
 	    
 	}

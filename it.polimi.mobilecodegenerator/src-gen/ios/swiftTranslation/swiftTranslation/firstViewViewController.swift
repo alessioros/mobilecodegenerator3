@@ -21,17 +21,17 @@ class firstViewViewController: UIViewController, UIPickerViewDataSource, UIPicke
 		self.jlhtqSpinner.dataSource = self
     	self.jlhtqSpinner.delegate = self
 		let audbWebViewFileName = "provah"
-		if let audbWebViewUrl = NSBundle.mainBundle().URLForResource(audbWebViewFileName, withExtension:"html") {
-	        let request = NSURLRequest(URL: audbWebViewUrl)
+		if let audbWebViewUrl = Bundle.main.url(forResource: audbWebViewFileName, withExtension:"html") {
+	        let request = URLRequest(url: audbWebViewUrl)
 	        self.audbWebView.loadRequest(request)
 	    }
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 	    super.viewDidAppear(animated)
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 	}
 	
@@ -39,13 +39,13 @@ class firstViewViewController: UIViewController, UIPickerViewDataSource, UIPicke
 
 
 	
-	@IBAction func bqbgtButtonTouchDown(sender: UIButton) {
+	@IBAction func bqbgtButtonTouchDown(_ sender: UIButton) {
         // Changes background color of button when clicked
 		sender.backgroundColor = UIColor(red: 0.43137255, green: 0.15294118, blue: 0.7882353, alpha: 1)
         //TODO Implement the action
     }
     
-	@IBAction func bqbgtButtonTouchUpInside(sender: UIButton) {
+	@IBAction func bqbgtButtonTouchUpInside(_ sender: UIButton) {
         // Restore original background color of button after click
 		sender.backgroundColor = UIColor(red: 0.7490196, green: 0.07058824, blue: 0.39607844, alpha: 1)
         //TODO Implement the action
@@ -56,46 +56,46 @@ class firstViewViewController: UIViewController, UIPickerViewDataSource, UIPicke
 	
 	
 	
-	@IBAction func eltsSliderValueChangedAction(sender: UISlider) {
+	@IBAction func eltsSliderValueChangedAction(_ sender: UISlider) {
         // You can reference to the progress value of the slider
         let progressValue: Float = sender.value
     }
 	
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.jlhtqSpinner {
             return jlhtqSpinnerDataSource.count
         }
         return 0
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.jlhtqSpinner {
             return jlhtqSpinnerDataSource[row]
         }
         return nil
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.jlhtqSpinner {
         	print("\(jlhtqSpinnerDataSource[row])")
         }
     }
 	
-	@IBAction func ukjpSwitchButtonValueChangedAction(sender: UISwitch) {
+	@IBAction func ukjpSwitchButtonValueChangedAction(_ sender: UISwitch) {
         // You can check the value of the switch
-        let isChecked: Bool = sender.on
+        let isChecked: Bool = sender.isOn
     }
 	
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	
@@ -104,7 +104,7 @@ class firstViewViewController: UIViewController, UIPickerViewDataSource, UIPicke
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 	}
 	
 }

@@ -19,7 +19,7 @@
 	
 	<!--Android-->
 	<!--xmi model-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode_new.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/swift_translation.xmi" />
 	<property name="src-gen" value="src-gen/android" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
@@ -150,7 +150,7 @@
 	
 	<!--iOS-->
 	<!--xmi model-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode_new.xmi"/>
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/swift_translation.xmi"/>
 	<property name="src-gen" value="src-gen/ios" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >

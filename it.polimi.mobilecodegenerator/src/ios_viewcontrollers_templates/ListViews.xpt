@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -69,11 +69,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE listViews FOR ViewController-»
 «IF listViews.size!=0-»
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in: tableView: UITableView) -> Int {
 	    return 1
 	}
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 	    // Return the number of rows
 	    «FOREACH listViews AS lv-»
 	    if tableView == self.«lv.id» {
@@ -83,25 +83,25 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    return 0 
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 	    // Configure the cell...
 	    «FOREACH listViews AS lv-»
 	    if tableView == self.«lv.id» {
 	    
 	    	«IF lv.listType.matches("detailed") -»
-	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
 	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        «lv.id»Cell.content.text = self.«lv.id»Subcontents[indexPath.row]
 	        «lv.id»Cell.icon.image = self.«lv.id»Icons[indexPath.row]
 	        return «lv.id»Cell
 	    	«ELSEIF lv.listType.matches("image") -»
-	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
 	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        return «lv.id»Cell
 	    	«ELSEIF lv.listType.matches("simple")-»
-	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! SimpleTableViewCell
+	    	let «lv.id»Cell = tableView.dequeueReusableCell(withIdentifier: "«lv.id»TableViewCell", forIndexPath: indexPath) as! SimpleTableViewCell
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
 	        return «lv.id»Cell
 	    	«ENDIF-»
@@ -113,7 +113,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	}
 	
 	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	    «FOREACH listViews AS lv-»
 		«IF lv.clickListener != null-»
 	    if tableView == self.«lv.id» {
@@ -123,7 +123,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    }
 	    «ENDIF-»
 	    «ENDFOREACH-»
-	    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	    tableView.deselectRow(at: indexPath, animated: true)
 	}
 «ENDIF-»
 «ENDDEFINE-»

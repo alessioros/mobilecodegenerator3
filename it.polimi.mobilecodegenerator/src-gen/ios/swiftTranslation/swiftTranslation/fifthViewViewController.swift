@@ -13,11 +13,11 @@ class fifthViewViewController: UIViewController
 
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 	    super.viewDidAppear(animated)
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 	}
 	
@@ -27,13 +27,13 @@ class fifthViewViewController: UIViewController
 	
 	
 	
-	@IBAction func smiiaCardAction1TouchUpInside(sender: UIButton) {
+	@IBAction func smiiaCardAction1TouchUpInside(_ sender: UIButton) {
     	//TODO implement the action
     }
-	@IBAction func smiiaCardAction2TouchUpInside(sender: UIButton) {
+	@IBAction func smiiaCardAction2TouchUpInside(_ sender: UIButton) {
     	//TODO implement the action
     }
-	@IBAction func smiiaCardAction3TouchUpInside(sender: UIButton) {
+	@IBAction func smiiaCardAction3TouchUpInside(_ sender: UIButton) {
     	//TODO implement the action
     }
 	
@@ -44,11 +44,11 @@ class fifthViewViewController: UIViewController
 	
 	
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 	}
 	
@@ -57,7 +57,7 @@ class fifthViewViewController: UIViewController
 	    // Dispose of any resources that can be recreated.
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 	}
 	
 }

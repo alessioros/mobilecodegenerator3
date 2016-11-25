@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -53,11 +53,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE gridViews FOR ViewController-»
 «IF gridViews.size!=0-»
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 	    return 1
 	}
 
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 	    «FOREACH gridViews AS gv-»
 	    if collectionView == self.«gv.id» {
 	    	«IF gv.gridType.matches("image")-»
@@ -71,25 +71,25 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    return 0
 	}
 
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		// Configure the cell...
 	    «FOREACH gridViews AS gv-»
 	    «IF gv.gridType.matches("detailed")-»
 	    if collectionView == self.«gv.id» {
-	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! DetailedCollectionViewCell
+	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "«gv.id»CollectionViewCell", for: indexPath) as! DetailedCollectionViewCell
 	        «gv.id»CollectionViewCell.label.text = «gv.id»Contents[indexPath.row]
 	        «gv.id»CollectionViewCell.img.image = «gv.id»Images[indexPath.row]
 	        return «gv.id»CollectionViewCell
 	    }
 	    «ELSEIF gv.gridType.matches("image")-»
 	    if collectionView == self.«gv.id» {
-	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
+	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "«gv.id»CollectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
 	        «gv.id»CollectionViewCell.img.image = «gv.id»Images[indexPath.row]
 	        return «gv.id»CollectionViewCell
 	    }
 	    «ELSEIF gv.gridType.matches("simple")-»
 	    if collectionView == self.«gv.id» {
-	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! SimpleCollectionViewCell
+	        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "«gv.id»CollectionViewCell", forIndexPath: indexPath) as! SimpleCollectionViewCell
 	        «gv.id»CollectionViewCell.label.text = «gv.id»Contents[indexPath.row]
 	        return «gv.id»CollectionViewCell
 	    }
@@ -100,19 +100,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	}
 
 	//Force the dimensions of the cells to half screen width
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize {
 	    let dim = (collectionView.bounds.width / 2.0) - 2.5 //2.5 is half cell spacing
 	    return CGSize(width: dim, height: dim)
 	}
 	
 	//Invalidate layout when rotating device to re-calculate the dimensions of the cells
-	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+	override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
 	    «FOREACH gridViews AS gv-»
 	    self.«gv.id».collectionViewLayout.invalidateLayout()
 	    «ENDFOREACH-»
 	}
 
-	func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
 		«FOREACH gridViews AS gv-»
 		«IF gv.clickListener!=null-»
 	    if collectionView == self.«gv.id» {
@@ -122,7 +122,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    }
 	    «ENDIF-»
 	    «ENDFOREACH-»
-	    collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+	    collectionView.deselectItem(at: indexPath, animated: true)
 	}
 «ENDIF-»
 «ENDDEFINE-»

@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -23,7 +23,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE watchSliders FOR WatchController-»
 «FOREACH watchSliders AS s-»
-	@IBAction func «s.id»Action(value: Float) {
+	@IBAction func «s.id»Action(_ value: Float) {
         // You can reference to the progress value of the slider
         let progressValue: Float = value
     }

@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -24,9 +24,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE willActivate FOR WatchController-»
 	«IF watchVoiceMessage != null-»
 	    if (WCSession.isSupported()) {
-	        session = WCSession.defaultSession()
+	        session = WCSession.default()
 	        session.delegate = self
-	        session.activateSession()
+	        session.activate()
 	    }
     «ENDIF-»
 «ENDDEFINE-»
@@ -37,18 +37,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         send("messageId")
     }
     
-    private func send(messageId: String) {
+    fileprivate func send(_ messageId: String) {
         
         let phrases = ["I'm busy", "OK", "Bye"]
         
-        presentTextInputControllerWithSuggestions(
-            phrases,
-            allowedInputMode: .Plain,
+        presentTextInputController(
+        	withSuggestions: phrases,
+            allowedInputMode: .plain,
             completion: { (result) -> Void in
                 
-                let messageContent = String(result)
-                    .stringByReplacingOccurrencesOfString("Optional([", withString: "")
-                    .stringByReplacingOccurrencesOfString("])", withString: "")
+                let messageContent = String(describing: result)
+                    .stringByReplacingOccurrences(of: "Optional([", with: "")
+                    .stringByReplacingOccurrences(of: "])", with: "")
                 
                 let applicationData = [messageId: messageContent]
                 
