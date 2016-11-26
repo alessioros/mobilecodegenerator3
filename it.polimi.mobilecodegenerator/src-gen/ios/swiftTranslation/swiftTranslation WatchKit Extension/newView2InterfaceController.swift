@@ -28,15 +28,27 @@ class newView2InterfaceController: WKInterfaceController, WCSessionDelegate
         super.didDeactivate()
     }
     
+    func session(_ session: WCSession,
+             activationDidCompleteWith activationState: WCSessionActivationState,
+             error: Error?){
+    }
+    
+    #if os(iOS)
+    public func sessionDidBecomeInactive(_ session: WCSession) { }
+    public func sessionDidDeactivate(_ session: WCSession) {
+    session.activate()
+    }
+    #endif
+    
     
 	@IBAction func vtgnjWatchSliderAction(_ value: Float) {
         // You can reference to the progress value of the slider
-        let progressValue: Float = value
+        // let progressValue: Float = value
     }
     
 	@IBAction func vaqWatchSwitchButtonValueChangedAction(_ value: Bool) {
         // You can check the value of the switch
-        let isChecked: Bool = value
+        // let isChecked: Bool = value
     }
     
 	@IBAction func sendVoiceMessage() {
@@ -53,13 +65,13 @@ class newView2InterfaceController: WKInterfaceController, WCSessionDelegate
             completion: { (result) -> Void in
                 
                 let messageContent = String(describing: result)
-                    .stringByReplacingOccurrences(of: "Optional([", with: "")
-                    .stringByReplacingOccurrences(of: "])", with: "")
+                    .replacingOccurrences(of: "Optional([", with: "")
+                    .replacingOccurrences(of: "])", with: "")
                 
                 let applicationData = [messageId: messageContent]
                 
                 self.session.sendMessage(applicationData, replyHandler: {
-                    (_: [String : AnyObject]) -> Void in
+                    (_: [String : Any]) -> Void in
                     // handle reply from iPhone app here
                     
                     }, errorHandler: {(error ) -> Void in

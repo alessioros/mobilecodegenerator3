@@ -31,6 +31,22 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «ENDIF-»
 «ENDDEFINE-»
 
+«DEFINE protocolImplementations FOR WatchController-»
+	«IF watchVoiceMessage != null-»
+    func session(_ session: WCSession,
+             activationDidCompleteWith activationState: WCSessionActivationState,
+             error: Error?){
+    }
+    
+    #if os(iOS)
+    public func sessionDidBecomeInactive(_ session: WCSession) { }
+    public func sessionDidDeactivate(_ session: WCSession) {
+    session.activate()
+    }
+    #endif
+    «ENDIF-»
+«ENDDEFINE-»
+
 «DEFINE watchVoiceMessage FOR WatchController-»
 	«IF watchVoiceMessage != null -»
 	@IBAction func sendVoiceMessage() {
@@ -47,13 +63,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             completion: { (result) -> Void in
                 
                 let messageContent = String(describing: result)
-                    .stringByReplacingOccurrences(of: "Optional([", with: "")
-                    .stringByReplacingOccurrences(of: "])", with: "")
+                    .replacingOccurrences(of: "Optional([", with: "")
+                    .replacingOccurrences(of: "])", with: "")
                 
                 let applicationData = [messageId: messageContent]
                 
                 self.session.sendMessage(applicationData, replyHandler: {
-                    (_: [String : AnyObject]) -> Void in
+                    (_: [String : Any]) -> Void in
                     // handle reply from iPhone app here
                     
                     }, errorHandler: {(error ) -> Void in

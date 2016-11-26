@@ -28,5 +28,6 @@ import MobileCoreServices
 «ENDIF-»
 «IF audioPlayers.size > 0 || audioRecorder!=null-»
 import AVFoundation
+import Foundation
 «ENDIF-»
 «ENDDEFINE-»

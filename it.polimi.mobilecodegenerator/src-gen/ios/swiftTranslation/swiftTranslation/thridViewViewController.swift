@@ -3,6 +3,7 @@ import UIKit
 import AVKit
 import MobileCoreServices
 import AVFoundation
+import Foundation
 
 class thridViewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate
  {
@@ -222,7 +223,7 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	
 	
-	func numberOfSections(in: tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 	    return 1
 	}
 
@@ -238,7 +239,7 @@ class thridViewViewController: UIViewController, UITableViewDelegate, UITableVie
 	    // Configure the cell...
 	    if tableView == self.tjuekListView {
 	    
-	    	let tjuekListViewCell = tableView.dequeueReusableCell(withIdentifier: "tjuekListViewTableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
+	    	let tjuekListViewCell = tableView.dequeueReusableCell(withIdentifier: "tjuekListViewTableViewCell", for: indexPath) as! DetailedTableViewCell
 	        tjuekListViewCell.img.image = self.tjuekListViewImages[indexPath.row]
 	        tjuekListViewCell.label.text = self.tjuekListViewContents[indexPath.row]
 	        tjuekListViewCell.content.text = self.tjuekListViewSubcontents[indexPath.row]

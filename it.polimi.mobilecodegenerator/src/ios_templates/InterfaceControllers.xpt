@@ -43,6 +43,8 @@ class «name»InterfaceController: «EXPAND ios_watchcontrollers_templates::Protoco
         «EXPAND ios_watchcontrollers_templates::DidDeactivate::didDeactivate-»
     }
     
+    «EXPAND ios_watchcontrollers_templates::WatchVoiceMessage::protocolImplementations-»
+    
     «EXPAND ios_watchcontrollers_templates::WatchButtons::watchButtons-»
     
     «EXPAND ios_watchcontrollers_templates::WatchSliders::watchSliders-»

@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate«IF existsAtLeastOne(watchC
         // Override point for customization after application launch.
         «IF existsAtLeastOne(watchControllers.watchVoiceMessage) -»
         if (WCSession.isSupported()) {
-            self.session = WCSession.default()
+            self.session = WCSession.defaultSession()
             self.session!.delegate = self;
             self.session!.activate()
             print("WCSession activated")

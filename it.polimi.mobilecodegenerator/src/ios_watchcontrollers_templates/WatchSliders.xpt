@@ -25,7 +25,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FOREACH watchSliders AS s-»
 	@IBAction func «s.id»Action(_ value: Float) {
         // You can reference to the progress value of the slider
-        let progressValue: Float = value
+        // let progressValue: Float = value
     }
 «ENDFOREACH-»
 «ENDDEFINE-»

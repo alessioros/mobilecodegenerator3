@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Aldo Pintus
+Copyright 2017 Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -25,7 +25,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FOREACH watchSwitches AS s-»
 	@IBAction func «s.id»ButtonValueChangedAction(_ value: Bool) {
         // You can check the value of the switch
-        let isChecked: Bool = value
+        // let isChecked: Bool = value
     }
 «ENDFOREACH-»
 «ENDDEFINE-»
