@@ -51,7 +51,7 @@ INSTRUCTIONS:
 «ENDFILE-»
 
 «REM»------------ [TO EDIT] file with info about SDK location -----------«ENDREM»
-«FILE name+"local.properties"-»
+«FILE name+"/"+"local.properties"-»
 ## Location of the SDK. This is only used by Gradle.
 #
 # WARNING: it is necessary to edit the path 
@@ -60,7 +60,7 @@ sdk.dir=/Users/alessiorossotti/Library/Android/sdk
 «ENDFILE-»
 
 «REM»--------------------------- build.gradle ---------------------------«ENDREM»
-«FILE name+"/mobile/"+"build.gradle"-»
+«FILE name+"/"+"/mobile/"+"build.gradle"-»
 apply plugin: 'com.android.application'
 
 android {
