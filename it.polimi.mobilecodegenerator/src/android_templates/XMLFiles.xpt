@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -19,7 +19,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 
 «DEFINE main FOR Application-»
+«REM»------------------------------------- strings.xml file --------------------------------------«ENDREM»
+«FILE name+"/mobile/src/main/res/values/strings.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
+	<!-- shared preferences keys and default values -->
+	«FOREACH dataHandler.preferenceHandler.preferenceRecords AS pr-»
+	<string name=«pr.key»>«pr.key»</string>
+	<string name=«pr.key»_default>«pr.value»</string>
+	«ENDFOREACH-»
+
+</resources>
+«ENDFILE-»
 
 «REM»---------------------------------------------------------------------------------------------«ENDREM»
 «REM»---------------------------------------------------------------------------------------------«ENDREM»

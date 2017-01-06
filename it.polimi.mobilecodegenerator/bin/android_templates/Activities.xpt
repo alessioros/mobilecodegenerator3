@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -241,12 +241,6 @@ public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND and
 «ENDFILE-»
 «ENDIF-»
 «ENDDEFINE-»
-
-
-
-
-
-
 
 
 «DEFINE activity FOR ViewController-»

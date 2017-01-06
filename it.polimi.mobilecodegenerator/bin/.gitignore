@@ -1,1 +1,16 @@
 /ios/
+/metamodel/
+/android_templates/
+/workflow/
+/android_datahandlers_templates/
+/android_activities_templates/
+/model/
+/android/
+/android_extensions/
+/androidwear_activities_templates/
+/app_extensions/
+/ios_extensions/
+/ios_templates/
+/ios_viewcontrollers_templates/
+/ios_watchcontrollers_templates/
+/model_checks/

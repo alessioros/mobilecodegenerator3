@@ -1,0 +1,144 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«EXPAND preference FOR dataHandler.preferenceHandler-»
+«ENDDEFINE-»
+
+«DEFINE preference FOR PreferenceHandler-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/"+"PreferenceHandler.java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()»;
+
+public class PreferenceHandler{
+	
+	private SharedPreferences sp;
+	private SharedPreferences.Editor editor; 
+	
+	public PreferenceHandler(Context context){
+		SharedPreferences sharedPref = context.getSharedPreferences(Context.MODE_PRIVATE);
+		this.sp = sharedPref;
+		this.editor = sp.edit();
+	}
+	
+	«EXPAND record FOREACH preferenceRecords-»	
+}	
+«ENDFILE-»
+«ENDDEFINE-»
+
+«REM» define get, set and reset methods for each record «ENDREM»
+«DEFINE record FOR PreferenceRecord-»
+«IF type.matches('int')-»
+public int get«key.toFirstUpper()»(){
+	
+	int defaultValue = getResources().getInteger(R.string.«key»_default);
+	return sp.getInt(getString(R.string.«key»), defaultValue);
+}
+
+public void set«key.toFirstUpper()»(int value){
+	
+	editor.putInt(getString(R.string.«key»), value);
+	editor.commit();
+}
+
+public void reset«key.toFirstUpper()»(){
+	
+	int defaultValue = getResources().getInteger(R.string.«key»_default);
+	editor.putInt(getString(R.string.«key»), defaultValue);
+	editor.commit();
+}
+«ENDIF-»
+«IF type.matches('long')-»
+public long get«key.toFirstUpper()»(){
+	
+	long defaultValue = getResources().getLong(R.string.«key»_default);
+	return sp.getLong(getString(R.string.«key»), defaultValue);
+}
+
+public void set«key.toFirstUpper()»(long value){
+	
+	editor.putLong(getString(R.string.«key»), value);
+	editor.commit();
+}
+
+public void reset«key.toFirstUpper()»(){
+	
+	long defaultValue = getResources().getLong(R.string.«key»_default);
+	editor.putLong(getString(R.string.«key»), defaultValue);
+	editor.commit();
+}
+«ENDIF-»
+«IF type.matches('string')-»
+public String get«key.toFirstUpper()»(){
+	
+	String defaultValue = getString(R.string.«key»_default);
+	return sp.getString(getString(R.string.«key»), defaultValue);
+}
+
+public void set«key.toFirstUpper()»(String value){
+	
+	editor.putString(getString(R.string.«key»), value);
+	editor.commit();
+}
+
+public void reset«key.toFirstUpper()»(){
+	
+	String defaultValue = getString(R.string.«key»_default);
+	editor.putString(getString(R.string.«key»), defaultValue);
+	editor.commit();
+}
+«ENDIF-»
+«IF type.matches('boolean')-»
+public Boolean get«key.toFirstUpper()»(){
+	
+	Boolean defaultValue = getResources().getBoolean(R.string.«key»_default);
+	return sp.getBoolean(getString(R.string.«key»), defaultValue);
+}
+
+public void set«key.toFirstUpper()»(Boolean value){
+	
+	editor.putBoolean(getString(R.string.«key»), value);
+	editor.commit();
+}
+
+public void reset«key.toFirstUpper()»(){
+	
+	Boolean defaultValue = getResources().getBoolean(R.string.«key»_default);
+	editor.putBoolean(getString(R.string.«key»), defaultValue);
+	editor.commit();
+}
+«ENDIF-»
+«IF type.matches('float') || type.matches('double')-»
+public float get«key.toFirstUpper()»(){
+	
+	float defaultValue = getResources().getFloat(R.string.«key»_default);
+	return sp.getFloat(getString(R.string.«key»), defaultValue);
+}
+
+public void set«key.toFirstUpper()»(float value){
+	
+	editor.putFloat(getString(R.string.«key»), value);
+	editor.commit();
+}
+
+public void reset«key.toFirstUpper()»(){
+	
+	float defaultValue = getResources().getFloat(R.string.«key»_default);
+	editor.putFloat(getString(R.string.«key»), defaultValue);
+	editor.commit();
+}
+«ENDIF-»
+«ENDDEFINE-»

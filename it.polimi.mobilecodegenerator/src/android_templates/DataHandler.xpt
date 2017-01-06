@@ -1,0 +1,108 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«EXPAND data FOR dataHandler-»
+«ENDDEFINE-»
+
+«DEFINE data FOR DataHandler-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+"DataHandler.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
+
+public class DataHandler{
+	
+	private Context context; 
+	«EXPAND declaration FOR preferenceHandler-»
+	«EXPAND declaration FOR databaseHandler-»
+	«EXPAND declaration FOR cloudHandler-»
+	«EXPAND declaration FOR storageHandler-»
+	
+	public DataHandler(Context context){
+		this.context = context;
+		«EXPAND initializeSP FOR preferenceHandler-»
+		«EXPAND initializeDB FOR databaseHandler-»
+		«EXPAND initializeCL FOR cloudHandler-»
+		«EXPAND initializeSTO FOR storageHandler-»
+	}
+	
+	«EXPAND SPgetter FOR preferenceHandler-»
+	«EXPAND DBgetter FOR databaseHandler-»
+	«EXPAND CLgetter FOR cloudHandler-»
+	«EXPAND STOgetter FOR storageHandler-»
+	
+}
+«ENDFILE-»
+«ENDDEFINE-»
+
+«REM» methods for retrieving the specific handler «ENDREM»
+«DEFINE declaration FOR PreferenceHandler-»
+private PreferenceHandler ph;
+«ENDDEFINE-»
+«DEFINE initializeSP FOR PreferenceHandler-»
+this.ph = new PreferenceHandler(this.context);
+«ENDDEFINE-»
+«DEFINE SPgetter FOR PreferenceHandler-»
+public PreferenceHandler getPreferencesHandler(){
+	return this.ph;
+}
+«ENDDEFINE-»
+
+«DEFINE declaration FOR DatabaseHandler-»
+private DatabaseHandler dbh;
+«ENDDEFINE-»
+«DEFINE initializeDB FOR DatabaseHandler-»
+this.dbh = new DatabaseHandler(this.context);
+«ENDDEFINE-»
+«DEFINE DBgetter FOR DatabaseHandler-»
+public DatabaseHandler getDatabaseHandler(){
+	return this.dbh;
+}
+«ENDDEFINE-»
+
+«DEFINE declaration FOR CloudHandler-»
+private CloudHandler ch;
+«ENDDEFINE-»
+«DEFINE initializeCL FOR CloudHandler-»
+this.ch = new CloudHandler(this.context);
+«ENDDEFINE-»
+«DEFINE CLgetter FOR CloudHandler-»
+public CloudHandler getCloudHandler(){
+	return this.ch;
+}
+«ENDDEFINE-»
+
+«DEFINE declaration FOR StorageHandler-»
+private StorageHandler sh;
+«ENDDEFINE-»
+«DEFINE initializeSTO FOR StorageHandler-»
+this.sh = new StorageHandler(this.context);
+«ENDDEFINE-»
+«DEFINE STOgetter FOR StorageHandler-»
+public StorageHandler getStorageHandler(){
+	return this.sh;
+}
+«ENDDEFINE-»
+
+«REM» main classes of specific handlers «ENDREM»
+
+«DEFINE main FOR DatabaseHandler-»
+«ENDDEFINE-»
+
+«DEFINE main FOR CloudHandler-»
+«ENDDEFINE-»
+
+«DEFINE main FOR StorageHandler-»
+«ENDDEFINE-»

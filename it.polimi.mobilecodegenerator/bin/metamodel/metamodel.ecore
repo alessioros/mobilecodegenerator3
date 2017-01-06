@@ -14,6 +14,95 @@
         eKeys="#//ViewController/name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="menu" eType="#//Menu" containment="true"
         eOpposite="#//Menu/application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataHandler" lowerBound="1"
+        eType="#//DataHandler" eOpposite="#//DataHandler/application"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataHandler">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" eOpposite="#//Application/dataHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storageHandler" eType="#//StorageHandler"
+        eOpposite="#//StorageHandler/dataHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferenceHandler" eType="#//PreferenceHandler"
+        eOpposite="#//PreferenceHandler/dataHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="databaseHandler" eType="#//DatabaseHandler"
+        eOpposite="#//DatabaseHandler/dataHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cloudHandler" eType="#//CloudHandler"
+        eOpposite="#//CloudHandler/dataHandler"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreferenceHandler">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataHandler" lowerBound="1"
+        eType="#//DataHandler" eOpposite="#//DataHandler/preferenceHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferenceRecords" upperBound="-1"
+        eType="#//PreferenceRecord" eOpposite="#//PreferenceRecord/preferenceHandler"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseHandler">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataHandler" lowerBound="1"
+        eType="#//DataHandler" eOpposite="#//DataHandler/databaseHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+        eType="#//Entity" eOpposite="#//Entity/databaseHandler"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CloudHandler">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataHandler" lowerBound="1"
+        eType="#//DataHandler" eOpposite="#//DataHandler/cloudHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cloudObjects" upperBound="-1"
+        eType="#//CloudObject" eOpposite="#//CloudObject/cloudHandler"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageHandler">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataHandler" eType="#//DataHandler"
+        eOpposite="#//DataHandler/storageHandler"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storageRecords" upperBound="-1"
+        eType="#//StorageRecord" eOpposite="#//StorageRecord/storageHandler"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageRecord">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storageHandler" lowerBound="1"
+        eType="#//StorageHandler" eOpposite="#//StorageHandler/storageRecords"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="databaseHandler" lowerBound="1"
+        eType="#//DatabaseHandler" eOpposite="#//DatabaseHandler/entities"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primaryKey" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityAttributes" lowerBound="1"
+        upperBound="-1" eType="#//EntityAttribute" eOpposite="#//EntityAttribute/entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityRelationships" upperBound="-1"
+        eType="#//EntityRelationship" eOpposite="#//EntityRelationship/entity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityAttribute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="#//Entity" eOpposite="#//Entity/entityAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="#//Entity" eOpposite="#//Entity/entityRelationships"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destination" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CloudObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cloudHandler" lowerBound="1"
+        eType="#//CloudHandler" eOpposite="#//CloudHandler/cloudObjects"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectAttributes" upperBound="-1"
+        eType="#//ObjectAttribute" eOpposite="#//ObjectAttribute/cloudObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectAttribute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cloudObject" lowerBound="1"
+        eType="#//CloudObject" eOpposite="#//CloudObject/objectAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="null"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreferenceRecord">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferenceHandler" lowerBound="1"
+        eType="#//PreferenceHandler" eOpposite="#//PreferenceHandler/preferenceRecords"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewController">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

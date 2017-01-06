@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+ * Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- shared preferences keys and default values -->
+	<string name=newKey>newKey</string>
+	<string name=newKey_default>newStringValue</string>
+	<string name=newKey1>newKey1</string>
+	<string name=newKey1_default>newStringValue</string>
+	<string name=newKey2>newKey2</string>
+	<string name=newKey2_default>newStringValue</string>
+	<string name=newKey3>newKey3</string>
+	<string name=newKey3_default>newStringValue</string>
+	<string name=newKey4>newKey4</string>
+	<string name=newKey4_default>0</string>
+
+</resources>

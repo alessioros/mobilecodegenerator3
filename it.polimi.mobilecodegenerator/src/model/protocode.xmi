@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <dataHandler>
+        <preferenceHandler>
+            <preferenceRecords key="newKey" value="newStringValue" type="string"/>
+            <preferenceRecords key="newKey1" value="newStringValue" type="string"/>
+            <preferenceRecords key="newKey2" value="newStringValue" type="string"/>
+            <preferenceRecords key="newKey3" value="newStringValue" type="string"/>
+            <preferenceRecords key="newKey4" value="0" type="int"/>
+        </preferenceHandler>
+    </dataHandler>
+    <viewControllers name="newView" backgroundColor="" backgroundImage="" launcher="true"/>
+    <viewControllers name="newView1" backgroundColor="" backgroundImage="" launcher="false"/>
+    <watchControllers name="newWatchView" launcher="true"/>
+    <watchControllers name="newWatchView1" launcher="false"/>
+    <menu/>
+</metamodel:Application>
