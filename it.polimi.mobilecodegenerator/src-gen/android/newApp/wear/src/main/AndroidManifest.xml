@@ -10,17 +10,5 @@
         android:label="newApp"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
-		<activity
-            android:name="it.polimi.newapp.NewWatchViewActivity"
-            android:label="newApp">
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-		<activity
-            android:name="it.polimi.newapp.NewWatchView1Activity"
-            android:label="newApp">
-        </activity>
     </application>
 </manifest>

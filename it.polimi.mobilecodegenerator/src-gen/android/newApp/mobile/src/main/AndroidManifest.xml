@@ -11,20 +11,6 @@
         android:windowSoftInputMode="stateVisible"
         android:theme="@style/AppTheme">
         
-		<activity
-            android:name="it.polimi.newapp.NewViewActivity"
-            android:label="newApp" 
-            android:theme="@style/AppTheme.NoActionBar">
-			<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-		<activity
-            android:name="it.polimi.newapp.NewView1Activity"
-            android:label="newApp" 
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
         
     </application>
 </manifest>

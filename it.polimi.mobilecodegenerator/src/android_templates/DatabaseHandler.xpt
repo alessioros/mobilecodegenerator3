@@ -1,0 +1,33 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«EXPAND database FOR dataHandler.databaseHandler-»
+«ENDDEFINE-»
+
+«DEFINE database FOR DatabaseHandler-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DatabaseHandler.java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()»;
+
+public class DatabaseHandler{
+
+	public DatabaseHandler(){
+	}
+}
+
+«ENDFILE-»
+«ENDDEFINE-»

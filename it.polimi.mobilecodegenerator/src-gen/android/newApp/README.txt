@@ -17,5 +17,6 @@ INSTRUCTIONS:
 
 1) edit the file local.properties with your Android SDK location 
 2) make sure to have installed Build-tools version 25.0.0.2 and SDK API 25
+3) import project in Android Studio
 
  

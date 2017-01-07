@@ -2,15 +2,15 @@
 <resources>
 
 	<!-- shared preferences keys and default values -->
-	<string name=newKey>"newKey"</string>
-	<string name=newKey_default>"newStringValue"</string>
-	<string name=newKey1>"newKey1"</string>
-	<string name=newKey1_default>"newStringValue"</string>
-	<string name=newKey2>"newKey2"</string>
-	<string name=newKey2_default>"newStringValue"</string>
-	<string name=newKey3>"newKey3"</string>
-	<string name=newKey3_default>"newStringValue"</string>
-	<string name=newKey4>"newKey4"</string>
-	<string name=newKey4_default>"0"</string>
+	<string name="username">username</string>
+	<string name="username_default">username</string>
+	<string name="age">age</string>
+	<string name="age_default">0</string>
+	<string name="avgPoints">avgPoints</string>
+	<string name="avgPoints_default">0.0</string>
+	<string name="gender">gender</string>
+	<string name="gender_default">male</string>
+	<string name="isOkay">isOkay</string>
+	<string name="isOkay_default">false</string>
 
 </resources>

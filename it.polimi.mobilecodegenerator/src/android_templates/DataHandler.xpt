@@ -19,8 +19,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE data FOR DataHandler-»
-«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+"DataHandler.java"-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/data/DataHandler.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
+
+import android.content.Context;
 
 public class DataHandler{
 	

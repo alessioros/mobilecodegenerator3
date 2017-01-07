@@ -5,16 +5,13 @@
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <dataHandler>
         <preferenceHandler>
-            <preferenceRecords key="newKey" value="newStringValue" type="string"/>
-            <preferenceRecords key="newKey1" value="newStringValue" type="string"/>
-            <preferenceRecords key="newKey2" value="newStringValue" type="string"/>
-            <preferenceRecords key="newKey3" value="newStringValue" type="string"/>
-            <preferenceRecords key="newKey4" value="0" type="int"/>
+            <preferenceRecords key="username" value="username" type="string"/>
+            <preferenceRecords key="age" value="0" type="int"/>
+            <preferenceRecords key="avgPoints" value="0.0" type="float"/>
+            <preferenceRecords key="gender" value="male" type="string"/>
+            <preferenceRecords key="isOkay" value="false" type="boolean"/>
         </preferenceHandler>
+        <databaseHandler/>
     </dataHandler>
-    <viewControllers name="newView" backgroundColor="" backgroundImage="" launcher="true"/>
-    <viewControllers name="newView1" backgroundColor="" backgroundImage="" launcher="false"/>
-    <watchControllers name="newWatchView" launcher="true"/>
-    <watchControllers name="newWatchView1" launcher="false"/>
     <menu/>
 </metamodel:Application>

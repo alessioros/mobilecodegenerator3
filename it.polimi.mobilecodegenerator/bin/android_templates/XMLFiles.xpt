@@ -26,8 +26,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 	<!-- shared preferences keys and default values -->
 	«FOREACH dataHandler.preferenceHandler.preferenceRecords AS pr-»
-	<string name=«pr.key»>"«pr.key»"</string>
-	<string name=«pr.key»_default>"«pr.value»"</string>
+	<string name="«pr.key»">«pr.key»</string>
+	<string name="«pr.key»_default">«pr.value»</string>
 	«ENDFOREACH-»
 
 </resources>

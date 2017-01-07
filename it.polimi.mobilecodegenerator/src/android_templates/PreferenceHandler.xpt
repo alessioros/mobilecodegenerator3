@@ -20,16 +20,20 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE preference FOR PreferenceHandler-»
-«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/"+"PreferenceHandler.java"-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +dataHandler.application.name.toLowerCase()+"/data/PreferenceHandler.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()»;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 
 public class PreferenceHandler{
 	
 	private SharedPreferences sp;
-	private SharedPreferences.Editor editor; 
+	private SharedPreferences.Editor editor;
+	private PREFERENCE_NAME = 'default' 
 	
 	public PreferenceHandler(Context context){
-		SharedPreferences sharedPref = context.getSharedPreferences(Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
 		this.sp = sharedPref;
 		this.editor = sp.edit();
 	}
@@ -44,100 +48,100 @@ public class PreferenceHandler{
 «IF type.matches('int')-»
 public int get«key.toFirstUpper()»(){
 	
-	int defaultValue = getResources().getInteger(R.string.«key»_default);
-	return sp.getInt(getString(R.string.«key»), defaultValue);
+	int defaultValue = Integer.parseInt(context.getResources().getString(R.string.«key»_default));
+	return sp.getInt(context.getResources().getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(int value){
 	
-	editor.putInt(getString(R.string.«key»), value);
+	editor.putInt(context.getResources().getString(R.string.«key»), value);
 	editor.commit();
 }
 
 public void reset«key.toFirstUpper()»(){
 	
-	int defaultValue = getResources().getInteger(R.string.«key»_default);
-	editor.putInt(getString(R.string.«key»), defaultValue);
+	int defaultValue = Integer.parseInt(context.getResources().getString(R.string.«key»_default));
+	editor.putInt(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
 «ENDIF-»
 «IF type.matches('long')-»
 public long get«key.toFirstUpper()»(){
 	
-	long defaultValue = getResources().getLong(R.string.«key»_default);
-	return sp.getLong(getString(R.string.«key»), defaultValue);
+	long defaultValue = Long.parseLong(context.getResources().getString(R.string.«key»_default));
+	return sp.getLong(context.getResources()getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(long value){
 	
-	editor.putLong(getString(R.string.«key»), value);
+	editor.putLong(context.getResources().getString(R.string.«key»), value);
 	editor.commit();
 }
 
 public void reset«key.toFirstUpper()»(){
 	
-	long defaultValue = getResources().getLong(R.string.«key»_default);
-	editor.putLong(getString(R.string.«key»), defaultValue);
+	long defaultValue = Long.parseLong(context.getResources().getString(R.string.«key»_default));
+	editor.putLong(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
 «ENDIF-»
 «IF type.matches('string')-»
 public String get«key.toFirstUpper()»(){
 	
-	String defaultValue = getString(R.string.«key»_default);
-	return sp.getString(getString(R.string.«key»), defaultValue);
+	String defaultValue = context.getResources().getString(R.string.«key»_default);
+	return sp.getString(context.getResources().getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(String value){
 	
-	editor.putString(getString(R.string.«key»), value);
+	editor.putString(context.getResources().getString(R.string.«key»), value);
 	editor.commit();
 }
 
 public void reset«key.toFirstUpper()»(){
 	
-	String defaultValue = getString(R.string.«key»_default);
-	editor.putString(getString(R.string.«key»), defaultValue);
+	String defaultValue = context.getResources().getString(R.string.«key»_default);
+	editor.putString(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
 «ENDIF-»
 «IF type.matches('boolean')-»
 public Boolean get«key.toFirstUpper()»(){
 	
-	Boolean defaultValue = getResources().getBoolean(R.string.«key»_default);
-	return sp.getBoolean(getString(R.string.«key»), defaultValue);
+	Boolean defaultValue = Boolean.parseBoolen(context.getResources().getResources().getString(R.string.«key»_default));
+	return sp.getBoolean(context.getResources().getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(Boolean value){
 	
-	editor.putBoolean(getString(R.string.«key»), value);
+	editor.putBoolean(context.getResources().getString(R.string.«key»), value);
 	editor.commit();
 }
 
 public void reset«key.toFirstUpper()»(){
 	
-	Boolean defaultValue = getResources().getBoolean(R.string.«key»_default);
-	editor.putBoolean(getString(R.string.«key»), defaultValue);
+	Boolean defaultValue = Boolean.parseBoolen(context.getResources().getResources().getString(R.string.«key»_default));
+	editor.putBoolean(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
 «ENDIF-»
 «IF type.matches('float') || type.matches('double')-»
 public float get«key.toFirstUpper()»(){
 	
-	float defaultValue = getResources().getFloat(R.string.«key»_default);
-	return sp.getFloat(getString(R.string.«key»), defaultValue);
+	float defaultValue = Float.parseFloat(context.getResources().getResources().getString(R.string.«key»_default));
+	return sp.getFloat(context.getResources()getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(float value){
 	
-	editor.putFloat(getString(R.string.«key»), value);
+	editor.putFloat(context.getResources().getString(R.string.«key»), value);
 	editor.commit();
 }
 
 public void reset«key.toFirstUpper()»(){
 	
-	float defaultValue = getResources().getFloat(R.string.«key»_default);
-	editor.putFloat(getString(R.string.«key»), defaultValue);
+	float defaultValue = Float.parseFloat(context.getResources().getResources().getString(R.string.«key»_default));
+	editor.putFloat(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
 «ENDIF-»
