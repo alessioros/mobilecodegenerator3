@@ -20,7 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE data FOR DataHandler-»
 «FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/data/DataHandler.java"-»
-package «application.companyIdentifier».«application.name.toLowerCase()»;
+package «application.companyIdentifier».«application.name.toLowerCase()».data;
 
 import android.content.Context;
 

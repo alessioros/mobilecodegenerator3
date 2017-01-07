@@ -27,7 +27,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE fragmentsAndActivity FOR ViewController-»
 «REM»Launcher ViewController is translated into an Activity containing the SectionPagerAdapter«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
-«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
 
 import android.support.design.widget.TabLayout;
@@ -100,7 +100,7 @@ public class «name.toFirstUpper()»Activity extends AppCompatActivity {
 
 «REM»Menu items are translated into Fragments of the Launcher ViewController«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) -»
-«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Fragment.java"-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/fragments/"+name.toFirstUpper()+"Fragment.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
 
 «EXPAND android_activities_templates::Imports::importsFrag-»
@@ -172,7 +172,7 @@ public class «name.toFirstUpper()»Fragment extends Fragment «EXPAND android_acti
 
 «REM»All the other ViewControllers«ENDREM»
 «ELSE-»
-«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
 	
 «EXPAND android_activities_templates::Imports::imports-»
@@ -244,7 +244,7 @@ public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND and
 
 
 «DEFINE activity FOR ViewController-»
-«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
 	
 «EXPAND android_activities_templates::Imports::imports-»

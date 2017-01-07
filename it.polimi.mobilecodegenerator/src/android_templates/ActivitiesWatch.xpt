@@ -20,7 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE watchController FOR WatchController-»
-«FILE application.name+"/wear/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+«FILE application.name+"/wear/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
 package «application.companyIdentifier».«application.name.toLowerCase()»;
 	
 «EXPAND androidwear_activities_templates::Imports::imports-»

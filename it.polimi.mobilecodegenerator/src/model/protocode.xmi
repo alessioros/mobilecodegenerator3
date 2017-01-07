@@ -11,7 +11,19 @@
             <preferenceRecords key="gender" value="male" type="string"/>
             <preferenceRecords key="isOkay" value="false" type="boolean"/>
         </preferenceHandler>
-        <databaseHandler/>
+        <databaseHandler>
+            <entities name="newEntity" primaryKey="primaryKeyName">
+                <entityAttributes name="fasfadf" type="String"/>
+                <entityAttributes name="fdsf" type="String"/>
+            </entities>
+            <entities name="person" primaryKey="CF">
+                <entityAttributes name="Name" type="String"/>
+                <entityAttributes name="Surname" type="String"/>
+                <entityAttributes name="Age" type="Integer"/>
+                <entityAttributes name="IsMarried" type="Boolean"/>
+                <entityAttributes name="Birthday" type="Date"/>
+            </entities>
+        </databaseHandler>
     </dataHandler>
     <menu/>
 </metamodel:Application>

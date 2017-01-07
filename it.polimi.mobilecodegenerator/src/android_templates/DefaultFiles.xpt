@@ -109,7 +109,7 @@ dependencies {
 
 «REM»--------------------------- MyWearableListenerService ---------------------------«ENDREM»
 «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyWearableListenerService.java"-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/services/MyWearableListenerService.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -151,7 +151,7 @@ public class MyWearableListenerService extends WearableListenerService {
 «ENDIF-»
 
 «REM»----------------------------------- Utils -----------------------------------«ENDREM»
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "Utils.java"-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/utilities/Utils.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 	
 import java.io.*;
@@ -185,7 +185,7 @@ public final class Utils {
 
 «REM»--------------------------- ImageDownloadingTask ---------------------------«ENDREM»
 «IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
-«FILE this.name+"/mobile/src/main/java/"+this.companyIdentifier.replaceAll("\\.","/") +"/"+this.name.toLowerCase() +"/"+"ImageDownloadingTask.java"-»
+«FILE this.name+"/mobile/src/main/java/"+this.companyIdentifier.replaceAll("\\.","/") +"/"+this.name.toLowerCase() +"/utilities/ImageDownloadingTask.java"-»
 package «this.companyIdentifier».«this.name.toLowerCase()»;
 
 import java.io.IOException;
@@ -263,7 +263,7 @@ public class ImageDownloadingTask extends AsyncTask<ImageView, Void, Bitmap>{
 
 «REM»-------------------------------- MyListAdapter --------------------------------«ENDREM»
 «IF viewControllers.listViews.size != 0-»
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/adapters/MyListAdapter.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
 import android.app.Activity;
@@ -364,7 +364,7 @@ public final class MyListAdapter extends ArrayAdapter<String> {
 
 «REM»-------------------------------- MyGridAdapter --------------------------------«ENDREM»
 «IF viewControllers.gridViews.size != 0-»
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/adapters/MyGridAdapter.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
 import android.app.Activity;
@@ -495,7 +495,7 @@ public final class MyGridAdapter extends BaseAdapter {
 
 
 «REM»-------------------------------- GridImageView --------------------------------«ENDREM»
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "GridImageView.java"-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/GridImageView.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
 import android.content.Context;

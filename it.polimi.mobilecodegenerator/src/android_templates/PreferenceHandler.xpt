@@ -20,20 +20,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE preference FOR PreferenceHandler-»
-«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +dataHandler.application.name.toLowerCase()+"/data/PreferenceHandler.java"-»
-package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()»;
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") + "/"+dataHandler.application.name.toLowerCase()+"/data/PreferenceHandler.java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import it.polimi.newapp.R;
 
 public class PreferenceHandler{
 	
 	private SharedPreferences sp;
 	private SharedPreferences.Editor editor;
-	private PREFERENCE_NAME = 'default' 
+	private String PREFERENCE_NAME = "default";
+	private Context context; 
 	
 	public PreferenceHandler(Context context){
 		SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+		this.context = context;
 		this.sp = sharedPref;
 		this.editor = sp.edit();
 	}
@@ -108,7 +111,7 @@ public void reset«key.toFirstUpper()»(){
 «IF type.matches('boolean')-»
 public Boolean get«key.toFirstUpper()»(){
 	
-	Boolean defaultValue = Boolean.parseBoolen(context.getResources().getResources().getString(R.string.«key»_default));
+	Boolean defaultValue = Boolean.valueOf(context.getResources().getString(R.string.«key»_default));
 	return sp.getBoolean(context.getResources().getString(R.string.«key»), defaultValue);
 }
 
@@ -120,7 +123,7 @@ public void set«key.toFirstUpper()»(Boolean value){
 
 public void reset«key.toFirstUpper()»(){
 	
-	Boolean defaultValue = Boolean.parseBoolen(context.getResources().getResources().getString(R.string.«key»_default));
+	Boolean defaultValue = Boolean.valueOf(context.getResources().getString(R.string.«key»_default));
 	editor.putBoolean(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
@@ -128,8 +131,8 @@ public void reset«key.toFirstUpper()»(){
 «IF type.matches('float') || type.matches('double')-»
 public float get«key.toFirstUpper()»(){
 	
-	float defaultValue = Float.parseFloat(context.getResources().getResources().getString(R.string.«key»_default));
-	return sp.getFloat(context.getResources()getString(R.string.«key»), defaultValue);
+	float defaultValue = Float.parseFloat(context.getResources().getString(R.string.«key»_default));
+	return sp.getFloat(context.getResources().getString(R.string.«key»), defaultValue);
 }
 
 public void set«key.toFirstUpper()»(float value){
@@ -140,7 +143,7 @@ public void set«key.toFirstUpper()»(float value){
 
 public void reset«key.toFirstUpper()»(){
 	
-	float defaultValue = Float.parseFloat(context.getResources().getResources().getString(R.string.«key»_default));
+	float defaultValue = Float.parseFloat(context.getResources().getString(R.string.«key»_default));
 	editor.putFloat(context.getResources().getString(R.string.«key»), defaultValue);
 	editor.commit();
 }
