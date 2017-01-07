@@ -1,6 +1,8 @@
 # What's new in version 3.0 #
 
 * translation from Swift 2.0 to Swift 3.0
+* updated for supporting Android N and the last features of Android Studio
+* added support for protocode 3.0 and model generation 
 
 # Mobilecodegenerator #
 
