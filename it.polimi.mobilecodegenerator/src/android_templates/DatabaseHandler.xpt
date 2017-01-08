@@ -21,6 +21,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE database FOR DatabaseHandler-»
+«REM» DBHelper Class «ENDREM»
 «FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DBHelper.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
@@ -50,6 +51,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 }
 «ENDFILE-»
+«REM» DatabaseHandler Class «ENDREM»
 «FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DatabaseHandler.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
@@ -76,6 +78,7 @@ public class DatabaseHandler{
 «ENDDEFINE-»
 
 «DEFINE databaseStrings FOR DatabaseHandler-»
+«REM» DatabaseStrings Class «ENDREM»
 «FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DatabaseStrings.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
@@ -86,6 +89,7 @@ public class DatabaseStrings{
 «ENDFILE-»
 «ENDDEFINE-»
 
+«REM» for each entity strings representing name and attributes «ENDREM»
 «DEFINE entityStrings FOR Entity-»
 	/* Strings for table «name»*/
 	public static final String TBL_«name.toUpperCase()» = "«name»";
@@ -93,6 +97,7 @@ public class DatabaseStrings{
 	«EXPAND attributeString FOREACH entityAttributes-»
 	
 «ENDDEFINE-»
+«REM» for each entity the string query that creates the table «ENDREM»
 «DEFINE dbCreateQuery FOR Entity-»
 
 	String CREATE_«name.toUpperCase()»="CREATE TABLE "+DatabaseStrings.TBL_«name.toUpperCase()»+
@@ -101,8 +106,9 @@ public class DatabaseStrings{
                 «EXPAND attributeCreateLast FOR entityAttributes.last()-»
   	db.execSQL(CREATE_«name.toUpperCase()»);
 «ENDDEFINE-»
+«REM» for each entity the insert method «ENDREM»
 «DEFINE save FOR Entity-»
-public void save«name.toFirstUpper()»(«EXPAND parameters FOR entityAttributes-»)
+public void insert«name.toFirstUpper()»(«EXPAND parameters FOR entityAttributes-»)
 {
     SQLiteDatabase db=dbhelper.getWritableDatabase();
  
@@ -118,37 +124,64 @@ public void save«name.toFirstUpper()»(«EXPAND parameters FOR entityAttributes-»)
     }
 }
 «ENDDEFINE-»
-«DEFINE parameters FOR List-»
+
+«REM» parameters for insert method «ENDREM»
+«DEFINE parameters FOR List[EntityAttribute]-»
 «FOREACH this.withoutLast() AS EA-»
 «IF EA.type.matches('String') || EA.type.matches('Date') -»
 String «EA.name»,
 «ENDIF-»
-«IF EA.type.matches('Integer') || EA.type.matches('Boolean')-»
+«IF EA.type.matches('Integer')-»
 int «EA.name»,
 «ENDIF-»
-«IF EA.type.matches('Float') || EA.type.matches('Double')-»
+«IF EA.type.matches('Boolean')-»
+boolean «EA.name»,
+«ENDIF-»
+«IF EA.type.matches('Float')-»
 float «EA.name»,
 «ENDIF-»
+«IF EA.type.matches('Double')-»
+double «EA.name»,
+«ENDIF-»
 «ENDFOREACH-»
-«EXPAND lastParameter FOR this.last()-»
+«EXPAND lastParameter FOR (EntityAttribute)this.last()-»
 «ENDDEFINE-»
 
+«REM» last parameter for insert method (without COMMA) «ENDREM»
 «DEFINE lastParameter FOR EntityAttribute-»
 «IF type.matches('String') || type.matches('Date') -»
 String «name»
 «ENDIF-»
-«IF type.matches('Integer') || type.matches('Boolean')-»
+«IF type.matches('Integer')-»
 int «name»
+«ENDIF-»
+«IF type.matches('Boolean')-»
+boolean «name»
 «ENDIF-»
 «IF type.matches('Float') || type.matches('Double')-»
 float «name»
 «ENDIF-»
 «ENDDEFINE-»
 
-
+«REM» delete method for each entity «ENDREM»
 «DEFINE delete FOR Entity-»
-
+public boolean delete(long id)
+{
+    SQLiteDatabase db=dbhelper.getWritableDatabase();
+    try
+    {
+        if (db.delete(DatabaseStrings.TBL_«name.toUpperCase()», DatabaseStrings.«name.toUpperCase()»_ID+"=?", new String[]{Long.toString(id)})>0)
+            return true;
+        return false;
+    }
+    catch (SQLiteException sqle)
+    {
+        return false;
+    } 
+}
 «ENDDEFINE-»
+
+«REM» query method for each entity «ENDREM»
 «DEFINE query FOR Entity-»
 public Cursor query«name.toFirstUpper()»()
 {
@@ -174,21 +207,18 @@ public static final String «entity.name.toUpperCase()»_«name.toUpperCase()» = "«
 cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «name»);
 «ENDDEFINE-»
 
-«DEFINE attListCreate FOR List-»
+«DEFINE attListCreate FOR List[EntityAttribute]-»
 «FOREACH this AS EA-»
-«EXPAND attributeCreate FOR EA-»
-«ENDFOREACH-»
-«ENDDEFINE-»
-«DEFINE attributeCreate FOR EntityAttribute-»
-«IF type.matches('String') || type.matches('Date') -»
+«IF EA.type.matches('String') || EA.type.matches('Date') -»
 DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" TEXT," +
 «ENDIF-»
-«IF type.matches('Integer') || type.matches('Boolean')-»
+«IF EA.type.matches('Integer') || EA.type.matches('Boolean')-»
 DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" INT," +
 «ENDIF-»
-«IF type.matches('Float') || type.matches('Double')-»
+«IF EA.type.matches('Float') || EA.type.matches('Double')-»
 DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" REAL," +
 «ENDIF-»
+«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE attributeCreateLast FOR EntityAttribute-»
