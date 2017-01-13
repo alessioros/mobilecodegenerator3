@@ -45,10 +45,11 @@ public class DBHelper extends SQLiteOpenHelper{
     }
     
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
-    
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    	Log.w(MySQLiteHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
+        «EXPAND dbDeleteQuery FOREACH entities-»
+        onCreate(db);
+    }
 }
 «ENDFILE-»
 «REM» DatabaseHandler Class «ENDREM»
@@ -102,9 +103,34 @@ public class DatabaseStrings{
 
 	String CREATE_«name.toUpperCase()»="CREATE TABLE "+DatabaseStrings.TBL_«name.toUpperCase()»+
                 " (" + DatabaseStrings.«name.toUpperCase()»_ID + " INTEGER PRIMARY KEY," +
-                «EXPAND attListCreate FOR entityAttributes.withoutLast()-»
-                «EXPAND attributeCreateLast FOR entityAttributes.last()-»
+                
+                «IF entityRelationships.isEmpty-»
+	                «EXPAND attListCreate FOR entityAttributes.withoutLast()-»
+	                «EXPAND attributeCreateLast FOR entityAttributes.last()-»
+                «ELSE-»
+	                «IF entityRelationships.exists(e|e.type.matches("N : N"))-»
+	                «ENDIF-» 	
+	                «IF entityRelationships.exists(e|e.type.matches("N : 1"))-»
+	                	«IF entityRelationships.exists(e|e.type.matches("1 : 1"))-»
+	                		«EXPAND attListCreate FOR entityAttributes-»
+	                		«EXPAND foreignKeyOneOne FOR entityRelationships-»
+	                		«EXPAND foreignKeyLastNOne FOR entityRelationships-»
+	                	«ELSE-»
+	                		«EXPAND foreignKeyLastNOne FOR entityRelationships-»
+	                	«ENDIF-»
+	                «ELSE-»
+	                	«IF entityRelationships.exists(e|e.type.matches("1 : 1"))-»
+	                		«EXPAND attListCreate FOR entityAttributes-»
+	                		«EXPAND foreignKeyLastOneOne FOR entityRelationships-»
+	                	«ENDIF-»
+	                «ENDIF-»	          
+               «ENDIF-»
+            
   	db.execSQL(CREATE_«name.toUpperCase()»);
+«ENDDEFINE-»
+«REM» for each entity the string query that drops the table «ENDREM»
+«DEFINE dbDeleteQuery FOR Entity-»
+  	db.execSQL("DROP TABLE IF EXISTS " + DatabaseStrings.TBL_«name.toUpperCase()»);
 «ENDDEFINE-»
 «REM» for each entity the insert method «ENDREM»
 «DEFINE save FOR Entity-»
@@ -165,12 +191,12 @@ float «name»
 
 «REM» delete method for each entity «ENDREM»
 «DEFINE delete FOR Entity-»
-public boolean delete(long id)
+public boolean delete«name.toFirstUpper()»(String «primaryKey»)
 {
     SQLiteDatabase db=dbhelper.getWritableDatabase();
     try
     {
-        if (db.delete(DatabaseStrings.TBL_«name.toUpperCase()», DatabaseStrings.«name.toUpperCase()»_ID+"=?", new String[]{Long.toString(id)})>0)
+        if (db.delete(DatabaseStrings.TBL_«name.toUpperCase()», DatabaseStrings.«name.toUpperCase()»_ID+"=?", new String[]{«primaryKey»})>0)
             return true;
         return false;
     }
@@ -183,18 +209,38 @@ public boolean delete(long id)
 
 «REM» query method for each entity «ENDREM»
 «DEFINE query FOR Entity-»
+// edit for creating a personalized query
 public Cursor query«name.toFirstUpper()»()
 {
     Cursor crs=null;
+    String tableName = DatabaseStrings.TBL_«name.toUpperCase()»;
+    String[] tableColumns = null; //new String[] { DatabaseStrings.«name.toUpperCase()»_«entityAttributes.get(0).name.toUpperCase()», ... }
+    String whereClause = null; // DatabaseStrings.«name.toUpperCase()»_«entityAttributes.get(0).name.toUpperCase()» + " > 5"
+    String whereArgs = null; // new String[] { "value1", "value2"};
+    String groupBy = null;
+    String having = null;
+    String orderBy = null;
     try
     {
         SQLiteDatabase db=dbhelper.getReadableDatabase();
-        crs=db.query(DatabaseStrings.TBL_«name.toUpperCase()», null, null, null, null, null, null, null);
+        crs=db.query(tableName, tableColumns, whereClause, whereArgs, groupBy, having, orderBy);
+        // For quering with a complete SQL string
+        // String whereArgs = new String[] { "value1", "value2"};
+        // String SQL_QUERY = "SELECT column1, (SELECT max(column1) FROM DatabaseStrings.TBL_«name.toUpperCase()») AS max FROM DatabaseStrings.TBL_«name.toUpperCase()» " + "WHERE column1 = ? OR column1 = ? ORDER BY column1";
+        //crs=db.rawQuery(SQL_QUERY, whereArgs);
     }
     catch(SQLiteException sqle)
     {
         return null;
     }
+    /*	EXAMPLE USAGE
+    	crs.moveToFirst();
+        while (crs.isAfterLast() == false) {
+            String value = crs.getString(1)
+       	    crs.moveToNext();
+        }
+        crs.close(); 
+    */
     return crs;
 }
 «ENDDEFINE-»
@@ -221,6 +267,52 @@ DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" REAL," +
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE foreignKeyOneOne FOR List[EntityRelationship]-»
+«FOREACH this AS ER-»
+«IF ER.type.matches("N : N") || ER.type.matches("1 : N") || ER.type.matches("N : 1")-»
+«this.remove(ER)-»
+«ENDIF-»
+«ENDFOREACH-»
+«FOREACH this AS ER-»
++ " FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+«ER.destination.toUpperCase()-»_ID," +
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE foreignKeyNOne FOR List[EntityRelationship]-»
+«FOREACH this AS ER-»
+«IF ER.type.matches("N : N") || ER.type.matches("1 : N") || ER.type.matches("1 : 1")-»
+«this.remove(ER)-»
+«ENDIF-»
+«ENDFOREACH-»
+«FOREACH this AS ER-»
++ " FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+«ER.destination.toUpperCase()-»_ID," +
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE foreignKeyLastOneOne FOR List[EntityRelationship]-»
+«FOREACH this AS ER-»
+«IF ER.type.matches("N : N") || ER.type.matches("1 : N") || ER.type.matches("N : 1")-»
+«this.remove(ER)-»
+«ENDIF-»
+«ENDFOREACH-»
+«FOREACH this.withoutLast() AS ER-»
++ " FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+«ER.destination.toUpperCase()-»_ID," +
+«ENDFOREACH-»
++ " FOREIGN KEY ("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«this.last().destination.toUpperCase()-»+"("+«this.last().destination.toUpperCase()-»_ID+"));";
+«ENDDEFINE-»
+
+«DEFINE foreignKeyLastNOne FOR List[EntityRelationship]-»
+«FOREACH this AS ER-»
+«IF ER.type.matches("1 : 1") || ER.type.matches("1 : N") || ER.type.matches("N : N") -»
+«this.remove(ER)-»
+«ENDIF-»
+«ENDFOREACH-»
+«FOREACH this.withoutLast() AS ER-»
++ " FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+«ER.destination.toUpperCase()-»_ID," +
+«ENDFOREACH-»
++ " FOREIGN KEY ("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«this.last().destination.toUpperCase()-»+"("+«this.last().destination.toUpperCase()-»_ID+"));";
+«ENDDEFINE-»
+
 «DEFINE attributeCreateLast FOR EntityAttribute-»
 «IF type.matches('String') || type.matches('Date') -»
 DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" TEXT)";
@@ -232,9 +324,4 @@ DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" INT)";
 DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" REAL)";
 «ENDIF-»
 «ENDDEFINE-»
-
-
-
-
-
 

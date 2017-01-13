@@ -2,26 +2,28 @@
 <metamodel:Application xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="provaApp" companyIdentifier="it.polimi">
     <dataHandler>
         <preferenceHandler>
-            <preferenceRecords key="username" value="username" type="string"/>
-            <preferenceRecords key="age" value="0" type="int"/>
-            <preferenceRecords key="avgPoints" value="0.0" type="float"/>
-            <preferenceRecords key="gender" value="male" type="string"/>
-            <preferenceRecords key="isOkay" value="false" type="boolean"/>
+            <preferenceRecords key="name" value="John" type="string"/>
+            <preferenceRecords key="surname" value="Appleseed" type="string"/>
+            <preferenceRecords key="age" value="21" type="int"/>
+            <preferenceRecords key="email" value="john.appleseed@apple.com" type="string"/>
+            <preferenceRecords key="points" value="0.0" type="double"/>
         </preferenceHandler>
         <databaseHandler>
-            <entities name="newEntity" primaryKey="primaryKeyName">
-                <entityAttributes name="fasfadf" type="String"/>
-                <entityAttributes name="fdsf" type="String"/>
-            </entities>
-            <entities name="person" primaryKey="CF">
+            <entities name="Person" primaryKey="CF">
                 <entityAttributes name="Name" type="String"/>
                 <entityAttributes name="Surname" type="String"/>
                 <entityAttributes name="Age" type="Integer"/>
-                <entityAttributes name="IsMarried" type="Boolean"/>
                 <entityAttributes name="Birthday" type="Date"/>
+                <entityAttributes name="isMarried" type="Boolean"/>
+                <entityRelationships name="coniuge" destination="Person" type="1 : 1"/>
+                <entityRelationships name="hasAnimal" destination="Animal" type="1 : N"/>
+            </entities>
+            <entities name="Animal" primaryKey="ID">
+                <entityAttributes name="Name" type="String"/>
+                <entityAttributes name="Type" type="String"/>
             </entities>
         </databaseHandler>
     </dataHandler>
