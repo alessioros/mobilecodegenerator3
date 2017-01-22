@@ -24,6 +24,7 @@
             <entities name="Animal" primaryKey="ID">
                 <entityAttributes name="Name" type="String"/>
                 <entityAttributes name="Type" type="String"/>
+                <entityRelationships name="hasOwner" destination="Person" type="N : 1"/>
             </entities>
         </databaseHandler>
     </dataHandler>
