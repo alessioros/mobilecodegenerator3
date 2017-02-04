@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/res/merged/debug/drawable-v21/generic_confirmation.xml",
+        "source": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/drawable-v21/generic_confirmation.xml"
+    },
+    {
+        "merged": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/res/merged/debug/drawable-v21/open_on_phone.xml",
+        "source": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/drawable-v21/open_on_phone.xml"
+    },
+    {
+        "merged": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/res/merged/debug/drawable-v21/open_on_phone_animation.xml",
+        "source": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/drawable-v21/open_on_phone_animation.xml"
+    },
+    {
+        "merged": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/res/merged/debug/drawable-v21/generic_confirmation_animation.xml",
+        "source": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/drawable-v21/generic_confirmation_animation.xml"
+    }
+]

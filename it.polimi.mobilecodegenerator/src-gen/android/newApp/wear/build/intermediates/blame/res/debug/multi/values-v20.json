@@ -1,0 +1,358 @@
+[
+    {
+        "outputFile": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v20/values-v20.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 50,
+                    "endOffset": 101
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 256,
+                        "endColumn": 50,
+                        "endOffset": 302
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 106,
+                    "endLine": 8,
+                    "endColumn": 12,
+                    "endOffset": 434
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 307,
+                        "endLine": 10,
+                        "endColumn": 12,
+                        "endOffset": 635
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 439,
+                    "endColumn": 52,
+                    "endOffset": 487
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 640,
+                        "endColumn": 52,
+                        "endOffset": 688
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 492,
+                    "endLine": 17,
+                    "endColumn": 12,
+                    "endOffset": 913
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 693,
+                        "endLine": 19,
+                        "endColumn": 12,
+                        "endOffset": 1114
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 918,
+                    "endLine": 23,
+                    "endColumn": 12,
+                    "endOffset": 1242
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1119,
+                        "endLine": 25,
+                        "endColumn": 12,
+                        "endOffset": 1443
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1247,
+                    "endLine": 38,
+                    "endColumn": 12,
+                    "endOffset": 1934
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1448,
+                        "endLine": 40,
+                        "endColumn": 12,
+                        "endOffset": 2135
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 1939,
+                    "endLine": 42,
+                    "endColumn": 12,
+                    "endOffset": 2157
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2140,
+                        "endLine": 44,
+                        "endColumn": 12,
+                        "endOffset": 2358
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 43,
+                    "startColumn": 4,
+                    "startOffset": 2162,
+                    "endLine": 46,
+                    "endColumn": 12,
+                    "endOffset": 2381
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 4,
+                        "startOffset": 2363,
+                        "endLine": 48,
+                        "endColumn": 12,
+                        "endOffset": 2582
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 47,
+                    "startColumn": 4,
+                    "startOffset": 2386,
+                    "endLine": 50,
+                    "endColumn": 12,
+                    "endOffset": 2604
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 4,
+                        "startOffset": 2587,
+                        "endLine": 52,
+                        "endColumn": 12,
+                        "endOffset": 2805
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 2609,
+                    "endLine": 54,
+                    "endColumn": 12,
+                    "endOffset": 2849
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 53,
+                        "startColumn": 4,
+                        "startOffset": 2810,
+                        "endLine": 56,
+                        "endColumn": 12,
+                        "endOffset": 3050
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 55,
+                    "startColumn": 4,
+                    "startOffset": 2854,
+                    "endLine": 58,
+                    "endColumn": 12,
+                    "endOffset": 3064
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 57,
+                        "startColumn": 4,
+                        "startOffset": 3055,
+                        "endLine": 60,
+                        "endColumn": 12,
+                        "endOffset": 3265
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 59,
+                    "startColumn": 4,
+                    "startOffset": 3069,
+                    "endLine": 62,
+                    "endColumn": 12,
+                    "endOffset": 3311
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 61,
+                        "startColumn": 4,
+                        "startOffset": 3270,
+                        "endLine": 64,
+                        "endColumn": 12,
+                        "endOffset": 3512
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 63,
+                    "startColumn": 4,
+                    "startOffset": 3316,
+                    "endLine": 66,
+                    "endColumn": 12,
+                    "endOffset": 3528
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 65,
+                        "startColumn": 4,
+                        "startOffset": 3517,
+                        "endLine": 68,
+                        "endColumn": 12,
+                        "endOffset": 3729
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 67,
+                    "startColumn": 4,
+                    "startOffset": 3533,
+                    "endLine": 70,
+                    "endColumn": 12,
+                    "endOffset": 3773
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 69,
+                        "startColumn": 4,
+                        "startOffset": 3734,
+                        "endLine": 72,
+                        "endColumn": 12,
+                        "endOffset": 3974
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 71,
+                    "startColumn": 4,
+                    "startOffset": 3778,
+                    "endLine": 74,
+                    "endColumn": 12,
+                    "endOffset": 3988
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 73,
+                        "startColumn": 4,
+                        "startOffset": 3979,
+                        "endLine": 76,
+                        "endColumn": 12,
+                        "endOffset": 4189
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 75,
+                    "startColumn": 4,
+                    "startOffset": 3993,
+                    "endColumn": 72,
+                    "endOffset": 4061
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 77,
+                        "startColumn": 4,
+                        "startOffset": 4194,
+                        "endColumn": 72,
+                        "endOffset": 4262
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 76,
+                    "startColumn": 4,
+                    "startOffset": 4066,
+                    "endLine": 78,
+                    "endColumn": 12,
+                    "endOffset": 4177
+                },
+                "from": {
+                    "file": "/Users/alessiorossotti/Documents/Dropbox/Universita/Magistrale/tesi_baresi/mobilecodegenerator3/it.polimi.mobilecodegenerator/src-gen/android/newApp/wear/build/intermediates/exploded-aar/com.google.android.support/wearable/1.4.0/res/values-v20/values.xml",
+                    "position": {
+                        "startLine": 78,
+                        "startColumn": 4,
+                        "startOffset": 4267,
+                        "endLine": 80,
+                        "endColumn": 12,
+                        "endOffset": 4378
+                    }
+                }
+            }
+        ]
+    }
+]

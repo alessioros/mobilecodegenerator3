@@ -152,7 +152,7 @@ public class MyWearableListenerService extends WearableListenerService {
 
 «REM»----------------------------------- Utils -----------------------------------«ENDREM»
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/utilities/Utils.java"-»
-package «companyIdentifier».«name.toLowerCase()»;
+package «companyIdentifier».«name.toLowerCase()».utilities;
 	
 import java.io.*;
 	

@@ -56,6 +56,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="StorageRecord">
     <eStructuralFeatures xsi:type="ecore:EReference" name="storageHandler" lowerBound="1"
         eType="#//StorageHandler" eOpposite="#//StorageHandler/storageRecords"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tempFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="databaseHandler" lowerBound="1"

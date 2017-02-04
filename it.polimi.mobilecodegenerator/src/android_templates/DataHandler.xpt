@@ -97,14 +97,3 @@ public StorageHandler getStorageHandler(){
 	return this.sh;
 }
 «ENDDEFINE-»
-
-«REM» main classes of specific handlers «ENDREM»
-
-«DEFINE main FOR DatabaseHandler-»
-«ENDDEFINE-»
-
-«DEFINE main FOR CloudHandler-»
-«ENDDEFINE-»
-
-«DEFINE main FOR StorageHandler-»
-«ENDDEFINE-»
