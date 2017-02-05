@@ -24,10 +24,10 @@ package «dataHandler.application.companyIdentifier».«dataHandler.application.nam
 
 import android.content.Context;
 import java.io.File;
-import java.io.OutputStream.FileOutputStream;
-import java.io.InputStream.FileInputStream;
-import java.io.Reader.InputStreamReader;
-import java.io.Reader.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 import java.lang.StringBuilder;
 
 public class StorageHandler{
@@ -51,8 +51,13 @@ public class StorageHandler{
 	* @param content the string content to write
 	* @return boolean success
 	*/
-	public boolean writeFile(String fileName, String content){
-	
+	public boolean writeFile(String fileName, String content, boolean isTemp){
+		
+		if(isTemp){
+			file = new File(this.context.getCacheDir(), fileName);
+		}else{
+			file = new File(this.context.getFilesDir(), fileName);
+		}
 		FileOutputStream outputStream = null;
 		try {
 		    outputStream = new FileOutputStream(file);
@@ -76,20 +81,21 @@ public class StorageHandler{
  
         String content = null;
  		FileInputStream inputStream = null;
+ 		StringBuilder fileContent = null;
 		try {
 			File file = null;
 			if(isTemp){
-				file = new File(this.context.getCacheDir(), filename);
+				file = new File(this.context.getCacheDir(), fileName);
 			}else{
-				file = new File(this.context.getFilesDir(), filename);
+				file = new File(this.context.getFilesDir(), fileName);
 			}
-		    inputStream = openFileInput(fileName, Context.MODE_PRIVATE);
+		    inputStream = this.context.openFileInput(fileName);
 		    InputStreamReader isr = new InputStreamReader(inputStream);
 		    BufferedReader bufferedReader = new BufferedReader(isr);
-		    StringBuilder content = new StringBuilder();
+		    fileContent = new StringBuilder();
    			String line;
 			while ((line = bufferedReader.readLine()) != null) {
-				content.append(line).append("\n");
+				fileContent.append(line).append("\n");
 			}
 		   	inputStream.close();
 		   	
@@ -97,7 +103,7 @@ public class StorageHandler{
 		    e.printStackTrace();
 		    return '';
 		}
-		return content;
+		return fileContent;
 	}
      
     /**
