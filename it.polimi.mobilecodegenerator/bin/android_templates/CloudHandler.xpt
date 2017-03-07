@@ -1,0 +1,136 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«EXPAND firebase FOR dataHandler.cloudHandler-»
+«ENDDEFINE-»
+
+«DEFINE firebase FOR CloudHandler-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/CloudHandler.java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class CloudHander{
+	
+	private DatabaseReference mDatabase;
+	
+	public CloudHandler(){
+		mDatabase = FirebaseDatabase.getInstance().getReference();
+	}
+}
+«ENDFILE-»
+«REM» define a Java class foreach object to store «ENDREM»
+«FOREACH this.cloudObjects AS CO-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/models/"+CO.name.toFirstUpper()+".java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».models;
+
+public class «CO.name.toFirstUpper()»{
+	
+	«EXPAND attributesDecl FOR CO.objectAttributes-»
+	
+	public «CO.name.toFirstUpper()»(){
+		
+	}
+	
+	public «CO.name.toFirstUpper()»(«EXPAND objParameters FOR CO.objectAttributes-»){
+		«EXPAND attributesAssign FOR CO.objectAttributes-»
+	}
+}
+«ENDFILE-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE attributesDecl FOR List[ObjectAttribute]-»
+«FOREACH this AS OA-»
+«IF OA.type.matches('String')-»
+public String «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Integer')-»
+public int «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Float')-»
+public float «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Double')-»
+public Double «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Boolean')-»
+public boolean «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Object')-»
+public «OA.object» «OA.name»;
+«ENDIF-»
+«IF OA.type.matches('Object list')-»
+public ArrayList<«OA.object»> «OA.name»;
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE objParameters FOR List[ObjectAttribute]-»
+«FOREACH this.withoutLast() AS OA-»
+«IF OA.type.matches('String')-»
+String «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Integer')-»
+int «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Float')-»
+float «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Double')-»
+Double «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Boolean')-»
+boolean «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Object')-»
+«OA.object» «OA.name»,
+«ENDIF-»
+«IF OA.type.matches('Object list')-»
+ArrayList<«OA.object»> «OA.name»,
+«ENDIF-»
+«ENDFOREACH-»
+«IF this.last().type.matches('String')-»
+String «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Integer')-»
+int «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Float')-»
+float «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Double')-»
+Double «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Boolean')-»
+boolean «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Object')-»
+«this.last().object» «this.last().name»
+«ENDIF-»
+«IF this.last().type.matches('Object list')-»
+ArrayList<«this.last().object»> «this.last().name»
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE attributesAssign FOR List[ObjectAttribute]-»
+«FOREACH this AS OA-»
+this.«OA.name» = «OA.name»;
+«ENDFOREACH-»
+«ENDDEFINE-»

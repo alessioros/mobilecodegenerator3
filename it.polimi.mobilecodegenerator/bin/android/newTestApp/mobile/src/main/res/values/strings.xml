@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- shared preferences keys and default values -->
+	<string name="Name">Name</string>
+	<string name="Name_default">John</string>
+	<string name="Surname">Surname</string>
+	<string name="Surname_default">Appleseed</string>
+	<string name="Email">Email</string>
+	<string name="Email_default">john.appleseed@apple.com</string>
+	<string name="Age">Age</string>
+	<string name="Age_default">0</string>
+	<string name="AvgPoints">AvgPoints</string>
+	<string name="AvgPoints_default">0.0</string>
+
+</resources>

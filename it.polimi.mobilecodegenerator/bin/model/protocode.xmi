@@ -2,13 +2,44 @@
 <metamodel:Application xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newTestApp" companyIdentifier="it.polimi">
     <dataHandler>
+        <preferenceHandler>
+            <preferenceRecords key="Name" value="John" type="string"/>
+            <preferenceRecords key="Surname" value="Appleseed" type="string"/>
+            <preferenceRecords key="Email" value="john.appleseed@apple.com" type="string"/>
+            <preferenceRecords key="Age" value="0" type="int"/>
+            <preferenceRecords key="AvgPoints" value="0.0" type="float"/>
+        </preferenceHandler>
+        <databaseHandler>
+            <entities name="Person" primaryKey="CF">
+                <entityAttributes name="Name" type="String"/>
+                <entityAttributes name="Surname" type="String"/>
+                <entityAttributes name="Birthday" type="Date"/>
+                <entityRelationships name="hasAnimal" destination="Animal" type="1 : N"/>
+            </entities>
+            <entities name="Animal" primaryKey="ID">
+                <entityAttributes name="Name" type="String"/>
+                <entityRelationships name="hasAnimal" destination="Person" type="N : 1"/>
+            </entities>
+        </databaseHandler>
+        <cloudHandler>
+            <cloudObjects name="Event">
+                <objectAttributes name="Name" type="String"/>
+                <objectAttributes name="Location" type="String"/>
+                <objectAttributes name="Organizer" type="Object" object="Person"/>
+            </cloudObjects>
+            <cloudObjects name="Person">
+                <objectAttributes name="Name" type="String" object="null"/>
+                <objectAttributes name="Surname" type="String"/>
+            </cloudObjects>
+        </cloudHandler>
         <storageHandler>
             <storageRecords name="provaUno" extension="text" tempFile="true"/>
             <storageRecords name="provaDue" extension="text" tempFile="true"/>
             <storageRecords name="provaTre" extension="text" tempFile="true"/>
         </storageHandler>
     </dataHandler>
+    <viewControllers name="newView" backgroundColor="" backgroundImage="" launcher="true"/>
     <menu/>
 </metamodel:Application>
