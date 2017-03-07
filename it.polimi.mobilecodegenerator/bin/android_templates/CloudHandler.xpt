@@ -23,16 +23,60 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/CloudHandler.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
-public class CloudHander{
+import static com.google.android.gms.internal.zzs.TAG;
+
+«FOREACH this.cloudObjects AS CO-»
+import it.polimi.newtestapp.models.«CO.name.toFirstUpper()-»;
+«ENDFOREACH-»
+
+public class CloudHandler{
 	
 	private DatabaseReference mDatabase;
+	private FirebaseDatabase fDB;
 	
 	public CloudHandler(){
-		mDatabase = FirebaseDatabase.getInstance().getReference();
+		fDB = FirebaseDatabase.getInstance();
 	}
+	
+	public DatabaseReference getReference(String reference){
+		
+		DatabaseReference mRef = this.fDB.getReference(reference);
+		
+		// Read from the database
+		mRef.addValueEventListener(new ValueEventListener() {
+		    @Override
+		    public void onDataChange(DataSnapshot dataSnapshot) {
+		        // This method is called once with the initial value and again
+		        // whenever data at this location is updated.
+		        String value = dataSnapshot.getValue(String.class);
+		        Log.d(TAG, "Value is: " + value);
+		    }
+		
+		    @Override
+		    public void onCancelled(DatabaseError error) {
+		        // Failed to read value
+		        Log.w(TAG, "Failed to read value.", error.toException());
+		    }
+		});
+	}
+	
+	«FOREACH this.cloudObjects AS CO-»
+	public void writeNew«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
+	
+		«CO.name.toFirstUpper()-» «CO.name.toLowerCase()-» = new «CO.name.toFirstUpper()-»(«EXPAND attributesNames FOR CO.objectAttributes-»);
+		// modify the reference and the ID with the values setted in your Firebase console
+		//this.FBD.child( [reference] ).child( [ID] ).setValue(«CO.name.toLowerCase()-»);
+	}
+	«ENDFOREACH-»
+	
 }
 «ENDFILE-»
 «REM» define a Java class foreach object to store «ENDREM»
@@ -59,25 +103,25 @@ public class «CO.name.toFirstUpper()»{
 «DEFINE attributesDecl FOR List[ObjectAttribute]-»
 «FOREACH this AS OA-»
 «IF OA.type.matches('String')-»
-public String «OA.name»;
+public String «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Integer')-»
-public int «OA.name»;
+public int «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Float')-»
-public float «OA.name»;
+public float «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Double')-»
-public Double «OA.name»;
+public Double «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Boolean')-»
-public boolean «OA.name»;
+public boolean «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Object')-»
-public «OA.object» «OA.name»;
+public «OA.object» «OA.name.toLowerCase()»;
 «ENDIF-»
 «IF OA.type.matches('Object list')-»
-public ArrayList<«OA.object»> «OA.name»;
+public ArrayList<«OA.object»> «OA.name.toLowerCase()»;
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
@@ -85,52 +129,59 @@ public ArrayList<«OA.object»> «OA.name»;
 «DEFINE objParameters FOR List[ObjectAttribute]-»
 «FOREACH this.withoutLast() AS OA-»
 «IF OA.type.matches('String')-»
-String «OA.name»,
+String «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Integer')-»
-int «OA.name»,
+int «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Float')-»
-float «OA.name»,
+float «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Double')-»
-Double «OA.name»,
+Double «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Boolean')-»
-boolean «OA.name»,
+boolean «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Object')-»
-«OA.object» «OA.name»,
+«OA.object» «OA.name.toLowerCase()»,
 «ENDIF-»
 «IF OA.type.matches('Object list')-»
-ArrayList<«OA.object»> «OA.name»,
+ArrayList<«OA.object»> «OA.name.toLowerCase()»,
 «ENDIF-»
 «ENDFOREACH-»
 «IF this.last().type.matches('String')-»
-String «this.last().name»
+String «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Integer')-»
-int «this.last().name»
+int «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Float')-»
-float «this.last().name»
+float «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Double')-»
-Double «this.last().name»
+Double «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Boolean')-»
-boolean «this.last().name»
+boolean «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Object')-»
-«this.last().object» «this.last().name»
+«this.last().object» «this.last().name.toLowerCase()»
 «ENDIF-»
 «IF this.last().type.matches('Object list')-»
-ArrayList<«this.last().object»> «this.last().name»
+ArrayList<«this.last().object»> «this.last().name.toLowerCase()»
 «ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE attributesAssign FOR List[ObjectAttribute]-»
 «FOREACH this AS OA-»
-this.«OA.name» = «OA.name»;
+this.«OA.name.toLowerCase()» = «OA.name.toLowerCase()»;
 «ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE attributesNames FOR List[ObjectAttribute]-»
+«FOREACH this.withoutLast() AS OA-»
+«OA.name.toLowerCase()»,
+«ENDFOREACH-»
+«this.last().name.toLowerCase()»
 «ENDDEFINE-»

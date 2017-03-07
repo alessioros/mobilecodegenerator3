@@ -106,6 +106,12 @@ public class AppJavaUtil {
 		return false;
 	}
 	
+	public static boolean existsObject(Object c) {
+		
+		if(c != null) return true;
+		return false;
+	}
+	
 	public boolean isAMenuDestination(String name, List<?> menuItems) {
 		for(int i = 0; i < menuItems.size(); i++) {
 			if(name.equals(menuItems.get(i))) {

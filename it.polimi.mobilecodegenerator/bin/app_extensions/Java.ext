@@ -17,7 +17,6 @@ import metamodel;
 
 Void setApplicationName(String applicationName):JAVA app_extensions.AppJavaUtil.setApplicationName(java.lang.String);
 List[String] getUserFilesNames():JAVA app_extensions.AppJavaUtil.getUserFilesNames();
-
 Boolean existsAtLeastOne(Collection c):JAVA app_extensions.AppJavaUtil.existsAtLeastOne(java.util.Collection);
-
+Boolean existsObject(Object c):JAVA app_extensions.AppJavaUtil.existsObject(java.lang.Object);
 Boolean isAMenuDestination(String name, List menuItems):JAVA app_extensions.AppJavaUtil.isAMenuDestination(java.lang.String, java.util.List);
