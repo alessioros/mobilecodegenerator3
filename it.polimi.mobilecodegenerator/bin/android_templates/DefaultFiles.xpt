@@ -86,22 +86,22 @@ android {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	wearApp project(':wear')
-	compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+	compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
     «IF existsAtLeastOne(viewControllers.map) || existsAtLeastOne(watchControllers.watchVoiceMessage)-»
-    compile 'com.google.android.gms:play-services:10.0.1'
+    compile 'com.google.android.gms:play-services:10.2.0'
     «ENDIF-»
     «IF existsObject(dataHandler.cloudHandler)-»
     compile 'com.google.firebase:firebase-database:10.0.1'
     «ENDIF-»
     «IF existsAtLeastOne(viewControllers.cards)-»
-    compile 'com.android.support:cardview-v7:25.1.0'
+    compile 'com.android.support:cardview-v7:25.2.0'
     «ENDIF-»
     «IF menu.menuItems.size > 0 -»
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:support-v4:25.2.0'
     «ENDIF-»
     «IF existsAtLeastOne(viewControllers.datepickers) -»
-    compile 'com.github.prolificinteractive:material-calendarview:v1.4.2'
+    compile 'com.github.prolificinteractive:material-calendarview:v1.4.3'
     «ENDIF-»
     «IF existsAtLeastOne(viewControllers.timepickers) -»
     compile 'com.github.ugurtekbas:dialTimePicker:640f7526dd'

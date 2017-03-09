@@ -37,25 +37,40 @@ import static com.google.android.gms.internal.zzs.TAG;
 import it.polimi.newtestapp.models.«CO.name.toFirstUpper()-»;
 «ENDFOREACH-»
 
+/* this class contains generic functions in order to interface with Firebase realtime database
+* for configuring and managing your cloud database visit: https://console.firebase.google.com/
+* for more complete examples visit: https://firebase.google.com/docs/database
+*/
+
 public class CloudHandler{
 	
-	private DatabaseReference mDatabase;
 	private FirebaseDatabase fDB;
 	
 	public CloudHandler(){
 		fDB = FirebaseDatabase.getInstance();
 	}
 	
+	/*
+	* returns the reference to the database at the specified location
+	* @param reference the string of the location (example reference = "users")
+	*/
 	public DatabaseReference getReference(String reference){
 		
-		DatabaseReference mRef = this.fDB.getReference(reference);
+		return this.fDB.getReference(reference);
+	}
+	
+	/*
+	* allows to manipulate data in realtime
+	* @param reference the DatabaseReference
+	*/
+	public void addListener(DatabaseReference reference){
 		
-		// Read from the database
-		mRef.addValueEventListener(new ValueEventListener() {
+		reference.addValueEventListener(new ValueEventListener() {
 		    @Override
 		    public void onDataChange(DataSnapshot dataSnapshot) {
 		        // This method is called once with the initial value and again
 		        // whenever data at this location is updated.
+		        // for a callback called just once -> addListenerForSingleValueEvent()
 		        String value = dataSnapshot.getValue(String.class);
 		        Log.d(TAG, "Value is: " + value);
 		    }
@@ -69,11 +84,25 @@ public class CloudHandler{
 	}
 	
 	«FOREACH this.cloudObjects AS CO-»
+	/*
+	* allows to write a new object to the database
+	* @param object fields
+	*/
 	public void writeNew«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
 	
 		«CO.name.toFirstUpper()-» «CO.name.toLowerCase()-» = new «CO.name.toFirstUpper()-»(«EXPAND attributesNames FOR CO.objectAttributes-»);
-		// modify the reference and the ID with the values setted in your Firebase console
-		//this.FBD.child( [reference] ).child( [ID] ).setValue(«CO.name.toLowerCase()-»);
+		// modify the reference and the ID with the values in your Firebase console
+		//this.FBD.child("«CO.name.toLowerCase()-»s").child("«CO.name.toLowerCase()-»_ID").setValue(«CO.name.toLowerCase()-»);
+	}
+	
+	/*
+	* allows to delete an object from the database
+	* @param objectId
+	*/
+	public void delete«CO.name.toFirstUpper()-»(String objectId){
+	
+		// modify the reference and the ID with the values in your Firebase console
+		//this.FBD.child("«CO.name.toLowerCase()-»s").child(objectId).removeValue();
 	}
 	«ENDFOREACH-»
 	

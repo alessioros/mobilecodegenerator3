@@ -78,7 +78,7 @@ public DatabaseHandler getDatabaseHandler(){
 private CloudHandler ch;
 «ENDDEFINE-»
 «DEFINE initializeCL FOR CloudHandler-»
-this.ch = new CloudHandler(this.context);
+this.ch = new CloudHandler();
 «ENDDEFINE-»
 «DEFINE CLgetter FOR CloudHandler-»
 public CloudHandler getCloudHandler(){
