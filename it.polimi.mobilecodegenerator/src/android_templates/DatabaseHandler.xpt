@@ -140,20 +140,19 @@ public class DatabaseStrings{
 «ENDDEFINE-»
 «REM» for each entity the insert method «ENDREM»
 «DEFINE save FOR Entity-»
-public void insert«name.toFirstUpper()»(«EXPAND parameters FOR entityAttributes-»)
+public void insert«name.toFirstUpper()»(«name.toFirstUpper()» «name.toLowerCase()»)
 {
     SQLiteDatabase db=dbhelper.getWritableDatabase();
  
     ContentValues cv=new ContentValues();
+    
+    cv.put(DatabaseStrings.«name.toUpperCase()»_ID, «name.toFirstUpper()».get«primaryKey.toFirstUpper()»);
     «EXPAND fieldPut FOREACH entityAttributes-»
     try
     {
         db.insert(DatabaseStrings.TBL_«name.toUpperCase()», null,cv);
     }
-    catch (SQLiteException sqle)
-    {
-        
-    }
+    catch (SQLiteException sqle){}
 }
 «ENDDEFINE-»
 
@@ -256,7 +255,7 @@ public static final String «entity.name.toUpperCase()»_«name.toUpperCase()» = "«
 «ENDDEFINE-»
 
 «DEFINE fieldPut FOR EntityAttribute-»
-cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «name»);
+cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «entity.name.toFirstUpper()».get«name.toFirstUpper()»);
 «ENDDEFINE-»
 
 «DEFINE attListCreate FOR List[EntityAttribute]-»

@@ -1,0 +1,42 @@
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE main FOR Application-»
+«FOREACH dataHandler.databaseHandler.entities AS ENT-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/model/"+ENT.name.toFirstUpper()+".java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».model;
+«EXPAND modelClass FOR ENT-»
+«ENDFILE-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE modelClass FOR Entity-»
+public class «Entity.name.toFirstUpper()-»{
+	
+	private String «this.primaryKey-»;	
+	«FOREACH this.entityAttributes AS Att-»
+	private «Att.type-» «Att.name.toFirstUpper()-»;
+	«ENDFOREACH-»	
+	
+	private void set«this.primaryKey.toFirstUpper()-»(String «this.primaryKey-»){
+		this.«this.primaryKey-» = «this.primaryKey-»;
+	};
+	
+	private String get«this.primaryKey.toFirstUpper()-»(){
+		 return this.«this.primaryKey-»;
+	};
+	
+	«FOREACH this.entityAttributes AS Att-»
+	private void set«Att.name.toFirstUpper()-»(«Att.type-» «Att.name.toFirstUpper()-»){
+		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
+	};
+	
+	private «Att.type-» get«Att.name.toFirstUpper()-»(){
+		return this.«Att.name.toFirstUpper()-»;
+	};
+	«ENDFOREACH-»
+}
+«ENDDEFINE-»
