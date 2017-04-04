@@ -31,9 +31,11 @@ import java.io.BufferedReader;
 import java.lang.StringBuilder;
 
 public class StorageHandler{
-«EXPAND fileNames FOR storageRecords-»
-	
+
 	private Context context;
+	«FOREACH this.storageRecords AS SR-»
+	String «SR.name-» = "«SR.name-»";
+	«ENDFOREACH-»
 	
 	/**
 	* Constructor
@@ -132,10 +134,4 @@ public class StorageHandler{
 	}
 }
 «ENDFILE-»
-«ENDDEFINE-»
-
-«DEFINE fileNames FOR List[StorageRecord]-»
-«FOREACH this AS SR-»
-	String «SR.name-» = "«SR.name-»";
-«ENDFOREACH-»
 «ENDDEFINE-»

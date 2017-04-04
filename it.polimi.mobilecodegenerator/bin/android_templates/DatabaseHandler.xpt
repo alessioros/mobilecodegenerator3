@@ -15,6 +15,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
+«EXTENSION app_extensions::Java»
+
 «DEFINE main FOR Application-»
 «EXPAND database FOR dataHandler.databaseHandler-»
 «EXPAND databaseStrings FOR dataHandler.databaseHandler-»
@@ -62,6 +64,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+«IF existsAtLeastOne(this.dataHandler.databaseHandler.entities.entityAttributes.type.matches("Date"))-»
+import java.text.SimpleDateFormat;
+«ENDIF-»
+
+«FOREACH this.entities AS EN-»
+import «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».model.«EN.name.toFirstUpper()»;
+«ENDFOREACH-»
 
 public class DatabaseHandler{
 	
@@ -143,11 +152,21 @@ public class DatabaseStrings{
 public void insert«name.toFirstUpper()»(«name.toFirstUpper()» «name.toLowerCase()»)
 {
     SQLiteDatabase db=dbhelper.getWritableDatabase();
- 
+ 	
+ 	«IF this.entityAttributes.exists(e|e.type.matches("Date"))-»
+ 	// choose your date format
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    «ENDIF-»
+    
     ContentValues cv=new ContentValues();
     
-    cv.put(DatabaseStrings.«name.toUpperCase()»_ID, «name.toFirstUpper()».get«primaryKey.toFirstUpper()»);
+    cv.put(DatabaseStrings.«name.toUpperCase()»_ID, «name.toLowerCase()».get«primaryKey.toFirstUpper()»());
     «EXPAND fieldPut FOREACH entityAttributes-»
+    «FOREACH this.entityRelationships AS Rel-»
+	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
+	cv.put(DatabaseStrings.«Rel.destination.toUpperCase()»_ID, «name.toLowerCase()».get«Rel.destination.toFirstUpper()-»ID() );           	
+    «ENDIF-»	
+	«ENDFOREACH-»	
     try
     {
         db.insert(DatabaseStrings.TBL_«name.toUpperCase()», null,cv);
@@ -255,7 +274,11 @@ public static final String «entity.name.toUpperCase()»_«name.toUpperCase()» = "«
 «ENDDEFINE-»
 
 «DEFINE fieldPut FOR EntityAttribute-»
-cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «entity.name.toFirstUpper()».get«name.toFirstUpper()»);
+«IF type.matches("Date")-»
+ cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», dateFormat.format(«entity.name.toLowerCase()».get«name.toFirstUpper()»()));
+«ELSE»
+ cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «entity.name.toLowerCase()».get«name.toFirstUpper()»());
+«ENDIF»
 «ENDDEFINE-»
 
 «DEFINE attListCreate FOR List[EntityAttribute]-»
