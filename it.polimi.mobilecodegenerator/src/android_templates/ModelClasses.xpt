@@ -32,6 +32,16 @@ public class «Entity.name.toFirstUpper()-»{
 	private «Att.type-» «Att.name.toFirstUpper()-»;
 	«ENDFOREACH-»	
 	
+	// default empty constructor
+	public «Entity.name.toFirstUpper()-»(){
+		
+	}
+	
+	// class constructor
+	public «Entity.name.toFirstUpper()-»(«EXPAND entityAttributes FOR this-»){
+		
+	}
+	
 	private void set«this.primaryKey.toFirstUpper()-»(String «this.primaryKey-»){
 		this.«this.primaryKey-» = «this.primaryKey-»;
 	};
@@ -50,4 +60,13 @@ public class «Entity.name.toFirstUpper()-»{
 	};
 	«ENDFOREACH-»
 }
+«ENDDEFINE-»
+
+«DEFINE entityAttributes FOR Entity»
+«FOREACH this.entityAttributes.withoutLast() AS ATT-»
+«ATT.type-» «ATT.name.toFirstUpper()-»,
+«ENDFOREACH-»
+«FOREACH this.entityAttributes.withoutLast() AS ATT-»
+«ATT.type-» «ATT.name.toFirstUpper()-»
+«ENDFOREACH-»
 «ENDDEFINE-»
