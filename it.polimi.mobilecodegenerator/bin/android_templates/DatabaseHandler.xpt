@@ -19,43 +19,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE main FOR Application-»
 «EXPAND database FOR dataHandler.databaseHandler-»
-«EXPAND databaseStrings FOR dataHandler.databaseHandler-»
 «ENDDEFINE-»
 
 «DEFINE database FOR DatabaseHandler-»
-«REM» DBHelper Class «ENDREM»
-«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DBHelper.java"-»
-package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
-
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-public class DBHelper extends SQLiteOpenHelper{
-	
-	// If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SQLITE_DB";
-    
-	public DBHelper(Context context){
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	}
-	
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-		«EXPAND dbCreateQuery FOREACH entities-»
-    }
-    
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    	Log.w(DBHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-        «EXPAND dbDeleteQuery FOREACH entities-»
-        onCreate(db);
-    }
-}
-«ENDFILE-»
-«REM» DatabaseHandler Class «ENDREM»
 «FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DatabaseHandler.java"-»
 package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
 
@@ -64,6 +30,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import java.util.ArrayList;
+import java.util.List;
 «IF existsAtLeastOne(this.dataHandler.databaseHandler.entities.entityAttributes.type.matches("Date"))-»
 import java.text.ParseException;
 import java.util.Date;
@@ -87,69 +55,11 @@ public class DatabaseHandler{
     «EXPAND save FOREACH entities-»
     «EXPAND delete FOREACH entities-»
     «EXPAND query FOREACH entities-»
+    «EXPAND getAll FOREACH entities-»
 }
 «ENDFILE-»
 «ENDDEFINE-»
 
-«DEFINE databaseStrings FOR DatabaseHandler-»
-«REM» DatabaseStrings Class «ENDREM»
-«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/data/DatabaseStrings.java"-»
-package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».data;
-
-class DatabaseStrings{
-
-	«EXPAND entityStrings FOREACH entities-»
-}
-«ENDFILE-»
-«ENDDEFINE-»
-
-«REM» for each entity strings representing name and attributes «ENDREM»
-«DEFINE entityStrings FOR Entity-»
-	/* Strings for table «name»*/
-	static final String TBL_«name.toUpperCase()» = "«name»";
-	static final String «name.toUpperCase()»_ID = "«primaryKey»";
-	«EXPAND attributeString FOREACH entityAttributes-»
-	
-«ENDDEFINE-»
-«REM» for each entity the string query that creates the table «ENDREM»
-«DEFINE dbCreateQuery FOR Entity-»
-
-	String CREATE_«name.toUpperCase()»="CREATE TABLE "+DatabaseStrings.TBL_«name.toUpperCase()»+
-                " (" + DatabaseStrings.«name.toUpperCase()»_ID + " INTEGER PRIMARY KEY," +
-                
-                «IF entityRelationships.isEmpty-»
-	                «EXPAND attListCreate FOR entityAttributes.withoutLast()-»
-	                «EXPAND attributeCreateLast FOR entityAttributes.last()-»
-                «ELSE-»
-	                «IF entityRelationships.exists(e|e.type.matches("N : 1"))-»
-	                	«EXPAND attListCreate FOR entityAttributes-»
-	                	«IF entityRelationships.exists(e|e.type.matches("1 : 1"))-»
-	                		«EXPAND foreignKeyOneOne FOR entityRelationships-»
-	                		«EXPAND foreignKeyLastNOne FOR entityRelationships-»
-	                	«ELSE-»
-	                		«EXPAND foreignKeyLastNOne FOR entityRelationships-»
-	                	«ENDIF-»
-	                «ELSE-»
-	                	«IF entityRelationships.exists(e|e.type.matches("1 : 1"))-»
-	                		«EXPAND attListCreate FOR entityAttributes-»
-	                		«EXPAND foreignKeyLastOneOne FOR entityRelationships-»
-	                	«ELSE-»
-	                		«EXPAND attListCreate FOR entityAttributes.withoutLast()-»
-	                		«EXPAND attributeCreateLast FOR entityAttributes.last()-»
-	                	«ENDIF-»	
-	                «ENDIF-»	          
-               «ENDIF-»
-            
-  	db.execSQL(CREATE_«name.toUpperCase()»);
-  	
-  	«IF entityRelationships.exists(e|e.type.matches("N : N"))-»
-		«EXPAND intermediateTable FOR entityRelationships-»	                	
-	«ENDIF-» 	
-«ENDDEFINE-»
-«REM» for each entity the string query that drops the table «ENDREM»
-«DEFINE dbDeleteQuery FOR Entity-»
-  	db.execSQL("DROP TABLE IF EXISTS " + DatabaseStrings.TBL_«name.toUpperCase()»);
-«ENDDEFINE-»
 «REM» for each entity the insert method «ENDREM»
 «DEFINE save FOR Entity-»
 public void insert«name.toFirstUpper()»(«name.toFirstUpper()» «name.toLowerCase()»)
@@ -238,7 +148,8 @@ public boolean delete«name.toFirstUpper()»(String «primaryKey»)
 public «name.toFirstUpper()» query«name.toFirstUpper()»(String «this.primaryKey»)
 {
     Cursor crs;
-    «name.toFirstUpper()» «name» = new «name.toFirstUpper()»();
+    «name.toFirstUpper()» «name.toLowerCase()» = new «name.toFirstUpper()»();
+    SQLiteDatabase db=dbhelper.getWritableDatabase();
     
     String tableName = DatabaseStrings.TBL_«name.toUpperCase()»;
     String primaryKey = DatabaseStrings.«name.toUpperCase()»_ID;
@@ -246,8 +157,7 @@ public «name.toFirstUpper()» query«name.toFirstUpper()»(String «this.primaryKey»
     
     try
     {
-        SQLiteDatabase db=dbhelper.getReadableDatabase();
-        String SQL_QUERY = "SELECT * FROM "+ tableName +"WHERE "+ primaryKey +" = ?";
+        String SQL_QUERY = "SELECT * FROM "+ tableName +" WHERE "+ primaryKey +" = ?";
         crs=db.rawQuery(SQL_QUERY, whereArgs);
     }
     catch(SQLiteException sqle){ 
@@ -265,28 +175,28 @@ public «name.toFirstUpper()» query«name.toFirstUpper()»(String «this.primaryKey»
     while (!crs.isAfterLast()) {
         «FOREACH 0.upTo(this.entityAttributes.size - 1) AS index-»
         «IF this.entityAttributes.get(index).type.matches('Integer')-»
-        «name».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getInt(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getInt(«index»));
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('Date')-»
         try {
 			date = dateFormat.parse(crs.getString(«index»));
-			«name».set«this.entityAttributes.get(index).name.toFirstUpper()»(date);
+			«name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(date);
 		} catch (ParseException e) {
-			«name».set«this.entityAttributes.get(index).name.toFirstUpper()»(null);
+			«name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(null);
 			e.printStackTrace();
 		}
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('String')-»
-        «name».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getString(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getString(«index»));
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('Float')-»
-        «name».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getFloat(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getFloat(«index»));
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('Double')-»
-        «name».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getDouble(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getDouble(«index»));
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('Boolean')-»
-        «name».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getBoolean(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getBoolean(«index»));
         «ENDIF-»
         «ENDFOREACH-»
    	    crs.moveToNext();
@@ -297,8 +207,73 @@ public «name.toFirstUpper()» query«name.toFirstUpper()»(String «this.primaryKey»
 }
 «ENDDEFINE-»
 
-«DEFINE attributeString FOR EntityAttribute-»
-static final String «entity.name.toUpperCase()»_«name.toUpperCase()» = "«name»";
+«REM» for each entity the getAll method «ENDREM»
+«DEFINE getAll FOR Entity-»
+public List<«name.toFirstUpper()»> get«name.toFirstUpper()»List()
+{
+    SQLiteDatabase db=dbhelper.getWritableDatabase();
+    
+    Cursor crs;
+    List<«name.toFirstUpper()»> «name.toLowerCase()»List = new ArrayList<>();
+    
+    String tableName = DatabaseStrings.TBL_«name.toUpperCase()»;
+    
+    try
+    {
+        String SQL_QUERY = "SELECT * FROM "+ tableName;
+        crs=db.rawQuery(SQL_QUERY, null);
+    }
+    catch(SQLiteException sqle){ 
+	    sqle.printStackTrace();
+	    return null;
+    }
+    
+    «IF this.entityAttributes.exists(e|e.type.matches('Date'))-»
+    // choose your date format
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY);
+	Date date;
+    «ENDIF-»
+        
+	crs.moveToFirst();
+    while (!crs.isAfterLast()) {
+    	
+    	«name.toFirstUpper()» «name.toLowerCase()» = new «name.toFirstUpper()»();
+    	
+        «FOREACH 0.upTo(this.entityAttributes.size - 1) AS index-»
+        «IF this.entityAttributes.get(index).type.matches('Integer')-»
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getInt(«index»));
+        «ENDIF-»
+        «IF this.entityAttributes.get(index).type.matches('Date')-»
+        try {
+			date = dateFormat.parse(crs.getString(«index»));
+			«name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(date);
+		} catch (ParseException e) {
+			«name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(null);
+			e.printStackTrace();
+		}
+        «ENDIF-»
+        «IF this.entityAttributes.get(index).type.matches('String')-»
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getString(«index»));
+        «ENDIF-»
+        «IF this.entityAttributes.get(index).type.matches('Float')-»
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getFloat(«index»));
+        «ENDIF-»
+        «IF this.entityAttributes.get(index).type.matches('Double')-»
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getDouble(«index»));
+        «ENDIF-»
+        «IF this.entityAttributes.get(index).type.matches('Boolean')-»
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getBoolean(«index»));
+        «ENDIF-»
+        «ENDFOREACH-»
+        
+        «name.toLowerCase()»List.add(«name.toLowerCase()»);
+   	    crs.moveToNext();
+    }
+    crs.close();
+     
+    return «name.toLowerCase()»List;
+ 	
+}
 «ENDDEFINE-»
 
 «DEFINE fieldPut FOR EntityAttribute-»
@@ -307,74 +282,5 @@ static final String «entity.name.toUpperCase()»_«name.toUpperCase()» = "«name»";
 «ELSE»
  cv.put(DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()», «entity.name.toLowerCase()».get«name.toFirstUpper()»());
 «ENDIF»
-«ENDDEFINE-»
-
-«DEFINE attListCreate FOR List[EntityAttribute]-»
-«FOREACH this AS EA-»
-«IF EA.type.matches('String') || EA.type.matches('Date') -»
-	DatabaseStrings.«EA.entity.name.toUpperCase()»_«EA.name.toUpperCase()»+" TEXT," +
-«ENDIF-»
-«IF EA.type.matches('Integer') || EA.type.matches('Boolean')-»
-	DatabaseStrings.«EA.entity.name.toUpperCase()»_«EA.name.toUpperCase()»+" INT," +
-«ENDIF-»
-«IF EA.type.matches('Float') || EA.type.matches('Double')-»
-	DatabaseStrings.«EA.entity.name.toUpperCase()»_«EA.name.toUpperCase()»+" REAL," +
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE foreignKeyOneOne FOR List[EntityRelationship]-»
-«FOREACH this AS ER-»
-«IF ER.type.matches("1 : 1")-»
-" FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID +"," +
-«this.remove(ER)-»
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE foreignKeyNOne FOR List[EntityRelationship]-»
-«FOREACH this AS ER-»
-«IF ER.type.matches("N : 1")-»
-" FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID +"," +
-«this.remove(ER)-»
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE foreignKeyLastOneOne FOR List[EntityRelationship]-»
-«FOREACH this.withoutLast() AS ER-»
-" FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID +"," +
-«ENDFOREACH-»
-" FOREIGN KEY ("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«this.last().destination.toUpperCase()-»+"("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+"));";
-«ENDDEFINE-»
-
-«DEFINE foreignKeyLastNOne FOR List[EntityRelationship]-»
-«FOREACH this.withoutLast() AS ER-»
-" FOREIGN KEY ("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«ER.destination.toUpperCase()-»+"("+DatabaseStrings.«ER.destination.toUpperCase()-»_ID +"," +
-«ENDFOREACH-»
-" FOREIGN KEY ("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+") REFERENCES "+DatabaseStrings.TBL_«this.last().destination.toUpperCase()-»+"("+DatabaseStrings.«this.last().destination.toUpperCase()-»_ID+"));";
-«ENDDEFINE-»
-
-«DEFINE intermediateTable FOR List[EntityRelationship]-»
-«FOREACH this AS NNER-»
-«IF NNER.type.matches("N : N")-»
-///// TODO CREATE TABLE NN /////////////
-String CREATE_«NNER.name.toUpperCase()»_«NNER.destination.toUpperCase()»="CREATE TABLE "+DatabaseStrings.TBL_«NNER.name.toUpperCase()»_«NNER.destination.toUpperCase()»+";"
-
-db.execSQL(CREATE_«name.toUpperCase()»);
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE attributeCreateLast FOR EntityAttribute-»
-«IF type.matches('String') || type.matches('Date') -»
-	DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" TEXT)";
-«ENDIF-»
-«IF type.matches('Integer') || type.matches('Boolean')-»
-	DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" INT)";
-«ENDIF-»
-«IF type.matches('Float') || type.matches('Double')-»
-	DatabaseStrings.«entity.name.toUpperCase()»_«name.toUpperCase()»+" REAL)";
-«ENDIF-»
 «ENDDEFINE-»
 

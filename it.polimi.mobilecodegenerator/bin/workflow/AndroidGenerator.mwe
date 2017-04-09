@@ -134,6 +134,19 @@
 		</resourceManager>
 	</component>
 	
+	<!-- generate DatabaseHelper and DatabaseStrings -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::DatabaseHelper::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 	<!-- generate model classes -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
