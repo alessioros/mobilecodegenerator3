@@ -25,6 +25,9 @@ package «dataHandler.application.companyIdentifier».«dataHandler.application.nam
 «IF ENT.entityAttributes.exists(e|e.type.matches("Date"))-»
 import java.util.Date;
 «ENDIF-»
+«IF ENT.entityRelationships.exists(e|e.type.matches("1 : N") || e.type.matches("N : N"))-»
+import java.util.List;
+«ENDIF-»
 
 «EXPAND modelClass FOR ENT-»
 «ENDFILE-»
@@ -42,9 +45,9 @@ public class «this.name.toFirstUpper()-»{
 	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
 	private int «Rel.destination.toFirstUpper()-»ID;            	
     «ENDIF-»
-    «IF Rel.type.matches("N : N")-»
+    «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
 	private List<Integer> «Rel.destination.toFirstUpper()-»IDs;
-    «ENDIF-»		
+    «ENDIF-»	
 	«ENDFOREACH-»	
 	
 	// default empty constructor
@@ -52,6 +55,7 @@ public class «this.name.toFirstUpper()-»{
 	
 	// class constructor
 	public «this.name.toFirstUpper()-»(«EXPAND entityAttributes FOR this-»){
+		this.«this.primaryKey-» = «this.primaryKey-»;
 		«FOREACH this.entityAttributes AS Att-»
 		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
 		«ENDFOREACH-»
@@ -64,20 +68,20 @@ public class «this.name.toFirstUpper()-»{
 	
 	public void set«this.primaryKey.toFirstUpper()-»(String «this.primaryKey-»){
 		this.«this.primaryKey-» = «this.primaryKey-»;
-	};
+	}
 	
 	public String get«this.primaryKey.toFirstUpper()-»(){
 		 return this.«this.primaryKey-»;
-	};
+	}
 	
 	«FOREACH this.entityAttributes AS Att-»
 	public void set«Att.name.toFirstUpper()-»(«Att.type-» «Att.name.toFirstUpper()-»){
 		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
-	};
+	}
 	
 	public «Att.type-» get«Att.name.toFirstUpper()-»(){
 		return this.«Att.name.toFirstUpper()-»;
-	};
+	}
 	«ENDFOREACH-»
 	
 	«FOREACH this.entityRelationships AS Rel-»
@@ -90,7 +94,7 @@ public class «this.name.toFirstUpper()-»{
 		return this.«Rel.destination.toFirstUpper()-»ID;
 	}             	
     «ENDIF-»
-    «IF Rel.type.matches("N : N")-»
+    «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
 	public void set«Rel.destination.toFirstUpper()-»IDs(List<Integer> «Rel.destination.toFirstUpper()-»IDs){
 		this.«Rel.destination.toFirstUpper()-»IDs = «Rel.destination.toFirstUpper()-»IDs;
 	} 
@@ -108,18 +112,19 @@ public class «this.name.toFirstUpper()-»{
 «ENDDEFINE-»
 
 «DEFINE entityAttributes FOR Entity»
+String «this.primaryKey-»,
 «IF this.entityRelationships.exists(e|e.type.matches("N : 1")) || this.entityRelationships.exists(e|e.type.matches("1 : 1"))»
 «FOREACH this.entityAttributes AS ATT-»
- «ATT.type-» «ATT.name.toFirstUpper()-»,
+«ATT.type-» «ATT.name.toFirstUpper()-»,
 «ENDFOREACH-»
 «FOREACH this.entityRelationships.withoutLast() AS Rel-»
- int «Rel.destination.toFirstUpper()-»ID,
+int «Rel.destination.toFirstUpper()-»ID,
 «ENDFOREACH-»
- int «this.entityRelationships.last().destination.toFirstUpper()-»ID
+int «this.entityRelationships.last().destination.toFirstUpper()-»ID
 «ELSE»
 «FOREACH this.entityAttributes.withoutLast() AS ATT-»
- «ATT.type-» «ATT.name.toFirstUpper()-»,
+«ATT.type-» «ATT.name.toFirstUpper()-»,
 «ENDFOREACH-»
- «this.entityAttributes.last().type-» «this.entityAttributes.last().name.toFirstUpper()-»
- «ENDIF»
+«this.entityAttributes.last().type-» «this.entityAttributes.last().name.toFirstUpper()-»
+«ENDIF»
 «ENDDEFINE-»
