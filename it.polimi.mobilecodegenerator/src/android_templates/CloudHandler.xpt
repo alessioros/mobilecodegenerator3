@@ -85,14 +85,23 @@ public class CloudHandler{
 	
 	«FOREACH this.cloudObjects AS CO-»
 	/*
-	* allows to write a new object to the database
+	* allows to add a new object to the database
 	* @param object fields
 	*/
-	public void writeNew«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
+	public void add«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
 	
 		«CO.name.toFirstUpper()-» «CO.name.toLowerCase()-» = new «CO.name.toFirstUpper()-»(«EXPAND attributesNames FOR CO.objectAttributes-»);
 		// modify the reference and the ID with the values in your Firebase console
-		//getReference("«CO.name.toLowerCase()-»s").child("«CO.name.toLowerCase()-»_ID").setValue(«CO.name.toLowerCase()-»);
+		/*try{
+			getReference("«CO.name.toLowerCase()-»s").child("«CO.name.toLowerCase()-»_ID").setValue(«CO.name.toLowerCase()-»);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	
+		*/
 	}
 	
 	/*
