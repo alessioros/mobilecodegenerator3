@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="BookShelf" companyIdentifier="it.polimi">
+    <dataHandler>
+        <preferenceHandler>
+            <preferenceRecords key="user_name" value="" type="string"/>
+            <preferenceRecords key="user_surname" value="" type="string"/>
+            <preferenceRecords key="num_books" value="0" type="int"/>
+        </preferenceHandler>
+        <databaseHandler>
+            <entities name="Book" primaryKey="ISBN">
+                <entityAttributes name="title" type="String"/>
+                <entityAttributes name="page_count" type="Integer"/>
+                <entityAttributes name="description" type="String"/>
+                <entityAttributes name="img_url" type="String"/>
+                <entityAttributes name="publisher" type="String"/>
+                <entityAttributes name="published_date" type="Date"/>
+                <entityRelationships name="hasAuthor" destination="Author" type="1 : N"/>
+                <entityRelationships name="hasBooks" destination="BookList" type="N : 1"/>
+            </entities>
+            <entities name="Author" primaryKey="ID">
+                <entityAttributes name="name" type="String"/>
+                <entityAttributes name="surname" type="String"/>
+                <entityAttributes name="img_url" type="String"/>
+                <entityAttributes name="description" type="String"/>
+                <entityRelationships name="hasAuthor" destination="Book" type="N : 1"/>
+            </entities>
+            <entities name="BookList" primaryKey="ID">
+                <entityAttributes name="list_name" type="String"/>
+                <entityAttributes name="book_count" type="Integer"/>
+                <entityRelationships name="hasBooks" destination="Book" type="1 : N"/>
+            </entities>
+        </databaseHandler>
+    </dataHandler>
+    <menu/>
+</metamodel:Application>

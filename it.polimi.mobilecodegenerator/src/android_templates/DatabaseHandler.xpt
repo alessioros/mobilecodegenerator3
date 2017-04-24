@@ -203,7 +203,7 @@ public «name.toFirstUpper()» query«name.toFirstUpper()»(String «this.primaryKey»
     }
     crs.close();
      
-    return «name»;
+    return «name.toLowerCase()»;
 }
 «ENDDEFINE-»
 
@@ -241,9 +241,9 @@ public List<«name.toFirstUpper()»> get«name.toFirstUpper()»List()
     	
     	«name.toLowerCase()».set«primaryKey.toFirstUpper()»(crs.getString(0));
     	
-        «FOREACH 1.upTo(this.entityAttributes.size) AS index-»
+        «FOREACH 0.upTo(this.entityAttributes.size - 1) AS index-»
         «IF this.entityAttributes.get(index).type.matches('Integer')-»
-        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getInt(«index»));
+        «name.toLowerCase()».set«this.entityAttributes.get(index).name.toFirstUpper()»(crs.getInt(«index.toInteger() + 1»));
         «ENDIF-»
         «IF this.entityAttributes.get(index).type.matches('Date')-»
         try {

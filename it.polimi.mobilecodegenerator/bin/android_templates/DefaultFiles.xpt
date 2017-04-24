@@ -45,8 +45,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 INSTRUCTIONS:
 
 1) edit the file local.properties with your Android SDK location 
-2) make sure to have installed Build-tools version 25.0.0.2 and SDK API 25 in Android Studio
+2) make sure to have installed Build-tools version 25.0.2 and SDK API 25 in Android Studio
 3) from Android Studio select import project (Eclipse ADT, Gradle, etc)
+4) if you are using Firebase you need to add your google-services.json file into your project
 
  
 «ENDFILE-»
@@ -86,8 +87,8 @@ android {
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	wearApp project(':wear')
-	compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+	compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     «IF existsAtLeastOne(viewControllers.map) || existsAtLeastOne(watchControllers.watchVoiceMessage)-»
     compile 'com.google.android.gms:play-services:10.2.0'
     «ENDIF-»
@@ -95,10 +96,10 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.0.1'
     «ENDIF-»
     «IF existsAtLeastOne(viewControllers.cards)-»
-    compile 'com.android.support:cardview-v7:25.2.0'
+    compile 'com.android.support:cardview-v7:25.3.1'
     «ENDIF-»
     «IF menu.menuItems.size > 0 -»
-    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:support-v4:25.3.1'
     «ENDIF-»
     «IF existsAtLeastOne(viewControllers.datepickers) -»
     compile 'com.github.prolificinteractive:material-calendarview:v1.4.3'

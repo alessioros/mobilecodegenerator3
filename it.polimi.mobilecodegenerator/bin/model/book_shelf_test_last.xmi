@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="BookShelfTest" companyIdentifier="it.polimi">
+    <dataHandler>
+        <preferenceHandler>
+            <preferenceRecords key="userName" value="" type="string"/>
+            <preferenceRecords key="userSurname" value="" type="string"/>
+            <preferenceRecords key="bookCount" value="0" type="int"/>
+        </preferenceHandler>
+        <databaseHandler>
+            <entities name="Book" primaryKey="ISBN">
+                <entityAttributes name="title" type="String"/>
+                <entityAttributes name="description" type="String"/>
+                <entityAttributes name="pageCount" type="String"/>
+                <entityAttributes name="publisher" type="String"/>
+                <entityAttributes name="publishedDate" type="Date"/>
+                <entityAttributes name="imgUrl" type="String"/>
+                <entityRelationships name="hasAuthor" destination="Author" type="N : 1"/>
+                <entityRelationships name="isInShelf" destination="Shelf" type="N : 1"/>
+            </entities>
+            <entities name="Author" primaryKey="ID">
+                <entityAttributes name="name" type="String"/>
+                <entityAttributes name="surname" type="String"/>
+                <entityAttributes name="biography" type="String"/>
+                <entityRelationships name="hasWritten" destination="Book" type="1 : N"/>
+            </entities>
+            <entities name="Shelf" primaryKey="name">
+                <entityAttributes name="bookCount" type="Integer"/>
+                <entityRelationships name="hasBooks" destination="Book" type="1 : N"/>
+            </entities>
+        </databaseHandler>
+        <cloudHandler>
+            <cloudObjects name="User">
+                <objectAttributes name="access_email" type="String"/>
+                <objectAttributes name="password" type="String"/>
+                <objectAttributes name="user_name" type="String"/>
+                <objectAttributes name="user_surname" type="String"/>
+            </cloudObjects>
+            <cloudObjects name="Book">
+                <objectAttributes name="book_isbn" type="String"/>
+                <objectAttributes name="book_title" type="String"/>
+                <objectAttributes name="book_author" type="String"/>
+                <objectAttributes name="user_id" type="String"/>
+                <objectAttributes name="shelf_id" type="String"/>
+            </cloudObjects>
+            <cloudObjects name="Shelf">
+                <objectAttributes name="shelf_id" type="String"/>
+                <objectAttributes name="shelf_name" type="String"/>
+                <objectAttributes name="user_id" type="String"/>
+            </cloudObjects>
+        </cloudHandler>
+        <storageHandler>
+            <storageRecords name="about_content" extension="text" tempFile="true"/>
+        </storageHandler>
+    </dataHandler>
+    <menu/>
+</metamodel:Application>

@@ -43,10 +43,10 @@ public class «this.name.toFirstUpper()-»{
 	«ENDFOREACH-»
 	«FOREACH this.entityRelationships AS Rel-»
 	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
-	private int «Rel.destination.toFirstUpper()-»ID;            	
+	private String «Rel.destination.toFirstUpper()-»ID;            	
     «ENDIF-»
     «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
-	private List<Integer> «Rel.destination.toFirstUpper()-»IDs;
+	private List<String> «Rel.destination.toFirstUpper()-»IDs;
     «ENDIF-»	
 	«ENDFOREACH-»	
 	
