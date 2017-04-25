@@ -86,9 +86,46 @@ public class CloudHandler{
 	«FOREACH this.cloudObjects AS CO-»
 	/*
 	* allows to add a new object to the database
-	* @param object fields
+	* @param object
 	*/
-	public void add«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
+	public void add«CO.name.toFirstUpper()-»(«CO.name.toFirstUpper()-» «CO.name.toLowerCase()-»){
+	
+		// modify the reference and the ID with the values in your Firebase console
+		/*try{
+			
+			//checks if user already exists
+			DatabaseReference ref = getReference("«CO.name.toLowerCase()-»s").child("«CO.name.toLowerCase()-».get«CO.name.toLowerCase()-»_ID");
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            	@Override
+                public void onDataChange(DataSnapshot snapshot) {
+	                if (snapshot.exists()) {
+                        // handle the case that object already exists
+                    }
+                    else {
+	                    ref.setValue(«CO.name.toLowerCase()-»);
+                    }
+                    progressDialog.dismiss();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            });
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	
+		*/
+	}
+	
+	/*
+	* allows to update an object in the database
+	* @param object
+	*/
+	public void update«CO.name.toFirstUpper()-»(«EXPAND objParameters FOR CO.objectAttributes-»){
 	
 		«CO.name.toFirstUpper()-» «CO.name.toLowerCase()-» = new «CO.name.toFirstUpper()-»(«EXPAND attributesNames FOR CO.objectAttributes-»);
 		// modify the reference and the ID with the values in your Firebase console
