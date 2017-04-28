@@ -31,8 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import static com.google.android.gms.internal.zzs.TAG;
-
 «FOREACH this.cloudObjects AS CO-»
 import «CO.cloudHandler.dataHandler.application.companyIdentifier-».«CO.cloudHandler.dataHandler.application.name.toLowerCase()-».objects.«CO.name.toFirstUpper()-»;
 «ENDFOREACH-»
@@ -72,13 +70,13 @@ public class CloudHandler{
 		        // whenever data at this location is updated.
 		        // for a callback called just once -> addListenerForSingleValueEvent()
 		        String value = dataSnapshot.getValue(String.class);
-		        Log.d(TAG, "Value is: " + value);
+		        Log.d("FIREBASE", "Value is: " + value);
 		    }
 		
 		    @Override
 		    public void onCancelled(DatabaseError error) {
 		        // Failed to read value
-		        Log.w(TAG, "Failed to read value.", error.toException());
+		        Log.w("FIREBASE", "Failed to read value.", error.toException());
 		    }
 		});
 	}
