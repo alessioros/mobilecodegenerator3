@@ -12,7 +12,7 @@
             <preferenceRecords key="user_book_count" value="" type="string"/>
         </preferenceHandler>
         <databaseHandler>
-            <entities name="book" primaryKey="ISBN">
+            <entities name="Book" primaryKey="ISBN">
                 <entityAttributes name="title" type="String"/>
                 <entityAttributes name="description" type="String"/>
                 <entityAttributes name="pageCount" type="String"/>

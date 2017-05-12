@@ -30,7 +30,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 /* Begin PBXBuildFile section */
 		«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */; };
 		«IF this.dataHandler.databaseHandler.existsObject()-»
-		«getFirstHexadecimalId(this.name.toString()+".xcdatamodeld")» /* «this.name.toString()».xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name.toString()+".xcdatamodeld")» /* «this.name.toString()».xcdatamodel */ ; };
+		«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name.toString()».xcdatamodeld */; };
 		«ENDIF-»
 		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
 		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
@@ -123,6 +123,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("LaunchScreen Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("App Info.plist")» /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		«IF this.dataHandler.databaseHandler.existsObject()-»
+		«getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = «this.name».xcdatamodel; sourceTree = "<group>"; };
+		«ENDIF-»
 		«FOREACH viewControllers AS vc-»
 		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
 		«ENDFOREACH-»
@@ -209,6 +212,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */,
 				«getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */,
 				«getFirstHexadecimalId("App Info.plist")» /* Info.plist */,
+				«IF this.dataHandler.databaseHandler.existsObject()-»
+				«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */,
+				«ENDIF-»
 				«FOREACH viewControllers AS vc-»
 				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
 				«ENDFOREACH-»
@@ -399,7 +405,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			buildActionMask = 2147483647;
 			files = (
 				«IF this.dataHandler.databaseHandler.existsObject()-»
-				«getFirstHexadecimalId(name+".xcdatamodel")» /* «name».xcdatamodel in Sources */, 
+				«getFirstHexadecimalId(name+".xcdatamodeld")» /* «name».xcdatamodeld in Sources */, 
 				«ENDIF-»
 				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
 				«FOREACH viewControllers AS vc-»
@@ -693,6 +699,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name»".xcdatamodeld" */ = {
+			isa = XCVersionGroup;
+			children = (
+				«getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */,
+			);
+			currentVersion = «getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */;
+			path = «this.name».xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = «getFirstHexadecimalId("Project object")» /* Project object */;
 }
