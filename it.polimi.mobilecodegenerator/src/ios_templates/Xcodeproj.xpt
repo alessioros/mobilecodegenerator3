@@ -29,6 +29,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 /* Begin PBXBuildFile section */
 		«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */; };
+		«IF this.dataHandler.databaseHandler.existsObject()-»
+		«getFirstHexadecimalId(this.name.toString()+".xcdatamodeld")» /* «this.name.toString()».xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name.toString()+".xcdatamodeld")» /* «this.name.toString()».xcdatamodel */ ; };
+		«ENDIF-»
 		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
 		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
 		«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */; };
@@ -395,6 +398,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				«IF this.dataHandler.databaseHandler.existsObject()-»
+				«getFirstHexadecimalId(name+".xcdatamodel")» /* «name».xcdatamodel in Sources */, 
+				«ENDIF-»
 				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
 				«FOREACH viewControllers AS vc-»
 				«getFirstHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift in Sources*/,

@@ -1,0 +1,52 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
+«EXTENSION app_extensions::Java»
+«DEFINE main FOR Application-»
+
+«REM» model for Core Data«ENDREM»
+«FILE name+"/"+name+"/"+name+".xcdatamodeld"+"/"+name+".xcdatamodeld"+"/contents"-»
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" minimumToolsVersion="Automatic" sourceLanguage="Swift">
+«IF this.dataHandler.databaseHandler.existsObject()-»
+«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
+<entity name="«entity.name-»" representedClassName="«entity.name-»" syncable="YES" codeGenerationType="class">
+	«FOREACH entity.entityAttributes AS attribute-»
+    <attribute name="«attribute.name-»" optional="YES" attributeType="«attribute.type-»" syncable="YES"/>
+    «ENDFOREACH-»
+    «FOREACH entity.entityRelationships AS relationship-»
+    <relationship name="«relationship.name-»" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="«relationship.destination-»" syncable="YES"/>
+    «ENDFOREACH-»
+</entity>
+«ENDFOREACH-»
+«ELSE-»
+«REM» TODO INITIALIZE CORE DATA IN THE PROJECT«ENDREM»
+«ENDIF-»
+</model>
+«ENDFILE-»
+«FILE name+"/"+name+"/"+name+".xcdatamodeld"+"/.xccurrentversion"-»
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>_XCCurrentVersionName</key>
+	<string>«this.name-».xcdatamodel</string>
+</dict>
+</plist>
+«ENDFILE-»
+
+«ENDDEFINE-»
