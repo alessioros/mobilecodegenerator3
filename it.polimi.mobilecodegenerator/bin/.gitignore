@@ -1,4 +1,7 @@
 /android/
-/android_templates/
+/ios/
+/ios_templates/
+/ios_extensions/
 /model/
+/app_extensions/
 /workflow/

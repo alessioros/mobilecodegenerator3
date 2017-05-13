@@ -47,7 +47,13 @@ public class IOSJavaUtil {
 	 * @return
 	 */
 	public static String getSecondHexadecimalId(String key){
-		return hexadecimalIdsMap.get(key)[1];
+		if(hexadecimalIdsMap.containsKey(key)){
+			return hexadecimalIdsMap.get(key)[1];		
+		}
+		else{
+			return generateNewHexadecimalIds(key)[1];
+		}
+		
 	}
 	
 	/**

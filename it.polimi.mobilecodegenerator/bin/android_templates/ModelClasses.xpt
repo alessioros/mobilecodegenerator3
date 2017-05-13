@@ -1,0 +1,130 @@
+«REM»
+Copyright 2017 Alessio Rossotti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«EXTENSION app_extensions::Java»
+
+«DEFINE main FOR Application-»
+«FOREACH this.dataHandler.databaseHandler.entities AS ENT-»
+«FILE dataHandler.application.name+"/mobile/src/main/java/"+dataHandler.application.companyIdentifier.replaceAll("\\.","/") +"/"+dataHandler.application.name.toLowerCase() +"/model/"+ENT.name.toFirstUpper()+".java"-»
+package «dataHandler.application.companyIdentifier».«dataHandler.application.name.toLowerCase()».model;
+
+«IF ENT.entityAttributes.exists(e|e.type.matches("Date"))-»
+import java.util.Date;
+«ENDIF-»
+«IF ENT.entityRelationships.exists(e|e.type.matches("1 : N") || e.type.matches("N : N"))-»
+import java.util.List;
+«ENDIF-»
+
+«EXPAND modelClass FOR ENT-»
+«ENDFILE-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE modelClass FOR Entity-»
+public class «this.name.toFirstUpper()-»{
+	
+	private String «this.primaryKey-»;	
+	«FOREACH this.entityAttributes AS Att-»
+	private «Att.type-» «Att.name.toFirstUpper()-»;
+	«ENDFOREACH-»
+	«FOREACH this.entityRelationships AS Rel-»
+	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
+	private String «Rel.destination.toFirstUpper()-»ID;            	
+    «ENDIF-»
+    «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
+	private List<String> «Rel.destination.toFirstUpper()-»IDs;
+    «ENDIF-»	
+	«ENDFOREACH-»	
+	
+	// default empty constructor
+	public «this.name.toFirstUpper()-»(){}
+	
+	// class constructor
+	public «this.name.toFirstUpper()-»(«EXPAND entityAttributes FOR this-»){
+		this.«this.primaryKey-» = «this.primaryKey-»;
+		«FOREACH this.entityAttributes AS Att-»
+		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
+		«ENDFOREACH-»
+		«FOREACH this.entityRelationships AS Rel-»
+		«IF Rel.type.matches("1 : 1") || Rel.type.matches("N : 1")-»
+		this.«Rel.destination.toFirstUpper()-»ID = «Rel.destination.toFirstUpper()-»ID;
+		«ENDIF-»	
+		«ENDFOREACH-»	
+	}
+	
+	public void set«this.primaryKey.toFirstUpper()-»(String «this.primaryKey-»){
+		this.«this.primaryKey-» = «this.primaryKey-»;
+	}
+	
+	public String get«this.primaryKey.toFirstUpper()-»(){
+		 return this.«this.primaryKey-»;
+	}
+	
+	«FOREACH this.entityAttributes AS Att-»
+	public void set«Att.name.toFirstUpper()-»(«Att.type-» «Att.name.toFirstUpper()-»){
+		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
+	}
+	
+	public «Att.type-» get«Att.name.toFirstUpper()-»(){
+		return this.«Att.name.toFirstUpper()-»;
+	}
+	«ENDFOREACH-»
+	
+	«FOREACH this.entityRelationships AS Rel-»
+	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
+	public void set«Rel.destination.toFirstUpper()-»ID(int «Rel.destination.toFirstUpper()-»ID){
+		this.«Rel.destination.toFirstUpper()-»ID = «Rel.destination.toFirstUpper()-»ID;
+	} 
+	
+	public int get«Rel.destination.toFirstUpper()-»ID(){
+		return this.«Rel.destination.toFirstUpper()-»ID;
+	}             	
+    «ENDIF-»
+    «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
+	public void set«Rel.destination.toFirstUpper()-»IDs(List<Integer> «Rel.destination.toFirstUpper()-»IDs){
+		this.«Rel.destination.toFirstUpper()-»IDs = «Rel.destination.toFirstUpper()-»IDs;
+	} 
+	
+	public List<Integer> get«Rel.destination.toFirstUpper()-»IDs(){
+		return this.«Rel.destination.toFirstUpper()-»IDs;
+	}  
+	
+	public void add«Rel.destination.toFirstUpper()-»ID(int «Rel.destination.toFirstUpper()-»ID){
+		this.«Rel.destination.toFirstUpper()-»IDs.add(«Rel.destination.toFirstUpper()-»ID);
+	}      	
+    «ENDIF-»		
+	«ENDFOREACH-»
+}
+«ENDDEFINE-»
+
+«DEFINE entityAttributes FOR Entity»
+String «this.primaryKey-»,
+«IF this.entityRelationships.exists(e|e.type.matches("N : 1")) || this.entityRelationships.exists(e|e.type.matches("1 : 1"))»
+«FOREACH this.entityAttributes AS ATT-»
+«ATT.type-» «ATT.name.toFirstUpper()-»,
+«ENDFOREACH-»
+«FOREACH this.entityRelationships.withoutLast() AS Rel-»
+int «Rel.destination.toFirstUpper()-»ID,
+«ENDFOREACH-»
+int «this.entityRelationships.last().destination.toFirstUpper()-»ID
+«ELSE»
+«FOREACH this.entityAttributes.withoutLast() AS ATT-»
+«ATT.type-» «ATT.name.toFirstUpper()-»,
+«ENDFOREACH-»
+«this.entityAttributes.last().type-» «this.entityAttributes.last().name.toFirstUpper()-»
+«ENDIF»
+«ENDDEFINE-»

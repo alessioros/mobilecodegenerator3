@@ -106,9 +106,31 @@ public class AppJavaUtil {
 		return false;
 	}
 	
-	public static boolean existsObject(Object c) {
+	/**
+	 * Returns true if the object is not null
+	 * @return
+	 */
+	public static boolean existsObject(Object obj) {
 		
-		if(c != null) return true;
+		return obj != null;
+	}
+	
+	/**
+	 * Returns true if the relationship has an inverse
+	 * @return
+	 */
+	public static boolean hasInverse(Relationship entRel, Collection<Entity> entities){
+		
+		for(Entity candidateEntity : entities){
+			
+			if(entRel.getDestination().equals(candidateEntity.getName())){
+				
+				ArrayList<Relationship> rels = candidateEntity.getEntityRelationships();
+				for(Relationship rel : rels){
+					if(rel.getDestination().equals(entRel)) return true;
+				}
+			}
+		}
 		return false;
 	}
 	
