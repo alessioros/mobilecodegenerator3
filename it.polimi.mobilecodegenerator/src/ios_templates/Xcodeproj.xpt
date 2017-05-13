@@ -30,7 +30,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 /* Begin PBXBuildFile section */
 		«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */; };
 		«IF this.dataHandler.databaseHandler.existsObject()-»
-		«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name.toString()».xcdatamodeld */; };
+		«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */; };
+		«getFirstHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift */; };
+		«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
+		«getFirstHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name».swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()».swift */; };
+		«ENDFOREACH-»
 		«ENDIF-»
 		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
 		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
@@ -124,7 +128,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId("LaunchScreen Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("App Info.plist")» /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		«IF this.dataHandler.databaseHandler.existsObject()-»
-		«getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = «this.name».xcdatamodel; sourceTree = "<group>"; };
+		«getFirstHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = «this.name».xcdatamodel; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
+		«getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name».swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "«entity.name».swift"; path = "«entity.name».swift"; sourceTree = "<group>"; };
+		«ENDFOREACH-»
 		«ENDIF-»
 		«FOREACH viewControllers AS vc-»
 		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +222,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId("App Info.plist")» /* Info.plist */,
 				«IF this.dataHandler.databaseHandler.existsObject()-»
 				«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */,
+				«getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift */,
+				«getSecondHexadecimalId("CoreDataModels")» /* CoreDataModels */,
 				«ENDIF-»
 				«FOREACH viewControllers AS vc-»
 				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
@@ -246,6 +256,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			path = «name»;
 			sourceTree = "<group>";
 		};
+		«IF this.dataHandler.databaseHandler.existsObject()-»
+		«getSecondHexadecimalId("CoreDataModels")» /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
+				«getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()».swift */,
+				«ENDFOREACH-»
+			);
+			path = "CoreDataModels";
+			sourceTree = "<group>";
+		};
+		«ENDIF-»
+		
 		«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,8 +354,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId("Project object")» /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = polimi;
 				TargetAttributes = {
 					«getSecondHexadecimalId(name)» = {
@@ -405,7 +428,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			buildActionMask = 2147483647;
 			files = (
 				«IF this.dataHandler.databaseHandler.existsObject()-»
-				«getFirstHexadecimalId(name+".xcdatamodeld")» /* «name».xcdatamodeld in Sources */, 
+				«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */,
+				«getFirstHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift in Sources */, 
+				«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
+				«getFirstHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()+".swift"» in Sources*/,
+				«ENDFOREACH-»
 				«ENDIF-»
 				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
 				«FOREACH viewControllers AS vc-»
@@ -526,10 +553,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -566,9 +594,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -704,9 +733,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name»".xcdatamodeld" */ = {
 			isa = XCVersionGroup;
 			children = (
-				«getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */,
+				«getFirstHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */,
 			);
-			currentVersion = «getSecondHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */;
+			currentVersion = «getFirstHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */;
 			path = «this.name».xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
