@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NavigationControllerIDWithRootnewViewViewControllerID">
+	<dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+	<scenes>
+	<!--newViewViewController-->
+	<scene sceneID="newViewViewControllerSceneID">
+		<objects>
+			<viewController id="newViewViewControllerID" hidesBottomBarWhenPushed="YES" customClass="newViewViewController" customModule="BookShelfTest" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="newView-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="newView-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="newViewViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cfoMap">
+<rect key="frame" x="83" y="287" width="200" height="330"/>
+<constraints>
+<constraint firstAttribute="height" constant="330" id="cfoMap-height"/>
+<constraint firstAttribute="width" constant="200" id="cfoMap-width"/>
+</constraints>
+
+                        </mapView>
+	                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="left" text="Ciao CIAOC IACASFSDAFDSFDSfsdfsdafasdfa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdjLabel">
+<rect key="frame" x="101" y="83" width="88" height="36"/>
+<constraints>
+<constraint firstAttribute="height" constant="36" id="fdjLabel-height"/>
+<constraint firstAttribute="width" constant="88" id="fdjLabel-width"/>
+</constraints>
+
+	                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+	                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                        <nil key="highlightedColor"/>
+	                    </label>
+	                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EditText" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" text="" id="hcglEditText">
+<rect key="frame" x="211" y="87" width="88" height="36"/>
+<constraints>
+<constraint firstAttribute="height" constant="36" id="hcglEditText-height"/>
+<constraint firstAttribute="width" constant="88" id="hcglEditText-width"/>
+</constraints>
+
+	                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+	                        <textInputTraits key="textInputTraits"/>
+	                    </textField>
+	                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dnvlVideoView">
+	                        
+	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+	                        
+<rect key="frame" x="72" y="137" width="240" height="128"/>
+<constraints>
+<constraint firstAttribute="height" constant="128" id="dnvlVideoView-height"/>
+<constraint firstAttribute="width" constant="240" id="dnvlVideoView-width"/>
+</constraints>
+
+	                    </webView>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+							
+							<constraint firstItem="fdjLabel" firstAttribute="top" secondItem="newView-guide-top" secondAttribute="bottom" constant="19" id="fdjLabel-posY"/>
+							
+							<constraint firstItem="fdjLabel" firstAttribute="leading" secondItem="newViewViewID" secondAttribute="leading" constant="101" id="fdjLabel-posX"/>
+
+
+							
+							<constraint firstItem="hcglEditText" firstAttribute="top" secondItem="newView-guide-top" secondAttribute="bottom" constant="23" id="hcglEditText-posY"/>
+							
+							<constraint firstItem="hcglEditText" firstAttribute="leading" secondItem="newViewViewID" secondAttribute="leading" constant="211" id="hcglEditText-posX"/>
+
+
+							
+							<constraint firstItem="dnvlVideoView" firstAttribute="top" secondItem="newView-guide-top" secondAttribute="bottom" constant="73" id="dnvlVideoView-posY"/>
+							
+							<constraint firstItem="dnvlVideoView" firstAttribute="leading" secondItem="newViewViewID" secondAttribute="leading" constant="72" id="dnvlVideoView-posX"/>
+
+
+							
+							<constraint firstItem="cfoMap" firstAttribute="top" secondItem="newView-guide-top" secondAttribute="bottom" constant="223" id="cfoMap-posY"/>
+							
+							<constraint firstItem="cfoMap" firstAttribute="leading" secondItem="newViewViewID" secondAttribute="leading" constant="83" id="cfoMap-posX"/>
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="newViewViewControllerNavigationItemID"/>
+	      		<connections>
+	                <outlet property="hcglEditText" destination="hcglEditText" id="hcglEditTextOutletID"/>
+	                <outlet property="dnvlVideoView" destination="dnvlVideoView" id="dnvlVideoViewOutletID"/>
+	                <outlet property="cfoMap" destination="cfoMap" id="cfoMapOutletID"/>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="newViewPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	
+	
+	<!--newView Navigation Controller-->
+	<scene sceneID="NavigationControllerSceneIDWithRootnewViewViewControllerID">
+        <objects>
+            <navigationController id="NavigationControllerIDWithRootnewViewViewControllerID" sceneMemberID="viewController">
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="NavigationControllerBarIDWithRootnewViewViewControllerID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="newViewViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootnewViewViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="NavigationPlaceholderIDWithRootnewViewViewControllerID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+	</scenes>
+	<resources>
+		
+        
+        
+        
+        <image name="grid_image" width="202" height="202"/>
+        <image name="card_image" width="426" height="240"/>
+        <image name="list_img" width="100" height="100"/>
+        <image name="list_icon" width="40" height="40"/>
+        <image name="pause_icon" width="56" height="56"/>
+        <image name="play_icon" width="56" height="56"/>
+        <image name="stop_icon" width="56" height="56"/>
+        <image name="photocamera_icon" width="36" height="36"/>
+        <image name="videocamera_icon" width="36" height="36"/>
+	</resources>
+</document>
