@@ -50,10 +50,14 @@ To produce source code of your application you need to:
 
 ## Developers contacts ##
 
-gregorio.perego@gmail.com
+alessiorossotti@gmail.com - mobilecodegenerator 3
 
-pezzettistefania@gmail.com
+aldo.pintus@gmail.com - mobilecodegenerator 2
 
-aldo.pintus@gmail.com
+gregorio.perego@gmail.com - mobilecodegenerator
 
-alessiorossotti@gmail.com
+pezzettistefania@gmail.com - mobilecodegenerator
+
+
+
+

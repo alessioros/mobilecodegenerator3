@@ -10,9 +10,14 @@
             <preferenceRecords key="user_name" value="" type="string"/>
             <preferenceRecords key="user_surname" value="" type="string"/>
             <preferenceRecords key="user_book_count" value="" type="string"/>
+            <preferenceRecords key="prova_boolean" value="" type="boolean"/>
+            <preferenceRecords key="prova_int" value="" type="int"/>
+            <preferenceRecords key="prova_long" value="" type="long"/>
+            <preferenceRecords key="prova_float" value="" type="float"/>
+            <preferenceRecords key="prova_double" value="" type="double"/>
         </preferenceHandler>
         <databaseHandler>
-            <entities name="book" primaryKey="ISBN">
+            <entities name="Book" primaryKey="ISBN">
                 <entityAttributes name="title" type="String"/>
                 <entityAttributes name="description" type="String"/>
                 <entityAttributes name="pageCount" type="String"/>

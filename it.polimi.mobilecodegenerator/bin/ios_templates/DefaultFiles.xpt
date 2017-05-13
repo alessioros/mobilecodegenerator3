@@ -25,6 +25,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «FILE this.name +"/"+this.name +"/"+ "AppDelegate.swift"-»
 import UIKit
+«IF this.dataHandler.databaseHandler.existsObject() -»
+import CoreData
+«ENDIF-»
 «IF existsAtLeastOne(watchControllers.watchVoiceMessage) -»
 import WatchConnectivity
 «ENDIF-»
@@ -107,7 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate«IF existsAtLeastOne(watchC
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 }
 «ENDFILE»
 

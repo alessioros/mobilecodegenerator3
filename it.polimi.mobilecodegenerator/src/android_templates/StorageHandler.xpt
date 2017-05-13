@@ -53,14 +53,9 @@ public class StorageHandler{
 	* @param content the string content to write
 	* @return boolean success
 	*/
-	public boolean writeFile(String fileName, String content, boolean isTemp){
+	public boolean writeFile(String fileName, String content){
 		
-		File file = null;
-		if(isTemp){
-			file = new File(this.context.getCacheDir(), fileName);
-		}else{
-			file = new File(this.context.getFilesDir(), fileName);
-		}
+		File file = new File(this.context.getFilesDir(), fileName);
 		FileOutputStream outputStream = null;
 		try {
 		    outputStream = new FileOutputStream(file);
@@ -80,27 +75,19 @@ public class StorageHandler{
 	* @param isTemp if the file is temporary or not
 	* @return content
 	*/
-	public String readfile(String fileName, boolean isTemp){
+	public String readfile(String fileName){
  
-        String content = null;
- 		FileInputStream inputStream = null;
- 		StringBuilder fileContent = null;
+ 		StringBuilder fileContent;
 		try {
-			File file = null;
-			if(isTemp){
-				file = new File(this.context.getCacheDir(), fileName);
-			}else{
-				file = new File(this.context.getFilesDir(), fileName);
-			}
-		    inputStream = this.context.openFileInput(fileName);
-		    InputStreamReader isr = new InputStreamReader(inputStream);
-		    BufferedReader bufferedReader = new BufferedReader(isr);
+			File file = new File(this.context.getFilesDir(), fileName);
+			
+		    FileReader fileR = new FileReader(file);
+		    BufferedReader bufferedReader = new BufferedReader(fileR);
 		    fileContent = new StringBuilder();
    			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				fileContent.append(line).append("\n");
 			}
-		   	inputStream.close();
 		   	
 		} catch (Exception e) {
 		    e.printStackTrace();
