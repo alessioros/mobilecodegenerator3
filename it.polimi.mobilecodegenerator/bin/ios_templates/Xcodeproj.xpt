@@ -39,6 +39,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF this.dataHandler.preferenceHandler.existsObject()-»
 		«getFirstHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift */; };
 		«ENDIF-»
+		«IF this.dataHandler.storageHandler.existsObject()-»
+		«getFirstHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift */; };
+		«ENDIF-»
 		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
 		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
 		«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */; };
@@ -140,6 +143,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF this.dataHandler.preferenceHandler.existsObject()-»
 		«getSecondHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceHandler.swift; sourceTree = "<group>"; };
 		«ENDIF-»
+		«IF this.dataHandler.storageHandler.existsObject()-»
+		«getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
+		«ENDIF-»
 		«FOREACH viewControllers AS vc-»
 		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
 		«ENDFOREACH-»
@@ -233,6 +239,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«ENDIF-»
 				«IF this.dataHandler.preferenceHandler.existsObject()-»
 				«getSecondHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift */,
+				«ENDIF-»
+				«IF this.dataHandler.storageHandler.existsObject()-»
+				«getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift */,
 				«ENDIF-»
 				«FOREACH viewControllers AS vc-»
 				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
@@ -445,6 +454,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«ENDIF-»
 				«IF this.dataHandler.preferenceHandler.existsObject()-»
 				«getFirstHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift in Sources */,
+				«ENDIF-»
+				«IF this.dataHandler.storageHandler.existsObject()-»
+				«getFirstHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift in Sources */,
 				«ENDIF-»
 				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
 				«FOREACH viewControllers AS vc-»
