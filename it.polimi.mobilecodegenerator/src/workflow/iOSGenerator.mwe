@@ -199,4 +199,16 @@
 		</resourceManager>
 	</component>
 	
+	<!--  generate Cloud Handler -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="ios_templates::CloudHandler::main FOR model" />
+		<outlet path="${src-gen}" >
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 </workflow>

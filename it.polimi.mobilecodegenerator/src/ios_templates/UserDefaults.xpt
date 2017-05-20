@@ -20,7 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IF this.dataHandler.preferenceHandler.existsObject()-»
 «REM» Core data model«ENDREM»
-«FILE this.name+"/"+this.name+"/PreferenceHandler.swift"-»
+«FILE this.name+"/"+this.name+"/DataHandlers/PreferenceHandler.swift"-»
 //
 //  PreferenceHandler.swift
 //  «this.name-»

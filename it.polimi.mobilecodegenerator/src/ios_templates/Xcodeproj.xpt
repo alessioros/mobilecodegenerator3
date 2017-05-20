@@ -42,6 +42,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF this.dataHandler.storageHandler.existsObject()-»
 		«getFirstHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift */; };
 		«ENDIF-»
+		«IF this.dataHandler.cloudHandler.existsObject()-»
+		«getFirstHexadecimalId("CloudHandler.swift")» /* CloudHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("CloudHandler.swift")» /* CloudHandler.swift */; };
+		«getFirstHexadecimalId("FirebaseHandler.swift")» /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("FirebaseHandler.swift")» /* FirebaseHandler.swift */; };
+		«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
+		«getFirstHexadecimalId(cObject.name.toFirstUpper()+".swift")» /* «cObject.name».swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(cObject.name.toFirstUpper()+".swift")» /* «cObject.name.toFirstUpper()».swift */; };
+		«ENDFOREACH-»
+		«ENDIF-»
 		«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */; };
 		«getFirstHexadecimalId("App Assets.xcassets")» /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */; };
 		«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */; };
@@ -146,6 +153,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF this.dataHandler.storageHandler.existsObject()-»
 		«getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
 		«ENDIF-»
+		«IF this.dataHandler.cloudHandler.existsObject()-»
+		«getSecondHexadecimalId("CloudHandler.swift")» /* CloudHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudHandler.swift; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("FirebaseHandler.swift")» /* FirebaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
+		«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
+		«getSecondHexadecimalId(cObject.name.toFirstUpper()+".swift")» /* «cObject.name».swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "«cObject.name».swift"; path = "«cObject.name».swift"; sourceTree = "<group>"; };
+		«ENDFOREACH-»
+		«ENDIF-»
 		«FOREACH viewControllers AS vc-»
 		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
 		«ENDFOREACH-»
@@ -229,19 +243,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			children = (
 				«getSecondHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift */,
 				«getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */,
-				«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */,
 				«getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */,
-				«getFirstHexadecimalId("App Info.plist")» /* Info.plist */,
+				«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */,
+				«getSecondHexadecimalId("DataHandlers")» /* DataHandlers */,
+				«IF this.dataHandler.cloudHandler.existsObject()-»
+				«getSecondHexadecimalId("CloudObjects")» /* CloudObjects */,
+				«ENDIF-»
 				«IF this.dataHandler.databaseHandler.existsObject()-»
-				«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */,
-				«getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift */,
 				«getSecondHexadecimalId("CoreDataModels")» /* CoreDataModels */,
-				«ENDIF-»
-				«IF this.dataHandler.preferenceHandler.existsObject()-»
-				«getSecondHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift */,
-				«ENDIF-»
-				«IF this.dataHandler.storageHandler.existsObject()-»
-				«getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift */,
+				«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */,
 				«ENDIF-»
 				«FOREACH viewControllers AS vc-»
 				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
@@ -270,6 +280,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«FOREACH getUserFilesNames() AS filename-»
 				«getSecondHexadecimalId(filename)» /* «filename» */,
 				«ENDFOREACH-»
+				«getFirstHexadecimalId("App Info.plist")» /* Info.plist */,
 			);
 			path = «name»;
 			sourceTree = "<group>";
@@ -286,6 +297,40 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			sourceTree = "<group>";
 		};
 		«ENDIF-»
+		
+		«IF this.dataHandler.cloudHandler.existsObject()-»
+		«getSecondHexadecimalId("CloudObjects")» /* CloudObjects */ = {
+			isa = PBXGroup;
+			children = (
+				«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
+				«getSecondHexadecimalId(cObject.name.toFirstUpper()+".swift")» /* «cObject.name.toFirstUpper()».swift */,
+				«ENDFOREACH-»
+			);
+			path = "CloudObjects";
+			sourceTree = "<group>";
+		};
+		«ENDIF-»
+		
+		«getSecondHexadecimalId("DataHandlers")» /* DataHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				«IF this.dataHandler.preferenceHandler.existsObject()-»
+				«getSecondHexadecimalId("PreferenceHandler.swift")» /* PreferenceHandler.swift */,
+				«ENDIF-»
+				«IF this.dataHandler.databaseHandler.existsObject()-»
+				«getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift */,
+				«ENDIF-»
+				«IF this.dataHandler.cloudHandler.existsObject()-»
+				«getSecondHexadecimalId("CloudHandler.swift")» /* CloudHandler.swift */,
+				«getSecondHexadecimalId("FirebaseHandler.swift")» /* FirebaseHandler.swift */,
+				«ENDIF-»
+				«IF this.dataHandler.storageHandler.existsObject()-»
+				«getSecondHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift */,
+				«ENDIF-»
+			);
+			path = "DataHandlers";
+			sourceTree = "<group>";
+		};
 		
 		«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */ = {
 			isa = PBXGroup;
@@ -458,6 +503,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF this.dataHandler.storageHandler.existsObject()-»
 				«getFirstHexadecimalId("StorageHandler.swift")» /* StorageHandler.swift in Sources */,
 				«ENDIF-»
+				«IF this.dataHandler.cloudHandler.existsObject()-»
+				«getFirstHexadecimalId("CloudHandler.swift")» /* CloudHandler.swift in Sources */,
+				«getFirstHexadecimalId("FirebaseHandler.swift")» /* FirebaseHandler.swift in Sources */,
+				«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
+				«getFirstHexadecimalId(cObject.name.toFirstUpper()+".swift")» /* «cObject.name.toFirstUpper()+".swift"» in Sources*/,
+				«ENDFOREACH-»
+				«ENDIF-»
 				«getFirstHexadecimalId("AppDelegate.swift")» /* AppDelegate.swift in Sources */,
 				«FOREACH viewControllers AS vc-»
 				«getFirstHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift in Sources*/,
@@ -552,12 +604,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -599,12 +653,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -661,7 +717,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				IBSC_MODULE = «name»_WatchKit_Extension;
 				INFOPLIST_FILE = "«name» WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp;
@@ -678,7 +734,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				IBSC_MODULE = «name»_WatchKit_Extension;
 				INFOPLIST_FILE = "«name» WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.«name».watchkitapp;

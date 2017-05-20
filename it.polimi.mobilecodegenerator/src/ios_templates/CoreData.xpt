@@ -81,7 +81,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 
 «REM» DatabaseHandler class «ENDREM»
-«FILE this.name+"/"+this.name+"/DatabaseHandler.swift"-»
+«FILE this.name+"/"+this.name+"/DataHandlers/DatabaseHandler.swift"-»
 //
 //  DatabaseHandler.swift
 //  «this.name-»
