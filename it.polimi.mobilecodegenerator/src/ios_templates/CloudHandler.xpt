@@ -123,33 +123,28 @@ class CloudHandler{
 		let predicate = NSPredicate(format: "«cObject.objectAttributes.first().name-» == %@", «cObject.objectAttributes.first().name.toLowerCase()-»)
         let query = CKQuery(recordType: "«cObject.name.toFirstUpper()-»", predicate: predicate)
 		
-	    publicDB.perform(query, inZoneWith: nil) { [weak self] results, error in
-	      defer {
-	        completion(results)
-	      }
+	    publicDB.perform(query, inZoneWith: nil) { (results, error) in
 	      
-	      if (error) {
+	      if (error != nil) {
 		        // Error handling for failed fetch from public database
-		        print("error fetching record \(error)")
+		        print("error fetching record \(String(describing: error))")
 		    }
 		    else {
 		        // Display the fetched records
-		        let results = results
+		        
 		    }
 	    }	
 	}
 	
 	func delete«cObject.name.toFirstUpper()-»(recordID : CKRecordID ) -> Void{
 		
-		publicDB.delete(recordID) {
-		    (record, error) in
-		    if let error = error {
-		        // Insert error handling
-                print("error deleting record \(error)")
-		        return
-		    }
-		    // Insert successfully deleted record code
-		}	
+		publicDB.delete(withRecordID: recordID, completionHandler: {(recordID, error) in
+            
+            if error == nil {
+                
+                //Record deleted   
+            }
+        })
 	}
 	«ENDFOREACH-»
 	
@@ -174,7 +169,7 @@ class «cObject.name.toFirstUpper()-» : NSObject{
 	var «attribute.name-» : «attribute.type-»
 	
 	«ENDFOREACH-»
-	weak var ref : DatabaseReference
+	weak var ref : DatabaseReference?
 	var record: CKRecord!
 	weak var database: CKDatabase!
 
@@ -204,7 +199,7 @@ class «cObject.name.toFirstUpper()-» : NSObject{
 	    self.database = database
 	
 	    «FOREACH cObject.objectAttributes AS attribute-»
-	  	self.«attribute.name-» = record["«attribute.name-»"] as? «attribute.type-»
+	  	self.«attribute.name-» = record["«attribute.name-»"] as! «attribute.type-»
 	 
 		«ENDFOREACH-»
 	  
