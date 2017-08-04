@@ -160,6 +160,7 @@
 		</resourceManager>
 	</component>
 	
+	<!-- MODEL PART -->
 	<!--  generate Core Data Model -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>

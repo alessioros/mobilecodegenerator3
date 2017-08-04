@@ -88,8 +88,71 @@ class FirebaseHandler{
 //  Copyright © 2017 «this.companyIdentifier.split(".").last()-». All rights reserved.
 //
 
-class CloudHandler{
+import CloudKit
 
+class CloudHandler{
+	
+	let container: CKContainer
+	let publicDB: CKDatabase
+	let privateDB: CKDatabase
+	
+	init() {
+		
+		container = CKContainer.default()
+		publicDB = container.publicCloudDatabase
+		privateDB = container.privateCloudDatabase
+	    
+	}
+	
+	«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
+	func save«cObject.name.toFirstUpper()-»(«cObject.name.toLowerCase()-» : CKRecord ) -> Void{
+		
+		publicDB.save(«cObject.name.toLowerCase()-») {
+		    (record, error) in
+		    if let error = error {
+		        // Insert error handling
+                print("error setting up record \(error)")
+		        return
+		    }
+		    // Insert successfully saved record code
+		}
+	}
+	
+	func query«cObject.name.toFirstUpper()-»(«cObject.objectAttributes.first().name.toLowerCase()-» : «cObject.objectAttributes.first().type.toFirstUpper()-» ) -> Void{
+		
+		let predicate = NSPredicate(format: "«cObject.objectAttributes.first().name-» == %@", «cObject.objectAttributes.first().name.toLowerCase()-»)
+        let query = CKQuery(recordType: "«cObject.name.toFirstUpper()-»", predicate: predicate)
+		
+	    publicDB.perform(query, inZoneWith: nil) { [weak self] results, error in
+	      defer {
+	        completion(results)
+	      }
+	      
+	      if (error) {
+		        // Error handling for failed fetch from public database
+		        print("error fetching record \(error)")
+		    }
+		    else {
+		        // Display the fetched records
+		        let results = results
+		    }
+	    }	
+	}
+	
+	func delete«cObject.name.toFirstUpper()-»(recordID : CKRecordID ) -> Void{
+		
+		publicDB.delete(recordID) {
+		    (record, error) in
+		    if let error = error {
+		        // Insert error handling
+                print("error deleting record \(error)")
+		        return
+		    }
+		    // Insert successfully deleted record code
+		}	
+	}
+	«ENDFOREACH-»
+	
 }
 «ENDFILE-»
 «FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
@@ -103,6 +166,7 @@ class CloudHandler{
 //
 
 import FirebaseDatabase
+import CloudKit
 
 class «cObject.name.toFirstUpper()-» : NSObject{
 	
@@ -110,7 +174,9 @@ class «cObject.name.toFirstUpper()-» : NSObject{
 	var «attribute.name-» : «attribute.type-»
 	
 	«ENDFOREACH-»
-	var ref : DatabaseReference
+	weak var ref : DatabaseReference
+	var record: CKRecord!
+	weak var database: CKDatabase!
 
 	init(«EXPAND attributeInit FOR cObject.objectAttributes-») {
 	  	«FOREACH cObject.objectAttributes AS attribute-»
@@ -120,15 +186,29 @@ class «cObject.name.toFirstUpper()-» : NSObject{
 		self.ref = FirebaseHandler().getReference()
 	}	   
 	
+	// Firebase initialization
 	init(snapshot: DataSnapshot) {
 	
 		let snapshotValue = snapshot.value as! [String: AnyObject]
 		«FOREACH cObject.objectAttributes AS attribute-»
 	  	self.«attribute.name-» = snapshotValue["«attribute.name-»"] as! «attribute.type-»
-	  	
+	 
 		«ENDFOREACH-»
-		ref = snapshot.ref
+		self.ref = snapshot.ref
   	}
+  	
+  	// iCloud initialization
+  	init(record: CKRecord, database: CKDatabase) {
+  		
+  		self.record = record
+	    self.database = database
+	
+	    «FOREACH cObject.objectAttributes AS attribute-»
+	  	self.«attribute.name-» = record["«attribute.name-»"] as? «attribute.type-»
+	 
+		«ENDFOREACH-»
+	  
+	}
   
 	func toAnyObject() -> Any {
 		return [

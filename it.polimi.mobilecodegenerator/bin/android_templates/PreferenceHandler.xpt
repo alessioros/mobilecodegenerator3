@@ -157,4 +157,11 @@ public void reset«key.toFirstUpper()»(){
 	editor.apply();
 }
 «ENDIF-»
+
+public void delete«key.toFirstUpper()»(){
+	
+	editor = sp.edit();
+	editor.remove(context.getResources().getString(R.string.«key»));
+	editor.apply();
+}
 «ENDDEFINE-»

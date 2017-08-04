@@ -95,6 +95,59 @@
 		</resourceManager>
 	</component>
 	
+	<!-- generate Activities -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::Activities::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate ActivitiesWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::ActivitiesWatch::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate XMLFiles -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::XMLFiles::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate XMLFilesWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::XMLFilesWatch::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- MODEL PART -->
 	<!-- generate DataHandler -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
@@ -178,58 +231,6 @@
 		<metaModel idRef="mm_emf"/>
 		<expand
 			value="android_templates::CloudHandler::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!-- generate Activities -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="android_templates::Activities::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!-- generate ActivitiesWatch -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="android_templates::ActivitiesWatch::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!-- generate XMLFiles -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="android_templates::XMLFiles::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!-- generate XMLFilesWatch -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="android_templates::XMLFilesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>

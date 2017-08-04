@@ -24,13 +24,11 @@
 		36181A10000295260094950D /* newViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000305260094950D /* newViewViewController.swift */; };
 		36181A10000315260094950D /* BookShelfTest WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 36181A10000325260094950D /* BookShelfTest WatchKit App.app */; };
 		36181A10000335260094950D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000345260094950D /* Interface.storyboard */; };
-		36181A10000355260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000365260094950D /* Assets.xcassets */; };
+		36181A10000355260094950D /* WatchKit App Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000365260094950D /* WatchKit App Assets.xcassets */; };
 		36181A10000375260094950D /* BookShelfTest WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		36181A10000395260094950D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000405260094950D /* ExtensionDelegate.swift */; };
-		36181A10000415260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000425260094950D /* Assets.xcassets */; };
-		9BF658DEB58A5C7535B4239F /* Pods_BookShelfTest_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACECDF186FCD53668CBDE14 /* Pods_BookShelfTest_WatchKit_App.framework */; };
-		DE86BCBFB44EEA2415226296 /* Pods_BookShelfTest_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7169FD78E6F56C5C05E6016 /* Pods_BookShelfTest_WatchKit_Extension.framework */; };
-		F196A6585B8B553BA743BE34 /* Pods_BookShelfTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F30ADF9494241B0879AB96 /* Pods_BookShelfTest.framework */; };
+		36181A10000395260094950D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000405260094950D /* ExtensionDelegate.swift */; };		
+		36181A10000415260094950D /* WatchKit Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000425260094950D /* WatchKit Extension Assets.xcassets */; };	
+			
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,40 +74,31 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		007D4D69195492DBD45DD419 /* Pods-BookShelfTest WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest WatchKit Extension/Pods-BookShelfTest WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
-		0124B5A4E00D65769A0D21B2 /* Pods-BookShelfTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest/Pods-BookShelfTest.release.xcconfig"; sourceTree = "<group>"; };
-		0A0C7C909EFF5FD2124F61E4 /* Pods-BookShelfTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest/Pods-BookShelfTest.debug.xcconfig"; sourceTree = "<group>"; };
-		36181A10000025260094950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36181A10000065260094950D /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
-		36181A10000085260094950D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Book.swift; sourceTree = "<group>"; };
-		36181A10000105260094950D /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Author.swift; path = Author.swift; sourceTree = "<group>"; };
-		36181A10000125260094950D /* Shelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Shelf.swift; path = Shelf.swift; sourceTree = "<group>"; };
-		36181A10000145260094950D /* PreferenceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceHandler.swift; sourceTree = "<group>"; };
-		36181A10000165260094950D /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
-		36181A10000185260094950D /* CloudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudHandler.swift; sourceTree = "<group>"; };
-		36181A10000205260094950D /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
-		36181A10000225260094950D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = User.swift; sourceTree = "<group>"; };
-		36181A10000265260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000305260094950D /* newViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newViewViewController.swift; sourceTree = "<group>"; };
-		36181A10000325260094950D /* BookShelfTest WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookShelfTest WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36181A10000365260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BookShelfTest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36181A10000405260094950D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		36181A10000425260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36181A10000535260094950D /* BookShelfTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookShelfTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36181A10000025260094950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36181A10000555260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		36181A10000265260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36181A10000575260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36181A10000595260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36181A10000615260094950D /* BookShelfTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookShelfTest.xcdatamodel; sourceTree = "<group>"; };
+		36181A10000615260094950D /* BookShelfTest.xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookShelfTest.xcdatamodel; sourceTree = "<group>"; };
+		36181A10000065260094950D /* DatabaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		36181A10000085260094950D /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book.swift"; path = "Book.swift"; sourceTree = "<group>"; };
+		36181A10000105260094950D /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Author.swift"; path = "Author.swift"; sourceTree = "<group>"; };
+		36181A10000125260094950D /* Shelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Shelf.swift"; path = "Shelf.swift"; sourceTree = "<group>"; };
+		36181A10000145260094950D /* PreferenceHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceHandler.swift; sourceTree = "<group>"; };
+		36181A10000165260094950D /* StorageHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
+		36181A10000185260094950D /* CloudHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudHandler.swift; sourceTree = "<group>"; };
+		36181A10000205260094950D /* FirebaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
+		36181A10000225260094950D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User.swift"; path = "User.swift"; sourceTree = "<group>"; };
+		36181A10000305260094950D /* newViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newViewViewController.swift; sourceTree = "<group>"; };
+		36181A10000325260094950D /* BookShelfTest WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookShelfTest WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36181A10000635260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		36181A10000655260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36181A10000675260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73F30ADF9494241B0879AB96 /* Pods_BookShelfTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookShelfTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AACECDF186FCD53668CBDE14 /* Pods_BookShelfTest_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookShelfTest_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C83DDA42D0C5A193E778A749 /* Pods-BookShelfTest WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest WatchKit App.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest WatchKit App/Pods-BookShelfTest WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
-		CF6243D2D08AD31EAE4DAA4C /* Pods-BookShelfTest WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest WatchKit App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest WatchKit App/Pods-BookShelfTest WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
-		DC7E1BDEE9A5D0D9C1F345B4 /* Pods-BookShelfTest WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelfTest WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelfTest WatchKit Extension/Pods-BookShelfTest WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		E7169FD78E6F56C5C05E6016 /* Pods_BookShelfTest_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookShelfTest_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36181A10000365260094950D /* WatchKit App Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36181A10000655260094950D /* WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BookShelfTest WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36181A10000405260094950D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		36181A10000425260094950D /* WatchKit Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36181A10000675260094950D /* WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F196A6585B8B553BA743BE34 /* Pods_BookShelfTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,15 +113,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE86BCBFB44EEA2415226296 /* Pods_BookShelfTest_WatchKit_Extension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC86D943C203D4BE98925604 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BF658DEB58A5C7535B4239F /* Pods_BookShelfTest_WatchKit_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,9 +126,17 @@
 				36181A10000755260094950D /* BookShelfTest WatchKit App */,
 				36181A10000775260094950D /* BookShelfTest WatchKit Extension */,
 				36181A10000795260094950D /* Products */,
-				C6E970E9D1FDFDA402C80103 /* Pods */,
-				7B1AB177AD95F87B9B296C1C /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		36181A10000795260094950D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000535260094950D /* BookShelfTest.app */,
+				36181A10000325260094950D /* BookShelfTest WatchKit App.app */,
+				36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		36181A10000735260094950D /* BookShelfTest */ = {
@@ -169,6 +156,39 @@
 			path = BookShelfTest;
 			sourceTree = "<group>";
 		};
+		36181A10000865260094950D /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000085260094950D /* Book.swift */,
+				36181A10000105260094950D /* Author.swift */,
+				36181A10000125260094950D /* Shelf.swift */,
+			);
+			path = "CoreDataModels";
+			sourceTree = "<group>";
+		};
+		
+		36181A10000845260094950D /* CloudObjects */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000225260094950D /* User.swift */,
+			);
+			path = "CloudObjects";
+			sourceTree = "<group>";
+		};
+		
+		36181A10000825260094950D /* DataHandlers */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000145260094950D /* PreferenceHandler.swift */,
+				36181A10000065260094950D /* DatabaseHandler.swift */,
+				36181A10000185260094950D /* CloudHandler.swift */,
+				36181A10000205260094950D /* FirebaseHandler.swift */,
+				36181A10000165260094950D /* StorageHandler.swift */,
+			);
+			path = "DataHandlers";
+			sourceTree = "<group>";
+		};
+		
 		36181A10000755260094950D /* BookShelfTest WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,81 +209,34 @@
 			path = "BookShelfTest WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		36181A10000795260094950D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000535260094950D /* BookShelfTest.app */,
-				36181A10000325260094950D /* BookShelfTest WatchKit App.app */,
-				36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		36181A10000825260094950D /* DataHandlers */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000145260094950D /* PreferenceHandler.swift */,
-				36181A10000065260094950D /* DatabaseHandler.swift */,
-				36181A10000185260094950D /* CloudHandler.swift */,
-				36181A10000205260094950D /* FirebaseHandler.swift */,
-				36181A10000165260094950D /* StorageHandler.swift */,
-			);
-			path = DataHandlers;
-			sourceTree = "<group>";
-		};
-		36181A10000845260094950D /* CloudObjects */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000225260094950D /* User.swift */,
-			);
-			path = CloudObjects;
-			sourceTree = "<group>";
-		};
-		36181A10000865260094950D /* CoreDataModels */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000085260094950D /* Book.swift */,
-				36181A10000105260094950D /* Author.swift */,
-				36181A10000125260094950D /* Shelf.swift */,
-			);
-			path = CoreDataModels;
-			sourceTree = "<group>";
-		};
-		7B1AB177AD95F87B9B296C1C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				73F30ADF9494241B0879AB96 /* Pods_BookShelfTest.framework */,
-				AACECDF186FCD53668CBDE14 /* Pods_BookShelfTest_WatchKit_App.framework */,
-				E7169FD78E6F56C5C05E6016 /* Pods_BookShelfTest_WatchKit_Extension.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C6E970E9D1FDFDA402C80103 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0A0C7C909EFF5FD2124F61E4 /* Pods-BookShelfTest.debug.xcconfig */,
-				0124B5A4E00D65769A0D21B2 /* Pods-BookShelfTest.release.xcconfig */,
-				CF6243D2D08AD31EAE4DAA4C /* Pods-BookShelfTest WatchKit App.debug.xcconfig */,
-				C83DDA42D0C5A193E778A749 /* Pods-BookShelfTest WatchKit App.release.xcconfig */,
-				DC7E1BDEE9A5D0D9C1F345B4 /* Pods-BookShelfTest WatchKit Extension.debug.xcconfig */,
-				007D4D69195492DBD45DD419 /* Pods-BookShelfTest WatchKit Extension.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		36181A10000745260094950D /* BookShelfTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36181A10000875260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest" */;
+			buildPhases = (
+				36181A10000895260094950D /* Sources */,
+				36181A10000695260094950D /* Frameworks */,
+				36181A10000915260094950D /* Resources */,
+				36181A10000515260094950D /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36181A10000935260094950D /* PBXTargetDependency */,
+			);
+			name = BookShelfTest;
+			productName = BookShelfTest;
+			productReference = 36181A10000535260094950D /* BookShelfTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 		36181A10000475260094950D /* BookShelfTest WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36181A10000955260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest WatchKit App" */;
 			buildPhases = (
-				E363F377E61C0C3FB0E1D914 /* [CP] Check Pods Manifest.lock */,
 				36181A10000975260094950D /* Resources */,
 				36181A10000495260094950D /* Embed App Extensions */,
-				BC86D943C203D4BE98925604 /* Frameworks */,
-				1C0277096657DE357C093F24 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,12 +252,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36181A10000995260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest WatchKit Extension" */;
 			buildPhases = (
-				265D1484A7D7ED2F58ADBBDB /* [CP] Check Pods Manifest.lock */,
 				36181A10001015260094950D /* Sources */,
 				36181A10000705260094950D /* Frameworks */,
 				36181A10001035260094950D /* Resources */,
-				6EBF184FF7168EF22F929CCF /* [CP] Embed Pods Frameworks */,
-				2C82D2CD15E291F26D7725B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,28 +264,6 @@
 			productName = "BookShelfTest WatchKit Extension";
 			productReference = 36181A10000385260094950D /* BookShelfTest WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
-		};
-		36181A10000745260094950D /* BookShelfTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 36181A10000875260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest" */;
-			buildPhases = (
-				2B052DCBF6349C472D125794 /* [CP] Check Pods Manifest.lock */,
-				36181A10000895260094950D /* Sources */,
-				36181A10000695260094950D /* Frameworks */,
-				36181A10000915260094950D /* Resources */,
-				36181A10000515260094950D /* Embed Watch Content */,
-				4A6AD9626BACD907BA5B1CB1 /* [CP] Embed Pods Frameworks */,
-				8D147AC9994F188EE9CF3F03 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				36181A10000935260094950D /* PBXTargetDependency */,
-			);
-			name = BookShelfTest;
-			productName = BookShelfTest;
-			productReference = 36181A10000535260094950D /* BookShelfTest.app */;
-			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -327,13 +275,13 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = polimi;
 				TargetAttributes = {
+					36181A10000745260094950D = {
+						CreatedOnToolsVersion = 8.1;
+					};
 					36181A10000475260094950D = {
 						CreatedOnToolsVersion = 8.1;
 					};
 					36181A10000485260094950D = {
-						CreatedOnToolsVersion = 8.1;
-					};
-					36181A10000745260094950D = {
 						CreatedOnToolsVersion = 8.1;
 					};
 				};
@@ -388,146 +336,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1C0277096657DE357C093F24 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelfTest WatchKit App/Pods-BookShelfTest WatchKit App-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		265D1484A7D7ED2F58ADBBDB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2B052DCBF6349C472D125794 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2C82D2CD15E291F26D7725B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelfTest WatchKit Extension/Pods-BookShelfTest WatchKit Extension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A6AD9626BACD907BA5B1CB1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelfTest/Pods-BookShelfTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6EBF184FF7168EF22F929CCF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelfTest WatchKit Extension/Pods-BookShelfTest WatchKit Extension-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8D147AC9994F188EE9CF3F03 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelfTest/Pods-BookShelfTest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E363F377E61C0C3FB0E1D914 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		36181A10000895260094950D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				36181A10000035260094950D /* BookShelfTest.xcdatamodeld in Sources */,
-				36181A10000055260094950D /* DatabaseHandler.swift in Sources */,
-				36181A10000075260094950D /* Book.swift in Sources */,
-				36181A10000095260094950D /* Author.swift in Sources */,
-				36181A10000115260094950D /* Shelf.swift in Sources */,
+				36181A10000055260094950D /* DatabaseHandler.swift in Sources */, 
+				36181A10000075260094950D /* Book.swift in Sources*/,
+				36181A10000095260094950D /* Author.swift in Sources*/,
+				36181A10000115260094950D /* Shelf.swift in Sources*/,
 				36181A10000135260094950D /* PreferenceHandler.swift in Sources */,
 				36181A10000155260094950D /* StorageHandler.swift in Sources */,
 				36181A10000175260094950D /* CloudHandler.swift in Sources */,
 				36181A10000195260094950D /* FirebaseHandler.swift in Sources */,
-				36181A10000215260094950D /* User.swift in Sources */,
+				36181A10000215260094950D /* User.swift in Sources*/,
 				36181A10000015260094950D /* AppDelegate.swift in Sources */,
-				36181A10000295260094950D /* newViewViewController.swift in Sources */,
+				36181A10000295260094950D /* newViewViewController.swift in Sources*/,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,14 +419,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -643,14 +468,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -675,7 +500,6 @@
 		};
 		36181A10001115260094950D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC7E1BDEE9A5D0D9C1F345B4 /* Pods-BookShelfTest WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "BookShelfTest WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -691,7 +515,6 @@
 		};
 		36181A10001135260094950D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 007D4D69195492DBD45DD419 /* Pods-BookShelfTest WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "BookShelfTest WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -707,10 +530,9 @@
 		};
 		36181A10001155260094950D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF6243D2D08AD31EAE4DAA4C /* Pods-BookShelfTest WatchKit App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				IBSC_MODULE = BookShelfTest_WatchKit_Extension;
 				INFOPLIST_FILE = "BookShelfTest WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.BookShelfTest.watchkitapp;
@@ -725,10 +547,9 @@
 		};
 		36181A10001175260094950D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C83DDA42D0C5A193E778A749 /* Pods-BookShelfTest WatchKit App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				IBSC_MODULE = BookShelfTest_WatchKit_Extension;
 				INFOPLIST_FILE = "BookShelfTest WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = it.polimi.BookShelfTest.watchkitapp;
@@ -743,7 +564,6 @@
 		};
 		36181A10001195260094950D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A0C7C909EFF5FD2124F61E4 /* Pods-BookShelfTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BookShelfTest/Info.plist;
@@ -756,7 +576,6 @@
 		};
 		36181A10001215260094950D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0124B5A4E00D65769A0D21B2 /* Pods-BookShelfTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BookShelfTest/Info.plist;
@@ -770,11 +589,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		36181A10000875260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest" */ = {
+		36181A10001055260094950D /* Build configuration list for PBXProject "BookShelfTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36181A10001195260094950D /* Debug */,
-				36181A10001215260094950D /* Release */,
+				36181A10001075260094950D /* Debug */,
+				36181A10001095260094950D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36181A10000995260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36181A10001115260094950D /* Debug */,
+				36181A10001135260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
@@ -786,32 +614,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		36181A10000995260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest WatchKit Extension" */ = {
+		36181A10000875260094950D /* Build configuration list for PBXNativeTarget "BookShelfTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36181A10001115260094950D /* Debug */,
-				36181A10001135260094950D /* Release */,
+				36181A10001195260094950D /* Debug */,
+				36181A10001215260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		36181A10001055260094950D /* Build configuration list for PBXProject "BookShelfTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				36181A10001075260094950D /* Debug */,
-				36181A10001095260094950D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		36181A10000045260094950D /* BookShelfTest.xcdatamodeld */ = {
+		36181A10000045260094950D /* BookShelfTest".xcdatamodeld" */ = {
 			isa = XCVersionGroup;
 			children = (
-				36181A10000615260094950D /* BookShelfTest.xcdatamodel */,
+				36181A10000615260094950D /* BookShelfTest.xcdatamodel  */,
 			);
-			currentVersion = 36181A10000615260094950D /* BookShelfTest.xcdatamodel */;
+			currentVersion = 36181A10000615260094950D /* BookShelfTest.xcdatamodel  */;
 			path = BookShelfTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
