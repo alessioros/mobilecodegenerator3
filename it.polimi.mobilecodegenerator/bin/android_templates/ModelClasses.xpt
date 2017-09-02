@@ -86,24 +86,24 @@ public class «this.name.toFirstUpper()-»{
 	
 	«FOREACH this.entityRelationships AS Rel-»
 	«IF Rel.type.matches("N : 1") || Rel.type.matches("1 : 1")-»
-	public void set«Rel.destination.toFirstUpper()-»ID(int «Rel.destination.toFirstUpper()-»ID){
+	public void set«Rel.destination.toFirstUpper()-»ID(String «Rel.destination.toFirstUpper()-»ID){
 		this.«Rel.destination.toFirstUpper()-»ID = «Rel.destination.toFirstUpper()-»ID;
 	} 
 	
-	public int get«Rel.destination.toFirstUpper()-»ID(){
+	public String get«Rel.destination.toFirstUpper()-»ID(){
 		return this.«Rel.destination.toFirstUpper()-»ID;
 	}             	
     «ENDIF-»
     «IF Rel.type.matches("N : N") || Rel.type.matches("1 : N")-»
-	public void set«Rel.destination.toFirstUpper()-»IDs(List<Integer> «Rel.destination.toFirstUpper()-»IDs){
+	public void set«Rel.destination.toFirstUpper()-»IDs(List<String> «Rel.destination.toFirstUpper()-»IDs){
 		this.«Rel.destination.toFirstUpper()-»IDs = «Rel.destination.toFirstUpper()-»IDs;
 	} 
 	
-	public List<Integer> get«Rel.destination.toFirstUpper()-»IDs(){
+	public List<String> get«Rel.destination.toFirstUpper()-»IDs(){
 		return this.«Rel.destination.toFirstUpper()-»IDs;
 	}  
 	
-	public void add«Rel.destination.toFirstUpper()-»ID(int «Rel.destination.toFirstUpper()-»ID){
+	public void add«Rel.destination.toFirstUpper()-»ID(String «Rel.destination.toFirstUpper()-»ID){
 		this.«Rel.destination.toFirstUpper()-»IDs.add(«Rel.destination.toFirstUpper()-»ID);
 	}      	
     «ENDIF-»		
@@ -118,9 +118,9 @@ String «this.primaryKey-»,
 «ATT.type-» «ATT.name.toFirstUpper()-»,
 «ENDFOREACH-»
 «FOREACH this.entityRelationships.withoutLast() AS Rel-»
-int «Rel.destination.toFirstUpper()-»ID,
+String «Rel.destination.toFirstUpper()-»ID,
 «ENDFOREACH-»
-int «this.entityRelationships.last().destination.toFirstUpper()-»ID
+String «this.entityRelationships.last().destination.toFirstUpper()-»ID
 «ELSE»
 «FOREACH this.entityAttributes.withoutLast() AS ATT-»
 «ATT.type-» «ATT.name.toFirstUpper()-»,

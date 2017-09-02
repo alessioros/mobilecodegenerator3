@@ -134,7 +134,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		//You can reference to the next ViewController and the selected UITableViewRow     
 		if segue.identifier == "SegueIdentifierFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID" {
  	        let index = self.«lv.id».indexPathForSelectedRow!
-			let destination = segue.destinationViewController as! «lv.clickListener.navigation.destination»ViewController
+			let destination = segue.destination as! «lv.clickListener.navigation.destination»ViewController
             // Pass the selected cell content to destination ...
 		}
 		«ENDIF-»

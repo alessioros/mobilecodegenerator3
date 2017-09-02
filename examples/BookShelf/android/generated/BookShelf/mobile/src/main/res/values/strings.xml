@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- shared preferences keys and default values -->
+	<string name="accessEmail">accessEmail</string>
+	<string name="accessEmail_default"></string>
+	<string name="password">password</string>
+	<string name="password_default"></string>
+	<string name="userSurname">userSurname</string>
+	<string name="userSurname_default"></string>
+	<string name="userName">userName</string>
+	<string name="userName_default"></string>
+	<string name="bookCount">bookCount</string>
+	<string name="bookCount_default">0</string>
+
+</resources>

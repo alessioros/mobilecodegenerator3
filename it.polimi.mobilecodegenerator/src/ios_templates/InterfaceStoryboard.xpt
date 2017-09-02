@@ -19,6 +19,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE main FOR Application-»
 
+«IF watchControllers.size > 0-»
 «FILE name+"/"+name+" WatchKit App/Base.lproj/Interface.storyboard"-»
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 «IF watchControllers.size <= 0-»
@@ -126,4 +127,5 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     </scenes>
 </document>
 «ENDFILE-»
+«ENDIF-»
 «ENDDEFINE-»

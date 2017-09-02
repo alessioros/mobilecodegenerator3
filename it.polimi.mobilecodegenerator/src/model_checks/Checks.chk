@@ -42,12 +42,10 @@ context Application if(invalidFilesNames().size == 0) ERROR "Extensions of files
 
 context Application if(invalidFilesNames().size == 0 && invalidFilesExtensions().size == 0) ERROR "Files in user_files folder must have different names: " : duplicatedFilesNames().size == 0;
 	
-
+	
 context Button if(clickListener!=null && clickListener.navigation!=null) ERROR "Navigation must have a destination [Button: '"+id+"']" : !clickListener.navigation.destination.matches("");
 
 context Button if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must be the name of an existing ViewController [Button: '"+id+"']" : viewController.application.viewControllers.exists(vc| vc.name==clickListener.navigation.destination);
-
-context Button if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must not be a Menu Item [Button: '"+id+"' -> "+clickListener.navigation.destination+"]" : isDestinationNotAMenuItem(clickListener.navigation.destination, viewController.application.menu.menuItems.navigation.destination) == true;
 
 context WatchButton if(watchClickListener!=null && watchClickListener.watchNavigation!=null) ERROR "WatchNavigation must have a destination [WatchButton: '"+id+"']" : !watchClickListener.watchNavigation.destination.matches("");
 
@@ -95,8 +93,6 @@ context ViewController ERROR "Names of AsyncTasks must be of minimum one charact
 
 context ViewController ERROR "Names of AsyncTasks must be unique in the same ViewController" : asyncTasks.forAll(at1 | asyncTasks.select(at2 | at1.name.matches(at2.name)).size == 1);
 
-
-context Menu if (this != null && menuItems.size > 0) ERROR "Menu must contain the launcher ViewController as first menu item": menuItems.get(0).navigation.destination.matches(application.viewControllers.select(vc | vc.launcher==true).first().name);
 
 context Menu if (this != null && menuItems.size > 0) ERROR "Menu items must be all different ": duplicatedIds(menuItems.navigation.destination).size == 0;
 

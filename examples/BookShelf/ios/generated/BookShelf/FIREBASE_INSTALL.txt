@@ -1,0 +1,30 @@
+/* those are the instructions in order to succesfully add Firebase to your iOS Project */
+
+1. If you don't have pods install it on your mac: 
+
+	# Xcode 7 + 8
+	$ sudo gem install cocoapods
+	
+	or install the CocoaPods Mac app:
+	https://cocoapods.org/app
+	
+2. Create a Podfile in your XCode Project:
+
+	$ cd your-project directory
+	$ pod init
+	
+3. Add the pods that you want to install in the PodFile:
+
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
+	
+4. Install the pods
+
+	$ pod install
+
+5. Close XCode and from now on open the yourAppName.xcworkspace	for loading your project
+
+	$ open yourAppName.xcworkspace
+	
+6. Download a GoogleService-Info.plist file from Firebase console and include it in your app
+

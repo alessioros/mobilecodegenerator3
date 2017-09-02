@@ -19,7 +19,7 @@ String getFirstHexadecimalId(String key):JAVA ios_extensions.IOSJavaUtil.getFirs
 String getSecondHexadecimalId(String key):JAVA ios_extensions.IOSJavaUtil.getSecondHexadecimalId(java.lang.String);
 
 Void deleteApplicationFolder():JAVA ios_extensions.IOSJavaUtil.deleteApplicationFolder();
-Void copyDefaultIOSFiles():JAVA ios_extensions.IOSJavaUtil.copyDefaultIOSFiles();
+Void copyDefaultIOSFiles(String includeWatch):JAVA ios_extensions.IOSJavaUtil.copyDefaultIOSFiles(java.lang.String);
 Void copyUserFiles():JAVA ios_extensions.IOSJavaUtil.copyUserFiles();
 
 float redFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.redFromHex(java.lang.String);

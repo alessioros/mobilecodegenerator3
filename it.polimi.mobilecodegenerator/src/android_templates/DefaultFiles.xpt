@@ -22,7 +22,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «setApplicationName(name)»
 «deleteApplicationFolder()»
-«copyDefaultAndroidFiles()»
+«IF !(this.watchControllers.isEmpty)-»
+«copyDefaultAndroidFiles("yes")»
+«ELSE-»
+«copyDefaultAndroidFiles("no")»
+«ENDIF-»
+
 «copyUserFiles()»
 
 «REM»--------------------------- README.txt ---------------------------«ENDREM»
@@ -47,7 +52,8 @@ INSTRUCTIONS:
 1) edit the file local.properties with your Android SDK location 
 2) make sure to have installed Build-tools version 25.0.2 and SDK API 25 in Android Studio
 3) from Android Studio select import project (Eclipse ADT, Gradle, etc)
-4) if you are using Firebase you need to add your google-services.json file into your project
+4) if you are using Firebase you need to add your google-services.json file into your project,
+ follow these instructions https://support.google.com/firebase/answer/7015592
 
  
 «ENDFILE-»
@@ -59,6 +65,15 @@ INSTRUCTIONS:
 # WARNING: it is necessary to edit the path 
 # for Mac Os X users the path is /Users/<USERNAME>/Library/Android/sdk
 sdk.dir=/Users/alessiorossotti/Library/Android/sdk
+«ENDFILE-»
+
+«REM»--------------------------- settings.gradle ---------------------------«ENDREM»
+«FILE name+"/"+"settings.gradle"-»
+«IF existsAtLeastOne(watchControllers) -»
+include ':mobile', ':wear'
+«ELSE-»
+include ':mobile'
+«ENDIF-»
 «ENDFILE-»
 
 «REM»--------------------------- build.gradle ---------------------------«ENDREM»
@@ -86,7 +101,9 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+	«IF !(this.watchControllers.isEmpty)-»
 	wearApp project(':wear')
+	«ENDIF-»
 	compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     «IF existsAtLeastOne(viewControllers.map) || existsAtLeastOne(watchControllers.watchVoiceMessage)-»
@@ -326,8 +343,8 @@ public final class MyListAdapter extends ArrayAdapter<String> {
 	public View getView(int position, View view, ViewGroup parent) {
 		LayoutInflater inflater = context.getLayoutInflater();
 		View rowView = inflater.inflate(this.layoutId, null, true);
-
-		try {
+		
+		/*try {
 			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv);
 			tv.setText(itemNames[position]);
 		} catch (Exception e) {
@@ -360,7 +377,7 @@ public final class MyListAdapter extends ArrayAdapter<String> {
 			ic.setImageResource(iconsIds[position]);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		return rowView;
 	}

@@ -34,7 +34,7 @@ import Foundation
 class StorageHandler{
 	
 	«FOREACH this.dataHandler.storageHandler.storageRecords AS record-»
-	let file«record.name.toFirstUpper()-»Name = "«record.name-».«record.extension-»";
+	let «record.name.replaceAll(".","")-»FileName = "«record.name-»";
 	«ENDFOREACH-»
 
 	func readFile(file : String) -> String{

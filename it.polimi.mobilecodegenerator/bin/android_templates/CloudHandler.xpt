@@ -170,12 +170,12 @@ public class «CO.name.toFirstUpper()»{
 	}
 	
 	«FOREACH CO.objectAttributes AS Att-»
-	public void set«Att.name.toFirstUpper()-»(«Att.type-» «Att.name.toFirstUpper()-»){
-		this.«Att.name.toFirstUpper()-» = «Att.name.toFirstUpper()-»;
+	public void set«Att.name.toFirstUpper()-»(«Att.type-» «Att.name.toLowerCase()-»){
+		this.«Att.name.toLowerCase()-» = «Att.name.toLowerCase()-»;
 	}
 	
 	public «Att.type-» get«Att.name.toFirstUpper()-»(){
-		return this.«Att.name.toFirstUpper()-»;
+		return this.«Att.name.toLowerCase()-»;
 	}
 	«ENDFOREACH-»
 }

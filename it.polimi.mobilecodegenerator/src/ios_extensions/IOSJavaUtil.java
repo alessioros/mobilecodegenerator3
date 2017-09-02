@@ -92,8 +92,9 @@ public class IOSJavaUtil {
 	
 	/**
 	 * Copies iOS default files
+	 * @param includeWatch checks if the watch part has to be generated
 	 */
-	public static void copyDefaultIOSFiles(){
+	public static void copyDefaultIOSFiles(String includeWatch){
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/grid_image.imageset").mkdirs();
@@ -107,17 +108,26 @@ public class IOSJavaUtil {
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Base.lproj").mkdirs();
 		
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App").mkdirs();
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets").mkdirs();
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets/AppIcon.appiconset").mkdirs();
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Base.lproj").mkdirs();
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension").mkdirs();
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension/Assets.xcassets").mkdirs();
-		
 		for(int i=0; i<IOSConstants.sourceFilesPaths.length; i++){
 			File source = new File(IOSConstants.sourceFilesPaths[i]);
 			File destination = new File(IOSConstants.destinationFilesPaths[i]);
 			AppJavaUtil.copyFile(source, destination);
+		}
+		
+		if(includeWatch.equals("yes")){
+			
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App").mkdirs();
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets").mkdirs();
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets/AppIcon.appiconset").mkdirs();
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Base.lproj").mkdirs();
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension").mkdirs();
+			new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension/Assets.xcassets").mkdirs();
+			
+			for(int i=0; i<IOSConstants.sourceWatchFilesPaths.length; i++){
+				File source = new File(IOSConstants.sourceWatchFilesPaths[i]);
+				File destination = new File(IOSConstants.destinationWatchFilesPaths[i]);
+				AppJavaUtil.copyFile(source, destination);
+			}	
 		}
 	}
 	

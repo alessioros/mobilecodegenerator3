@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TabBarControllerID">
+	<dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+	<scenes>
+	<!--HomeViewController-->
+	<scene sceneID="HomeViewControllerSceneID">
+		<objects>
+			<viewController id="HomeViewControllerID" customClass="HomeViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="Home-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="Home-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="HomeViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="HomeViewControllerNavigationItemID"/>
+	      		<connections>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="HomePlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--LibraryViewController-->
+	<scene sceneID="LibraryViewControllerSceneID">
+		<objects>
+			<viewController id="LibraryViewControllerID" customClass="LibraryViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="Library-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="Library-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="LibraryViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="trcjpListView">
+<rect key="frame" x="0" y="64" width="270" height="270"/>
+<constraints>
+</constraints>
+
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                        <prototypes>
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="trcjpListViewTableViewCell" rowHeight="57" id="trcjpListViewCellID" customClass="SimpleTableViewCell" customModule="BookShelf" customModuleProvider="target">	                          
+	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+	                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="trcjpListViewCellID" id="trcjpListViewContentViewID">
+	                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+	                                    <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trcjpListViewCellLabelID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="trcjpListViewCellLabelID" secondAttribute="bottom" constant="8" id="trcjpListViewConstA"/>
+                                            <constraint firstItem="trcjpListViewCellLabelID" firstAttribute="leading" secondItem="trcjpListViewContentViewID" secondAttribute="leading" constant="16" id="trcjpListViewConstB"/>
+                                            <constraint firstItem="trcjpListViewCellLabelID" firstAttribute="top" secondItem="trcjpListViewContentViewID" secondAttribute="top" constant="8" id="trcjpListViewConstC"/>
+                                            <constraint firstAttribute="trailing" secondItem="trcjpListViewCellLabelID" secondAttribute="trailing" constant="16" id="trcjpListViewConstD"/>
+                                        </constraints>
+                                   	</tableViewCellContentView>
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                	<connections>
+                                        <outlet property="label" destination="trcjpListViewCellLabelID" id="trcjpListViewLabelOutlet"/>
+                                        
+			                    		<segue destination="shelfDetailViewControllerID" kind="show" id="SegueIDFromtrcjpListViewToshelfDetailViewControllerID" identifier="SegueIdentifierFromtrcjpListViewToshelfDetailViewControllerID"/>
+			                    		
+                                    </connections>
+	                            </tableViewCell>
+	                        </prototypes>
+	                        <connections>
+	                            <outlet property="dataSource" destination="LibraryViewControllerID" id="trcjpListViewDataSourceOutletID"/>
+	                            <outlet property="delegate" destination="LibraryViewControllerID" id="trcjpListViewDelegateOutletID"/>
+	                        </connections>
+	                    </tableView>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+							<constraint firstItem="trcjpListView" firstAttribute="top" secondItem="Library-guide-top" secondAttribute="bottom" constant="0" id="trcjpListView-alignParentTop"/>
+							<constraint firstItem="Library-guide-bottom" firstAttribute="top" secondItem="trcjpListView" secondAttribute="bottom" constant="0" id="trcjpListView-alignParentBottom"/>
+							<constraint firstItem="trcjpListView" firstAttribute="leading" secondItem="LibraryViewID" secondAttribute="leading" constant="0" id="trcjpListView-alignParentStart"/>
+							<constraint firstItem="trcjpListView" firstAttribute="trailing" secondItem="LibraryViewID" secondAttribute="trailing" constant="0" id="trcjpListView-alignParentEnd"/>
+							
+							
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="LibraryViewControllerNavigationItemID"/>
+	      		<connections>
+	                <outlet property="trcjpListView" destination="trcjpListView" id="trcjpListViewOutletID"/>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="LibraryPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--AboutViewController-->
+	<scene sceneID="AboutViewControllerSceneID">
+		<objects>
+			<viewController id="AboutViewControllerID" customClass="AboutViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="About-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="About-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="AboutViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="AboutViewControllerNavigationItemID"/>
+	      		<connections>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="AboutPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--SettingsViewController-->
+	<scene sceneID="SettingsViewControllerSceneID">
+		<objects>
+			<viewController id="SettingsViewControllerID" customClass="SettingsViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="Settings-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="Settings-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="SettingsViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="SettingsViewControllerNavigationItemID"/>
+	      		<connections>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="SettingsPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--LoginViewController-->
+	<scene sceneID="LoginViewControllerSceneID">
+		<objects>
+			<viewController id="LoginViewControllerID" customClass="LoginViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="Login-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="Login-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="LoginViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loginButton">
+<rect key="frame" x="14" y="319" width="88" height="40"/>
+<constraints>
+<constraint firstAttribute="height" constant="40" id="loginButton-height"/>
+</constraints>
+
+	                    	<state key="normal" title="Login">
+	                        </state>
+	                        <state key="highlighted">
+	                        	<color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                    	</state>
+	                    	<connections>
+	                    		
+	                    		<segue destination="HomeViewControllerID" kind="show" id="SegueIDFromloginButtonToHomeViewControllerID"/>
+	                    		
+	                    		<action selector="loginButtonTouchUpInside:" destination="LoginViewControllerID" eventType="touchUpInside" id="loginButtonTouchUpInsideActionID"/>
+	                    		<action selector="loginButtonTouchDown:" destination="LoginViewControllerID" eventType="touchDown" id="loginButtonTouchDownActionID"/>
+	                        </connections>
+	                    </button>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+							<constraint firstItem="loginButton" firstAttribute="leading" secondItem="LoginViewID" secondAttribute="leading" constant="0" id="loginButton-alignParentStart"/>
+							<constraint firstItem="loginButton" firstAttribute="trailing" secondItem="LoginViewID" secondAttribute="trailing" constant="0" id="loginButton-alignParentEnd"/>
+							
+							<constraint firstItem="loginButton" firstAttribute="top" secondItem="Login-guide-top" secondAttribute="bottom" constant="255" id="loginButton-posY"/>
+							
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="LoginViewControllerNavigationItemID"/>
+	      		<connections>
+	                <outlet property="loginButton" destination="loginButton" id="loginButtonOutletID"/>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="LoginPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--RegisterViewController-->
+	<scene sceneID="RegisterViewControllerSceneID">
+		<objects>
+			<viewController id="RegisterViewControllerID" hidesBottomBarWhenPushed="YES" customClass="RegisterViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="Register-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="Register-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="RegisterViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="registerButton">
+<rect key="frame" x="32" y="350" width="88" height="40"/>
+<constraints>
+<constraint firstAttribute="height" constant="40" id="registerButton-height"/>
+</constraints>
+
+	                    	<state key="normal" title="Register">
+	                        </state>
+	                        <state key="highlighted">
+	                        	<color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                    	</state>
+	                    	<connections>
+	                    		
+	                    		<action selector="registerButtonTouchUpInside:" destination="RegisterViewControllerID" eventType="touchUpInside" id="registerButtonTouchUpInsideActionID"/>
+	                    		<action selector="registerButtonTouchDown:" destination="RegisterViewControllerID" eventType="touchDown" id="registerButtonTouchDownActionID"/>
+	                        </connections>
+	                    </button>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+							<constraint firstItem="registerButton" firstAttribute="leading" secondItem="RegisterViewID" secondAttribute="leading" constant="0" id="registerButton-alignParentStart"/>
+							<constraint firstItem="registerButton" firstAttribute="trailing" secondItem="RegisterViewID" secondAttribute="trailing" constant="0" id="registerButton-alignParentEnd"/>
+							
+							<constraint firstItem="registerButton" firstAttribute="top" secondItem="Register-guide-top" secondAttribute="bottom" constant="286" id="registerButton-posY"/>
+							
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="RegisterViewControllerNavigationItemID"/>
+	      		<connections>
+	                <outlet property="registerButton" destination="registerButton" id="registerButtonOutletID"/>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="RegisterPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--shelfDetailViewController-->
+	<scene sceneID="shelfDetailViewControllerSceneID">
+		<objects>
+			<viewController id="shelfDetailViewControllerID" hidesBottomBarWhenPushed="YES" customClass="shelfDetailViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="shelfDetail-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="shelfDetail-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="shelfDetailViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="bookList">
+<rect key="frame" x="0" y="160" width="270" height="270"/>
+<constraints>
+</constraints>
+
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                        <prototypes>
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="bookListTableViewCell" rowHeight="57" id="bookListCellID" customClass="SimpleTableViewCell" customModule="BookShelf" customModuleProvider="target">	                          
+	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+	                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bookListCellID" id="bookListContentViewID">
+	                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+	                                    <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bookListCellLabelID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="bookListCellLabelID" secondAttribute="bottom" constant="8" id="bookListConstA"/>
+                                            <constraint firstItem="bookListCellLabelID" firstAttribute="leading" secondItem="bookListContentViewID" secondAttribute="leading" constant="16" id="bookListConstB"/>
+                                            <constraint firstItem="bookListCellLabelID" firstAttribute="top" secondItem="bookListContentViewID" secondAttribute="top" constant="8" id="bookListConstC"/>
+                                            <constraint firstAttribute="trailing" secondItem="bookListCellLabelID" secondAttribute="trailing" constant="16" id="bookListConstD"/>
+                                        </constraints>
+                                   	</tableViewCellContentView>
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                	<connections>
+                                        <outlet property="label" destination="bookListCellLabelID" id="bookListLabelOutlet"/>
+                                        
+			                    		<segue destination="bookDetailViewControllerID" kind="show" id="SegueIDFrombookListTobookDetailViewControllerID" identifier="SegueIdentifierFrombookListTobookDetailViewControllerID"/>
+			                    		
+                                    </connections>
+	                            </tableViewCell>
+	                        </prototypes>
+	                        <connections>
+	                            <outlet property="dataSource" destination="shelfDetailViewControllerID" id="bookListDataSourceOutletID"/>
+	                            <outlet property="delegate" destination="shelfDetailViewControllerID" id="bookListDelegateOutletID"/>
+	                        </connections>
+	                    </tableView>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+							<constraint firstItem="bookList" firstAttribute="top" secondItem="shelfDetail-guide-top" secondAttribute="bottom" constant="0" id="bookList-alignParentTop"/>
+							<constraint firstItem="shelfDetail-guide-bottom" firstAttribute="top" secondItem="bookList" secondAttribute="bottom" constant="0" id="bookList-alignParentBottom"/>
+							<constraint firstItem="bookList" firstAttribute="leading" secondItem="shelfDetailViewID" secondAttribute="leading" constant="0" id="bookList-alignParentStart"/>
+							<constraint firstItem="bookList" firstAttribute="trailing" secondItem="shelfDetailViewID" secondAttribute="trailing" constant="0" id="bookList-alignParentEnd"/>
+							
+							
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="shelfDetailViewControllerNavigationItemID"/>
+	      		<connections>
+	                <outlet property="bookList" destination="bookList" id="bookListOutletID"/>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="shelfDetailPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	<!--bookDetailViewController-->
+	<scene sceneID="bookDetailViewControllerSceneID">
+		<objects>
+			<viewController id="bookDetailViewControllerID" hidesBottomBarWhenPushed="YES" customClass="bookDetailViewController" customModule="BookShelf" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+		        <layoutGuides>
+	                <viewControllerLayoutGuide type="top" id="bookDetail-guide-top"/>
+	            	<viewControllerLayoutGuide type="bottom" id="bookDetail-guide-bottom"/>
+	            </layoutGuides>
+	        	<view key="view" contentMode="scaleToFill" id="bookDetailViewID">
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	                <subviews>
+	                    
+	                </subviews>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                <constraints>
+
+
+
+	                </constraints>
+	            </view>
+				<navigationItem key="navigationItem" id="bookDetailViewControllerNavigationItemID"/>
+	      		<connections>
+	      		</connections>
+	    	</viewController>
+	    	<placeholder placeholderIdentifier="IBFirstResponder" id="bookDetailPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+	  	</objects>
+	</scene>
+	
+	<!--Tab Bar Controller-->
+    <scene sceneID="TabBarControllerSceneID">
+        <objects>
+            <tabBarController  automaticallyAdjustsScrollViewInsets="NO" id="TabBarControllerID" sceneMemberID="viewController">
+                <tabBar key="tabBar" contentMode="scaleToFill" id="TabBarControllerTabBarID">
+                    <autoresizingMask key="autoresizingMask"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tabBar>
+                <connections>
+                	
+                	<segue destination="HomeViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="HomeSegueID"/>
+                	<segue destination="LibraryViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="LibrarySegueID"/>
+                	<segue destination="AboutViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="AboutSegueID"/>
+                	<segue destination="SettingsViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="SettingsSegueID"/>
+                	<segue destination="LoginViewControllerNavNavigationControllerID" kind="relationship" relationship="viewControllers" id="LogoutSegueID"/>
+                </connections>
+            </tabBarController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="TabBarPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    
+    
+    <!-- Home ViewControllerNav -->
+	<scene sceneID="HomeViewControllerNavSceneID">
+        <objects>
+            <navigationController id="HomeViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="Home" id="HomeTabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="HomeViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="HomeViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootHomeViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="HomeViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    <!-- Library ViewControllerNav -->
+	<scene sceneID="LibraryViewControllerNavSceneID">
+        <objects>
+            <navigationController id="LibraryViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="Library" id="LibraryTabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="LibraryViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="LibraryViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootLibraryViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="LibraryViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    <!-- About ViewControllerNav -->
+	<scene sceneID="AboutViewControllerNavSceneID">
+        <objects>
+            <navigationController id="AboutViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="About" id="AboutTabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="AboutViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="AboutViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootAboutViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="AboutViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    <!-- Settings ViewControllerNav -->
+	<scene sceneID="SettingsViewControllerNavSceneID">
+        <objects>
+            <navigationController id="SettingsViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="Settings" id="SettingsTabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="SettingsViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="SettingsViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootSettingsViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="SettingsViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+    <!-- Login ViewControllerNav -->
+	<scene sceneID="LoginViewControllerNavSceneID">
+        <objects>
+            <navigationController id="LoginViewControllerNavNavigationControllerID" sceneMemberID="viewController">
+                <tabBarItem key="tabBarItem" title="Login" id="LoginTabBarItemID"/>
+                <toolbarItems/>
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="LoginViewControllerNavNavigationBarID">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </navigationBar>
+                <nil name="viewControllers"/>
+                <connections>
+                    <segue destination="LoginViewControllerID" kind="relationship" relationship="rootViewController" id="SegueIDWithRootLoginViewControllerID"/>
+                </connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="LoginViewControllerPlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects>
+    </scene>
+	</scenes>
+	<resources>
+		
+        
+        
+		
+        
+        
+		
+        
+        
+		
+        
+        
+		
+        
+        
+		
+        
+        
+		
+        
+        
+		
+        
+        
+        
+        <image name="grid_image" width="202" height="202"/>
+        <image name="card_image" width="426" height="240"/>
+        <image name="list_img" width="100" height="100"/>
+        <image name="list_icon" width="40" height="40"/>
+        <image name="pause_icon" width="56" height="56"/>
+        <image name="play_icon" width="56" height="56"/>
+        <image name="stop_icon" width="56" height="56"/>
+        <image name="photocamera_icon" width="36" height="36"/>
+        <image name="videocamera_icon" width="36" height="36"/>
+	</resources>
+</document>

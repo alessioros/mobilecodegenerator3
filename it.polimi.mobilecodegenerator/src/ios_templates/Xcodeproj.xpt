@@ -33,7 +33,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */; };
 		«getFirstHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift */; };
 		«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
-		«getFirstHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name».swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()».swift */; };
+		«getFirstHexadecimalId(entity.name.toFirstUpper()+"+CoreDataClass.swift")» /* «entity.name»+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataClass.swift")» /* «entity.name.toFirstUpper()»+CoreDataClass.swift */; };
+		«getFirstHexadecimalId(entity.name.toFirstUpper()+"+CoreDataProperties.swift")» /* «entity.name»+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataProperties.swift")» /* «entity.name.toFirstUpper()»+CoreDataProperties.swift */; };
 		«ENDFOREACH-»
 		«ENDIF-»
 		«IF this.dataHandler.preferenceHandler.existsObject()-»
@@ -82,15 +83,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH getUserFilesNames() AS filename-»
 		«getFirstHexadecimalId(filename)» /* «filename» in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(filename)» /* «filename» */; };
 		«ENDFOREACH-»
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */; };
-		«getFirstHexadecimalId("Interface.storyboard")» /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */; };
 		«getFirstHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */; };
 		«getFirstHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		«getFirstHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */; };		
 		«getFirstHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */; };	
-			
+		«getFirstHexadecimalId("Interface.storyboard")» /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */; };
+		«ENDIF-»
+		
 /* End PBXBuildFile section */
 
+«IF !(this.watchControllers.isEmpty)-»
 /* Begin PBXContainerItemProxy section */
 		«getFirstHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -132,6 +136,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
+«ENDIF-»
 
 /* Begin PBXFileReference section */
 		«getFirstHexadecimalId(name+".app")» /* «name».app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = «name».app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +149,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId(this.name+".xcdatamodel")» /* «this.name».xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = «this.name».xcdatamodel; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
-		«getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name».swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "«entity.name».swift"; path = "«entity.name».swift"; sourceTree = "<group>"; };
+		«getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataClass.swift")» /* «entity.name»+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "«entity.name»+CoreDataClass.swift"; path = "«entity.name»+CoreDataClass.swift"; sourceTree = "<group>"; };
+		«getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataProperties.swift")» /* «entity.name»+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "«entity.name»+CoreDataProperties.swift"; path = "«entity.name»+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		«ENDFOREACH-»
 		«ENDIF-»
 		«IF this.dataHandler.preferenceHandler.existsObject()-»
@@ -190,15 +196,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH getUserFilesNames() AS filename-»
 		«getSecondHexadecimalId(filename)» /* «filename» */ = {isa = PBXFileReference; lastKnownFileType = «filename»; name = «filename»; path = «filename»; sourceTree = "<group>"; };
 		«ENDFOREACH-»
+		«IF !(this.watchControllers.isEmpty)-»
 		«getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "«name» WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		«getFirstHexadecimalId("Interface Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("WatchKit App Info.plist")» /* WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		«getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "«name» WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		«getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("WatchKit Extension Info.plist")» /* WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+		«getFirstHexadecimalId("Interface Base")» /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		«ENDIF-»
+		/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		«getFirstHexadecimalId("Frameworks")» /* Frameworks */ = {
@@ -222,8 +230,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = PBXGroup;
 			children = (
 				«getFirstHexadecimalId(name)» /* «name» */,
+				«IF !(this.watchControllers.isEmpty)-»
 				«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */,
 				«getFirstHexadecimalId(name+" WatchKit Extension")» /* «name» WatchKit Extension */,
+				«ENDIF-»
 				«getFirstHexadecimalId("Products")» /* Products */,
 			);
 			sourceTree = "<group>";
@@ -232,8 +242,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = PBXGroup;
 			children = (
 				«getFirstHexadecimalId(name+".app")» /* «name».app */,
+				«IF !(this.watchControllers.isEmpty)-»
 				«getSecondHexadecimalId(name+" WatchKit App.app")» /* «name» WatchKit App.app */,
 				«getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */,
+				«ENDIF-»
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,7 +302,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			isa = PBXGroup;
 			children = (
 				«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
-				«getSecondHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()».swift */,
+				«getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataClass.swift")» /* «entity.name.toFirstUpper()»+CoreDataClass.swift */,
+				«getSecondHexadecimalId(entity.name.toFirstUpper()+"+CoreDataProperties.swift")» /* «entity.name.toFirstUpper()»+CoreDataProperties.swift */,
 				«ENDFOREACH-»
 			);
 			path = "CoreDataModels";
@@ -332,6 +345,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			sourceTree = "<group>";
 		};
 		
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId(name+" WatchKit App")» /* «name» WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +369,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			path = "«name» WatchKit Extension";
 			sourceTree = "<group>";
 		};
+		«ENDIF-»
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -365,18 +380,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId("Sources "+name)» /* Sources */,
 				«getFirstHexadecimalId("Frameworks")» /* Frameworks */,
 				«getFirstHexadecimalId("Resources "+name)» /* Resources */,
+				«IF watchControllers.size > 0-»
 				«getFirstHexadecimalId("Embed Watch Content")» /* Embed Watch Content */,
+				«ENDIF-»
 			);
 			buildRules = (
 			);
 			dependencies = (
+				«IF watchControllers.size > 0-»
 				«getFirstHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */,
+				«ENDIF-»
 			);
 			name = «name»;
 			productName = «name»;
 			productReference = «getFirstHexadecimalId(name+".app")» /* «name».app */;
 			productType = "com.apple.product-type.application";
 		};
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = «getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit App")» /* Build configuration list for PBXNativeTarget "«name» WatchKit App" */;
@@ -411,6 +431,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			productReference = «getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		«ENDIF-»
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -446,8 +467,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			projectRoot = "";
 			targets = (
 				«getSecondHexadecimalId(name)» /* «name» */,
+				«IF watchControllers.size > 0»
 				«getFirstHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit App */,
 				«getSecondHexadecimalId("remoteGlobalIDString")» /* «name» WatchKit Extension */,
+				«ENDIF»
 			);
 		};
 /* End PBXProject section */
@@ -466,6 +489,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId("Resources "+name+" WatchKit App")» /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,6 +507,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		«ENDIF-»
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -494,7 +519,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld in Sources */,
 				«getFirstHexadecimalId("DatabaseHandler.swift")» /* DatabaseHandler.swift in Sources */, 
 				«FOREACH this.dataHandler.databaseHandler.entities AS entity-»
-				«getFirstHexadecimalId(entity.name.toFirstUpper()+".swift")» /* «entity.name.toFirstUpper()+".swift"» in Sources*/,
+				«getFirstHexadecimalId(entity.name.toFirstUpper()+"+CoreDataClass.swift")» /* «entity.name.toFirstUpper()+"+CoreDataClass.swift"» in Sources*/,
+				«getFirstHexadecimalId(entity.name.toFirstUpper()+"+CoreDataProperties.swift")» /* «entity.name.toFirstUpper()+"+CoreDataProperties.swift"» in Sources*/,
 				«ENDFOREACH-»
 				«ENDIF-»
 				«IF this.dataHandler.preferenceHandler.existsObject()-»
@@ -538,6 +564,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId("Sources "+name+" WatchKit Extension")» /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,8 +576,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		«ENDIF-»
 /* End PBXSourcesBuildPhase section */
 
+«IF !(this.watchControllers.isEmpty)-»
 /* Begin PBXTargetDependency section */
 		«getFirstHexadecimalId("PBXTargetDependency")» /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -563,6 +592,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			targetProxy = «getSecondHexadecimalId("PBXContainerItemProxy")» /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+«ENDIF-»
 
 /* Begin PBXVariantGroup section */
 		«getSecondHexadecimalId("Main.storyboard")» /* Main.storyboard */ = {
@@ -581,6 +611,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		«IF watchControllers.size > 0-»
 		«getSecondHexadecimalId("Interface.storyboard")» /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -589,6 +620,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
+		«ENDIF-»
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -683,6 +715,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			};
 			name = Release;
 		};
+		«IF !(this.watchControllers.isEmpty)-»
 		«getFirstHexadecimalId("Debug "+name+" WatchKit Extension")» /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -747,6 +780,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			};
 			name = Release;
 		};
+		«ENDIF-»
+		
 		«getFirstHexadecimalId("Debug "+name)» /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -783,6 +818,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		«IF watchControllers.size > 0-»
 		«getFirstHexadecimalId("PBXNativeTarget "+name+" WatchKit Extension")» /* Build configuration list for PBXNativeTarget "«name» WatchKit Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -799,6 +835,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			);
 			defaultConfigurationIsVisible = 0;
 		};
+		«ENDIF-»
 		«getFirstHexadecimalId("PBXNativeTarget "+name)» /* Build configuration list for PBXNativeTarget "«name»" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

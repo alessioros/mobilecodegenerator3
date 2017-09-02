@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="BookShelf" companyIdentifier="it.polimi">
+    <dataHandler>
+        <preferenceHandler>
+            <preferenceRecords key="accessEmail" value="" type="string"/>
+            <preferenceRecords key="password" value="" type="string"/>
+            <preferenceRecords key="userName" value="" type="string"/>
+            <preferenceRecords key="userSurname" value="" type="string"/>
+            <preferenceRecords key="bookCount" value="0" type="int"/>
+        </preferenceHandler>
+        <databaseHandler>
+            <entities name="Book" primaryKey="ISBN">
+                <entityAttributes name="title" type="String"/>
+                <entityAttributes name="description" type="String"/>
+                <entityAttributes name="pageCount" type="Integer"/>
+                <entityAttributes name="publisher" type="String"/>
+                <entityAttributes name="publishedDate" type="String"/>
+                <entityAttributes name="imgUrl" type="String"/>
+                <entityRelationships name="belongsTo" destination="Shelf" type="N : 1"/>
+            </entities>
+            <entities name="Shelf" primaryKey="name">
+                <entityAttributes name="bookCount" type="Integer"/>
+                <entityRelationships name="has" destination="Book" type="1 : N"/>
+            </entities>
+        </databaseHandler>
+        <cloudHandler>
+            <cloudObjects name="User">
+                <objectAttributes name="access_email" type="String"/>
+                <objectAttributes name="password" type="String"/>
+                <objectAttributes name="user_name" type="String"/>
+                <objectAttributes name="user_surname" type="String"/>
+            </cloudObjects>
+        </cloudHandler>
+        <storageHandler>
+            <storageRecords name="about.txt" extension="text" tempFile="true"/>
+        </storageHandler>
+    </dataHandler>
+    <viewControllers name="Login" backgroundColor="" backgroundImage="" launcher="true">
+        <buttons id="loginButton" posX="163" posY="159" width="88" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='Login']" title="Login" textColor="" backgroundColor="" borderRadius="2" clickColor="">
+            <clickListener>
+                <navigation destination="Home"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="Register" backgroundColor="" backgroundImage="" launcher="false">
+        <buttons id="registerButton" posX="175" posY="128" width="88" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='Register']" title="Register" textColor="" backgroundColor="" borderRadius="2" clickColor=""/>
+    </viewControllers>
+    <viewControllers name="Home" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="Library" backgroundColor="" backgroundImage="" launcher="false">
+        <listViews id="bookList" posX="0" posY="0" width="270" height="270" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='Library']" backgroundColor="" listType="simple">
+            <clickListener>
+                <navigation destination="BookDetail"/>
+            </clickListener>
+            <listViewCells title="reading" subtitle="Content"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="Settings" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="About" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="BookDetail" backgroundColor="" backgroundImage="" launcher="false"/>
+    <menu>
+        <menuItems title="Login" id="Login">
+            <navigation destination="Login"/>
+        </menuItems>
+        <menuItems title="Home" id="Home">
+            <navigation destination="Home"/>
+        </menuItems>
+        <menuItems title="Library" id="Library">
+            <navigation destination="Library"/>
+        </menuItems>
+        <menuItems title="Settings" id="Settings">
+            <navigation destination="Settings"/>
+        </menuItems>
+        <menuItems title="About" id="About">
+            <navigation destination="About"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

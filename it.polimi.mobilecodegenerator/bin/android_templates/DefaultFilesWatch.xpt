@@ -16,6 +16,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE main FOR Application-»
+«IF !(this.watchControllers.isEmpty)-»
 «FILE name+"/wear/"+"build.gradle"-»
 apply plugin: 'com.android.application'
 
@@ -44,4 +45,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-wearable:10.0.1'
 }
 «ENDFILE-»
+«ENDIF-»
 «ENDDEFINE-»

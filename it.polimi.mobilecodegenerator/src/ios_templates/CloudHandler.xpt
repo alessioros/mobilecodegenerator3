@@ -43,7 +43,7 @@ class FirebaseHandler{
 	}
 	
 	«FOREACH this.dataHandler.cloudHandler.cloudObjects AS cObject-»
-	func save«cObject.name.toFirstUpper()-»(«cObject.name-» : «cObject.name.toFirstUpper()-» ) -> Void{
+	func save«cObject.name.toFirstUpper()-»(«cObject.name.toLowerCase()-» : «cObject.name.toFirstUpper()-» ) -> Void{
 		
 		// TODO REPLACE WITH YOUR FIREBASE CONSOLE REF
 		let ref = getReference(reference: "«cObject.name.toLowerCase()-»")

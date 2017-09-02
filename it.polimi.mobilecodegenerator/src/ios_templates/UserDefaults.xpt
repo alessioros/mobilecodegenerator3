@@ -44,7 +44,18 @@ class PreferenceHandler{
     
     func get«precord.key.toFirstUpper()-»() -> «precord.type.toFirstUpper()-»?{
         
-        return defaults.«precord.type.toLowerCase()-»(forKey: "«precord.key-»");
+        if defaults.object(forKey: "«precord.key-»") != nil
+        {
+            return defaults.«precord.type.toLowerCase()-»(forKey: "«precord.key-»");
+        }else{
+            return nil
+        }
+    }
+    
+    func delete«precord.key.toFirstUpper()-»(){
+        
+        defaults.removeObject(forKey: "«precord.key-»");
+        defaults.synchronize()
     }
     «ENDIF-»
     «IF  precord.type.matches("int") || precord.type.matches("long")-»
@@ -56,7 +67,18 @@ class PreferenceHandler{
     
     func get«precord.key.toFirstUpper()-»() -> Int{
         
-        return defaults.integer(forKey: "«precord.key-»");
+        f defaults.object(forKey: "«precord.key-»") != nil
+        {
+            return defaults.integer(forKey: "«precord.key-»");
+        }else{
+            return 0
+        }
+    }
+    
+    func delete«precord.key.toFirstUpper()-»(){
+        
+        defaults.removeObject(forKey: "«precord.key-»");
+        defaults.synchronize()
     }
     «ENDIF-»
     «IF  precord.type.matches("float") || precord.type.matches("double")-»
@@ -68,7 +90,18 @@ class PreferenceHandler{
     
     func get«precord.key.toFirstUpper()-»() -> Double{
         
-        return defaults.double(forKey: "«precord.key-»");
+        if defaults.object(forKey: "«precord.key-»") != nil
+        {
+            return defaults.double(forKey: "«precord.key-»");
+        }else{
+            return 0
+        }
+    }
+    
+    func delete«precord.key.toFirstUpper()-»(){
+        
+        defaults.removeObject(forKey: "«precord.key-»");
+        defaults.synchronize()
     }
     «ENDIF-»
     «IF precord.type.matches("boolean")-»
@@ -80,7 +113,18 @@ class PreferenceHandler{
     
     func get«precord.key.toFirstUpper()-»() -> Bool{
         
-        return defaults.bool(forKey: "«precord.key-»");
+        if defaults.object(forKey: "«precord.key-»") != nil
+        {
+            return defaults.bool(forKey: "«precord.key-»");
+        }else{
+            return nil
+        }
+    }
+    
+    func delete«precord.key.toFirstUpper()-»(){
+        
+        defaults.removeObject(forKey: "«precord.key-»");
+        defaults.synchronize()
     }
     «ENDIF-»
 	«ENDFOREACH-»

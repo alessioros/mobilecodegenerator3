@@ -59,9 +59,10 @@ public class IOSConstants {
 		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon@3x.png",
 		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon@2x.png",
 		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon.png",
-		
+	};
+	
+	public static String[] sourceWatchFilesPaths = {
 		sourceFilesFolder+"/WatchKit App/Assets.xcassets/AppIcon.appiconset/Contents.json",
-		
 	};
 	
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
@@ -105,9 +106,9 @@ public class IOSConstants {
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon@3x.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon@2x.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon.png",
-		
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets/AppIcon.appiconset/Contents.json",
-		
-		
+	};
+	
+	public static String[] destinationWatchFilesPaths = {
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets/AppIcon.appiconset/Contents.json",	
 	};
 }

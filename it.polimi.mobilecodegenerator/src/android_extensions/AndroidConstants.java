@@ -70,9 +70,10 @@ public class AndroidConstants {
 		sourceFilesFolder+"/mobile/src/main/res/values-v21/styles.xml",
 		sourceFilesFolder+"/mobile/src/main/res/values-w820dp/dimens.xml",
 		sourceFilesFolder+"/gradle/wrapper/gradle-wrapper.properties",
-		sourceFilesFolder+"/build.gradle",
-		sourceFilesFolder+"/settings.gradle",
-		
+		sourceFilesFolder+"/build.gradle",		
+	};
+	
+	public static String[] sourceWatchFilesPaths = {
 		sourceFilesFolder+"/wear/src/main/res/mipmap-hdpi/ic_launcher.png",
 		sourceFilesFolder+"/wear/src/main/res/mipmap-mdpi/ic_launcher.png",
 		sourceFilesFolder+"/wear/src/main/res/mipmap-xhdpi/ic_launcher.png",
@@ -135,7 +136,9 @@ public class AndroidConstants {
 		destinationFilesFolder+"/gradle/wrapper/gradle-wrapper.properties",
 		destinationFilesFolder+"/build.gradle",
 		destinationFilesFolder+"/settings.gradle",
-		
+	};
+	
+	public static String[] destinationWatchFilesPaths = {
 		destinationFilesFolder+"/wear/src/main/res/mipmap-hdpi/ic_launcher.png",
 		destinationFilesFolder+"/wear/src/main/res/mipmap-mdpi/ic_launcher.png",
 		destinationFilesFolder+"/wear/src/main/res/mipmap-xhdpi/ic_launcher.png",

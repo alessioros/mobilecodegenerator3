@@ -115,6 +115,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </plist>
 «ENDFILE-»
 
+«IF !(this.watchControllers.isEmpty)-»
 «REM»WatchKit App Plist«ENDREM»
 «FILE name+"/"+name+" WatchKit App/Info.plist"-»
 <?xml version="1.0" encoding="UTF-8"?>
@@ -195,5 +196,5 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </dict>
 </plist>
 «ENDFILE-»
-
+«ENDIF-»
 «ENDDEFINE-»

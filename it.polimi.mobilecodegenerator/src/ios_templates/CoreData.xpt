@@ -95,66 +95,97 @@ import CoreData
 
 class DatabaseHandler{
     
-    private init(){
+    static let shared = DatabaseHandler()
+    private var context: NSManagedObjectContext
+    
+    init(){
+        let application = UIApplication.shared.delegate as! AppDelegate
+        self.context = application.persistentContainer.viewContext
+    }
+    
+    «FOREACH this.dataHandler.databaseHandler.entities AS EN-»
+    class func save«EN.name.toFirstUpper()-»(«EXPAND enAttributes FOR EN-») {
         
-    }
-    
-    class func getContext() -> NSManagedObjectContext {
-        return DatabaseHandler.persistentContainer.viewContext
-    }
-    
-    // MARK: - Core Data stack
-    
-    static var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "«this.name-»")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    // MARK: - Core Data Saving support
-    
-    class func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+        // retrieve entity
+        let entity = NSEntityDescription.entity(forEntityName: "«EN.name.toFirstUpper()-»", in: shared.context)
+        
+        // setting attributes
+        let options = NSManagedObject(entity: entity!, insertInto: shared.context)
+        «IF EN.primaryKey.matches("description") || EN.primaryKey.matches("entity") || EN.primaryKey.matches("objectID")-»
+        options.setValue(«EN.primaryKey-»_, forKey: "«EN.primaryKey-»_")
+        «ELSE-»
+        options.setValue(«EN.primaryKey-», forKey: "«EN.primaryKey-»")
+        «ENDIF-»
+        «FOREACH EN.entityAttributes AS ATT-»
+        «IF ATT.name.matches("description") || ATT.name.matches("entity") || ATT.name.matches("objectID")-»
+        options.setValue(«ATT.name-»_, forKey: "«ATT.name-»_")
+        «ELSE-»
+        options.setValue(«ATT.name-», forKey: "«ATT.name-»")
+        «ENDIF-»
+        «ENDFOREACH-»
+        
+        do {
+            try shared.context.save()
+        } catch let error {
+            print("Problem occourred while saving")
+            print("\n \(error) \n")
         }
     }
+    
+    func loadAll«EN.name.toFirstUpper()-»s() -> Array<«EN.name.toFirstUpper()-»> {
+        
+        let request: NSFetchRequest<«EN.name.toFirstUpper()-»> = NSFetchRequest(entityName: "«EN.name.toFirstUpper()-»")
+        request.returnsObjectsAsFaults = false
+        
+        let «EN.name.toLowerCase()-»s = self.load«EN.name.toFirstUpper()-»sFromFetchRequest(request: request)   
+        
+        return «EN.name.toLowerCase()-»s
+    }
+    
+    private func load«EN.name.toFirstUpper()-»sFromFetchRequest(request: NSFetchRequest<«EN.name.toFirstUpper()-»>) -> [«EN.name.toFirstUpper()-»] {
+        var array = [«EN.name.toFirstUpper()-»]()
+        do {
+            array = try self.context.fetch(request)
+            
+            guard array.count > 0 else {print("No elements to read"); return []}
+            
+        } catch let error {
+        	print(error)    
+        }
+        
+        return array
+    }
+    
+    func load«EN.name.toFirstUpper()-»(«EN.primaryKey.toLowerCase()-»: String) -> «EN.name.toFirstUpper()-» {
+        let request: NSFetchRequest<«EN.name.toFirstUpper()-»> = NSFetchRequest(entityName: "«EN.name.toFirstUpper()-»")
+        request.returnsObjectsAsFaults = false
+        
+        let predicate = NSPredicate(format: "«EN.primaryKey-» = %@", «EN.primaryKey.toLowerCase()-»)
+        request.predicate = predicate
+        
+        let «EN.name.toLowerCase()-»s = self.load«EN.name.toFirstUpper()-»sFromFetchRequest(request: request)
+        return «EN.name.toLowerCase()-»s[0]
+    }
+    
+    func delete«EN.name.toFirstUpper()-»(«EN.primaryKey.toLowerCase()-»: String) {
+        let «EN.name.toLowerCase()-» = self.load«EN.name.toFirstUpper()-»(«EN.primaryKey.toLowerCase()-»: «EN.primaryKey.toLowerCase()-»)
+        self.context.delete(«EN.name.toLowerCase()-»)
+        
+        do {
+            try self.context.save()
+        } catch let error {
+            print(error)
+        }
+    }
+    «ENDFOREACH-»
 }
 «ENDFILE-»
 
 «FOREACH this.dataHandler.databaseHandler.entities AS entity-»
 «REM» DatabaseHandler Model classes «ENDREM»
-«FILE entity.databaseHandler.dataHandler.application.name+"/"+entity.databaseHandler.dataHandler.application.name+"/CoreDataModels/"+entity.name+".swift"-»
+«FILE entity.databaseHandler.dataHandler.application.name+"/"+entity.databaseHandler.dataHandler.application.name+"/CoreDataModels/"+entity.name+"+CoreDataClass.swift"-»
 //
-//  «entity.name.toFirstUpper()-».swift
+//  «entity.name.toFirstUpper()-»+CoreDataClass.swift
 //  «entity.databaseHandler.dataHandler.application.name-»
 //
 //
@@ -168,7 +199,25 @@ import CoreData
 @objc(«entity.name.toFirstUpper()-»)
 public class «entity.name.toFirstUpper()-»: NSManagedObject {
     
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<«entity.name.toFirstUpper()-»> {
+}
+«ENDFILE-»
+
+«FILE entity.databaseHandler.dataHandler.application.name+"/"+entity.databaseHandler.dataHandler.application.name+"/CoreDataModels/"+entity.name+"+CoreDataProperties.swift"-»
+//
+//  «entity.name.toFirstUpper()-»+CoreDataProperties.swift
+//  «entity.databaseHandler.dataHandler.application.name-»
+//
+//
+//  Automatically generated by MobileCodeGenerator 3.
+//  Copyright © 2017 «this.companyIdentifier.split('.').last()-». All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+extension «entity.name.toFirstUpper()-»{
+
+	@nonobjc public class func fetchRequest() -> NSFetchRequest<«entity.name.toFirstUpper()-»> {
         return NSFetchRequest<«entity.name.toFirstUpper()-»>(entityName: "«entity.name.toFirstUpper()-»")
     }
     
@@ -215,8 +264,86 @@ public class «entity.name.toFirstUpper()-»: NSManagedObject {
     «FOREACH entity.entityRelationships AS relationship-»
     @NSManaged public var «relationship.name-»: «relationship.destination.toFirstUpper()-»?
     «ENDFOREACH-»
+    
 }
 «ENDFILE-»
 «ENDFOREACH-»
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE enAttributes FOR Entity-»
+
+«IF this.primaryKey.matches("description") || this.primaryKey.matches("entity") || this.primaryKey.matches("objectID")-»
+«this.primaryKey-»_: String, 
+«ELSE-»
+«this.primaryKey-»: String, 
+«ENDIF-»
+«FOREACH this.entityAttributes.withoutLast() AS attribute-»
+«IF attribute.name.matches("description") || attribute.name.matches("entity") || attribute.name.matches("objectID")-»
+«IF attribute.type.matches("String")-»
+«attribute.name-»_: «attribute.type-»,
+«ENDIF-»
+«IF attribute.type.matches("Date")-»
+«attribute.name-»_: NSDate,
+«ENDIF-»
+«IF attribute.type.matches("Integer")-»
+«attribute.name-»_: Int32,
+«ENDIF-»
+«IF attribute.type.matches("Float") || attribute.type.matches("Double")-»
+«attribute.name-»_: «attribute.type-»,
+«ENDIF-»
+«IF attribute.type.matches("Boolean")-»
+«attribute.name-»_: Bool,
+«ENDIF-»
+«ELSE-»
+«IF attribute.type.matches("String")-»
+«attribute.name-»: «attribute.type-»,
+«ENDIF-»
+«IF attribute.type.matches("Date")-»
+«attribute.name-»: NSDate,
+«ENDIF-»
+«IF attribute.type.matches("Integer")-»
+«attribute.name-»: Int32,
+«ENDIF-»
+«IF attribute.type.matches("Float") || attribute.type.matches("Double")-»
+«attribute.name-»: «attribute.type-»,
+«ENDIF-»
+«IF attribute.type.matches("Boolean")-»
+«attribute.name-»: Bool,
+«ENDIF-»
+«ENDIF-»
+«ENDFOREACH-»
+«IF this.entityAttributes.last().name.matches("description") || this.entityAttributes.last().name.matches("entity") || this.entityAttributes.last().name.matches("objectID")-»
+«IF this.entityAttributes.last().type.matches("String")-»
+«this.entityAttributes.last().name-»_: «this.entityAttributes.last().type-»
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Date")-»
+«this.entityAttributes.last().name-»_: NSDate
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Integer")-»
+«this.entityAttributes.last().name-»_: Int32
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Float") || this.entityAttributes.last().type.matches("Double")-»
+«this.entityAttributes.last().name-»_: «this.entityAttributes.last().type-»
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Boolean")-»
+«this.entityAttributes.last().name-»_: Bool
+«ENDIF-»
+«ELSE-»
+«IF this.entityAttributes.last().type.matches("String")-»
+«this.entityAttributes.last().name-»: «this.entityAttributes.last().type-»
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Date")-»
+«this.entityAttributes.last().name-»: NSDate
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Integer")-»
+«this.entityAttributes.last().name-»: Int32
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Float") || this.entityAttributes.last().type.matches("Double")-»
+«this.entityAttributes.last().name-»: «this.entityAttributes.last().type-»
+«ENDIF-»
+«IF this.entityAttributes.last().type.matches("Boolean")-»
+«this.entityAttributes.last().name-»: Bool
+«ENDIF-»
 «ENDIF-»
 «ENDDEFINE-»

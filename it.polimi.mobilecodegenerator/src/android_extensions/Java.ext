@@ -16,5 +16,5 @@
 import metamodel;
 
 Void deleteApplicationFolder():JAVA android_extensions.AndroidJavaUtil.deleteApplicationFolder();
-Void copyDefaultAndroidFiles():JAVA android_extensions.AndroidJavaUtil.copyDefaultAndroidFiles();
+Void copyDefaultAndroidFiles(String includeWatch):JAVA android_extensions.AndroidJavaUtil.copyDefaultAndroidFiles(java.lang.String);
 Void copyUserFiles():JAVA android_extensions.AndroidJavaUtil.copyUserFiles();

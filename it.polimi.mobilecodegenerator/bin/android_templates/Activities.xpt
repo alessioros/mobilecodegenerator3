@@ -1,5 +1,5 @@
 «REM»
-Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
+Copyright 2017 Gregorio Perego, Stefania Pezzetti, Aldo Pintus, Alessio Rossotti
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -28,7 +28,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «REM»Launcher ViewController is translated into an Activity containing the SectionPagerAdapter«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
 «FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
-package «application.companyIdentifier».«application.name.toLowerCase()»;
+package «application.companyIdentifier».«application.name.toLowerCase()».activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +38,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+
+import «application.companyIdentifier».«application.name.toLowerCase()».R;
+
+«FOREACH 0.upTo(application.menu.menuItems.size - 1) AS i-»
+import «application.companyIdentifier».«application.name.toLowerCase()».fragments.«application.menu.menuItems.get(i).navigation.destination.toFirstUpper()»Fragment;
+«ENDFOREACH-»
 
 public class «name.toFirstUpper()»Activity extends AppCompatActivity {
 
@@ -101,9 +107,10 @@ public class «name.toFirstUpper()»Activity extends AppCompatActivity {
 «REM»Menu items are translated into Fragments of the Launcher ViewController«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) -»
 «FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/fragments/"+name.toFirstUpper()+"Fragment.java"-»
-package «application.companyIdentifier».«application.name.toLowerCase()»;
+package «application.companyIdentifier».«application.name.toLowerCase()».fragments;
 
 «EXPAND android_activities_templates::Imports::importsFrag-»
+import «application.companyIdentifier».«application.name.toLowerCase()».R;
 
 public class «name.toFirstUpper()»Fragment extends Fragment «EXPAND android_activities_templates::Implements::implements-» {
 
@@ -173,9 +180,10 @@ public class «name.toFirstUpper()»Fragment extends Fragment «EXPAND android_acti
 «REM»All the other ViewControllers«ENDREM»
 «ELSE-»
 «FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
-package «application.companyIdentifier».«application.name.toLowerCase()»;
+package «application.companyIdentifier».«application.name.toLowerCase()».activities;
 	
 «EXPAND android_activities_templates::Imports::imports-»
+import «application.companyIdentifier».«application.name.toLowerCase()».R;
 
 public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
 	
@@ -245,9 +253,10 @@ public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND and
 
 «DEFINE activity FOR ViewController-»
 «FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/activities/"+name.toFirstUpper()+"Activity.java"-»
-package «application.companyIdentifier».«application.name.toLowerCase()»;
+package «application.companyIdentifier».«application.name.toLowerCase()».activities;
 	
 «EXPAND android_activities_templates::Imports::imports-»
+import «application.companyIdentifier».«application.name.toLowerCase()».R;
 
 public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
 	
