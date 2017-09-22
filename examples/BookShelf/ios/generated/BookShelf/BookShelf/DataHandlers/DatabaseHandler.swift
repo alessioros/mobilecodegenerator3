@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class DatabaseHandler{
     
@@ -18,14 +19,7 @@ class DatabaseHandler{
         self.context = application.persistentContainer.viewContext
     }
     
-    class func saveBook(
-ISBN: String, 
-title: String,
-description_: String,
-pageCount: Int32,
-publisher: String,
-publishedDate: String,
-author: String) {
+    class func saveBook(ISBN: String, title: String, description_: String, pageCount: Int32, publisher: String, publishedDate: String, author: String) {
         
         // retrieve entity
         let entity = NSEntityDescription.entity(forEntityName: "Book", in: shared.context)

@@ -258,6 +258,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getSecondHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard */,
 				«getSecondHexadecimalId("App Assets.xcassets")» /* Assets.xcassets */,
 				«getSecondHexadecimalId("DataHandlers")» /* DataHandlers */,
+				«getSecondHexadecimalId("ViewControllers")» /* ViewControllers */,
 				«IF this.dataHandler.cloudHandler.existsObject()-»
 				«getSecondHexadecimalId("CloudObjects")» /* CloudObjects */,
 				«ENDIF-»
@@ -265,9 +266,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getSecondHexadecimalId("CoreDataModels")» /* CoreDataModels */,
 				«getSecondHexadecimalId(this.name+".xcdatamodeld")» /* «this.name».xcdatamodeld */,
 				«ENDIF-»
-				«FOREACH viewControllers AS vc-»
-				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
-				«ENDFOREACH-»
 				«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 				«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */,
 				«ENDIF-»
@@ -310,6 +308,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			sourceTree = "<group>";
 		};
 		«ENDIF-»
+		
+		«getSecondHexadecimalId("ViewControllers")» /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				«FOREACH viewControllers AS vc-»
+				«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */,
+				«ENDFOREACH-»
+			);
+			path = "ViewControllers";
+			sourceTree = "<group>";
+		};
 		
 		«IF this.dataHandler.cloudHandler.existsObject()-»
 		«getSecondHexadecimalId("CloudObjects")» /* CloudObjects */ = {

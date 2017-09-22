@@ -17,6 +17,7 @@ extension Book{
     
 	@NSManaged public var ISBN: String?
 	@NSManaged public var title: String?
+    @NSManaged public var author: String?
 	@NSManaged public var description_: String?
 	@NSManaged public var pageCount: Int32
 	@NSManaged public var publisher: String?

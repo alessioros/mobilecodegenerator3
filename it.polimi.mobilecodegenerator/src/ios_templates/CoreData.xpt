@@ -92,6 +92,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 import Foundation
 import CoreData
+import UIKit
 
 class DatabaseHandler{
     

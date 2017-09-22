@@ -102,7 +102,7 @@ class PreferenceHandler{
     
     func getBookCount() -> Int{
         
-        f defaults.object(forKey: "bookCount") != nil
+        if defaults.object(forKey: "bookCount") != nil
         {
             return defaults.integer(forKey: "bookCount");
         }else{

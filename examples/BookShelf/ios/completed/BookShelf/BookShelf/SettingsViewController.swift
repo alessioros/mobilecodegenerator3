@@ -37,8 +37,6 @@ class SettingsViewController: UIViewController
         let fireHandler = FirebaseHandler()
         fireHandler.saveUser(user: user)
         
-        let prefHandler = PreferenceHandler()
-        
     }
 
     

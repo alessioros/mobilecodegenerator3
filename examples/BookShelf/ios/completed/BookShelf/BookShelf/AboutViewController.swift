@@ -15,6 +15,7 @@ class AboutViewController: UIViewController
         
         let fileHandler = StorageHandler()
         aboutText.text = fileHandler.readFile(file: "about.txt")
+        aboutText.isEditable = false
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -24,9 +25,6 @@ class AboutViewController: UIViewController
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 	}
-
-
-
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

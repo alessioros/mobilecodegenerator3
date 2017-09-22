@@ -48,7 +48,7 @@ class FirebaseHandler{
 		// TODO REPLACE WITH YOUR FIREBASE CONSOLE REF
 		let ref = getReference(reference: "«cObject.name.toLowerCase()-»")
 		
-		ref.setValue(«cObject.name-»)
+		ref.setValue(«cObject.name.toLowerCase()-»)
 	}
 	
 	func observe«cObject.name.toFirstUpper()-»() -> Void{

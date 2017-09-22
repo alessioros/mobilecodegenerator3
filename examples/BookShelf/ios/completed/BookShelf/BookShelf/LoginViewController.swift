@@ -32,7 +32,7 @@ class LoginViewController: UIViewController
         
             let fileStorage = StorageHandler()
             let aboutContent = "BookShelf is an application that lets you storing and organizing your books in an immediate way, " +
-                "thanks to his ISBN scanner.\n" +
+                "thanks to its ISBN scanner.\n" +
                 "\n" +
                 "Developed by Alessio Rossotti\n" +
                 "\n" +

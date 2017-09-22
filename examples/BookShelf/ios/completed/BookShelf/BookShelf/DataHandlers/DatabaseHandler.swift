@@ -19,7 +19,7 @@ class DatabaseHandler{
         self.context = application.persistentContainer.viewContext
     }
     
-    class func saveBook(ISBN: String, title: String, description_: String, pageCount: Int32, publisher:String, publishedDate: String, imgUrl: String) {
+    class func saveBook(ISBN: String, title: String, author: String, description_: String, pageCount: Int32, publisher:String, publishedDate: String, imgUrl: String, shelf: Shelf) {
         
         // retrieve entity
         let entity = NSEntityDescription.entity(forEntityName: "Book", in: shared.context)
@@ -28,11 +28,16 @@ class DatabaseHandler{
         let options = NSManagedObject(entity: entity!, insertInto: shared.context)
         options.setValue(ISBN, forKey: "ISBN")
         options.setValue(title, forKey: "title")
+        options.setValue(author, forKey: "author")
         options.setValue(description_, forKey: "description_")
         options.setValue(pageCount, forKey: "pageCount")
         options.setValue(publisher, forKey: "publisher")
         options.setValue(publishedDate, forKey: "publishedDate")
         options.setValue(imgUrl, forKey: "imgUrl")
+        options.setValue(shelf, forKey: "belongsTo")
+        
+        let shelfBooks = shelf.mutableSetValue(forKey: "has")
+        shelfBooks.add(options)
         
         do {
             try shared.context.save()
@@ -50,6 +55,23 @@ class DatabaseHandler{
         let books = self.loadBooksFromFetchRequest(request: request)
         
         return books
+    }
+    
+    func loadShelfBooks(shelfName: String) -> Array<Book> {
+        
+        let request: NSFetchRequest<Book> = NSFetchRequest(entityName: "Book")
+        request.returnsObjectsAsFaults = false
+        
+        var books = self.loadBooksFromFetchRequest(request: request)
+        var shelfBooks = Array<Book>()
+        
+        for i in 0 ..< books.count {
+            
+            if books[i].belongsTo?.name == shelfName{
+                shelfBooks.append(books[i])
+            }
+        }
+        return shelfBooks
     }
     
     private func loadBooksFromFetchRequest(request: NSFetchRequest<Book>) -> [Book] {
@@ -125,6 +147,7 @@ class DatabaseHandler{
         
         return shelfs
     }
+    
     
     private func loadShelfsFromFetchRequest(request: NSFetchRequest<Shelf>) -> [Shelf] {
         var array = [Shelf]()

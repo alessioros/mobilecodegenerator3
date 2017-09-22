@@ -14,24 +14,20 @@ class ShelfViewController: UITableViewController
     
     @IBOutlet weak var navBarItem: UINavigationItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBOutlet weak var backButton: UIBarButtonItem!
     
     var shelfName: String = ""
     var bookTitle: String = ""
     var book: Book? = nil
     var bookListContents: [String] = []
     
-    @IBAction func backPressed(_ sender: Any) {
-        //Go to the LibraryViewController
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LibraryNav")
-        self.present(vc!, animated: true, completion: nil)
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reloadBooks()
         navBarItem.title = shelfName
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadBooks()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,7 +54,7 @@ class ShelfViewController: UITableViewController
         
         bookListContents = []
         
-        let books = DatabaseHandler().loadAllBooks()
+        let books = DatabaseHandler().loadShelfBooks(shelfName: shelfName)
         
         for book in books {
             bookListContents.append(book.title!)
@@ -68,16 +64,13 @@ class ShelfViewController: UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
         
-        // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow;
         let currentCell = tableView.cellForRow(at: indexPath!) as UITableViewCell!;
         
         bookTitle = (currentCell?.textLabel?.text!)!
         book = DatabaseHandler().loadBookByTitle(title: bookTitle)
         performSegue(withIdentifier: "BookDetail", sender: self)
-        
     }
 
     
@@ -85,8 +78,12 @@ class ShelfViewController: UITableViewController
         
         if (segue.identifier == "BookDetail") {
             let vc = segue.destination as! BookDetailViewController
-            vc.titleText = bookTitle
-            //vc.book = book
+            vc.book = book
+        }
+        
+        if (segue.identifier == "addBook") {
+            let vc = segue.destination as! AddBookViewController
+            vc.shelfName = shelfName
         }
     }
 

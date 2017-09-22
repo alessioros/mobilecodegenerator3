@@ -24,7 +24,7 @@ class FirebaseHandler{
 		// TODO REPLACE WITH YOUR FIREBASE CONSOLE REF
 		let ref = getReference(reference: "user")
 		
-		ref.setValue(User)
+		ref.setValue(user)
 	}
 	
 	func observeUser() -> Void{

@@ -10,9 +10,12 @@ class HomeViewController: UIViewController
  {
 
     @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var welcomeMessage: UILabel!
     
 	override func viewDidLoad() {
+        
 	    super.viewDidLoad()
+        self.giveWelcome()
         coverImage.image = UIImage(named:"book_shelf")
 	}
 	
@@ -39,4 +42,13 @@ class HomeViewController: UIViewController
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 	}
+    
+    func giveWelcome(){
+    
+        let prefHandler = PreferenceHandler()
+        let user_name = prefHandler.getUserName()
+        let user_surname = prefHandler.getUserSurname()
+        
+        welcomeMessage.text = user_name! + " " + user_surname!
+    }
 }

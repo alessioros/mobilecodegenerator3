@@ -67,7 +67,7 @@ class PreferenceHandler{
     
     func get«precord.key.toFirstUpper()-»() -> Int{
         
-        f defaults.object(forKey: "«precord.key-»") != nil
+        if defaults.object(forKey: "«precord.key-»") != nil
         {
             return defaults.integer(forKey: "«precord.key-»");
         }else{

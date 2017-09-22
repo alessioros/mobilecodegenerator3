@@ -20,7 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewController FOR ViewController-»
 
-«FILE application.name +"/"+application.name +"/"+ name+"ViewController.swift"-»
+«FILE application.name +"/"+application.name +"/ViewControllers/"+ name+"ViewController.swift"-»
 //
 //  «name-»ViewController.swift"
 //  «this.name-»

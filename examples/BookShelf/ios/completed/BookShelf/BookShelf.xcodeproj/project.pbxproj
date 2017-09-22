@@ -24,7 +24,6 @@
 		36181A10000335260094950D /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000345260094950D /* LibraryViewController.swift */; };
 		36181A10000355260094950D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000365260094950D /* SettingsViewController.swift */; };
 		36181A10000375260094950D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000385260094950D /* AboutViewController.swift */; };
-		36181A10000395260094950D /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000405260094950D /* BookDetailViewController.swift */; };
 		36181A10000415260094950D /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000425260094950D /* SimpleTableViewCell.swift */; };
 		5411DAD91F4C34F900EF7E05 /* Shelf+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5411DAD71F4C34F900EF7E05 /* Shelf+CoreDataClass.swift */; };
 		5411DADA1F4C34F900EF7E05 /* Shelf+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5411DAD81F4C34F900EF7E05 /* Shelf+CoreDataProperties.swift */; };
@@ -34,6 +33,7 @@
 		5411DAE21F4C77A300EF7E05 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5411DAE01F4C77A300EF7E05 /* Book+CoreDataProperties.swift */; };
 		54AEC8B51F487F15005DB9AE /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AEC8B41F487F15005DB9AE /* LogoutViewController.swift */; };
 		54CE70201F45DA92003EA7D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CE701F1F45DA92003EA7D3 /* GoogleService-Info.plist */; };
+		54DCF75F1F5C064A00A21F17 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DCF75E1F5C064A00A21F17 /* BookDetailViewController.swift */; };
 		893DBC135B9F46A9BE780AF5 /* Pods_BookShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17926C3C7E3F166CE388404D /* Pods_BookShelf.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,6 @@
 		36181A10000345260094950D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		36181A10000365260094950D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		36181A10000385260094950D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		36181A10000405260094950D /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		36181A10000425260094950D /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		36181A10000435260094950D /* BookShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36181A10000455260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		5411DAE01F4C77A300EF7E05 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		54AEC8B41F487F15005DB9AE /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		54CE701F1F45DA92003EA7D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54DCF75E1F5C064A00A21F17 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		EA0C5E438BAA8DEA91C39DAD /* Pods-BookShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelf/Pods-BookShelf.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,27 +97,15 @@
 		36181A10000575260094950D /* BookShelf */ = {
 			isa = PBXGroup;
 			children = (
-				54CE701F1F45DA92003EA7D3 /* GoogleService-Info.plist */,
 				36181A10000025260094950D /* AppDelegate.swift */,
-				36181A10000225260094950D /* Main.storyboard */,
-				36181A10000265260094950D /* LaunchScreen.storyboard */,
-				36181A10000245260094950D /* Assets.xcassets */,
+				54DCF7611F5C3FD000A21F17 /* Storyboards */,
+				54DCF7601F5C3F9A00A21F17 /* ViewControllers */,
 				36181A10000625260094950D /* DataHandlers */,
 				36181A10000645260094950D /* CloudObjects */,
 				36181A10000665260094950D /* CoreDataModels */,
-				36181A10000045260094950D /* BookShelf.xcdatamodeld */,
-				36181A10000285260094950D /* LoginViewController.swift */,
-				36181A10000305260094950D /* RegisterViewController.swift */,
-				36181A10000325260094950D /* HomeViewController.swift */,
-				36181A10000345260094950D /* LibraryViewController.swift */,
-				36181A10000365260094950D /* SettingsViewController.swift */,
-				36181A10000385260094950D /* AboutViewController.swift */,
-				36181A10000405260094950D /* BookDetailViewController.swift */,
 				36181A10000425260094950D /* SimpleTableViewCell.swift */,
-				36181A10000495260094950D /* Info.plist */,
-				54AEC8B41F487F15005DB9AE /* LogoutViewController.swift */,
-				5411DADB1F4C5B4800EF7E05 /* ShelfViewController.swift */,
-				5411DADD1F4C72B400EF7E05 /* AddBookViewController.swift */,
+				36181A10000245260094950D /* Assets.xcassets */,
+				54DCF7621F5C3FE800A21F17 /* Plist */,
 			);
 			path = BookShelf;
 			sourceTree = "<group>";
@@ -157,8 +145,44 @@
 				5411DAE01F4C77A300EF7E05 /* Book+CoreDataProperties.swift */,
 				5411DAD71F4C34F900EF7E05 /* Shelf+CoreDataClass.swift */,
 				5411DAD81F4C34F900EF7E05 /* Shelf+CoreDataProperties.swift */,
+				36181A10000045260094950D /* BookShelf.xcdatamodeld */,
 			);
 			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		54DCF7601F5C3F9A00A21F17 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				54AEC8B41F487F15005DB9AE /* LogoutViewController.swift */,
+				5411DADB1F4C5B4800EF7E05 /* ShelfViewController.swift */,
+				5411DADD1F4C72B400EF7E05 /* AddBookViewController.swift */,
+				54DCF75E1F5C064A00A21F17 /* BookDetailViewController.swift */,
+				36181A10000285260094950D /* LoginViewController.swift */,
+				36181A10000305260094950D /* RegisterViewController.swift */,
+				36181A10000325260094950D /* HomeViewController.swift */,
+				36181A10000345260094950D /* LibraryViewController.swift */,
+				36181A10000365260094950D /* SettingsViewController.swift */,
+				36181A10000385260094950D /* AboutViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		54DCF7611F5C3FD000A21F17 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000225260094950D /* Main.storyboard */,
+				36181A10000265260094950D /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		54DCF7621F5C3FE800A21F17 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				54CE701F1F45DA92003EA7D3 /* GoogleService-Info.plist */,
+				36181A10000495260094950D /* Info.plist */,
+			);
+			name = Plist;
 			sourceTree = "<group>";
 		};
 		6F6C988B273B6C6CF77F0290 /* Frameworks */ = {
@@ -312,6 +336,7 @@
 				36181A10000155260094950D /* CloudHandler.swift in Sources */,
 				5411DAE11F4C77A300EF7E05 /* Book+CoreDataClass.swift in Sources */,
 				36181A10000175260094950D /* FirebaseHandler.swift in Sources */,
+				54DCF75F1F5C064A00A21F17 /* BookDetailViewController.swift in Sources */,
 				36181A10000195260094950D /* User.swift in Sources */,
 				5411DADE1F4C72B400EF7E05 /* AddBookViewController.swift in Sources */,
 				36181A10000015260094950D /* AppDelegate.swift in Sources */,
@@ -322,7 +347,6 @@
 				36181A10000355260094950D /* SettingsViewController.swift in Sources */,
 				54AEC8B51F487F15005DB9AE /* LogoutViewController.swift in Sources */,
 				36181A10000375260094950D /* AboutViewController.swift in Sources */,
-				36181A10000395260094950D /* BookDetailViewController.swift in Sources */,
 				36181A10000415260094950D /* SimpleTableViewCell.swift in Sources */,
 				5411DAE21F4C77A300EF7E05 /* Book+CoreDataProperties.swift in Sources */,
 			);
@@ -499,7 +523,8 @@
 				36181A10000515260094950D /* BookShelf.xcdatamodel */,
 			);
 			currentVersion = 36181A10000515260094950D /* BookShelf.xcdatamodel */;
-			path = BookShelf.xcdatamodeld;
+			name = BookShelf.xcdatamodeld;
+			path = ../BookShelf.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

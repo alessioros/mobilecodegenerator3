@@ -43,15 +43,12 @@ class LibraryViewController: UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
         
-        // Get Cell Label
         let indexPath = tableView.indexPathForSelectedRow;
         let currentCell = tableView.cellForRow(at: indexPath!) as UITableViewCell!;
         
         clickedShelf = (currentCell?.textLabel?.text!)!
         performSegue(withIdentifier: "ShelfBooks", sender: self)
-        
     }
 
     

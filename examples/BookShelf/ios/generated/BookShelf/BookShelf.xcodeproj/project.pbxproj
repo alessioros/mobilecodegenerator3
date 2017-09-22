@@ -31,28 +31,23 @@
 		36181A10000435260094950D /* shelfDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000445260094950D /* shelfDetailViewController.swift */; };
 		36181A10000455260094950D /* bookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000465260094950D /* bookDetailViewController.swift */; };
 		36181A10000475260094950D /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000485260094950D /* SimpleTableViewCell.swift */; };
-		
+		668A397CF521CA600B251A1F /* Pods_BookShelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277CEFA7ED213514743063C1 /* Pods_BookShelf.framework */; };
 /* End PBXBuildFile section */
 
-
 /* Begin PBXFileReference section */
-		36181A10000495260094950D /* BookShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		277CEFA7ED213514743063C1 /* Pods_BookShelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BookShelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36181A10000025260094950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36181A10000515260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		36181A10000285260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000535260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		36181A10000555260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36181A10000575260094950D /* BookShelf.xcdatamodel  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookShelf.xcdatamodel; sourceTree = "<group>"; };
-		36181A10000065260094950D /* DatabaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
+		36181A10000065260094950D /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		36181A10000085260094950D /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataClass.swift"; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
 		36181A10000105260094950D /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		36181A10000125260094950D /* Shelf+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Shelf+CoreDataClass.swift"; path = "Shelf+CoreDataClass.swift"; sourceTree = "<group>"; };
 		36181A10000145260094950D /* Shelf+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Shelf+CoreDataProperties.swift"; path = "Shelf+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		36181A10000165260094950D /* PreferenceHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceHandler.swift; sourceTree = "<group>"; };
-		36181A10000185260094950D /* StorageHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
-		36181A10000205260094950D /* CloudHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudHandler.swift; sourceTree = "<group>"; };
-		36181A10000225260094950D /* FirebaseHandler.swift  */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
-		36181A10000245260094950D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User.swift"; path = "User.swift"; sourceTree = "<group>"; };
+		36181A10000165260094950D /* PreferenceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceHandler.swift; sourceTree = "<group>"; };
+		36181A10000185260094950D /* StorageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHandler.swift; sourceTree = "<group>"; };
+		36181A10000205260094950D /* CloudHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudHandler.swift; sourceTree = "<group>"; };
+		36181A10000225260094950D /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
+		36181A10000245260094950D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = User.swift; sourceTree = "<group>"; };
+		36181A10000285260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36181A10000325260094950D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		36181A10000345260094950D /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		36181A10000365260094950D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -62,20 +57,21 @@
 		36181A10000445260094950D /* shelfDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shelfDetailViewController.swift; sourceTree = "<group>"; };
 		36181A10000465260094950D /* bookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookDetailViewController.swift; sourceTree = "<group>"; };
 		36181A10000485260094950D /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
-		/* End PBXFileReference section */
+		36181A10000495260094950D /* BookShelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookShelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36181A10000515260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		36181A10000535260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36181A10000555260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000575260094950D /* BookShelf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookShelf.xcdatamodel; sourceTree = "<group>"; };
+		667F7BD666F990EDE44992EF /* Pods-BookShelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelf/Pods-BookShelf.release.xcconfig"; sourceTree = "<group>"; };
+		F3BE128DA6C61D02AB4E855C /* Pods-BookShelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookShelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookShelf/Pods-BookShelf.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		36181A10000595260094950D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36181A10000605260094950D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				668A397CF521CA600B251A1F /* Pods_BookShelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,15 +83,9 @@
 			children = (
 				36181A10000635260094950D /* BookShelf */,
 				36181A10000655260094950D /* Products */,
+				EB592B005FA7F394807900CC /* Pods */,
+				9C7E410C3AE2A435FE4E088C /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		36181A10000655260094950D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000495260094950D /* BookShelf.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		36181A10000635260094950D /* BookShelf */ = {
@@ -106,44 +96,24 @@
 				36181A10000305260094950D /* LaunchScreen.storyboard */,
 				36181A10000285260094950D /* Assets.xcassets */,
 				36181A10000685260094950D /* DataHandlers */,
-				36181A10000705260094950D /* CloudObjects */,
-				36181A10000725260094950D /* CoreDataModels */,
+				36181A10000705260094950D /* ViewControllers */,
+				36181A10000725260094950D /* CloudObjects */,
+				36181A10000745260094950D /* CoreDataModels */,
 				36181A10000045260094950D /* BookShelf.xcdatamodeld */,
-				36181A10000325260094950D /* HomeViewController.swift */,
-				36181A10000345260094950D /* LibraryViewController.swift */,
-				36181A10000365260094950D /* AboutViewController.swift */,
-				36181A10000385260094950D /* SettingsViewController.swift */,
-				36181A10000405260094950D /* LoginViewController.swift */,
-				36181A10000425260094950D /* RegisterViewController.swift */,
-				36181A10000445260094950D /* shelfDetailViewController.swift */,
-				36181A10000465260094950D /* bookDetailViewController.swift */,
 				36181A10000485260094950D /* SimpleTableViewCell.swift */,
 				36181A10000555260094950D /* Info.plist */,
 			);
 			path = BookShelf;
 			sourceTree = "<group>";
 		};
-		36181A10000725260094950D /* CoreDataModels */ = {
+		36181A10000655260094950D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				36181A10000085260094950D /* Book+CoreDataClass.swift */,
-				36181A10000105260094950D /* Book+CoreDataProperties.swift */,
-				36181A10000125260094950D /* Shelf+CoreDataClass.swift */,
-				36181A10000145260094950D /* Shelf+CoreDataProperties.swift */,
+				36181A10000495260094950D /* BookShelf.app */,
 			);
-			path = "CoreDataModels";
+			name = Products;
 			sourceTree = "<group>";
 		};
-		
-		36181A10000705260094950D /* CloudObjects */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000245260094950D /* User.swift */,
-			);
-			path = "CloudObjects";
-			sourceTree = "<group>";
-		};
-		
 		36181A10000685260094950D /* DataHandlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,20 +123,73 @@
 				36181A10000225260094950D /* FirebaseHandler.swift */,
 				36181A10000185260094950D /* StorageHandler.swift */,
 			);
-			path = "DataHandlers";
+			path = DataHandlers;
 			sourceTree = "<group>";
 		};
-		
+		36181A10000705260094950D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000325260094950D /* HomeViewController.swift */,
+				36181A10000345260094950D /* LibraryViewController.swift */,
+				36181A10000365260094950D /* AboutViewController.swift */,
+				36181A10000385260094950D /* SettingsViewController.swift */,
+				36181A10000405260094950D /* LoginViewController.swift */,
+				36181A10000425260094950D /* RegisterViewController.swift */,
+				36181A10000445260094950D /* shelfDetailViewController.swift */,
+				36181A10000465260094950D /* bookDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		36181A10000725260094950D /* CloudObjects */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000245260094950D /* User.swift */,
+			);
+			path = CloudObjects;
+			sourceTree = "<group>";
+		};
+		36181A10000745260094950D /* CoreDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000085260094950D /* Book+CoreDataClass.swift */,
+				36181A10000105260094950D /* Book+CoreDataProperties.swift */,
+				36181A10000125260094950D /* Shelf+CoreDataClass.swift */,
+				36181A10000145260094950D /* Shelf+CoreDataProperties.swift */,
+			);
+			path = CoreDataModels;
+			sourceTree = "<group>";
+		};
+		9C7E410C3AE2A435FE4E088C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				277CEFA7ED213514743063C1 /* Pods_BookShelf.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB592B005FA7F394807900CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3BE128DA6C61D02AB4E855C /* Pods-BookShelf.debug.xcconfig */,
+				667F7BD666F990EDE44992EF /* Pods-BookShelf.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		36181A10000645260094950D /* BookShelf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36181A10000735260094950D /* Build configuration list for PBXNativeTarget "BookShelf" */;
+			buildConfigurationList = 36181A10000755260094950D /* Build configuration list for PBXNativeTarget "BookShelf" */;
 			buildPhases = (
-				36181A10000755260094950D /* Sources */,
+				D0D7B2959E98F103D010FB68 /* [CP] Check Pods Manifest.lock */,
+				36181A10000775260094950D /* Sources */,
 				36181A10000595260094950D /* Frameworks */,
-				36181A10000775260094950D /* Resources */,
+				36181A10000795260094950D /* Resources */,
+				76BDB5C0452CFD4F6806C893 /* [CP] Embed Pods Frameworks */,
+				C51237422EE98D5AB708A780 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -180,7 +203,7 @@
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		36181A10000795260094950D /* Project object */ = {
+		36181A10000815260094950D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
@@ -190,15 +213,15 @@
 					36181A10000645260094950D = {
 						CreatedOnToolsVersion = 8.1;
 					};
-					36181A10000815260094950D = {
+					36181A10000835260094950D = {
 						CreatedOnToolsVersion = 8.1;
 					};
-					36181A10000825260094950D = {
+					36181A10000845260094950D = {
 						CreatedOnToolsVersion = 8.1;
 					};
 				};
 			};
-			buildConfigurationList = 36181A10000835260094950D /* Build configuration list for PBXProject "BookShelf" */;
+			buildConfigurationList = 36181A10000855260094950D /* Build configuration list for PBXProject "BookShelf" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -212,13 +235,12 @@
 			projectRoot = "";
 			targets = (
 				36181A10000645260094950D /* BookShelf */,
-				
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		36181A10000775260094950D /* Resources */ = {
+		36181A10000795260094950D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -230,37 +252,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		76BDB5C0452CFD4F6806C893 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelf/Pods-BookShelf-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C51237422EE98D5AB708A780 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookShelf/Pods-BookShelf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0D7B2959E98F103D010FB68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		36181A10000755260094950D /* Sources */ = {
+		36181A10000775260094950D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				36181A10000035260094950D /* BookShelf.xcdatamodeld in Sources */,
-				36181A10000055260094950D /* DatabaseHandler.swift in Sources */, 
-				36181A10000075260094950D /* Book+CoreDataClass.swift in Sources*/,
-				36181A10000095260094950D /* Book+CoreDataProperties.swift in Sources*/,
-				36181A10000115260094950D /* Shelf+CoreDataClass.swift in Sources*/,
-				36181A10000135260094950D /* Shelf+CoreDataProperties.swift in Sources*/,
+				36181A10000055260094950D /* DatabaseHandler.swift in Sources */,
+				36181A10000075260094950D /* Book+CoreDataClass.swift in Sources */,
+				36181A10000095260094950D /* Book+CoreDataProperties.swift in Sources */,
+				36181A10000115260094950D /* Shelf+CoreDataClass.swift in Sources */,
+				36181A10000135260094950D /* Shelf+CoreDataProperties.swift in Sources */,
 				36181A10000155260094950D /* PreferenceHandler.swift in Sources */,
 				36181A10000175260094950D /* StorageHandler.swift in Sources */,
 				36181A10000195260094950D /* CloudHandler.swift in Sources */,
 				36181A10000215260094950D /* FirebaseHandler.swift in Sources */,
-				36181A10000235260094950D /* User.swift in Sources*/,
+				36181A10000235260094950D /* User.swift in Sources */,
 				36181A10000015260094950D /* AppDelegate.swift in Sources */,
-				36181A10000315260094950D /* HomeViewController.swift in Sources*/,
-				36181A10000335260094950D /* LibraryViewController.swift in Sources*/,
-				36181A10000355260094950D /* AboutViewController.swift in Sources*/,
-				36181A10000375260094950D /* SettingsViewController.swift in Sources*/,
-				36181A10000395260094950D /* LoginViewController.swift in Sources*/,
-				36181A10000415260094950D /* RegisterViewController.swift in Sources*/,
-				36181A10000435260094950D /* shelfDetailViewController.swift in Sources*/,
-				36181A10000455260094950D /* bookDetailViewController.swift in Sources*/,
-				36181A10000475260094950D /* SimpleTableViewCell.swift in Sources*/,
+				36181A10000315260094950D /* HomeViewController.swift in Sources */,
+				36181A10000335260094950D /* LibraryViewController.swift in Sources */,
+				36181A10000355260094950D /* AboutViewController.swift in Sources */,
+				36181A10000375260094950D /* SettingsViewController.swift in Sources */,
+				36181A10000395260094950D /* LoginViewController.swift in Sources */,
+				36181A10000415260094950D /* RegisterViewController.swift in Sources */,
+				36181A10000435260094950D /* shelfDetailViewController.swift in Sources */,
+				36181A10000455260094950D /* bookDetailViewController.swift in Sources */,
+				36181A10000475260094950D /* SimpleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
 
 /* Begin PBXVariantGroup section */
 		36181A10000265260094950D /* Main.storyboard */ = {
@@ -282,7 +351,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		36181A10000855260094950D /* Debug */ = {
+		36181A10000875260094950D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -294,14 +363,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -331,7 +400,7 @@
 			};
 			name = Debug;
 		};
-		36181A10000875260094950D /* Release */ = {
+		36181A10000895260094950D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -343,14 +412,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -373,9 +442,9 @@
 			};
 			name = Release;
 		};
-		
-		36181A10000895260094950D /* Debug */ = {
+		36181A10000915260094950D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3BE128DA6C61D02AB4E855C /* Pods-BookShelf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BookShelf/Info.plist;
@@ -386,8 +455,9 @@
 			};
 			name = Debug;
 		};
-		36181A10000915260094950D /* Release */ = {
+		36181A10000935260094950D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 667F7BD666F990EDE44992EF /* Pods-BookShelf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BookShelf/Info.plist;
@@ -401,37 +471,37 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		36181A10000835260094950D /* Build configuration list for PBXProject "BookShelf" */ = {
+		36181A10000755260094950D /* Build configuration list for PBXNativeTarget "BookShelf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36181A10000855260094950D /* Debug */,
-				36181A10000875260094950D /* Release */,
+				36181A10000915260094950D /* Debug */,
+				36181A10000935260094950D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		36181A10000855260094950D /* Build configuration list for PBXProject "BookShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36181A10000875260094950D /* Debug */,
+				36181A10000895260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36181A10000735260094950D /* Build configuration list for PBXNativeTarget "BookShelf" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				36181A10000895260094950D /* Debug */,
-				36181A10000915260094950D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		36181A10000045260094950D /* BookShelf".xcdatamodeld" */ = {
+		36181A10000045260094950D /* BookShelf.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				36181A10000575260094950D /* BookShelf.xcdatamodel  */,
+				36181A10000575260094950D /* BookShelf.xcdatamodel */,
 			);
-			currentVersion = 36181A10000575260094950D /* BookShelf.xcdatamodel  */;
+			currentVersion = 36181A10000575260094950D /* BookShelf.xcdatamodel */;
 			path = BookShelf.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 36181A10000795260094950D /* Project object */;
+	rootObject = 36181A10000815260094950D /* Project object */;
 }
